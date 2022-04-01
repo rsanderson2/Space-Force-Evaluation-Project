@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpaceForceEvaluations", "SpaceForceEvaluations.csproj", "{5A18C3B0-0978-4F90-89C8-162E2A3B0A1D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5A18C3B0-0978-4F90-89C8-162E2A3B0A1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A18C3B0-0978-4F90-89C8-162E2A3B0A1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A18C3B0-0978-4F90-89C8-162E2A3B0A1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A18C3B0-0978-4F90-89C8-162E2A3B0A1D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5679B50F-C235-4DCD-B705-E24F4E91DF20}
+	EndGlobalSection
+EndGlobal
