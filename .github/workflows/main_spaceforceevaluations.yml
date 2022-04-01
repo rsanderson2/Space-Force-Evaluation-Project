@@ -51,7 +51,7 @@ jobs:
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: 'SpaceForceEvaluations'
+          app-name: 'Space Force Evaluations'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_D21D6C4FAA3347A38C537353541CAAC6 }}
           package: .
