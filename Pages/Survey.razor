@@ -1,0 +1,33 @@
+﻿@page "/Survey"
+
+<PageTitle>Survey</PageTitle>
+
+<h1>Survey</h1>
+
+<p role="status">@surveyItem</p>
+
+<p role="status">@surveyItem2</p>
+
+<p role="status">@surveyItem3</p>
+
+<button class="btn btn-primary" @onclick="ShowSurveys">Click me</button>
+
+@code {
+    private string surveyItem;
+    private string surveyItem2;
+    private string surveyItem3;
+
+    private string testQuestion = "This is a test Question";
+    private void ShowSurveys()
+    {
+        surveyItem = testQuestion;
+        surveyItem2 = testQuestion;
+        surveyItem3 = testQuestion;
+
+    }
+}
+
+@code
+{
+
+}
