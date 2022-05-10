@@ -1,0 +1,61 @@
+﻿@page "/Signup"
+
+
+<PageTitle>Sign Up</PageTitle>
+
+<div class="container mt-5">
+    <div class="row justify-content-center align-align-items-center">
+        <div class="col-sm-12 col-md-12 col-lg-4">
+            <h1 class="mb-3">Register</h1>
+
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <!--First Name-->
+                <div class="mb-3">
+                    <label class="form-label" asp-for="">First Name</label>
+                    <input type="text" asp-for="@userName" class="form-control" /> 
+                </div>
+                <!--Last Name-->
+                <div class="mb-3">
+                    <label class="form-label" asp-for="">Last Name</label>
+                    <input type="text" asp-for="" class="form-control" /> 
+                </div>
+
+                <!--Date of Birth-->
+                <div class="mb-3">
+                    <label class="form-label" asp-for="">Date of Birth</label>
+                    <input type="date" asp-for="" class="form-control" /> 
+                </div>
+
+                <!--Email-->
+                <div class="mb-3">
+                    <label class="form-label" asp-for="">Email</label>
+                    <input type="text" asp-for="" class="form-control" /> 
+                </div>
+
+                <!--Password-->
+                <div class="mb-3">
+                    <label class="form-label" asp-for="">Password</label>
+                    <input type="password" asp-for="" class="form-control" /> 
+                </div>
+                <!--Confirm Password-->
+                <div class="mb-3">
+                    <label class="form-label" asp-for="">Confirm Password</label>
+                    <input type="password" asp-for="" class="form-control" /> 
+                </div>
+                <!--Submit Button-->
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-primary" @onclick="getSignup" >Register</button>
+                </div>
+            </div>
+    </div>
+</div>
+
+<p role="status">Current count: @userName</p>
+@code 
+{
+    private string userName;
+
+    private void getSignup()
+    {
+    }
+}
