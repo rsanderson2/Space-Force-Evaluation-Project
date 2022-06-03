@@ -11,7 +11,7 @@ public static class RegisterServices
         builder.Services.AddServerSideBlazor();
         builder.Services.AddMemoryCache();
 
-        //builder.Services.AddSingleton<IDbConnection, DbConnection>();
+        builder.Services.AddSingleton<IDbConnection, DbConnection>();
         builder.Services.AddSingleton<IMongoSurveyData, MongoSurveyData>();
         builder.Services.AddSingleton<IUserData, MongoUserData>();
     }
