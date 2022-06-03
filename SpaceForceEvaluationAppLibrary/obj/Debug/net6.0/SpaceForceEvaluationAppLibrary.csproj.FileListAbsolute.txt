@@ -1,0 +1,12 @@
+C:\Users\grayn\source\repos\SpaceForceEvaluationAppLibrary\bin\Debug\net6.0\SpaceForceEvaluationAppLibrary.deps.json
+C:\Users\grayn\source\repos\SpaceForceEvaluationAppLibrary\bin\Debug\net6.0\SpaceForceEvaluationAppLibrary.dll
+C:\Users\grayn\source\repos\SpaceForceEvaluationAppLibrary\bin\Debug\net6.0\SpaceForceEvaluationAppLibrary.pdb
+C:\Users\grayn\source\repos\SpaceForceEvaluationAppLibrary\obj\Debug\net6.0\SpaceForceEvaluationAppLibrary.csproj.AssemblyReference.cache
+C:\Users\grayn\source\repos\SpaceForceEvaluationAppLibrary\obj\Debug\net6.0\SpaceForceEvaluationAppLibrary.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\grayn\source\repos\SpaceForceEvaluationAppLibrary\obj\Debug\net6.0\SpaceForceEvaluationAppLibrary.AssemblyInfoInputs.cache
+C:\Users\grayn\source\repos\SpaceForceEvaluationAppLibrary\obj\Debug\net6.0\SpaceForceEvaluationAppLibrary.AssemblyInfo.cs
+C:\Users\grayn\source\repos\SpaceForceEvaluationAppLibrary\obj\Debug\net6.0\SpaceForceEvaluationAppLibrary.csproj.CoreCompileInputs.cache
+C:\Users\grayn\source\repos\SpaceForceEvaluationAppLibrary\obj\Debug\net6.0\SpaceForceEvaluationAppLibrary.dll
+C:\Users\grayn\source\repos\SpaceForceEvaluationAppLibrary\obj\Debug\net6.0\refint\SpaceForceEvaluationAppLibrary.dll
+C:\Users\grayn\source\repos\SpaceForceEvaluationAppLibrary\obj\Debug\net6.0\SpaceForceEvaluationAppLibrary.pdb
+C:\Users\grayn\source\repos\SpaceForceEvaluationAppLibrary\obj\Debug\net6.0\ref\SpaceForceEvaluationAppLibrary.dll
