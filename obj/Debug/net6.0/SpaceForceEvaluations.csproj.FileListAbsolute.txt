@@ -97,8 +97,6 @@ C:\Users\grayn\source\repos\Space-Force-Evaluation-Project\bin\Debug\net6.0\Spac
 C:\Users\grayn\source\repos\Space-Force-Evaluation-Project\bin\Debug\net6.0\SpaceForceEvaluationAppLibrary.pdb
 C:\Users\grayn\source\repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\SpaceForceEvaluations.csproj.AssemblyReference.cache
 C:\Users\grayn\source\repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\SpaceForceEvaluations.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\grayn\source\repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\SpaceForceEvaluations.AssemblyInfoInputs.cache
-C:\Users\grayn\source\repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\SpaceForceEvaluations.AssemblyInfo.cs
 C:\Users\grayn\source\repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\SpaceForceEvaluations.csproj.CoreCompileInputs.cache
 C:\Users\grayn\source\repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\SpaceForceEvaluations.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\grayn\source\repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\SpaceForceEvaluations.RazorAssemblyInfo.cache
@@ -117,3 +115,6 @@ C:\Users\grayn\source\repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\Spac
 C:\Users\grayn\source\repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\ref\SpaceForceEvaluations.dll
 C:\Users\grayn\source\repos\Space-Force-Evaluation-Project\bin\Debug\net6.0\nuget.config
 C:\Users\grayn\source\repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\SpaceForceEvaluations.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\grayn\source\repos\Space-Force-Evaluation-Project\bin\Debug\net6.0\SpaceForceEvaluationAppLibrary\bin\Debug\net6.0\SpaceForceEvaluationAppLibrary.deps.json
+C:\Users\grayn\source\repos\Space-Force-Evaluation-Project\bin\Debug\net6.0\SpaceForceEvaluationAppLibrary\obj\project.assets.json
+C:\Users\grayn\source\repos\Space-Force-Evaluation-Project\bin\Debug\net6.0\SpaceForceEvaluationAppLibrary\obj\SpaceForceEvaluationAppLibrary.csproj.nuget.dgspec.json

@@ -24,6 +24,9 @@
       <files include="any/net6.0/nuget.config" buildAction="Content" />
       <files include="any/net6.0/appsettings.Development.json" buildAction="Content" />
       <files include="any/net6.0/appsettings.json" buildAction="Content" />
+      <files include="any/net6.0/SpaceForceEvaluationAppLibrary/bin/Debug/net6.0/SpaceForceEvaluationAppLibrary.deps.json" buildAction="Content" />
+      <files include="any/net6.0/SpaceForceEvaluationAppLibrary/obj/project.assets.json" buildAction="Content" />
+      <files include="any/net6.0/SpaceForceEvaluationAppLibrary/obj/SpaceForceEvaluationAppLibrary.csproj.nuget.dgspec.json" buildAction="Content" />
     </contentFiles>
   </metadata>
   <files>
@@ -53,5 +56,11 @@
     <file src="C:\Users\grayn\source\repos\Space-Force-Evaluation-Project\appsettings.Development.json" target="contentFiles\any\net6.0\appsettings.Development.json" />
     <file src="C:\Users\grayn\source\repos\Space-Force-Evaluation-Project\appsettings.json" target="content\appsettings.json" />
     <file src="C:\Users\grayn\source\repos\Space-Force-Evaluation-Project\appsettings.json" target="contentFiles\any\net6.0\appsettings.json" />
+    <file src="C:\Users\grayn\source\repos\Space-Force-Evaluation-Project\SpaceForceEvaluationAppLibrary\bin\Debug\net6.0\SpaceForceEvaluationAppLibrary.deps.json" target="content\SpaceForceEvaluationAppLibrary\bin\Debug\net6.0\SpaceForceEvaluationAppLibrary.deps.json" />
+    <file src="C:\Users\grayn\source\repos\Space-Force-Evaluation-Project\SpaceForceEvaluationAppLibrary\bin\Debug\net6.0\SpaceForceEvaluationAppLibrary.deps.json" target="contentFiles\any\net6.0\SpaceForceEvaluationAppLibrary\bin\Debug\net6.0\SpaceForceEvaluationAppLibrary.deps.json" />
+    <file src="C:\Users\grayn\source\repos\Space-Force-Evaluation-Project\SpaceForceEvaluationAppLibrary\obj\project.assets.json" target="content\SpaceForceEvaluationAppLibrary\obj\project.assets.json" />
+    <file src="C:\Users\grayn\source\repos\Space-Force-Evaluation-Project\SpaceForceEvaluationAppLibrary\obj\project.assets.json" target="contentFiles\any\net6.0\SpaceForceEvaluationAppLibrary\obj\project.assets.json" />
+    <file src="C:\Users\grayn\source\repos\Space-Force-Evaluation-Project\SpaceForceEvaluationAppLibrary\obj\SpaceForceEvaluationAppLibrary.csproj.nuget.dgspec.json" target="content\SpaceForceEvaluationAppLibrary\obj\SpaceForceEvaluationAppLibrary.csproj.nuget.dgspec.json" />
+    <file src="C:\Users\grayn\source\repos\Space-Force-Evaluation-Project\SpaceForceEvaluationAppLibrary\obj\SpaceForceEvaluationAppLibrary.csproj.nuget.dgspec.json" target="contentFiles\any\net6.0\SpaceForceEvaluationAppLibrary\obj\SpaceForceEvaluationAppLibrary.csproj.nuget.dgspec.json" />
   </files>
 </package>
