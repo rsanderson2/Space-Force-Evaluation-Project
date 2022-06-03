@@ -1,9 +1,15 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+	
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>d177f359-6bc6-4292-987c-40c90abe8c38</UserSecretsId>
+	<IsPackable>true</IsPackable>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <PackageProjectUrl>https://github.com/Pcheckan/Space-Force-Evaluation-Project</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Pcheckan/Space-Force-Evaluation-Project</RepositoryUrl>
+    <FileVersion>0.0.0.1</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>

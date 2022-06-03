@@ -115,3 +115,5 @@ C:\Users\grayn\source\repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\refi
 C:\Users\grayn\source\repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\SpaceForceEvaluations.pdb
 C:\Users\grayn\source\repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\SpaceForceEvaluations.genruntimeconfig.cache
 C:\Users\grayn\source\repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\ref\SpaceForceEvaluations.dll
+C:\Users\grayn\source\repos\Space-Force-Evaluation-Project\bin\Debug\net6.0\nuget.config
+C:\Users\grayn\source\repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\SpaceForceEvaluations.MvcApplicationPartsAssemblyInfo.cs
