@@ -3,6 +3,9 @@
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <PackageProjectUrl>https://github.com/Pcheckan/Space-Force-Evaluation-Project</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Pcheckan/Space-Force-Evaluation-Project</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
