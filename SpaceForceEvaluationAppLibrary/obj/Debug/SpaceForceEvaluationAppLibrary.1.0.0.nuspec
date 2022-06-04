@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>SpaceForceEvaluationAppLibrary</id>
+    <version>1.0.0</version>
+    <authors>SpaceForceEvaluationAppLibrary</authors>
+    <projectUrl>https://github.com/Pcheckan/Space-Force-Evaluation-Project</projectUrl>
+    <description>Package Description</description>
+    <repository url="https://github.com/Pcheckan/Space-Force-Evaluation-Project" />
+    <dependencies>
+      <group targetFramework="net6.0">
+        <dependency id="Microsoft.Extensions.Caching.Memory" version="6.0.0" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Extensions.Configuration.Abstractions" version="6.0.0" exclude="Build,Analyzers" />
+        <dependency id="MongoDB.Driver" version="2.15.1" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+    <contentFiles>
+      <files include="any/net6.0/NuGet.Config" buildAction="Content" />
+    </contentFiles>
+  </metadata>
+  <files>
+    <file src="C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\SpaceForceEvaluationAppLibrary\bin\Debug\net6.0\SpaceForceEvaluationAppLibrary.dll" target="lib\net6.0\SpaceForceEvaluationAppLibrary.dll" />
+    <file src="C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\SpaceForceEvaluationAppLibrary\NuGet.Config" target="content\NuGet.Config" />
+    <file src="C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\SpaceForceEvaluationAppLibrary\NuGet.Config" target="contentFiles\any\net6.0\NuGet.Config" />
+  </files>
+</package>
