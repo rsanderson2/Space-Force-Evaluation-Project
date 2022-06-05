@@ -5,10 +5,11 @@
 <h1>Survey</h1>
 
 <p role="status">@surveyItem</p>
+<p>@NumQuestions</p>
 
 
 
-<button class="btn btn-primary" @onclick="ShowSurveys">Click me</button>
+<button class="btn btn-primary" @onclick="ShowSurveys">Show Survey</button>
 
 
  <div class ="form-group row">
@@ -21,10 +22,34 @@
     private string surveyItem;
     private string surveyItem2;
     private string surveyItem3;
+    private Random rnd = new Random();
+    private int NumQuestions;
 
     private string testQuestion = "This is a test Question";
+
+    // We will need a function to get the maximum number of questions from the question bank
+    private int getMax()
+    {
+        return 30;
+    }
+
+
+    // Function to return a specific question based on a random number
+    private int getQuestion(Random rnd)
+    {
+        //If daily question
+        for (int i = 0;i<1;i++)
+        {
+            return rnd.Next(getMax());
+        }
+        //for now, we will always return for daily
+        return rnd.Next(getMax());
+
+    }
+    // Function for displaying the survey question(s)
     private void ShowSurveys()
     {
+        NumQuestions = getQuestion(rnd);
         surveyItem = testQuestion;
         surveyItem2 = testQuestion;
         surveyItem3 = testQuestion;

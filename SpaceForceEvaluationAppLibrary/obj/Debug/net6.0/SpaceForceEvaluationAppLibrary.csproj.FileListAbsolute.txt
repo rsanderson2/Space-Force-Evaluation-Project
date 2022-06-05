@@ -8,3 +8,4 @@ C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\SpaceForceEvaluatio
 C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\SpaceForceEvaluationAppLibrary\obj\Debug\net6.0\SpaceForceEvaluationAppLibrary.dll
 C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\SpaceForceEvaluationAppLibrary\obj\Debug\net6.0\ref\SpaceForceEvaluationAppLibrary.dll
 C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\SpaceForceEvaluationAppLibrary\obj\Debug\net6.0\SpaceForceEvaluationAppLibrary.pdb
+C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\SpaceForceEvaluationAppLibrary\obj\Debug\net6.0\SpaceForceEvaluationAppLibrary.csproj.AssemblyReference.cache

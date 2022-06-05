@@ -8,6 +8,7 @@
     <RepositoryUrl>https://github.com/Pcheckan/Space-Force-Evaluation-Project</RepositoryUrl>
 	<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 	<GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
+	<ErrorOnDuplicatePublishOutputFiles>false</ErrorOnDuplicatePublishOutputFiles>
   </PropertyGroup>
 
   <ItemGroup>
