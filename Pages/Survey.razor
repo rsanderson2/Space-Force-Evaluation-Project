@@ -3,19 +3,17 @@
 <PageTitle>Survey</PageTitle>
 
 <h1>Survey</h1>
-<p>@numWeekly</p>
-<p role="status">@surveyItem</p>
+<!--Survey questions hidden by default-->
+<p>@surveyItem</p>
 <p>@surveyItem2</p>
 <p>@surveyItem3</p>
-<p>@NumQuestions</p>
+<p>Question Number: @NumQuestions</p>
 
+<!--Buttons for showing the survey. They are disabled after clicking on them-->
+<button class="btn btn-primary" disabled=@IsTaskRunning @onclick="ShowDaily">Show Daily</button>
+<button class="btn btn-primary" disabled=@IsTaskRunning @onclick="ShowWeekly">Show Weekly</button>
 
-
-<button class="btn btn-primary" @onclick="ShowSurveys">Show Survey</button>
-<button class="btn btn-primary" @onclick="ShowDaily">Show Daily</button>
-<button class="btn btn-primary" @onclick="ShowWeekly">Show Weekly</button>
-
-
+<!--Buttons for reloading, and submitting-->
  <div class ="form-group row">
             <div class = "col-2">
                 <input type = "button" class = "btn btn-primary" value ="Reload Page" onclick="location.href='/Survey'"/>
@@ -32,8 +30,9 @@
     private Random rnd = new Random();
     private int NumQuestions;
     private string SurveyType;
-
     private int numWeekly;
+
+    bool IsTaskRunning = false;
 
     private string testQuestion = "This is a test Question";
 
@@ -50,7 +49,8 @@
         //If daily question
         if (SurveyType == "Daily")
         {
-            return rnd.Next(getMax());
+            surveyItem = testQuestion;
+            return rnd.Next(1,getMax());
         }
 
         // If weekly
@@ -87,22 +87,16 @@
         return rnd.Next(getMax());
 
     }
-    // Function for displaying the survey question(s)
-    private void ShowSurveys()
-    {
-        //NumQuestions = getQuestion(rnd);
-        surveyItem = testQuestion;
-        surveyItem2 = testQuestion;
-        surveyItem3 = testQuestion;
 
-    }
     private void ShowDaily()
     {
+        IsTaskRunning = true;
         SurveyType = "Daily";
         NumQuestions = getQuestion(rnd, SurveyType);
     }
     private void ShowWeekly()
     {
+        IsTaskRunning = true;
         SurveyType = "Weekly";
         NumQuestions = getQuestion(rnd, SurveyType);
 
