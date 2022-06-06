@@ -1,0 +1,25 @@
+﻿<form id="dailyquestionform">
+<!--Question Text-->
+<h4>@QuestionText</h4>
+
+<!--Radio button for responses-->
+<input type="radio" id="radioOne" name="value" value=1>
+<label for="radioOne">1</label>
+
+<input type="radio" id="radioTwo" name="value" value=2>
+<label for="radioTwo">2</label>
+
+<input type="radio" id="radioThree" name="value" value=3>
+<label for="radioThree">3</label>
+
+<input type="radio" id="radioFour" name="value" value=4>
+<label for="radioFour">4</label>
+
+<input type="radio" id="radioFive" name="value" value=5 >
+<label for="radioFive">5</label>
+
+</form>
+@code {
+    [ParameterAttribute]
+    public string QuestionText { get; set; } = "";
+}

@@ -4,10 +4,10 @@
 
 <h1>Survey</h1>
 <!--Survey questions hidden by default-->
-<p>@surveyItem</p>
-<p>@surveyItem2</p>
+<SpaceForceEvaluations.Components.QuestionsHolder SurveyType=@SurveyType QuestionText=@testQuestion ></SpaceForceEvaluations.Components.QuestionsHolder>
+@*<p>@surveyItem2</p>
 <p>@surveyItem3</p>
-<p>@WeeklyPoll</p>
+<p>@WeeklyPoll</p>*@
 <p>Question Number: @NumQuestions</p>
 
 <!--Buttons for showing the survey. They are disabled after clicking on them-->
@@ -16,12 +16,12 @@
 
 <!--Buttons for reloading, and submitting-->
  <div class ="form-group row">
-            <div class = "col-2">
-                <input type = "button" class = "btn btn-primary" value ="Reload Page" onclick="location.href='/Survey'"/>
-            </div>
-            <div class = "col-2">
-                <input type = "button" class = "btn btn-primary" value ="Submit" onclick="location.href='/Landing'"/>
-            </div>
+    <div class = "col-2">
+        <input type = "button" class = "btn btn-primary" value ="Reload Page" onclick="location.href='/Survey'"/>
+    </div>
+    <div class = "col-2">
+        <input type = "button" class = "btn btn-primary" value ="Submit" onclick="location.href='/Landing'"/>
+    </div>
     </div>
 
 @code {
