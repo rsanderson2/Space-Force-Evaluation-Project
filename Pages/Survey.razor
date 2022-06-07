@@ -4,15 +4,15 @@
 
 <h1>Survey</h1>
 <!--Survey questions hidden by default-->
-<SpaceForceEvaluations.Components.QuestionsHolder SurveyType=@SurveyType QuestionText=@testQuestion ></SpaceForceEvaluations.Components.QuestionsHolder>
+<SpaceForceEvaluations.Components.QuestionsHolder SurveyType=@SurveyType QuestionText=@surveyItem ></SpaceForceEvaluations.Components.QuestionsHolder>
 @*<p>@surveyItem2</p>
 <p>@surveyItem3</p>
 <p>@WeeklyPoll</p>*@
-<p>Question Number: @NumQuestions</p>
+<p>Question Number: @NumQuestion</p>
 
 <!--Buttons for showing the survey. They are disabled after clicking on them-->
 <button class="btn btn-primary" disabled=@IsTaskRunning @onclick="ShowDaily">Show Daily</button>
-<button class="btn btn-primary" disabled=@IsTaskRunning @onclick="ShowWeekly">Show Weekly</button>
+@*<button class="btn btn-primary" disabled=@IsTaskRunning @onclick="ShowWeekly">Show Weekly</button>*@
 
 <!--Buttons for reloading, and submitting-->
  <div class ="form-group row">
@@ -30,13 +30,19 @@
     private string surveyItem3 = "";
     private string WeeklyPoll = "What feedback do you have?";
     private Random rnd = new Random();
-    private int NumQuestions;
+    private int NumQuestion;
     private string SurveyType;
     private int numWeekly;
 
     bool IsTaskRunning = false;
 
     private string testQuestion = "This is a test Question";
+
+    // Function for showing the question
+    private string showQuestion(int questionNumber)
+    {
+        return "This is Question number " + questionNumber + ".";
+    }
 
     // We will need a function to get the maximum number of questions from the question bank
     private int getMax()
@@ -51,7 +57,6 @@
         //If daily question
         if (SurveyType == "Daily")
         {
-            surveyItem = testQuestion;
             return rnd.Next(1,getMax());
         }
 
@@ -92,20 +97,21 @@
 
     private void ShowDaily()
     {
+        // Disable the button
         IsTaskRunning = true;
+        // Set the survey type to daily
         SurveyType = "Daily";
-        NumQuestions = getQuestion(rnd, SurveyType);
+        // Get the question Number
+        NumQuestion = getQuestion(rnd, SurveyType);
+        // Generate the question based on the number
+        surveyItem =showQuestion(NumQuestion);
     }
     private void ShowWeekly()
     {
         IsTaskRunning = true;
         SurveyType = "Weekly";
-        NumQuestions = getQuestion(rnd, SurveyType);
+        NumQuestion = getQuestion(rnd, SurveyType);
 
     }
 }
 
-@code
-{
-
-}
