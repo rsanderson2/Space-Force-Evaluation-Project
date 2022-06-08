@@ -28,6 +28,13 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
+app.UseEndpoints(endpoints =>
+{
+    endpoints
+        .MapDefaultControllerRoute()
+        .RequireAuthorization();
+});
+
 app.UseRewriter(
     new RewriteOptions().Add(
         context =>
