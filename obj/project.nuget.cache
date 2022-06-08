@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "E39rq7SC975Po7hJLJv6yMwu1Nzay6zFTF6Jr676VazflyT/IiEaNsgc0FomPZc0+7iYwQf/TqH8d/1v5lqvSQ==",
+  "dgSpecHash": "+Adnbisc4cn1o7kKMQcJq7I/e6LMF/u+zpC4MjVYgE0OtOte2PD+jD+sIozxJq4tJ6BQNYxCOFD5GkDob4/26A==",
   "success": true,
-  "projectFilePath": "C:\\Users\\grayn\\Source\\Repos\\Space-Force-Evaluation-Project\\SpaceForceEvaluations.csproj",
+  "projectFilePath": "C:\\Users\\grayn\\source\\repos\\Space-Force-Evaluation-Project\\SpaceForceEvaluations.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\grayn\\.nuget\\packages\\azure.core\\1.19.0\\azure.core.1.19.0.nupkg.sha512",
     "C:\\Users\\grayn\\.nuget\\packages\\azure.identity\\1.3.0\\azure.identity.1.3.0.nupkg.sha512",

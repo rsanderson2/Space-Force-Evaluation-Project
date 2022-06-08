@@ -7686,17 +7686,17 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\grayn\\Source\\Repos\\Space-Force-Evaluation-Project\\SpaceForceEvaluations.csproj",
+      "projectUniqueName": "C:\\Users\\grayn\\source\\repos\\Space-Force-Evaluation-Project\\SpaceForceEvaluations.csproj",
       "projectName": "SpaceForceEvaluations",
-      "projectPath": "C:\\Users\\grayn\\Source\\Repos\\Space-Force-Evaluation-Project\\SpaceForceEvaluations.csproj",
+      "projectPath": "C:\\Users\\grayn\\source\\repos\\Space-Force-Evaluation-Project\\SpaceForceEvaluations.csproj",
       "packagesPath": "C:\\Users\\grayn\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\grayn\\Source\\Repos\\Space-Force-Evaluation-Project\\obj\\",
+      "outputPath": "C:\\Users\\grayn\\source\\repos\\Space-Force-Evaluation-Project\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\grayn\\Source\\Repos\\Space-Force-Evaluation-Project\\NuGet.Config",
+        "C:\\Users\\grayn\\source\\repos\\Space-Force-Evaluation-Project\\NuGet.Config",
         "C:\\Users\\grayn\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -7712,8 +7712,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\grayn\\Source\\Repos\\Space-Force-Evaluation-Project\\SpaceForceEvaluationAppLibrary\\SpaceForceEvaluationAppLibrary.csproj": {
-              "projectPath": "C:\\Users\\grayn\\Source\\Repos\\Space-Force-Evaluation-Project\\SpaceForceEvaluationAppLibrary\\SpaceForceEvaluationAppLibrary.csproj"
+            "C:\\Users\\grayn\\source\\repos\\Space-Force-Evaluation-Project\\SpaceForceEvaluationAppLibrary\\SpaceForceEvaluationAppLibrary.csproj": {
+              "projectPath": "C:\\Users\\grayn\\source\\repos\\Space-Force-Evaluation-Project\\SpaceForceEvaluationAppLibrary\\SpaceForceEvaluationAppLibrary.csproj"
             }
           }
         }

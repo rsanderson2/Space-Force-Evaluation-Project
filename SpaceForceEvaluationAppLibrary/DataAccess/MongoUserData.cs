@@ -39,4 +39,12 @@ public class MongoUserData : IUserData
         var filter = Builders<UserModel>.Filter.Eq("Id", user.Id);
         return _users.ReplaceOneAsync(filter, user, new ReplaceOptions { IsUpsert = true });
     }
+
+    public async Task<List<string>> GetUsersSurveys(string objectId)
+    {
+        UserModel user = (UserModel)await _users.FindAsync(u => u.ObjectIdentifier == objectId);
+        var results = user.surveyHistory.ToList();
+
+        return results;
+    }
 }

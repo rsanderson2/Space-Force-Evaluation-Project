@@ -6,6 +6,7 @@
         Task<UserModel> GetUser(string id);
         Task<UserModel> GetUserFromAuthentication(string objectId);
         Task<List<UserModel>> GetUsersAsync();
+        Task<List<string>> GetUsersSurveys(string objectId);
         Task UpdateUser(UserModel user);
     }
 }
