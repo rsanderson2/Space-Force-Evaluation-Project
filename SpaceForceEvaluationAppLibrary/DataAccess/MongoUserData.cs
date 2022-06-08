@@ -23,7 +23,6 @@ public class MongoUserData : IUserData
     }
 
     // returns user record by the parameter objectId.
-    // 
     public async Task<UserModel> GetUserFromAuthentication(string objectId)
     {
         var results = await _users.FindAsync(u => u.ObjectIdentifier == objectId);
