@@ -1,10 +1,57 @@
 ﻿@page "/Profile"
+@inject ISurveyData surveyData
+@inject IUserData userData
+@inject NavigationManager navMangager
 
-<PageTitle>Profile</PageTitle>
+<h1>My Profile</h1>
 
-<h2>Profile Page</h2>
+<div>
+    <div>
+        <button @onclick="ClosePage"></button>
+    </div>
+</div>
 
-@code
-{
+<div>
+    <h2>My Account</h2>
+    <p>
+        <a href="MicrosoftIdentity/Account/EditProfile">
+            Edit My Profile
+        </a>
+    </p>
+</div>
+
+<div>
+    <h2>Survey History</h2>
+    <p>These are the surveys that you have completed.</p>
+</div>
+
+@code {
+    private UserModel loggedInUser;
+    private List<SurveyModel> surveys;
+    private List<SurveyModel> daily;
+    private List<SurveyModel> weekly;
+    private List<SurveyModel> monthly;
+
+    /*
+    protected async override Task OnIntializedAsync()
+    {
+        // TODO: Replace with user lookup later...
+        loggedInUser = await userData.GetUserFromAuthentication("ABC-123");
+
+        // returns surveys the user has completed. In this case user "ABC-123"
+        var results = await userData.GetUsersSurveys(loggedInUser.Id);
+
+        if (loggedInUser is not null && results is not null)
+        {
+            // TODO: put get all surveys that this user took here
+            //submissions = results.OrderByDescending(s => s.date).ToList();
+        }
+    }
+    */
+
+    private void ClosePage()
+    {
+        navMangager.NavigateTo("/");
+    }
 
 }

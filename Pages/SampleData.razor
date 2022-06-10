@@ -1,0 +1,32 @@
+﻿@page "/SampleData"
+@inject IUserData userData
+
+<h3>Sample Data</h3>
+<button class="btn btn-danger" @onclick="GenerateSampleData">Generate Sample Data</button>
+<button @onclick="DisplayUser">Show User</button>
+<p>@userName</p>
+@code {
+    string userName = "";
+    //function for testing if we can imput data
+    private async Task GenerateSampleData()
+    {
+        UserModel user = new()
+            {
+                ObjectIdentifier = "ABC-123",
+                firstName = "Preston",
+                lastName = "Test",
+                    userID = "Test User"
+            };
+        await userData.CreateUser(user);
+
+        // founduser will act as the user model returned from the database
+        //var foundUser = await userData.GetUserFromAuthentication("abc-123");
+    }
+
+    private async Task DisplayUser()
+    {
+        UserModel newUser = await userData.GetUserFromAuthentication("ABC-123");
+        userName = newUser.firstName;
+    }
+
+}

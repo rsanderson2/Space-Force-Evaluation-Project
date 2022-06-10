@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Caching.Memory;
 namespace SpaceForceEvaluationAppLibrary.DataAccess;
 
-public class MongoSurveyData : IMongoSurveyData
+public class MongoSurveyData : ISurveyData
 {
     private readonly IMongoCollection<SurveyModel> _surveys;
     private readonly IUserData _userData;
