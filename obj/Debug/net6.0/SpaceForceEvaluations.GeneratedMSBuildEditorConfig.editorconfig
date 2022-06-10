@@ -8,89 +8,89 @@ build_property.PlatformNeutralAssembly =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = SpaceForceEvaluations
 build_property.RootNamespace = SpaceForceEvaluations
-build_property.ProjectDir = C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\
+build_property.ProjectDir = C:\Users\deron\Source\Repos\Pcheckan\Space-Force-Evaluation-Project\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\Preston\source\repos\Space-Force-Evaluation-Project
+build_property.MSBuildProjectDirectory = C:\Users\deron\Source\Repos\Pcheckan\Space-Force-Evaluation-Project
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/Preston/source/repos/Space-Force-Evaluation-Project/App.razor]
+[C:/Users/deron/Source/Repos/Pcheckan/Space-Force-Evaluation-Project/App.razor]
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Preston/source/repos/Space-Force-Evaluation-Project/Components/DailyQuestionHolder.razor]
+[C:/Users/deron/Source/Repos/Pcheckan/Space-Force-Evaluation-Project/Components/DailyQuestionHolder.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xEYWlseVF1ZXN0aW9uSG9sZGVyLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Preston/source/repos/Space-Force-Evaluation-Project/Components/QuestionsHolder.razor]
+[C:/Users/deron/Source/Repos/Pcheckan/Space-Force-Evaluation-Project/Components/QuestionsHolder.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xRdWVzdGlvbnNIb2xkZXIucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Preston/source/repos/Space-Force-Evaluation-Project/Pages/Counter.razor]
+[C:/Users/deron/Source/Repos/Pcheckan/Space-Force-Evaluation-Project/Pages/Counter.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ291bnRlci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Preston/source/repos/Space-Force-Evaluation-Project/Pages/FetchData.razor]
+[C:/Users/deron/Source/Repos/Pcheckan/Space-Force-Evaluation-Project/Pages/FetchData.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRmV0Y2hEYXRhLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Preston/source/repos/Space-Force-Evaluation-Project/Pages/Landing.razor]
+[C:/Users/deron/Source/Repos/Pcheckan/Space-Force-Evaluation-Project/Pages/Landing.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTGFuZGluZy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Preston/source/repos/Space-Force-Evaluation-Project/Pages/Login.razor]
+[C:/Users/deron/Source/Repos/Pcheckan/Space-Force-Evaluation-Project/Pages/Login.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW4ucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Preston/source/repos/Space-Force-Evaluation-Project/Pages/Profile.razor]
+[C:/Users/deron/Source/Repos/Pcheckan/Space-Force-Evaluation-Project/Pages/Profile.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvZmlsZS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Preston/source/repos/Space-Force-Evaluation-Project/Pages/SampleData.razor]
+[C:/Users/deron/Source/Repos/Pcheckan/Space-Force-Evaluation-Project/Pages/SampleData.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2FtcGxlRGF0YS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Preston/source/repos/Space-Force-Evaluation-Project/Pages/Signup.razor]
+[C:/Users/deron/Source/Repos/Pcheckan/Space-Force-Evaluation-Project/Pages/Signup.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2lnbnVwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Preston/source/repos/Space-Force-Evaluation-Project/Pages/Survey.razor]
+[C:/Users/deron/Source/Repos/Pcheckan/Space-Force-Evaluation-Project/Pages/Survey.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3VydmV5LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Preston/source/repos/Space-Force-Evaluation-Project/Shared/LoginDisplay.razor]
+[C:/Users/deron/Source/Repos/Pcheckan/Space-Force-Evaluation-Project/Shared/LoginDisplay.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXExvZ2luRGlzcGxheS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Preston/source/repos/Space-Force-Evaluation-Project/Shared/NotAuthorized.razor]
+[C:/Users/deron/Source/Repos/Pcheckan/Space-Force-Evaluation-Project/Shared/NotAuthorized.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE5vdEF1dGhvcml6ZWQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Preston/source/repos/Space-Force-Evaluation-Project/Shared/SurveyPrompt.razor]
+[C:/Users/deron/Source/Repos/Pcheckan/Space-Force-Evaluation-Project/Shared/SurveyPrompt.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFN1cnZleVByb21wdC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Preston/source/repos/Space-Force-Evaluation-Project/_Imports.razor]
+[C:/Users/deron/Source/Repos/Pcheckan/Space-Force-Evaluation-Project/_Imports.razor]
 build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Preston/source/repos/Space-Force-Evaluation-Project/Shared/MainLayout.razor]
+[C:/Users/deron/Source/Repos/Pcheckan/Space-Force-Evaluation-Project/Shared/MainLayout.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5MYXlvdXQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-4m02i15hvc
 
-[C:/Users/Preston/source/repos/Space-Force-Evaluation-Project/Shared/NavMenu.razor]
+[C:/Users/deron/Source/Repos/Pcheckan/Space-Force-Evaluation-Project/Shared/NavMenu.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE5hdk1lbnUucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-gm337wb2xa
 
-[C:/Users/Preston/source/repos/Space-Force-Evaluation-Project/Pages/Error.cshtml]
+[C:/Users/deron/Source/Repos/Pcheckan/Space-Force-Evaluation-Project/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Preston/source/repos/Space-Force-Evaluation-Project/Pages/_Host.cshtml]
+[C:/Users/deron/Source/Repos/Pcheckan/Space-Force-Evaluation-Project/Pages/_Host.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0hvc3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Preston/source/repos/Space-Force-Evaluation-Project/Pages/_Layout.cshtml]
+[C:/Users/deron/Source/Repos/Pcheckan/Space-Force-Evaluation-Project/Pages/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0xheW91dC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

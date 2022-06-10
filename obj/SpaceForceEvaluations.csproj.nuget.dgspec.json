@@ -1,24 +1,21 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Preston\\source\\repos\\Space-Force-Evaluation-Project\\SpaceForceEvaluations.csproj": {}
+    "C:\\Users\\deron\\Source\\Repos\\Pcheckan\\Space-Force-Evaluation-Project\\SpaceForceEvaluations.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Preston\\source\\repos\\Space-Force-Evaluation-Project\\SpaceForceEvaluationAppLibrary\\SpaceForceEvaluationAppLibrary.csproj": {
+    "C:\\Users\\deron\\Source\\Repos\\Pcheckan\\Space-Force-Evaluation-Project\\SpaceForceEvaluationAppLibrary\\SpaceForceEvaluationAppLibrary.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Preston\\source\\repos\\Space-Force-Evaluation-Project\\SpaceForceEvaluationAppLibrary\\SpaceForceEvaluationAppLibrary.csproj",
+        "projectUniqueName": "C:\\Users\\deron\\Source\\Repos\\Pcheckan\\Space-Force-Evaluation-Project\\SpaceForceEvaluationAppLibrary\\SpaceForceEvaluationAppLibrary.csproj",
         "projectName": "SpaceForceEvaluationAppLibrary",
-        "projectPath": "C:\\Users\\Preston\\source\\repos\\Space-Force-Evaluation-Project\\SpaceForceEvaluationAppLibrary\\SpaceForceEvaluationAppLibrary.csproj",
-        "packagesPath": "C:\\Users\\Preston\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Preston\\source\\repos\\Space-Force-Evaluation-Project\\SpaceForceEvaluationAppLibrary\\obj\\",
+        "projectPath": "C:\\Users\\deron\\Source\\Repos\\Pcheckan\\Space-Force-Evaluation-Project\\SpaceForceEvaluationAppLibrary\\SpaceForceEvaluationAppLibrary.csproj",
+        "packagesPath": "C:\\Users\\deron\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\deron\\Source\\Repos\\Pcheckan\\Space-Force-Evaluation-Project\\SpaceForceEvaluationAppLibrary\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Preston\\source\\repos\\Space-Force-Evaluation-Project\\NuGet.Config",
-          "C:\\Users\\Preston\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\deron\\Source\\Repos\\Pcheckan\\Space-Force-Evaluation-Project\\NuGet.Config",
+          "C:\\Users\\deron\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -72,25 +69,22 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Preston\\source\\repos\\Space-Force-Evaluation-Project\\SpaceForceEvaluations.csproj": {
+    "C:\\Users\\deron\\Source\\Repos\\Pcheckan\\Space-Force-Evaluation-Project\\SpaceForceEvaluations.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Preston\\source\\repos\\Space-Force-Evaluation-Project\\SpaceForceEvaluations.csproj",
+        "projectUniqueName": "C:\\Users\\deron\\Source\\Repos\\Pcheckan\\Space-Force-Evaluation-Project\\SpaceForceEvaluations.csproj",
         "projectName": "SpaceForceEvaluations",
-        "projectPath": "C:\\Users\\Preston\\source\\repos\\Space-Force-Evaluation-Project\\SpaceForceEvaluations.csproj",
-        "packagesPath": "C:\\Users\\Preston\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Preston\\source\\repos\\Space-Force-Evaluation-Project\\obj\\",
+        "projectPath": "C:\\Users\\deron\\Source\\Repos\\Pcheckan\\Space-Force-Evaluation-Project\\SpaceForceEvaluations.csproj",
+        "packagesPath": "C:\\Users\\deron\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\deron\\Source\\Repos\\Pcheckan\\Space-Force-Evaluation-Project\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Preston\\source\\repos\\Space-Force-Evaluation-Project\\NuGet.Config",
-          "C:\\Users\\Preston\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\deron\\Source\\Repos\\Pcheckan\\Space-Force-Evaluation-Project\\NuGet.Config",
+          "C:\\Users\\deron\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -104,8 +98,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\Preston\\source\\repos\\Space-Force-Evaluation-Project\\SpaceForceEvaluationAppLibrary\\SpaceForceEvaluationAppLibrary.csproj": {
-                "projectPath": "C:\\Users\\Preston\\source\\repos\\Space-Force-Evaluation-Project\\SpaceForceEvaluationAppLibrary\\SpaceForceEvaluationAppLibrary.csproj"
+              "C:\\Users\\deron\\Source\\Repos\\Pcheckan\\Space-Force-Evaluation-Project\\SpaceForceEvaluationAppLibrary\\SpaceForceEvaluationAppLibrary.csproj": {
+                "projectPath": "C:\\Users\\deron\\Source\\Repos\\Pcheckan\\Space-Force-Evaluation-Project\\SpaceForceEvaluationAppLibrary\\SpaceForceEvaluationAppLibrary.csproj"
               }
             }
           }
@@ -151,7 +145,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
         }
       }
     }
