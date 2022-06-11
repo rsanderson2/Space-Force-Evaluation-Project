@@ -1,32 +1,27 @@
 ﻿@page "/SampleData"
 @inject IUserData userData
+@inject IDailyQuestionsData questionData
 
 <h3>Sample Data</h3>
-<button class="btn btn-danger" @onclick="GenerateSampleData">Generate Sample Data</button>
 <button @onclick="DisplayUser">Show User</button>
+<button @onclick="GenerateQuestion">Show Question</button>
 <p>@userName</p>
+<p>@Question</p>
 @code {
     string userName = "";
+    string Question = "";
     //function for testing if we can imput data
-    private async Task GenerateSampleData()
-    {
-        UserModel user = new()
-            {
-                ObjectIdentifier = "ABC-123",
-                firstName = "Preston",
-                lastName = "Test",
-                    userID = "Test User"
-            };
-        await userData.CreateUser(user);
-
-        // founduser will act as the user model returned from the database
-        //var foundUser = await userData.GetUserFromAuthentication("abc-123");
-    }
 
     private async Task DisplayUser()
     {
         UserModel newUser = await userData.GetUserFromAuthentication("ABC-123");
         userName = newUser.firstName;
+    }
+
+    private async Task GenerateQuestion()
+    {
+        DailyQuestionsModel newQuestion = await questionData.GetDailyQuestion("ABC-123");
+        Question = newQuestion.Id;
     }
 
 }

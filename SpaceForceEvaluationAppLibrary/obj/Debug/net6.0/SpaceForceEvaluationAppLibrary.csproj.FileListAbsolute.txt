@@ -30,4 +30,3 @@ C:\Users\deron\Source\Repos\Pcheckan\Space-Force-Evaluation-Project\SpaceForceEv
 C:\Users\deron\Source\Repos\Pcheckan\Space-Force-Evaluation-Project\SpaceForceEvaluationAppLibrary\obj\Debug\net6.0\refint\SpaceForceEvaluationAppLibrary.dll
 C:\Users\deron\Source\Repos\Pcheckan\Space-Force-Evaluation-Project\SpaceForceEvaluationAppLibrary\obj\Debug\net6.0\SpaceForceEvaluationAppLibrary.pdb
 C:\Users\deron\Source\Repos\Pcheckan\Space-Force-Evaluation-Project\SpaceForceEvaluationAppLibrary\obj\Debug\net6.0\ref\SpaceForceEvaluationAppLibrary.dll
-C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\SpaceForceEvaluationAppLibrary\obj\Debug\net6.0\SpaceForceEvaluationAppLibrary.csproj.AssemblyReference.cache
