@@ -2,6 +2,8 @@
     position: relative;
     display: flex;
     flex-direction: column;
+    background-image: url(https://i.imgur.com/t2DloqT.jpeg);
+    color: #7f838a;
 }
 
 main {
@@ -9,7 +11,8 @@ main {
 }
 
 .sidebar {
-    background-image: linear-gradient(180deg, rgb(5, 39, 103) 0%, #3a0647 70%);
+    /*    background-image: linear-gradient(180deg, rgb(5, 39, 103) 0%, #3a0647 70%);*/
+    background-image: linear-gradient(180deg, #002035 0%, #000f 99%);
 }
 
 .top-row {
@@ -19,6 +22,7 @@ main {
     height: 3.5rem;
     display: flex;
     align-items: center;
+    opacity: 0;
 }
 
     .top-row ::deep a, .top-row .btn-link {

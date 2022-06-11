@@ -1,30 +1,33 @@
 ﻿@inject IDailyQuestionsData questionData
 
 @*<button @onclick="@GenerateQuestion">Click to show your RaNdOmLy GeNeRaTeD qUeStIoN</button>*@
-<p>Please answer the following question to the best of your ability</p>
-<h3>@preamble</h3>
-<h5>@TestQuestion</h5>
 
-<form id="dailyquestionform">
+<div class=maincomponent>
+    <p>Please answer the following question to the best of your ability</p>
+    <h3>@preamble</h3>
+    <h5>@TestQuestion</h5>
 
-<!--Radio button for responses-->
-<input type="radio" id="radioOne" name="value" value=1>
-<label for="radioOne">Strongly Disagree</label>
+    <form class=mainclass id="dailyquestionform">
 
-<input type="radio" id="radioTwo" name="value" value=2>
-<label for="radioTwo">Somewhat Disagree</label>
+    <!--Radio button for responses-->
+    <input type="radio" id="radioOne" name="value" value=1>
+    <label for="radioOne">Strongly Disagree</label>
 
-<input type="radio" id="radioThree" name="value" value=3>
-<label for="radioThree">Neither Agree nor Disagree</label>
+    <input type="radio" id="radioTwo" name="value" value=2>
+    <label for="radioTwo">Somewhat Disagree</label>
 
-<input type="radio" id="radioFour" name="value" value=4>
-<label for="radioFour">Somewhat Agree</label>
+    <input type="radio" id="radioThree" name="value" value=3>
+    <label for="radioThree">Neither Agree nor Disagree</label>
 
-<input type="radio" id="radioFive" name="value" value=5 >
-<label for="radioFive">Strongly Agree</label>
+    <input type="radio" id="radioFour" name="value" value=4>
+    <label for="radioFour">Somewhat Agree</label>
 
-</form>
-<div><button type="submit" onclick="location.href='/Landing'">Submit</button></div>
+    <input type="radio" id="radioFive" name="value" value=5 >
+    <label for="radioFive">Strongly Agree</label>
+
+    </form>
+    <div><button type="submit" onclick="location.href='/Landing'">Submit</button></div>
+</div>
 
 @code {
 
