@@ -1,6 +1,9 @@
-﻿<form id="dailyquestionform">
+﻿@inject IMongoDailyQuestionsData questionData
+
+<form id="dailyquestionform">
 <!--Question Text-->
-<h4>@QuestionText</h4>
+@*<h4>@QuestionText</h4>*@
+<h4>@TestQuestion</h4>
 
 <!--Radio button for responses-->
 <input type="radio" id="radioOne" name="value" value=1>
@@ -22,6 +25,14 @@
 
 </form>
 @code {
-    [ParameterAttribute]
-    public string QuestionText { get; set; } = "";
+    //[ParameterAttribute]
+    //public string QuestionText { get; set; } = "";
+    public string TestQuestion = "";
+
+    private async Task GenerateQuestion()
+    {
+        DailyQuestionsModel questionModel = await questionData.GetDailyQuestion("1");
+        TestQuestion = questionModel.text;
+    }
+
 }

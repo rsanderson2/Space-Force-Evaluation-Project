@@ -1,10 +1,12 @@
 ﻿@page "/Survey"
+@inject IMongoDailyQuestionsData questionData
 
 <PageTitle>Survey</PageTitle>
 
 <h1>Survey</h1>
 <!--Survey questions hidden by default-->
-<SpaceForceEvaluations.Components.QuestionsHolder SurveyType=@SurveyType QuestionText=@surveyItem ></SpaceForceEvaluations.Components.QuestionsHolder>
+@*<SpaceForceEvaluations.Components.QuestionsHolder SurveyType=@SurveyType QuestionText=@surveyItem ></SpaceForceEvaluations.Components.QuestionsHolder>*@
+<SpaceForceEvaluations.Components.DailyQuestionHolder></SpaceForceEvaluations.Components.DailyQuestionHolder>
 @*<p>@surveyItem2</p>
 <p>@surveyItem3</p>
 <p>@WeeklyPoll</p>*@

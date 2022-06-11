@@ -2,6 +2,6 @@
 {
     public interface IMongoDailyQuestionsData
     {
-        Task<object> GetDailyQuestion(int id);
+        Task<DailyQuestionsModel> GetDailyQuestion(string id);
     }
 }
