@@ -1,39 +1,56 @@
 ﻿@inject IDailyQuestionsData questionData
 
+@*<button @onclick="@GenerateQuestion">Click to show your RaNdOmLy GeNeRaTeD qUeStIoN</button>*@
+<p>Please answer the following question to the best of your ability</p>
+<h3>@preamble</h3>
+<h5>@TestQuestion</h5>
+
 <form id="dailyquestionform">
-<!--Question Text-->
-@*<h4>@QuestionText</h4>*@
-<button @onclick="@GenerateQuestion">Click to show your RaNdOmLy GeNeRaTeD qUeStIoN</button>
-<h4>@TestQuestion</h4>
 
 <!--Radio button for responses-->
 <input type="radio" id="radioOne" name="value" value=1>
-<label for="radioOne">1</label>
+<label for="radioOne">Strongly Disagree</label>
 
 <input type="radio" id="radioTwo" name="value" value=2>
-<label for="radioTwo">2</label>
+<label for="radioTwo">Somewhat Disagree</label>
 
 <input type="radio" id="radioThree" name="value" value=3>
-<label for="radioThree">3</label>
+<label for="radioThree">Neither Agree nor Disagree</label>
 
 <input type="radio" id="radioFour" name="value" value=4>
-<label for="radioFour">4</label>
+<label for="radioFour">Somewhat Agree</label>
 
 <input type="radio" id="radioFive" name="value" value=5 >
-<label for="radioFive">5</label>
-
-<div><button type="submit">Submit</button></div>
+<label for="radioFive">Strongly Agree</label>
 
 </form>
+<div><button type="submit" onclick="location.href='/Landing'">Submit</button></div>
+
 @code {
-    //[ParameterAttribute]
-    //public string QuestionText { get; set; } = "";
+
     public string TestQuestion = "";
+    public string preamble = "";
+    private Random rnd = new Random();
+
+    // We will need a function to get the maximum number of questions from the question bank
+    private int getMax()
+    {
+        return 13;
+    }
+    private int GetQuestionNumber()
+    {
+        return rnd.Next(1,getMax());
+    }
 
     private async Task GenerateQuestion()
     {
-        DailyQuestionsModel questionModel = await questionData.GetDailyQuestion("1");
+        DailyQuestionsModel questionModel = await questionData.GetDailyQuestion(GetQuestionNumber());
         TestQuestion = questionModel.text;
+        preamble = "This Question is in regards to one of your teammates";
     }
 
+    protected override async Task OnInitializedAsync()
+    {
+        await GenerateQuestion();
+    }
 }

@@ -2,6 +2,6 @@
 {
     public interface IDailyQuestionsData
     {
-        Task<DailyQuestionsModel> GetDailyQuestion(string Id);
+        Task<DailyQuestionsModel> GetDailyQuestion(int Id);
     }
 }

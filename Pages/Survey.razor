@@ -3,28 +3,19 @@
 
 <PageTitle>Survey</PageTitle>
 
-<h1>Survey</h1>
 <!--Survey questions hidden by default-->
-@*<SpaceForceEvaluations.Components.QuestionsHolder SurveyType=@SurveyType QuestionText=@surveyItem ></SpaceForceEvaluations.Components.QuestionsHolder>*@
 <SpaceForceEvaluations.Components.DailyQuestionHolder></SpaceForceEvaluations.Components.DailyQuestionHolder>
-@*<p>@surveyItem2</p>
-<p>@surveyItem3</p>
-<p>@WeeklyPoll</p>*@
-<p>Question Number: @NumQuestion</p>
 
-<!--Buttons for showing the survey. They are disabled after clicking on them-->
-<button class="btn btn-primary" disabled=@IsTaskRunning @onclick="ShowDaily">Show Daily</button>
-@*<button class="btn btn-primary" disabled=@IsTaskRunning @onclick="ShowWeekly">Show Weekly</button>*@
 
 <!--Buttons for reloading, and submitting-->
  <div class ="form-group row">
     <div class = "col-2">
         <input type = "button" class = "btn btn-primary" value ="Reload Page" onclick="location.href='/Survey'"/>
     </div>
-    <div class = "col-2">
+@*    <div class = "col-2">
         <input type = "button" class = "btn btn-primary" value ="Submit" onclick="location.href='/Landing'"/>
-    </div>
-    </div>
+    </div>*@
+ </div>
 
 @code {
     private string surveyItem = "";
@@ -46,74 +37,67 @@
         return "This is Question number " + questionNumber + ".";
     }
 
-    // We will need a function to get the maximum number of questions from the question bank
-    private int getMax()
-    {
-        return 30;
-    }
-
-
     // Function to return a specific question based on a random number
-    private int getQuestion(Random rnd, string SurveyType)
-    {
-        //If daily question
-        if (SurveyType == "Daily")
-        {
-            return rnd.Next(1,getMax());
-        }
+    //private int getQuestion(Random rnd, string SurveyType)
+    //{
+    //    //If daily question
+    //    if (SurveyType == "Daily")
+    //    {
+    //        return rnd.Next(1,getMax());
+    //    }
 
-        // If weekly
-        if (SurveyType == "Weekly")
-        {
-            Random random = new Random();
-            int j = random.Next(1,4);
-            //Generate 1-3 questions
-            for (int i = 1; i <= j;i++)
-            {
-                numWeekly = i;
+    //    // If weekly
+    //    if (SurveyType == "Weekly")
+    //    {
+    //        Random random = new Random();
+    //        int j = random.Next(1,4);
+    //        //Generate 1-3 questions
+    //        for (int i = 1; i <= j;i++)
+    //        {
+    //            numWeekly = i;
 
-                // !NOTE, We still need to generate and get questions for each of these
-                if (surveyItem =="")
-                {
-                    surveyItem = testQuestion;
-                }
-                // If survey question 1 has been filled in, move to the next one
-                else if (surveyItem2 == "")
-                {
-                    surveyItem2 = testQuestion;
-                }
-                else if (surveyItem3 == "")
-                {
-                    surveyItem3 = testQuestion;
-                }
-            }           
-        }
+    //            // !NOTE, We still need to generate and get questions for each of these
+    //            if (surveyItem =="")
+    //            {
+    //                surveyItem = testQuestion;
+    //            }
+    //            // If survey question 1 has been filled in, move to the next one
+    //            else if (surveyItem2 == "")
+    //            {
+    //                surveyItem2 = testQuestion;
+    //            }
+    //            else if (surveyItem3 == "")
+    //            {
+    //                surveyItem3 = testQuestion;
+    //            }
+    //        }           
+    //    }
 
-        //If Monthly
+    //    //If Monthly
 
 
-        //for now, we will always return for daily
-        return rnd.Next(getMax());
+    //    //for now, we will always return for daily
+    //    return rnd.Next(getMax());
 
-    }
+    //}
 
-    private void ShowDaily()
-    {
-        // Disable the button
-        IsTaskRunning = true;
-        // Set the survey type to daily
-        SurveyType = "Daily";
-        // Get the question Number
-        NumQuestion = getQuestion(rnd, SurveyType);
-        // Generate the question based on the number
-        surveyItem =showQuestion(NumQuestion);
-    }
-    private void ShowWeekly()
-    {
-        IsTaskRunning = true;
-        SurveyType = "Weekly";
-        NumQuestion = getQuestion(rnd, SurveyType);
+    //private void ShowDaily()
+    //{
+    //    // Disable the button
+    //    IsTaskRunning = true;
+    //    // Set the survey type to daily
+    //    SurveyType = "Daily";
+    //    // Get the question Number
+    //    NumQuestion = getQuestion(rnd, SurveyType);
+    //    // Generate the question based on the number
+    //    surveyItem =showQuestion(NumQuestion);
+    //}
+    //private void ShowWeekly()
+    //{
+    //    IsTaskRunning = true;
+    //    SurveyType = "Weekly";
+    //    NumQuestion = getQuestion(rnd, SurveyType);
 
-    }
+    //}
 }
 

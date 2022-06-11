@@ -11,9 +11,9 @@ public class MongoDailyQuestionsData : IDailyQuestionsData
         _questions = db.DailyQuestionsCollection;
     }
 
-    public async Task<DailyQuestionsModel> GetDailyQuestion(string Id)
+    public async Task<DailyQuestionsModel> GetDailyQuestion(int Id)
     {
-        var returned = await _questions.FindAsync(q => q.Id == Id);
+        var returned = await _questions.FindAsync(q => q.QuestionID == Id);
         return returned.FirstOrDefault();
 
     }

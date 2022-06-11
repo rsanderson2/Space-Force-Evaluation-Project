@@ -20,8 +20,8 @@
 
     private async Task GenerateQuestion()
     {
-        DailyQuestionsModel newQuestion = await questionData.GetDailyQuestion("ABC-123");
-        Question = newQuestion.Id;
+        DailyQuestionsModel newQuestion = await questionData.GetDailyQuestion(1);
+        Question = newQuestion.text;
     }
 
 }
