@@ -28,5 +28,6 @@ public static class RegisterServices
         builder.Services.AddSingleton<IDbConnection, DbConnection>();
         builder.Services.AddSingleton<ISurveyData, MongoSurveyData>();
         builder.Services.AddSingleton<IUserData, MongoUserData>();
+        builder.Services.AddSingleton<IDailyQuestionsData, MongoDailyQuestionsData>();
     }
 }
