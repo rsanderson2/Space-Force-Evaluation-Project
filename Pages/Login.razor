@@ -5,13 +5,17 @@
 
 
 <div class=mainDiv>
+    <AuthorizeView>
+        <NotAuthorized>
+            <h1>Login to continue</h1>
+            <div class="" style="padding:20px">
+            <form method="post">
 
-    <h1>Login to continue</h1>
-    <div class="" style="padding:20px">
-    <form method="post">
+            </form>
+            </div>
+        </NotAuthorized>
+    </AuthorizeView>
 
-    </form>
-    </div>
 <AuthorizeView>
     <Authorized>
         <div class = "col-2">
