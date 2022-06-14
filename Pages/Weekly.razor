@@ -1,0 +1,36 @@
+﻿@page "/Weekly"
+@inject IDailyQuestionsData questionData
+
+<h3>Weekly</h3>
+@if (numOfQuestions == 1)
+{
+     <SpaceForceEvaluations.Components.DailyQuestionHolder></SpaceForceEvaluations.Components.DailyQuestionHolder>   
+}
+@if (numOfQuestions == 2)
+{
+     <SpaceForceEvaluations.Components.DailyQuestionHolder></SpaceForceEvaluations.Components.DailyQuestionHolder>   
+     <SpaceForceEvaluations.Components.DailyQuestionHolder></SpaceForceEvaluations.Components.DailyQuestionHolder>
+}
+@if (numOfQuestions == 3)
+{
+    <SpaceForceEvaluations.Components.DailyQuestionHolder></SpaceForceEvaluations.Components.DailyQuestionHolder>
+    <SpaceForceEvaluations.Components.DailyQuestionHolder></SpaceForceEvaluations.Components.DailyQuestionHolder>
+    <SpaceForceEvaluations.Components.DailyQuestionHolder></SpaceForceEvaluations.Components.DailyQuestionHolder>
+    
+}
+<div><button type="submit" onclick="location.href='/Landing'">Submit</button></div>
+@code {
+    public int numOfQuestions;
+
+
+    private async Task GenerateNumber()
+    {
+        Random rnd = new Random();
+        numOfQuestions = rnd.Next(1, 4);
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await GenerateNumber();
+    }
+}
