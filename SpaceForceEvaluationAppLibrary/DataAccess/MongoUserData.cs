@@ -1,8 +1,14 @@
-﻿namespace SpaceForceEvaluationAppLibrary.DataAccess;
+﻿// ================================================================================================
+// This is the file that contains the connections to the User collection in the database, and
+// contains the task necessary to get and set users in the database.
+// ================================================================================================
+namespace SpaceForceEvaluationAppLibrary.DataAccess;
 
 public class MongoUserData : IUserData
 {
     private readonly IMongoCollection<UserModel> _users;
+    // here is the constructor that establishes the connections to the
+    // Uses collection.
     public MongoUserData(IDbConnection db)
     {
         _users = db.UserCollection;

@@ -1,4 +1,7 @@
-﻿namespace SpaceForceEvaluationAppLibrary.DataAccess
+﻿// ================================================================================================
+// This is the interface for the dailyQuestions data access file.
+// ================================================================================================
+namespace SpaceForceEvaluationAppLibrary.DataAccess
 {
     public interface IDailyQuestionsData
     {

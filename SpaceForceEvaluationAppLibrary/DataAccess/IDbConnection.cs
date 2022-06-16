@@ -1,4 +1,7 @@
-﻿using MongoDB.Driver;
+﻿// ================================================================================================
+// This is the interface for the DbConnection data access file.
+// ================================================================================================
+using MongoDB.Driver;
 
 namespace SpaceForceEvaluationAppLibrary.DataAccess
 {

@@ -1,4 +1,7 @@
-﻿namespace SpaceForceEvaluationAppLibrary.DataAccess
+﻿// ================================================================================================
+// This is the interface for the MongoUserData data access file.
+// ================================================================================================
+namespace SpaceForceEvaluationAppLibrary.DataAccess
 {
     public interface IUserData
     {
