@@ -31,10 +31,6 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRmV0Y2hEYXRhLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/zmace/source/repos/Space-Force-Evaluation-Project/Pages/Landing.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTGFuZGluZy5yYXpvcg==
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/zmace/source/repos/Space-Force-Evaluation-Project/Pages/SampleData.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2FtcGxlRGF0YS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
@@ -62,6 +58,10 @@ build_metadata.AdditionalFiles.CssScope = b-a5t3ivg6ll
 [C:/Users/zmace/source/repos/Space-Force-Evaluation-Project/Pages/Account.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWNjb3VudC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = b-9c49sc1y2p
+
+[C:/Users/zmace/source/repos/Space-Force-Evaluation-Project/Pages/Landing.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTGFuZGluZy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-2saf0orf5o
 
 [C:/Users/zmace/source/repos/Space-Force-Evaluation-Project/Pages/Login.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW4ucmF6b3I=
