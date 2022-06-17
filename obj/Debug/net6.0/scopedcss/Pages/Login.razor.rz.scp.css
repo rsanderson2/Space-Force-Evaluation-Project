@@ -6,8 +6,37 @@ body[b-qyds3voz9g] {
     color: #7f838a; 
     height: 100vh;
     width:  78vw;
+    text-align: center;
+}
+
+.col-2[b-qyds3voz9g] {
+    margin: 50px;
+    padding: 25px;
+    width: 400px;
+    display: inline-block;
+    border: 3px solid gray;
+    border-radius: 15px;
+    box-shadow: 5px 5px 3px 4px black;
+    background-color: lightblue;
+    flex: 0 1 auto;
 }
 
 div h1[b-qyds3voz9g] {
     text-align: center;
+}
+
+h2[b-qyds3voz9g] {
+    font-size: 52px;
+    color: black;
+}
+
+.flex[b-qyds3voz9g] {
+    display: flex;
+    justify-content: space-around;
+}
+
+.vline[b-qyds3voz9g] {
+    display: block;
+    height: 300px;
+    border: 1px solid gray;
 }

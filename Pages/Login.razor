@@ -18,12 +18,21 @@
 
 <AuthorizeView>
     <Authorized>
-        <div class = "col-2">
-            <input type = "button" class = "btn btn-primary" value ="Take Daily Survey" onclick="location.href='/Survey'"/>
-        </div>
-
-        <div class = "col-2">
-            <input type = "button" class = "btn btn-primary" value ="Take Weekly Survey" onclick="location.href='/Weekly'"/>
+        <div class="flex">
+            <section class = "col-2">
+                <h2>Take <strong>Daily</strong> Survey</h2>
+                <input type = "button" class = "btn btn-primary" value ="Begin" onclick="location.href='/Survey'"/>
+            </section>
+            <span class="vline"></span>
+            <section class = "col-2">
+                <h2>Take <strong>Weekly</strong> Survey</h2>
+                <input type = "button" class = "btn btn-primary" value ="Begin" onclick="location.href='/Weekly'"/>
+            </section>
+            <span class="vline"></span>
+            <section class = "col-2">
+                <h2>Take <strong>Monthly</strong> Survey</h2>
+                <input type = "button" class = "btn btn-primary" value ="Begin"/>
+            </section>
         </div>
     </Authorized>
     <NotAuthorized>

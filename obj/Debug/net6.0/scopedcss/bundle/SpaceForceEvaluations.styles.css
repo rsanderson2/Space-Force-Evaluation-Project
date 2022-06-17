@@ -11,6 +11,63 @@ body[b-a5t3ivg6ll] {
 input[type="radio"][b-a5t3ivg6ll] {
     margin: 0 5px 25px 10px;
 }
+/* _content/SpaceForceEvaluations/Pages/Account.razor.rz.scp.css */
+body[b-9c49sc1y2p] {
+
+}
+.mainDiv[b-9c49sc1y2p] {
+    background-image: linear-gradient(180deg, #002035 0%, #000f 99%);
+    color: #7f838a; 
+    height: 100vh;
+    width:  78vw;
+    text-align: center;
+}
+
+label[b-9c49sc1y2p] {
+    width: 100px;
+    display: inline-block;
+    text-align: right;
+    margin-right: 8px;
+}
+
+input[type=text][b-9c49sc1y2p], select[b-9c49sc1y2p] {
+    width: 350px;
+    padding: 10px;
+    margin: 6px 0;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+}
+
+input[type=submit][b-9c49sc1y2p] {
+    width: 200px;
+    background-color: #09f;
+    color: white;
+    padding: 15px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type=submit]:hover[b-9c49sc1y2p] {
+        background-color: #07d;
+}
+
+input[type=text]:focus[b-9c49sc1y2p], input[type=email]:focus[b-9c49sc1y2p] {
+    background-color: lightblue;
+}
+
+div h1[b-9c49sc1y2p] {
+    text-align: center;
+}
+
+form[b-9c49sc1y2p] {
+    display: inline-block;
+    border-top: 1px solid gray;
+}
+input:invalid[b-9c49sc1y2p] {
+    border: 5px solid red;
+}
 /* _content/SpaceForceEvaluations/Pages/Login.razor.rz.scp.css */
 body[b-qyds3voz9g] {
 
@@ -20,10 +77,42 @@ body[b-qyds3voz9g] {
     color: #7f838a; 
     height: 100vh;
     width:  78vw;
+    text-align: center;
+}
+
+.col-2[b-qyds3voz9g] {
+    margin: 50px;
+    padding: 25px;
+    width: 400px;
+    display: inline-block;
+    border: 3px solid gray;
+    border-radius: 15px;
+    box-shadow: 5px 5px 3px 4px black;
+    background-color: lightblue;
+    flex: 0 1 auto;
 }
 
 div h1[b-qyds3voz9g] {
     text-align: center;
+}
+
+h2[b-qyds3voz9g] {
+    font-size: 52px;
+    color: black;
+}
+
+.flex[b-qyds3voz9g] {
+    display: flex;
+    justify-content: space-around;
+}
+
+.vline[b-qyds3voz9g] {
+    display: block;
+    height: 300px;
+    border: 1px solid gray;
+}
+/* _content/SpaceForceEvaluations/Pages/Profile.razor.rz.scp.css */
+body[b-v2o82lkojk] {
 }
 /* _content/SpaceForceEvaluations/Pages/Survey.razor.rz.scp.css */
 body[b-5j160uinxx] {

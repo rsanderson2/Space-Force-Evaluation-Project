@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "OQYTQ9sbVpyd7rKLaLxUkgrSLhf/kJyffdlOetCt23k=",
+  "Hash": "QAKY4Mbq1KZ4gMq+uHX8YTKaUIbojJ5pAsxNY/TOuss=",
   "Source": "SpaceForceEvaluations",
   "BasePath": "_content/SpaceForceEvaluations",
   "Mode": "Default",
@@ -10,17 +10,17 @@
     {
       "Name": "SpaceForceEvaluations\\wwwroot",
       "Source": "SpaceForceEvaluations",
-      "ContentRoot": "C:\\Users\\zmace\\Source\\Repos\\Space-Force-Evaluation-Project\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\zmace\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\",
       "BasePath": "_content/SpaceForceEvaluations",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "C:\\Users\\zmace\\Source\\Repos\\Space-Force-Evaluation-Project\\obj\\Debug\\net6.0\\scopedcss\\bundle\\SpaceForceEvaluations.styles.css",
+      "Identity": "C:\\Users\\zmace\\source\\repos\\Space-Force-Evaluation-Project\\obj\\Debug\\net6.0\\scopedcss\\bundle\\SpaceForceEvaluations.styles.css",
       "SourceId": "SpaceForceEvaluations",
       "SourceType": "Computed",
-      "ContentRoot": "C:\\Users\\zmace\\Source\\Repos\\Space-Force-Evaluation-Project\\obj\\Debug\\net6.0\\scopedcss\\bundle\\",
+      "ContentRoot": "C:\\Users\\zmace\\source\\repos\\Space-Force-Evaluation-Project\\obj\\Debug\\net6.0\\scopedcss\\bundle\\",
       "BasePath": "_content/SpaceForceEvaluations",
       "RelativePath": "SpaceForceEvaluations.styles.css",
       "AssetKind": "All",
@@ -31,13 +31,13 @@
       "AssetTraitValue": "ApplicationBundle",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\zmace\\Source\\Repos\\Space-Force-Evaluation-Project\\obj\\Debug\\net6.0\\scopedcss\\bundle\\SpaceForceEvaluations.styles.css"
+      "OriginalItemSpec": "C:\\Users\\zmace\\source\\repos\\Space-Force-Evaluation-Project\\obj\\Debug\\net6.0\\scopedcss\\bundle\\SpaceForceEvaluations.styles.css"
     },
     {
-      "Identity": "C:\\Users\\zmace\\Source\\Repos\\Space-Force-Evaluation-Project\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\SpaceForceEvaluations.bundle.scp.css",
+      "Identity": "C:\\Users\\zmace\\source\\repos\\Space-Force-Evaluation-Project\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\SpaceForceEvaluations.bundle.scp.css",
       "SourceId": "SpaceForceEvaluations",
       "SourceType": "Computed",
-      "ContentRoot": "C:\\Users\\zmace\\Source\\Repos\\Space-Force-Evaluation-Project\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\",
+      "ContentRoot": "C:\\Users\\zmace\\source\\repos\\Space-Force-Evaluation-Project\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\",
       "BasePath": "_content/SpaceForceEvaluations",
       "RelativePath": "SpaceForceEvaluations.bundle.scp.css",
       "AssetKind": "All",
@@ -48,13 +48,13 @@
       "AssetTraitValue": "ProjectBundle",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\zmace\\Source\\Repos\\Space-Force-Evaluation-Project\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\SpaceForceEvaluations.bundle.scp.css"
+      "OriginalItemSpec": "C:\\Users\\zmace\\source\\repos\\Space-Force-Evaluation-Project\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\SpaceForceEvaluations.bundle.scp.css"
     },
     {
-      "Identity": "C:\\Users\\zmace\\Source\\Repos\\Space-Force-Evaluation-Project\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
+      "Identity": "C:\\Users\\zmace\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
       "SourceId": "SpaceForceEvaluations",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\zmace\\Source\\Repos\\Space-Force-Evaluation-Project\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\zmace\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\",
       "BasePath": "_content/SpaceForceEvaluations",
       "RelativePath": "css/bootstrap/bootstrap.min.css",
       "AssetKind": "All",
@@ -68,10 +68,10 @@
       "OriginalItemSpec": "wwwroot\\css\\bootstrap\\bootstrap.min.css"
     },
     {
-      "Identity": "C:\\Users\\zmace\\Source\\Repos\\Space-Force-Evaluation-Project\\wwwroot\\css\\bootstrap\\bootstrap.min.css.map",
+      "Identity": "C:\\Users\\zmace\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\css\\bootstrap\\bootstrap.min.css.map",
       "SourceId": "SpaceForceEvaluations",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\zmace\\Source\\Repos\\Space-Force-Evaluation-Project\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\zmace\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\",
       "BasePath": "_content/SpaceForceEvaluations",
       "RelativePath": "css/bootstrap/bootstrap.min.css.map",
       "AssetKind": "All",
@@ -85,10 +85,10 @@
       "OriginalItemSpec": "wwwroot\\css\\bootstrap\\bootstrap.min.css.map"
     },
     {
-      "Identity": "C:\\Users\\zmace\\Source\\Repos\\Space-Force-Evaluation-Project\\wwwroot\\css\\open-iconic\\font\\css\\open-iconic-bootstrap.min.css",
+      "Identity": "C:\\Users\\zmace\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\css\\open-iconic\\font\\css\\open-iconic-bootstrap.min.css",
       "SourceId": "SpaceForceEvaluations",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\zmace\\Source\\Repos\\Space-Force-Evaluation-Project\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\zmace\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\",
       "BasePath": "_content/SpaceForceEvaluations",
       "RelativePath": "css/open-iconic/font/css/open-iconic-bootstrap.min.css",
       "AssetKind": "All",
@@ -102,10 +102,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\font\\css\\open-iconic-bootstrap.min.css"
     },
     {
-      "Identity": "C:\\Users\\zmace\\Source\\Repos\\Space-Force-Evaluation-Project\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.eot",
+      "Identity": "C:\\Users\\zmace\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.eot",
       "SourceId": "SpaceForceEvaluations",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\zmace\\Source\\Repos\\Space-Force-Evaluation-Project\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\zmace\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\",
       "BasePath": "_content/SpaceForceEvaluations",
       "RelativePath": "css/open-iconic/font/fonts/open-iconic.eot",
       "AssetKind": "All",
@@ -119,10 +119,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.eot"
     },
     {
-      "Identity": "C:\\Users\\zmace\\Source\\Repos\\Space-Force-Evaluation-Project\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.otf",
+      "Identity": "C:\\Users\\zmace\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.otf",
       "SourceId": "SpaceForceEvaluations",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\zmace\\Source\\Repos\\Space-Force-Evaluation-Project\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\zmace\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\",
       "BasePath": "_content/SpaceForceEvaluations",
       "RelativePath": "css/open-iconic/font/fonts/open-iconic.otf",
       "AssetKind": "All",
@@ -136,10 +136,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.otf"
     },
     {
-      "Identity": "C:\\Users\\zmace\\Source\\Repos\\Space-Force-Evaluation-Project\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.svg",
+      "Identity": "C:\\Users\\zmace\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.svg",
       "SourceId": "SpaceForceEvaluations",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\zmace\\Source\\Repos\\Space-Force-Evaluation-Project\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\zmace\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\",
       "BasePath": "_content/SpaceForceEvaluations",
       "RelativePath": "css/open-iconic/font/fonts/open-iconic.svg",
       "AssetKind": "All",
@@ -153,10 +153,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.svg"
     },
     {
-      "Identity": "C:\\Users\\zmace\\Source\\Repos\\Space-Force-Evaluation-Project\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.ttf",
+      "Identity": "C:\\Users\\zmace\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.ttf",
       "SourceId": "SpaceForceEvaluations",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\zmace\\Source\\Repos\\Space-Force-Evaluation-Project\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\zmace\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\",
       "BasePath": "_content/SpaceForceEvaluations",
       "RelativePath": "css/open-iconic/font/fonts/open-iconic.ttf",
       "AssetKind": "All",
@@ -170,10 +170,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.ttf"
     },
     {
-      "Identity": "C:\\Users\\zmace\\Source\\Repos\\Space-Force-Evaluation-Project\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.woff",
+      "Identity": "C:\\Users\\zmace\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.woff",
       "SourceId": "SpaceForceEvaluations",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\zmace\\Source\\Repos\\Space-Force-Evaluation-Project\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\zmace\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\",
       "BasePath": "_content/SpaceForceEvaluations",
       "RelativePath": "css/open-iconic/font/fonts/open-iconic.woff",
       "AssetKind": "All",
@@ -187,10 +187,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.woff"
     },
     {
-      "Identity": "C:\\Users\\zmace\\Source\\Repos\\Space-Force-Evaluation-Project\\wwwroot\\css\\open-iconic\\FONT-LICENSE",
+      "Identity": "C:\\Users\\zmace\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\css\\open-iconic\\FONT-LICENSE",
       "SourceId": "SpaceForceEvaluations",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\zmace\\Source\\Repos\\Space-Force-Evaluation-Project\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\zmace\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\",
       "BasePath": "_content/SpaceForceEvaluations",
       "RelativePath": "css/open-iconic/FONT-LICENSE",
       "AssetKind": "All",
@@ -204,10 +204,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\FONT-LICENSE"
     },
     {
-      "Identity": "C:\\Users\\zmace\\Source\\Repos\\Space-Force-Evaluation-Project\\wwwroot\\css\\open-iconic\\ICON-LICENSE",
+      "Identity": "C:\\Users\\zmace\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\css\\open-iconic\\ICON-LICENSE",
       "SourceId": "SpaceForceEvaluations",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\zmace\\Source\\Repos\\Space-Force-Evaluation-Project\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\zmace\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\",
       "BasePath": "_content/SpaceForceEvaluations",
       "RelativePath": "css/open-iconic/ICON-LICENSE",
       "AssetKind": "All",
@@ -221,10 +221,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\ICON-LICENSE"
     },
     {
-      "Identity": "C:\\Users\\zmace\\Source\\Repos\\Space-Force-Evaluation-Project\\wwwroot\\css\\open-iconic\\README.md",
+      "Identity": "C:\\Users\\zmace\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\css\\open-iconic\\README.md",
       "SourceId": "SpaceForceEvaluations",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\zmace\\Source\\Repos\\Space-Force-Evaluation-Project\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\zmace\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\",
       "BasePath": "_content/SpaceForceEvaluations",
       "RelativePath": "css/open-iconic/README.md",
       "AssetKind": "All",
@@ -238,10 +238,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\README.md"
     },
     {
-      "Identity": "C:\\Users\\zmace\\Source\\Repos\\Space-Force-Evaluation-Project\\wwwroot\\css\\site.css",
+      "Identity": "C:\\Users\\zmace\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\css\\site.css",
       "SourceId": "SpaceForceEvaluations",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\zmace\\Source\\Repos\\Space-Force-Evaluation-Project\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\zmace\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\",
       "BasePath": "_content/SpaceForceEvaluations",
       "RelativePath": "css/site.css",
       "AssetKind": "All",
@@ -255,10 +255,10 @@
       "OriginalItemSpec": "wwwroot\\css\\site.css"
     },
     {
-      "Identity": "C:\\Users\\zmace\\Source\\Repos\\Space-Force-Evaluation-Project\\wwwroot\\favicon.ico",
+      "Identity": "C:\\Users\\zmace\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\favicon.ico",
       "SourceId": "SpaceForceEvaluations",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\zmace\\Source\\Repos\\Space-Force-Evaluation-Project\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\zmace\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\",
       "BasePath": "_content/SpaceForceEvaluations",
       "RelativePath": "favicon.ico",
       "AssetKind": "All",

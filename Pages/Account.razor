@@ -1,0 +1,44 @@
+﻿@page "/Account"
+@inherits LayoutComponentBase
+<PageTitle>Account</PageTitle>
+
+
+<div class="mainDiv">
+    <h1>Account Settings</h1>
+    <form>
+       <div>
+          <label for="first">First Name</label>
+          <input type="text" id="fname" name="firstname">
+       </div>
+       <div>
+          <label for="last">Last Name</label>
+          <input type="text" id="lname" name="lastname">
+       </div>
+       <div>
+          <label for="email">Email</label>
+          <input type="text" id="email" name="email">
+       </div>
+       <div>
+          <label for="rank">Rank</label>
+          <input type="text" id="rank" name="rank">
+       </div>
+       <div>
+          <label for="team">Team</label>
+          <select id="team" name="team">
+            <option>Team 1</option>
+            <option>Team 2</option>
+            <option>Team 3</option>        
+          </select>
+       </div>
+       <div>
+          <label for="job">Job</label>
+          <input type="text" id="job" name="job">
+       </div>
+  
+       <input type="submit" value="Submit">
+    </form>
+</div>
+@code
+    {
+
+    }

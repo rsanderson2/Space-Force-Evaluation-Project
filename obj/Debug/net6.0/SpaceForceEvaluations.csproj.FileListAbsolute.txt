@@ -393,3 +393,4 @@ C:\Users\zmace\Source\Repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\refi
 C:\Users\zmace\Source\Repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\SpaceForceEvaluations.pdb
 C:\Users\zmace\Source\Repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\SpaceForceEvaluations.genruntimeconfig.cache
 C:\Users\zmace\Source\Repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\ref\SpaceForceEvaluations.dll
+C:\Users\zmace\source\repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\scopedcss\Pages\Account.razor.rz.scp.css

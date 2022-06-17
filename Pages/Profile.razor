@@ -1,28 +1,31 @@
 ﻿@page "/Profile"
+@attribute [Authorize]
 @inject ISurveyData surveyData
 @inject IUserData userData
 @inject NavigationManager navMangager
 
-<h1>My Profile</h1>
+<div class="mainDiv">
+    <h1>My Profile</h1>
 
-<div>
     <div>
-        <button @onclick="ClosePage"></button>
+        <div>
+            <button @onclick="ClosePage"></button>
+        </div>
     </div>
-</div>
 
-<div>
-    <h2>My Account</h2>
-    <p>
-        <a href="MicrosoftIdentity/Account/EditProfile">
-            Edit My Profile
-        </a>
-    </p>
-</div>
+    <div>
+        <h2>My Account</h2>
+        <p>
+            <a href="MicrosoftIdentity/Account/EditProfile">
+                Edit My Profile
+            </a>
+        </p>
+    </div>
 
-<div>
-    <h2>Survey History</h2>
-    <p>These are the surveys that you have completed.</p>
+    <div>
+        <h2>Survey History</h2>
+        <p>These are the surveys that you have completed.</p>
+    </div>
 </div>
 
 @code {
