@@ -28,49 +28,6 @@
     private string SurveyType;
     private int numWeekly;
 
-    protected async Task OnIntializedAsync()
-    {
-        await LoadAndVerifyUser();
-    }
-
-    private async Task LoadAndVerifyUser()
-    {
-        var authState = await authProvider.GetAuthenticationStateAsync();
-        string objectId = authState.User.Claims.FirstOrDefault(c => c.Type.Contains("objectidentifier"))?.Value;
-
-        if (string.IsNullOrWhiteSpace(objectId) == false)
-        {
-            loggedInUser = await userData.GetUserFromAuthentication(objectId) ?? new();
-
-            string firstName = authState.User.Claims.FirstOrDefault(c => c.Type.Contains("givenname"))?.Value;
-            string lastName = authState.User.Claims.FirstOrDefault(c => c.Type.Contains("surname"))?.Value;
-            string displayName = authState.User.Claims.FirstOrDefault(c => c.Type.Equals("name"))?.Value;
-            string email = authState.User.Claims.FirstOrDefault(c => c.Type.Contains("email"))?.Value;
-
-            bool isDirty = false;
-            if (objectId.Equals(loggedInUser.ObjectIdentifier) == false)
-            {
-                isDirty = true;
-                loggedInUser.ObjectIdentifier = objectId;
-            }
-            if (firstName.Equals(loggedInUser.firstName) == false)
-            {
-                isDirty = true;
-                loggedInUser.firstName = firstName;
-            }
-            if (lastName.Equals(loggedInUser.lastName) == false)
-            {
-                isDirty = true;
-                loggedInUser.lastName = lastName;
-            }
-            if (email.Equals(loggedInUser.email) == false)
-            {
-                isDirty = true;
-                loggedInUser.email = email;
-            }
-        }
-    }
-
     bool IsTaskRunning = false;
 
     private string testQuestion = "This is a test Question";

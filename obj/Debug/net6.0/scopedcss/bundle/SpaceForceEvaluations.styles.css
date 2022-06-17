@@ -68,6 +68,14 @@ form[b-9c49sc1y2p] {
 input:invalid[b-9c49sc1y2p] {
     border: 5px solid red;
 }
+
+form input[type="text"][b-9c49sc1y2p] {
+    text-transform: lowercase;
+}
+EditForm[b-9c49sc1y2p] {
+    display: inline-block;
+    border-top: 1px solid gray;
+}
 /* _content/SpaceForceEvaluations/Pages/Landing.razor.rz.scp.css */
 .mainDiv[b-2saf0orf5o] {
     background-image: linear-gradient(180deg, #002035 0%, #000f 99%);

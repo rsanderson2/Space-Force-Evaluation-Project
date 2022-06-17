@@ -54,3 +54,11 @@ form {
 input:invalid {
     border: 5px solid red;
 }
+
+form input[type="text"] {
+    text-transform: lowercase;
+}
+EditForm {
+    display: inline-block;
+    border-top: 1px solid gray;
+}

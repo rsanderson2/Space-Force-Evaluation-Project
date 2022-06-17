@@ -24,7 +24,7 @@ public class MongoUserData : IUserData
     // returns user record by the parameter id.
     public async Task<UserModel> GetUser(string id)
     {
-        var results = await _users.FindAsync(u => u.Id == id);
+        var results = await _users.FindAsync(u => u.userID == id);
         return results.FirstOrDefault();
     }
 
@@ -42,7 +42,7 @@ public class MongoUserData : IUserData
 
     public Task UpdateUser(UserModel user)
     {
-        var filter = Builders<UserModel>.Filter.Eq("Id", user.Id);
+        var filter = Builders<UserModel>.Filter.Eq("userID", user.userID);
         return _users.ReplaceOneAsync(filter, user, new ReplaceOptions { IsUpsert = true });
     }
 

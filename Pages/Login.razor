@@ -1,4 +1,8 @@
 ﻿@page "/"
+@attribute [Authorize]
+@inject AuthenticationStateProvider authProvider
+@inject IUserData userData
+@inject NavigationManager navManager
 @inherits LayoutComponentBase
 <PageTitle>Login</PageTitle>
 
@@ -34,6 +38,11 @@
                 <input type = "button" class = "btn btn-primary" value ="Begin"/>
             </section>
         </div>
+
+        <h4>Logged in user is: @userName</h4>
+        <h4>Email: @emailAddress</h4>
+        <h4>Last Name: @userLastName</h4>
+        <h4>First Name: @userFirstName</h4>
     </Authorized>
     <NotAuthorized>
         <div>
@@ -49,6 +58,115 @@
 </div>
 
 @code
-    {
+{
+    public string userName;
+    public string userObjectID;
+    public string emailAddress;
+    public string userLastName;
+    public string userFirstName;
 
+    private UserModel loggedInUser = new UserModel();
+
+    // Function to check that the user is logged in, and get the information from their b2c profile
+    private async Task LoadAndVerifyUser()
+    {
+        var authState = await authProvider.GetAuthenticationStateAsync();
+        string objectID = authState.User.Claims.FirstOrDefault(c => c.Type.Contains("objectidentifier"))?.Value;
+        string displayName = authState.User.Claims.FirstOrDefault(c => c.Type.Equals("name"))?.Value;
+        string email = authState.User.Claims.FirstOrDefault(c => c.Type.Contains("email"))?.Value;
+        string lastName = authState.User.Claims.FirstOrDefault(c => c.Type.Contains("surname"))?.Value;
+        string firstName = authState.User.Claims.FirstOrDefault(c => c.Type.Contains("givenname"))?.Value;
+
+        // If the user is logged in, and they have an account
+        if(string.IsNullOrWhiteSpace(objectID) == false)
+        {
+
+            // set local variables to the logged in session so that they can be used
+            userObjectID = objectID;
+            userName = displayName;
+            emailAddress = email;
+            userLastName = lastName;
+            userFirstName = firstName;
+
+            loggedInUser.ObjectIdentifier = userObjectID;
+            loggedInUser.firstName = userFirstName;
+            loggedInUser.lastName = userLastName;
+            loggedInUser.email = emailAddress;
+            loggedInUser.userID = userObjectID;
+
+
+            var checkUser = await userData.GetUser(userObjectID);
+            if (checkUser == null)
+            {
+                await userData.CreateUser(loggedInUser);                  
+            }
+            else if (checkUser.teamID == null)
+            {
+                navManager.NavigateTo("/Account");
+            }
+      
+        }
     }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadAndVerifyUser();
+    }
+
+    //protected async Task OnIntializedAsync()
+    //{
+    //    await LoadAndVerifyUser();
+    //    //var authState = await authProvider.GetAuthenticationStateAsync();
+    //    //
+    //    userName = "Test";
+    //}
+
+    //private async Task LoadAndVerifyUser()
+    //{
+    //    var authState = await authProvider.GetAuthenticationStateAsync();
+    //    string objectId = authState.User.Claims.FirstOrDefault(c => c.Type.Contains("objectidentifier"))?.Value;
+
+    //    if (string.IsNullOrWhiteSpace(objectId) == false)
+    //    {
+    //        loggedInUser = await userData.GetUserFromAuthentication(objectId) ?? new();
+
+    //        string firstName = authState.User.Claims.FirstOrDefault(c => c.Type.Contains("givenname"))?.Value;
+    //        string lastName = authState.User.Claims.FirstOrDefault(c => c.Type.Contains("surname"))?.Value;
+    //        string displayName = authState.User.Claims.FirstOrDefault(c => c.Type.Equals("name"))?.Value;
+    //        string email = authState.User.Claims.FirstOrDefault(c => c.Type.Contains("email"))?.Value;
+
+    //        bool isDirty = false;
+    //        if (objectId.Equals(loggedInUser.ObjectIdentifier) == false)
+    //        {
+    //            isDirty = true;
+    //            loggedInUser.ObjectIdentifier = objectId;
+    //        }
+    //        if (firstName.Equals(loggedInUser.firstName) == false)
+    //        {
+    //            isDirty = true;
+    //            loggedInUser.firstName = firstName;
+    //        }
+    //        if (lastName.Equals(loggedInUser.lastName) == false)
+    //        {
+    //            isDirty = true;
+    //            loggedInUser.lastName = lastName;
+    //        }
+    //        if (email.Equals(loggedInUser.email) == false)
+    //        {
+    //            isDirty = true;
+    //            loggedInUser.email = email;
+    //        }
+    //        if (isDirty)
+    //        {
+    //            if (string.IsNullOrWhiteSpace(loggedInUser.Id))
+    //            {
+    //                await userData.CreateUser(loggedInUser);
+    //            }
+    //            else
+    //            {
+    //                await userData.UpdateUser(loggedInUser);
+    //            }
+    //        }
+    //    }
+    //}
+}
