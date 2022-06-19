@@ -11,6 +11,9 @@ body[b-a5t3ivg6ll] {
 input[type="radio"][b-a5t3ivg6ll] {
     margin: 0 5px 25px 10px;
 }
+input[type="InputRadio"][b-a5t3ivg6ll] {
+    margin: 0 5px 25px 10px;
+}
 /* _content/SpaceForceEvaluations/Pages/Account.razor.rz.scp.css */
 body[b-9c49sc1y2p] {
 

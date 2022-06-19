@@ -5,11 +5,14 @@ public class SurveyModel
     [BsonId]
     [BsonRepresentation(BsonType.ObjectId)]
     public string Id { get; set; }
-    public string surveyID { get; set; }
+    public string takerID { get; set; }
+    public string subjectID { get; set; }
+    public int surveyID { get; set; }
     public string surveyType { get; set; }
-    public bool isArchived { get; set; } = false;
+    public string category { get; set; }
     public DateTime date { get; set; } = DateTime.UtcNow;
-    public List<string> questions { get; set; }
-    public List<(string, string)> answers { get; set; }
+    public string question { get; set; }
+    public int response { get; set; }
+    public List<(string, string)> freeResonseText { get; set; }
 }
 

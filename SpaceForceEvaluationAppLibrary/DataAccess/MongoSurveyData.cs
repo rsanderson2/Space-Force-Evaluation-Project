@@ -24,35 +24,7 @@ public class MongoSurveyData : ISurveyData
         _surveys = db.SurveyCollection;
     }
 
-    // Here is the task that genereates todays survey.
-    // TODO: don't know if actually works or needs caching??? figure out later.
-    public async Task<List<SurveyModel>> GetTodaysSurveys()
-    {
-        var output = _cache.Get<List<SurveyModel>>(CacheName);
-        if (output is null)
-        {
-            var results = await _surveys.FindAsync(s => s.isArchived == false);
-            output = results.ToList();
 
-            _cache.Set(CacheName, output, TimeSpan.FromMinutes(3));
-        }
-        return output;
-    }
-
-    // Here is the task that gets all past surveys.
-    // TODO: don't actually know if this requires caching.
-    public async Task<List<SurveyModel>> GetAllPastSurveys()
-    {
-        var output = _cache.Get<List<SurveyModel>>(CacheName);
-        if (output is null)
-        {
-            var results = await _surveys.FindAsync(s => s.isArchived == true);
-            output = results.ToList();
-
-            _cache.Set(CacheName, output, TimeSpan.FromMinutes(5));
-        }
-        return output;
-    }
 
     // Here is the task that returns a specific survey by searching for the
     // surveyID string.

@@ -10,3 +10,6 @@
 input[type="radio"] {
     margin: 0 5px 25px 10px;
 }
+input[type="InputRadio"] {
+    margin: 0 5px 25px 10px;
+}

@@ -1,5 +1,4 @@
 ﻿@page "/"
-@attribute [Authorize]
 @inject AuthenticationStateProvider authProvider
 @inject IUserData userData
 @inject NavigationManager navManager
@@ -9,16 +8,6 @@
 
 
 <div class=mainDiv>
-    <AuthorizeView>
-        <NotAuthorized>
-            <h1>Login to continue</h1>
-            <div class="" style="padding:20px">
-            <form method="post">
-
-            </form>
-            </div>
-        </NotAuthorized>
-    </AuthorizeView>
 
 <AuthorizeView>
     <Authorized>
@@ -30,12 +19,12 @@
             <span class="vline"></span>
             <section class = "col-2">
                 <h2>Take <strong>Weekly</strong> Survey</h2>
-                <input type = "button" class = "btn btn-primary" value ="Begin" onclick="location.href='/Weekly'"/>
+                <input type = "button" class = "btn btn-primary" value ="Begin" disabled=true; onclick="location.href='/Weekly'"/>
             </section>
             <span class="vline"></span>
             <section class = "col-2">
                 <h2>Take <strong>Monthly</strong> Survey</h2>
-                <input type = "button" class = "btn btn-primary" value ="Begin"/>
+                <input type = "button" class = "btn btn-primary" disabled=true; value ="Begin"/>
             </section>
         </div>
 
@@ -104,7 +93,7 @@
             {
                 navManager.NavigateTo("/Account");
             }
-      
+
         }
     }
 
@@ -112,61 +101,4 @@
     {
         await LoadAndVerifyUser();
     }
-
-    //protected async Task OnIntializedAsync()
-    //{
-    //    await LoadAndVerifyUser();
-    //    //var authState = await authProvider.GetAuthenticationStateAsync();
-    //    //
-    //    userName = "Test";
-    //}
-
-    //private async Task LoadAndVerifyUser()
-    //{
-    //    var authState = await authProvider.GetAuthenticationStateAsync();
-    //    string objectId = authState.User.Claims.FirstOrDefault(c => c.Type.Contains("objectidentifier"))?.Value;
-
-    //    if (string.IsNullOrWhiteSpace(objectId) == false)
-    //    {
-    //        loggedInUser = await userData.GetUserFromAuthentication(objectId) ?? new();
-
-    //        string firstName = authState.User.Claims.FirstOrDefault(c => c.Type.Contains("givenname"))?.Value;
-    //        string lastName = authState.User.Claims.FirstOrDefault(c => c.Type.Contains("surname"))?.Value;
-    //        string displayName = authState.User.Claims.FirstOrDefault(c => c.Type.Equals("name"))?.Value;
-    //        string email = authState.User.Claims.FirstOrDefault(c => c.Type.Contains("email"))?.Value;
-
-    //        bool isDirty = false;
-    //        if (objectId.Equals(loggedInUser.ObjectIdentifier) == false)
-    //        {
-    //            isDirty = true;
-    //            loggedInUser.ObjectIdentifier = objectId;
-    //        }
-    //        if (firstName.Equals(loggedInUser.firstName) == false)
-    //        {
-    //            isDirty = true;
-    //            loggedInUser.firstName = firstName;
-    //        }
-    //        if (lastName.Equals(loggedInUser.lastName) == false)
-    //        {
-    //            isDirty = true;
-    //            loggedInUser.lastName = lastName;
-    //        }
-    //        if (email.Equals(loggedInUser.email) == false)
-    //        {
-    //            isDirty = true;
-    //            loggedInUser.email = email;
-    //        }
-    //        if (isDirty)
-    //        {
-    //            if (string.IsNullOrWhiteSpace(loggedInUser.Id))
-    //            {
-    //                await userData.CreateUser(loggedInUser);
-    //            }
-    //            else
-    //            {
-    //                await userData.UpdateUser(loggedInUser);
-    //            }
-    //        }
-    //    }
-    //}
 }

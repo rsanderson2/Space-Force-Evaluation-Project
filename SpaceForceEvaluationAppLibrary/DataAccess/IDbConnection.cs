@@ -1,13 +1,15 @@
 ﻿// ================================================================================================
-// This is the interface for the DbConnection data access file.
+// This file contains the connection made to the database refrenced from the connection string
+// located in "appseting.json" under the section labeled "MongoDB". This file also contains 
+// the connection made to each of the collections in the database.
 // ================================================================================================
-using MongoDB.Driver;
-
 namespace SpaceForceEvaluationAppLibrary.DataAccess
 {
     public interface IDbConnection
     {
         MongoClient Client { get; }
+        IMongoCollection<ClimateQuestionsModel> ClimateQuestionsCollection { get; }
+        string ClimateQuestionsCollectionName { get; }
         IMongoCollection<DailyQuestionsModel> DailyQuestionsCollection { get; }
         string DailyQuestionsCollectionName { get; }
         string DbName { get; }

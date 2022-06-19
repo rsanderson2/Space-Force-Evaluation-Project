@@ -1,48 +1,92 @@
-﻿@inject IDailyQuestionsData questionData
+﻿@inject IClimateQuestionsData questionData
+@inject IUserData userData
+@inject ISurveyData surveyData
+@inject NavigationManager navManager
+@inject AuthenticationStateProvider authProvider
 
 @*<button @onclick="@GenerateQuestion">Click to show your RaNdOmLy GeNeRaTeD qUeStIoN</button>*@
 
 <div class=maincomponent>
     <p>Please answer the following question to the best of your ability</p>
-    <h3>@preamble</h3>
     <h5>@TestQuestion</h5>
 
-    <form class=mainclass id="dailyquestionform">
+@*    <form class=mainclass id="dailyquestionform">
 
     <!--Radio button for responses-->
     <input type="radio" id="radioOne" name="value" value=1>
     <span>Strongly Disagree</span>
-@*    <label for="radioOne">Strongly Disagree</label>*@
 
     <input type="radio" id="radioTwo" name="value" value=2>
     <span>Somewhat Disagree</span>
-@*    <label for="radioTwo">Somewhat Disagree</label>*@
 
     <input type="radio" id="radioThree" name="value" value=3>
     <span>Neither Agree nor Disagree</span>
-@*    <label for="radioThree">Neither Agree nor Disagree</label>*@
 
     <input type="radio" id="radioFour" name="value" value=4>
     <span>Somewhat Agree</span>
-@*    <label for="radioFour">Somewhat Agree</label>*@
 
     <input type="radio" id="radioFive" name="value" value=5 >
     <span>Strongly Agree</span>
-@*    <label for="radioFive">Strongly Agree</label>*@
-    </form>
+    </form>*@
+
+    <EditForm Model="@surveyModel" OnValidSubmit="@HandleSubmit" id="dailyQuestionForm">
+        <InputRadioGroup @bind-Value="@surveyModel.response">
+            
+            <InputRadio Value="1">1</InputRadio>
+            <Label>Strongly Disagree &ensp;</Label>
+
+            <InputRadio Value="2">2</InputRadio>
+            <Label>Somewhat Disagree &ensp;</Label>
+
+            <InputRadio Value="3">3</InputRadio>
+            <Label>Neither Agree nor Disagree &ensp;</Label>
+
+            <InputRadio Value="4">4</InputRadio>
+            <Label>Somewhat Agree &ensp;</Label>
+
+            <InputRadio Value="5">5</InputRadio>
+            <Label>Strongly Agree &ensp;</Label>
+        </InputRadioGroup>
+        <div>
+            <button type="submit">Submit</button>
+        </div>
+    </EditForm>
 
 </div>
 
 @code {
+    //##TODO
+    // Inject Survey Model
+    //convert form to edit form with model = survey model
+    // Store information from form so that information can be pushed to the surveys table
+    // push answered question to surveys table
+
+    public int questionResponse;
+    public int questionNumber;
+    public string questionCategory;
+    public string surveyTaker;
+    private SurveyModel surveyModel = new SurveyModel();
 
     public string TestQuestion = "";
-    public string preamble = "";
     private Random rnd = new Random();
 
     // We will need a function to get the maximum number of questions from the question bank
+
+    private async Task HandleSubmit()
+    {
+        questionResponse = surveyModel.response;
+        surveyModel.question = TestQuestion;
+        surveyModel.surveyID = questionNumber;
+        surveyModel.category = questionCategory;
+        surveyModel.takerID = surveyTaker;
+        await surveyData.CreateSurvey(surveyModel);
+        navManager.NavigateTo("/Landing");
+
+    }
+
     private int getMax()
     {
-        return 13;
+        return 166;
     }
     private int GetQuestionNumber()
     {
@@ -51,9 +95,12 @@
 
     private async Task GenerateQuestion()
     {
-        DailyQuestionsModel questionModel = await questionData.GetDailyQuestion(GetQuestionNumber());
+        var user = await AuthenticationStateProviderHelpers.GetUserFromAuth(authProvider, userData);
+        ClimateQuestionsModel questionModel = await questionData.GetClimateQuestion(GetQuestionNumber());
         TestQuestion = questionModel.text;
-        preamble = "This Question is in regards to one of your teammates";
+        questionNumber = questionModel.QuestionID;
+        questionCategory = questionModel.category;
+        surveyTaker = user.userID;
     }
 
     protected override async Task OnInitializedAsync()

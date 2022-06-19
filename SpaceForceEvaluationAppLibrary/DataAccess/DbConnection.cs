@@ -20,6 +20,7 @@ public class DbConnection : IDbConnection
     public string DailyQuestionsCollectionName { get; private set; } = "dailyQuestions";
     public string WeeklyQuestionsCollectionName { get; private set; } = "weeklyQuestions";
     public string MonthlyQuestionsCollectionName { get; private set; } = "monthlyQuestions";
+    public string ClimateQuestionsCollectionName { get; private set; } = "climateQuestions";
     public string ReportsCollectionName { get; private set; } = "Reports";
     public string FeedbackCollectionName { get; private set; } = "Feedback";
 
@@ -31,6 +32,7 @@ public class DbConnection : IDbConnection
     public IMongoCollection<DailyQuestionsModel> DailyQuestionsCollection { get; private set; }
     public IMongoCollection<WeeklyQuestionsModel> WeeklyQuestionsCollection { get; private set; }
     public IMongoCollection<MonthlyQuestionsModel> MonthlyQuestionsCollection { get; private set; }
+    public IMongoCollection<ClimateQuestionsModel> ClimateQuestionsCollection { get; private set; }
     public IMongoCollection<ReportModel> ReportsCollection { get; private set; }
     public IMongoCollection<FeedbackModel> FeedbackCollection { get; private set; }
 
@@ -48,6 +50,7 @@ public class DbConnection : IDbConnection
         DailyQuestionsCollection = _db.GetCollection<DailyQuestionsModel>(DailyQuestionsCollectionName);
         WeeklyQuestionsCollection = _db.GetCollection<WeeklyQuestionsModel>(WeeklyQuestionsCollectionName);
         MonthlyQuestionsCollection = _db.GetCollection<MonthlyQuestionsModel>(MonthlyQuestionsCollectionName);
+        ClimateQuestionsCollection = _db.GetCollection<ClimateQuestionsModel>(ClimateQuestionsCollectionName);
         ReportsCollection = _db.GetCollection<ReportModel>(ReportsCollectionName);
         FeedbackCollection = _db.GetCollection<FeedbackModel>(FeedbackCollectionName);
     }
