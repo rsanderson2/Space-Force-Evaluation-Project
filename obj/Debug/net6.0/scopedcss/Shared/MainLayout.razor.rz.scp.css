@@ -59,8 +59,8 @@ header[b-4m02i15hvc]::after {
 .link[b-4m02i15hvc] {
     display: inline-block;
     position: relative;
-    margin-left: 50px;
-    padding-top: 15px;
+    margin-left: 5vw;
+    padding-top: 1vw;
     text-transform: uppercase;
     flex: 0 1 auto;
 }

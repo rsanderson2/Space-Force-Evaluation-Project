@@ -97,19 +97,23 @@ body[b-qyds3voz9g] {
     background-image: linear-gradient(180deg, #002035 0%, #000f 99%);
     color: #7f838a; 
     height: 100vh;
+    width: 94vw;
     text-align: center;
 }
 
 .col-2[b-qyds3voz9g] {
-    margin: 50px;
-    padding: 25px;
+    margin: 2vh;
+    padding: 1.0vw;
+    padding-bottom: 8vw;
     width: 25vw;
+    height: 10vh;
     display: inline-block;
     border: 3px solid gray;
     border-radius: 15px;
     box-shadow: 5px 5px 3px 4px black;
     background-color: lightblue;
     flex: 0 1 auto;
+    align-content: space-around;
 }
 
 div h1[b-qyds3voz9g] {
@@ -117,8 +121,7 @@ div h1[b-qyds3voz9g] {
 }
 
 h2[b-qyds3voz9g] {
-    font-size: 52px;
-    font-size: 2.5vw;
+    font-size: 2.0vw;
     color: black;
 }
 
@@ -129,8 +132,14 @@ h2[b-qyds3voz9g] {
 
 .vline[b-qyds3voz9g] {
     display: block;
-    height: 300px;
+    height: 15vh;
     border: 1px solid gray;
+}
+.btn-primary[b-qyds3voz9g]{
+    width: 5vw;
+    font-size: 1.0vw;
+    position: center;
+    padding: 0.25vw;
 }
 /* _content/SpaceForceEvaluations/Pages/Profile.razor.rz.scp.css */
 .mainDiv[b-v2o82lkojk] {
@@ -222,8 +231,8 @@ header[b-4m02i15hvc]::after {
 .link[b-4m02i15hvc] {
     display: inline-block;
     position: relative;
-    margin-left: 50px;
-    padding-top: 15px;
+    margin-left: 5vw;
+    padding-top: 1vw;
     text-transform: uppercase;
     flex: 0 1 auto;
 }
@@ -407,13 +416,11 @@ header[b-4m02i15hvc]::after {
 /* _content/SpaceForceEvaluations/Shared/NavMenu.razor.rz.scp.css */
 .navbar-toggler[b-gm337wb2xa] {
     background-color: rgba(255, 255, 255, 0.1);
-    flex: 0 1 auto;
 }
 
 .top-row[b-gm337wb2xa] {
     height: 3.5rem;
     background-color: rgba(0,0,0,0.4);
-    flex: 0 1 auto;
 }
 
 .navbar-brand[b-gm337wb2xa] {
