@@ -13,7 +13,6 @@ C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\bin\Debug\net6.0\Sp
 C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\bin\Debug\net6.0\SpaceForceEvaluations.deps.json
 C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\bin\Debug\net6.0\SpaceForceEvaluations.runtimeconfig.json
 C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\bin\Debug\net6.0\SpaceForceEvaluations.dll
-C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\bin\Debug\net6.0\ref\SpaceForceEvaluations.dll
 C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\bin\Debug\net6.0\SpaceForceEvaluations.pdb
 C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\bin\Debug\net6.0\Azure.Core.dll
 C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\bin\Debug\net6.0\Azure.Identity.dll
@@ -399,3 +398,7 @@ C:\Users\grayn\source\repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\refi
 C:\Users\grayn\source\repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\SpaceForceEvaluations.pdb
 C:\Users\grayn\source\repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\SpaceForceEvaluations.genruntimeconfig.cache
 C:\Users\grayn\source\repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\ref\SpaceForceEvaluations.dll
+C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\scopedcss\Pages\Account.razor.rz.scp.css
+C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\scopedcss\Pages\Landing.razor.rz.scp.css
+C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\scopedcss\Pages\Profile.razor.rz.scp.css
+C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\refint\SpaceForceEvaluations.dll

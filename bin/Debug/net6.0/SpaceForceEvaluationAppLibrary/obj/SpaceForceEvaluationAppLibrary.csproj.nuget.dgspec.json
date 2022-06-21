@@ -1,21 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\zmace\\Source\\Repos\\Space-Force-Evaluation-Project\\SpaceForceEvaluationAppLibrary\\SpaceForceEvaluationAppLibrary.csproj": {}
+    "C:\\Users\\Preston\\source\\repos\\Space-Force-Evaluation-Project\\SpaceForceEvaluationAppLibrary\\SpaceForceEvaluationAppLibrary.csproj": {}
   },
   "projects": {
-    "C:\\Users\\zmace\\Source\\Repos\\Space-Force-Evaluation-Project\\SpaceForceEvaluationAppLibrary\\SpaceForceEvaluationAppLibrary.csproj": {
+    "C:\\Users\\Preston\\source\\repos\\Space-Force-Evaluation-Project\\SpaceForceEvaluationAppLibrary\\SpaceForceEvaluationAppLibrary.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\zmace\\Source\\Repos\\Space-Force-Evaluation-Project\\SpaceForceEvaluationAppLibrary\\SpaceForceEvaluationAppLibrary.csproj",
+        "projectUniqueName": "C:\\Users\\Preston\\source\\repos\\Space-Force-Evaluation-Project\\SpaceForceEvaluationAppLibrary\\SpaceForceEvaluationAppLibrary.csproj",
         "projectName": "SpaceForceEvaluationAppLibrary",
-        "projectPath": "C:\\Users\\zmace\\Source\\Repos\\Space-Force-Evaluation-Project\\SpaceForceEvaluationAppLibrary\\SpaceForceEvaluationAppLibrary.csproj",
-        "packagesPath": "C:\\Users\\zmace\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\zmace\\Source\\Repos\\Space-Force-Evaluation-Project\\SpaceForceEvaluationAppLibrary\\obj\\",
+        "projectPath": "C:\\Users\\Preston\\source\\repos\\Space-Force-Evaluation-Project\\SpaceForceEvaluationAppLibrary\\SpaceForceEvaluationAppLibrary.csproj",
+        "packagesPath": "C:\\Users\\Preston\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Preston\\source\\repos\\Space-Force-Evaluation-Project\\SpaceForceEvaluationAppLibrary\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\zmace\\Source\\Repos\\Space-Force-Evaluation-Project\\NuGet.Config",
-          "C:\\Users\\zmace\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Preston\\source\\repos\\Space-Force-Evaluation-Project\\NuGet.Config",
+          "C:\\Users\\Preston\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -69,7 +72,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
         }
       }
     }

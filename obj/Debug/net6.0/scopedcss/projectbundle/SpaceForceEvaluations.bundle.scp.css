@@ -103,7 +103,7 @@ body[b-qyds3voz9g] {
 .col-2[b-qyds3voz9g] {
     margin: 50px;
     padding: 25px;
-    width: 400px;
+    width: 25vw;
     display: inline-block;
     border: 3px solid gray;
     border-radius: 15px;
@@ -118,6 +118,7 @@ div h1[b-qyds3voz9g] {
 
 h2[b-qyds3voz9g] {
     font-size: 52px;
+    font-size: 2.5vw;
     color: black;
 }
 
@@ -168,6 +169,7 @@ body[b-4m02i15hvc] {
     background-attachment: fixed;
     background-position: center;
     background-size: cover;
+    flex: 0 1 auto;
 }
 
 header[b-4m02i15hvc] {
@@ -195,6 +197,7 @@ header[b-4m02i15hvc]::after {
     padding-bottom: 0;
     height: 22px;
     text-align: center;
+    flex: 0 1 auto;
 }
 
 .topbox p a[b-4m02i15hvc] {
@@ -203,13 +206,14 @@ header[b-4m02i15hvc]::after {
 
 .infobox[b-4m02i15hvc] {
     display: flex;
-    height: 80px;
+    height: 5vw;
+
 }
 
 .logo[b-4m02i15hvc] {
     display: block;
     position: relative;
-    left: 150px;
+    left: 8vw;
     top:  -20px;
     width: 6%;
     height: auto;
@@ -221,12 +225,14 @@ header[b-4m02i15hvc]::after {
     margin-left: 50px;
     padding-top: 15px;
     text-transform: uppercase;
+    flex: 0 1 auto;
 }
 
     .link a[b-4m02i15hvc] {
         text-decoration: none;
         color: lightgrey;
         font-size: 24px;
+        font-size: 1.2vw;
         font-family: fantasy;
     }
 
@@ -255,6 +261,7 @@ header[b-4m02i15hvc]::after {
 
 .dropdown .dropbtn[b-4m02i15hvc] {
     font-size: 28px;
+    font-size: 1.5vw;
     color: lightgray;
     background: none;
     border: none;
@@ -314,6 +321,7 @@ header[b-4m02i15hvc]::after {
     text-transform: uppercase;
     font-family: Georgia, 'Times New Roman', Times, serif;
     font-size: 26px;
+    font-size: 1.5vw;
 }
 
 #motto[b-4m02i15hvc] {
@@ -323,22 +331,25 @@ header[b-4m02i15hvc]::after {
     text-transform: uppercase;
     font-family: 'Brush Script MT';
     font-size: 20px;
+    font-size: 1vw;
 }
-
+/*Adjusted navlist and userbox to be position absolute, and use vw=view width for different size screens*/
 #navlist[b-4m02i15hvc] {
-    position: relative;
-    left: 600px;
+    position: absolute;
+    left: 60vw;
     margin: 0;
     padding: 0;
     list-style: none;
+    flex: 0 1 auto;
 }
 
 #userbox[b-4m02i15hvc] {
-    position:   relative;
+    position: absolute;
     padding-top: 10px;
-    left: 750px;
+    left: 80vw;
     align-content: center;
     text-align: center;
+    flex: 0 1 auto;
 }
 
 
@@ -396,11 +407,13 @@ header[b-4m02i15hvc]::after {
 /* _content/SpaceForceEvaluations/Shared/NavMenu.razor.rz.scp.css */
 .navbar-toggler[b-gm337wb2xa] {
     background-color: rgba(255, 255, 255, 0.1);
+    flex: 0 1 auto;
 }
 
 .top-row[b-gm337wb2xa] {
     height: 3.5rem;
     background-color: rgba(0,0,0,0.4);
+    flex: 0 1 auto;
 }
 
 .navbar-brand[b-gm337wb2xa] {

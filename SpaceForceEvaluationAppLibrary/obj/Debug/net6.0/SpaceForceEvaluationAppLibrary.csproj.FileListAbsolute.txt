@@ -1,7 +1,6 @@
 C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\SpaceForceEvaluationAppLibrary\bin\Debug\net6.0\NuGet.Config
 C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\SpaceForceEvaluationAppLibrary\bin\Debug\net6.0\SpaceForceEvaluationAppLibrary.deps.json
 C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\SpaceForceEvaluationAppLibrary\bin\Debug\net6.0\SpaceForceEvaluationAppLibrary.dll
-C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\SpaceForceEvaluationAppLibrary\bin\Debug\net6.0\ref\SpaceForceEvaluationAppLibrary.dll
 C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\SpaceForceEvaluationAppLibrary\bin\Debug\net6.0\SpaceForceEvaluationAppLibrary.pdb
 C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\SpaceForceEvaluationAppLibrary\obj\Debug\net6.0\SpaceForceEvaluationAppLibrary.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\SpaceForceEvaluationAppLibrary\obj\Debug\net6.0\SpaceForceEvaluationAppLibrary.csproj.CoreCompileInputs.cache
@@ -42,3 +41,4 @@ C:\Users\grayn\source\repos\Space-Force-Evaluation-Project\SpaceForceEvaluationA
 C:\Users\grayn\source\repos\Space-Force-Evaluation-Project\SpaceForceEvaluationAppLibrary\obj\Debug\net6.0\refint\SpaceForceEvaluationAppLibrary.dll
 C:\Users\grayn\source\repos\Space-Force-Evaluation-Project\SpaceForceEvaluationAppLibrary\obj\Debug\net6.0\SpaceForceEvaluationAppLibrary.pdb
 C:\Users\grayn\source\repos\Space-Force-Evaluation-Project\SpaceForceEvaluationAppLibrary\obj\Debug\net6.0\ref\SpaceForceEvaluationAppLibrary.dll
+C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\SpaceForceEvaluationAppLibrary\obj\Debug\net6.0\refint\SpaceForceEvaluationAppLibrary.dll

@@ -6,6 +6,7 @@ body {
     background-attachment: fixed;
     background-position: center;
     background-size: cover;
+    flex: 0 1 auto;
 }
 
 header {
@@ -33,6 +34,7 @@ header::after {
     padding-bottom: 0;
     height: 22px;
     text-align: center;
+    flex: 0 1 auto;
 }
 
 .topbox p a {
@@ -41,13 +43,14 @@ header::after {
 
 .infobox {
     display: flex;
-    height: 80px;
+    height: 5vw;
+
 }
 
 .logo {
     display: block;
     position: relative;
-    left: 150px;
+    left: 8vw;
     top:  -20px;
     width: 6%;
     height: auto;
@@ -59,12 +62,14 @@ header::after {
     margin-left: 50px;
     padding-top: 15px;
     text-transform: uppercase;
+    flex: 0 1 auto;
 }
 
     .link a {
         text-decoration: none;
         color: lightgrey;
         font-size: 24px;
+        font-size: 1.2vw;
         font-family: fantasy;
     }
 
@@ -93,6 +98,7 @@ header::after {
 
 .dropdown .dropbtn {
     font-size: 28px;
+    font-size: 1.5vw;
     color: lightgray;
     background: none;
     border: none;
@@ -152,6 +158,7 @@ header::after {
     text-transform: uppercase;
     font-family: Georgia, 'Times New Roman', Times, serif;
     font-size: 26px;
+    font-size: 1.5vw;
 }
 
 #motto {
@@ -161,22 +168,25 @@ header::after {
     text-transform: uppercase;
     font-family: 'Brush Script MT';
     font-size: 20px;
+    font-size: 1vw;
 }
-
+/*Adjusted navlist and userbox to be position absolute, and use vw=view width for different size screens*/
 #navlist {
-    position: relative;
-    left: 600px;
+    position: absolute;
+    left: 60vw;
     margin: 0;
     padding: 0;
     list-style: none;
+    flex: 0 1 auto;
 }
 
 #userbox {
-    position:   relative;
+    position: absolute;
     padding-top: 10px;
-    left: 750px;
+    left: 80vw;
     align-content: center;
     text-align: center;
+    flex: 0 1 auto;
 }
 
 

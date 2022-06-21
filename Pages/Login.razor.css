@@ -11,7 +11,7 @@
 .col-2 {
     margin: 50px;
     padding: 25px;
-    width: 400px;
+    width: 25vw;
     display: inline-block;
     border: 3px solid gray;
     border-radius: 15px;
@@ -26,6 +26,7 @@ div h1 {
 
 h2 {
     font-size: 52px;
+    font-size: 2.5vw;
     color: black;
 }
 
