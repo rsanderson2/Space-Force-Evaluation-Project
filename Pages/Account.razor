@@ -61,7 +61,13 @@
         </div>
         <div>
             <label>Team ID
-                <InputText @bind-Value="userModel.teamID" type="text"></InputText>
+                <InputSelect @bind-Value="userModel.teamID">
+                    <option value="">Select Team...</option>
+                    <option value="Sales">Sales</option>
+                    <option value="Accounting">Accounting</option>
+                    <option value="Management">Management</option>
+                    <option value="Human Resources">Human Resources</option>
+                </InputSelect>
             </label>
         </div>
         <div>
