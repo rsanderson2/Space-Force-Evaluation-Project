@@ -1,25 +1,21 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\grayn\\source\\repos\\Space-Force-Evaluation-Project\\SpaceForceEvaluations.csproj": {}
+    "C:\\Users\\zmace\\Source\\Repos\\Space-Force-Evaluation-Project\\SpaceForceEvaluations.csproj": {}
   },
   "projects": {
-    "C:\\Users\\grayn\\source\\repos\\Space-Force-Evaluation-Project\\SpaceForceEvaluationAppLibrary\\SpaceForceEvaluationAppLibrary.csproj": {
+    "C:\\Users\\zmace\\Source\\Repos\\Space-Force-Evaluation-Project\\SpaceForceEvaluationAppLibrary\\SpaceForceEvaluationAppLibrary.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\grayn\\source\\repos\\Space-Force-Evaluation-Project\\SpaceForceEvaluationAppLibrary\\SpaceForceEvaluationAppLibrary.csproj",
+        "projectUniqueName": "C:\\Users\\zmace\\Source\\Repos\\Space-Force-Evaluation-Project\\SpaceForceEvaluationAppLibrary\\SpaceForceEvaluationAppLibrary.csproj",
         "projectName": "SpaceForceEvaluationAppLibrary",
-        "projectPath": "C:\\Users\\grayn\\source\\repos\\Space-Force-Evaluation-Project\\SpaceForceEvaluationAppLibrary\\SpaceForceEvaluationAppLibrary.csproj",
-        "packagesPath": "C:\\Users\\grayn\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\grayn\\source\\repos\\Space-Force-Evaluation-Project\\SpaceForceEvaluationAppLibrary\\obj\\",
+        "projectPath": "C:\\Users\\zmace\\Source\\Repos\\Space-Force-Evaluation-Project\\SpaceForceEvaluationAppLibrary\\SpaceForceEvaluationAppLibrary.csproj",
+        "packagesPath": "C:\\Users\\zmace\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\zmace\\Source\\Repos\\Space-Force-Evaluation-Project\\SpaceForceEvaluationAppLibrary\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\grayn\\source\\repos\\Space-Force-Evaluation-Project\\NuGet.Config",
-          "C:\\Users\\grayn\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\zmace\\Source\\Repos\\Space-Force-Evaluation-Project\\NuGet.Config",
+          "C:\\Users\\zmace\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -77,22 +73,18 @@
         }
       }
     },
-    "C:\\Users\\grayn\\source\\repos\\Space-Force-Evaluation-Project\\SpaceForceEvaluations.csproj": {
+    "C:\\Users\\zmace\\Source\\Repos\\Space-Force-Evaluation-Project\\SpaceForceEvaluations.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\grayn\\source\\repos\\Space-Force-Evaluation-Project\\SpaceForceEvaluations.csproj",
+        "projectUniqueName": "C:\\Users\\zmace\\Source\\Repos\\Space-Force-Evaluation-Project\\SpaceForceEvaluations.csproj",
         "projectName": "SpaceForceEvaluations",
-        "projectPath": "C:\\Users\\grayn\\source\\repos\\Space-Force-Evaluation-Project\\SpaceForceEvaluations.csproj",
-        "packagesPath": "C:\\Users\\grayn\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\grayn\\source\\repos\\Space-Force-Evaluation-Project\\obj\\",
+        "projectPath": "C:\\Users\\zmace\\Source\\Repos\\Space-Force-Evaluation-Project\\SpaceForceEvaluations.csproj",
+        "packagesPath": "C:\\Users\\zmace\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\zmace\\Source\\Repos\\Space-Force-Evaluation-Project\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\grayn\\source\\repos\\Space-Force-Evaluation-Project\\NuGet.Config",
-          "C:\\Users\\grayn\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\zmace\\Source\\Repos\\Space-Force-Evaluation-Project\\NuGet.Config",
+          "C:\\Users\\zmace\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -106,8 +98,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\grayn\\source\\repos\\Space-Force-Evaluation-Project\\SpaceForceEvaluationAppLibrary\\SpaceForceEvaluationAppLibrary.csproj": {
-                "projectPath": "C:\\Users\\grayn\\source\\repos\\Space-Force-Evaluation-Project\\SpaceForceEvaluationAppLibrary\\SpaceForceEvaluationAppLibrary.csproj"
+              "C:\\Users\\zmace\\Source\\Repos\\Space-Force-Evaluation-Project\\SpaceForceEvaluationAppLibrary\\SpaceForceEvaluationAppLibrary.csproj": {
+                "projectPath": "C:\\Users\\zmace\\Source\\Repos\\Space-Force-Evaluation-Project\\SpaceForceEvaluationAppLibrary\\SpaceForceEvaluationAppLibrary.csproj"
               }
             }
           }

@@ -1,39 +1,198 @@
-.page[b-4m02i15hvc] {
-    position: relative;
-    display: flex;
-    flex-direction: column;
+:root[b-4m02i15hvc] {
+}
+
+body[b-4m02i15hvc] {
     background-image: url(https://i.imgur.com/t2DloqT.jpeg);
-    color: #7f838a;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
 }
 
-main[b-4m02i15hvc] {
-    flex: 1;
-}
-
-.sidebar[b-4m02i15hvc] {
-    /*    background-image: linear-gradient(180deg, rgb(5, 39, 103) 0%, #3a0647 70%);*/
+header[b-4m02i15hvc] {
     background-image: linear-gradient(180deg, #002035 0%, #000f 99%);
 }
 
-.top-row[b-4m02i15hvc] {
-    background-color: #f7f7f7;
-    border-bottom: 1px solid #d6d5d5;
-    justify-content: flex-end;
-    height: 3.5rem;
-    display: flex;
-    align-items: center;
-    opacity: 0;
+footer[b-4m02i15hvc] {
+    background: steelblue;
+    text-align: center;
 }
 
-    .top-row[b-4m02i15hvc]  a, .top-row .btn-link[b-4m02i15hvc] {
-        white-space: nowrap;
-        margin-left: 1.5rem;
+footer a[b-4m02i15hvc] {
+    color: white;
+}
+
+header[b-4m02i15hvc]::after {
+    content: '';
+    display: table;
+    clear: both;
+}
+
+.topbox[b-4m02i15hvc] {
+    background: darkgray;
+    border-bottom: 1px solid steelblue;
+    padding-bottom: 0;
+    height: 22px;
+    text-align: center;
+}
+
+.topbox p a[b-4m02i15hvc] {
+    font-size: 18px;
+}
+
+.infobox[b-4m02i15hvc] {
+    display: flex;
+    height: 80px;
+}
+
+.logo[b-4m02i15hvc] {
+    display: block;
+    position: relative;
+    left: 150px;
+    top:  -20px;
+    width: 6%;
+    height: auto;
+}
+
+.link[b-4m02i15hvc] {
+    display: inline-block;
+    position: relative;
+    margin-left: 50px;
+    padding-top: 15px;
+    text-transform: uppercase;
+}
+
+    .link a[b-4m02i15hvc] {
+        text-decoration: none;
+        color: lightgrey;
+        font-size: 24px;
+        font-family: fantasy;
     }
 
-    .top-row a:first-child[b-4m02i15hvc] {
-        overflow: hidden;
-        text-overflow: ellipsis;
+        .link a:hover[b-4m02i15hvc] {
+            color: steelblue;
+        }
+
+        .link a[b-4m02i15hvc]::before {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 0;
+            height: 2.5px;
+            width: 0%;
+            background-color: steelblue;
+            transition: all ease-in-out 250ms;
+        }
+
+        .link a:hover[b-4m02i15hvc]::before {
+            width: 100%;
+        }
+
+.dropdown[b-4m02i15hvc] {
+    position: relative;
+}
+
+.dropdown .dropbtn[b-4m02i15hvc] {
+    font-size: 28px;
+    color: lightgray;
+    background: none;
+    border: none;
+}
+
+.welcome[b-4m02i15hvc] {
+    color: white;
+}
+
+.dropdown-content[b-4m02i15hvc] {
+    position: absolute;
+    left: 45px;
+    list-style: none;
+    background-color: lightgray;
+    padding: 10px;
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0 2px 5px 0 black;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 150ms ease-in-out, transform 150ms ease-in-out;
+}
+
+.dropdown-content li[b-4m02i15hvc] {
+    font-size: 18px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.dropdown-content li:hover[b-4m02i15hvc] {
+    background: gray;
+}
+
+.dropdown > button:focus + .dropdown-content[b-4m02i15hvc] {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.logbutton[b-4m02i15hvc] {
+    background: lightgray;
+    color: black;
+    text-decoration: none;
+    text-transform: uppercase;
+    border-radius: 10px;
+}
+
+    .logbutton:hover[b-4m02i15hvc] {
+        background: steelblue;
     }
+
+
+#sitetitle[b-4m02i15hvc] {
+    position: relative;
+    left: 180px;
+    margin: 0;
+    padding: 0;
+    color: whitesmoke;
+    text-transform: uppercase;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 26px;
+}
+
+#motto[b-4m02i15hvc] {
+    position: relative;
+    left: 130px;
+    color: steelblue;
+    text-transform: uppercase;
+    font-family: 'Brush Script MT';
+    font-size: 20px;
+}
+
+#navlist[b-4m02i15hvc] {
+    position: relative;
+    left: 600px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+#userbox[b-4m02i15hvc] {
+    position:   relative;
+    padding-top: 10px;
+    left: 750px;
+    align-content: center;
+    text-align: center;
+}
+
+
+
+.page[b-4m02i15hvc] {
+}
+
+.top-row[b-4m02i15hvc]  a, .top-row .btn-link[b-4m02i15hvc] {
+    white-space: nowrap;
+    margin-left: 1.5rem;
+}
+
+.top-row a:first-child[b-4m02i15hvc] {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 
 @media (max-width: 640.98px) {
     .top-row:not(.auth)[b-4m02i15hvc] {
