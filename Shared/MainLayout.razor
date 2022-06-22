@@ -1,53 +1,49 @@
 ﻿@inherits LayoutComponentBase
 
+
 <PageTitle>SpaceForceEvaluations</PageTitle>
 
+
 <body>
-    <div class="page">
-
-        <!--Header bar of the Main Layout-->
-        <header>
-
-            <!--Top Black Highlight Bar-->
+            <!--Reference bar
             <div class="topbox">
                 <p>Provide <a target="_blank" href="https://dod.teams.microsoft.us/l/team/19%3adod%3a2bf5dee9da7546c494c8d3b5f52f5878%40thread.tacv2/conversations?groupId=cebcc84c-7f65-4e78-9bf8-da0af1e01ded&tenantId=8331b18d-2d87-48ef-a35f-ac8818ebf9b4">Feedback</a> On Teams</p>
-            </div>
+            </div>-->
 
-            <!--Main Information Bar-->
-            <nav class="infobox">
 
-            <!--The Page Title, Motto, Logo-->
-                <h2 id="motto">Semper Supra</h2>
-                <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/f/fb/Seal_of_the_United_States_Space_Force.png" href="/Landing">
-                <h1 id="sitetitle">Space Force<br />Evaluations</h1>
+    <!--Main Information Bar-->
+    <div class="infobox">
 
-                <!--Navigation Links-->
+        <!--The Page Title, Motto, Logo-->
+        <div class="container flex">
+            <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/f/fb/Seal_of_the_United_States_Space_Force.png" href="/Landing">
+            <h1 class="sitetitle">Space Force Evaluations</h1>
+
+            <!--Navigation Links-->
+            <nav>
                 <ul id="navlist">
-                    <li class="link"><a href="/">Home</a></li>
-                    <li class="link"><a href="/">Survey</a></li>
+                    <li><a href="/Landing">Home</a></li>
+                    <li><a href="/Profile">Profile</a></li>
+                    <li><a href="/">Survey</a></li>
+                    <li><a href="/Account">Account Settings</a></li>
+                    <AuthorizeView>
+                        <Authorized>
+                            <li><a href="/MicrosoftIdentity/Account/SignOut">Log out</a></li>
+                        </Authorized>
+                    </AuthorizeView>
                 </ul>
+            </nav> 
 
-                <!--User Profile Box, only Visible if Signed in-->
-                <div id="userbox">
-                   <AuthorizeView>
-                      <Authorized>
-                        <div class="dropdown">
-                            <button class="dropbtn">Welcome, <!--@userName-->Blank &#9662;</button>
-                            <div class="dropdown-content">
-                                <li><a href="/Profile">My Profile</a></li>
-                                <li><a href="/Account">Account Settings</a></li>
-                                <li><a href="MicrosoftIdentity/Account/SignOut">Log out</a></li>
-                            </div>
-                        </div>
-                      </Authorized>
-                      <NotAuthorized>
-                        <p class="welcome">Please Login to Continue</p>
-                        <a href="MicrosoftIdentity/Account/SignIn"><div class="logbutton">Log in</div></a>
-                      </NotAuthorized>
-                   </AuthorizeView>
-                </div>
-            </nav>
-        </header>
+            <!--User Profile Box, only Visible if Signed in-->
+            <AuthorizeView>
+                <Authorized>
+                    <div class="userbox">
+                        <p>Welcome, <!--@userName-->Blank</p>
+                    </div>
+                </Authorized>
+            </AuthorizeView>
+        </div>
+    </div>
 
         <div class="mainDiv">
 
@@ -71,8 +67,6 @@
         <footer>
             <a href="https://docs.microsoft.com/aspnet/" target="_blank">About our project</a>
         </footer>
-    </div>
-
 
 </body>
 

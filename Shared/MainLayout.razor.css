@@ -1,16 +1,34 @@
 :root {
 }
 
+*   {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+h1 {
+    line-height: 2;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+img {
+    width: 100%;
+}
+
 body {
     background-image: url(https://i.imgur.com/t2DloqT.jpeg);
     background-attachment: fixed;
     background-position: center;
     background-size: cover;
-    flex: 0 1 auto;
-}
-
-header {
-    background-image: linear-gradient(180deg, #002035 0%, #000f 99%);
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 footer {
@@ -20,12 +38,6 @@ footer {
 
 footer a {
     color: white;
-}
-
-header::after {
-    content: '';
-    display: table;
-    clear: both;
 }
 
 .topbox {
@@ -42,158 +54,88 @@ header::after {
 }
 
 .infobox {
+}
+
+.infobox .flex {
+    justify-content: space-between;
+    margin: 40px auto;
+}
+
+.flex {
     display: flex;
-    height: 5vw;
-
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
 }
 
-.logo {
-    display: block;
-    position: relative;
-    left: 8vw;
-    top:  -20px;
-    width: 6%;
-    height: auto;
+.container {
+    max-width: 1600px;
+    margin: 0 auto;
+    overflow: auto;
+    padding: 10px 40px;
 }
 
-.link {
-    display: inline-block;
-    position: relative;
-    margin-left: 5vw;
-    padding-top: 1vw;
-    text-transform: uppercase;
-    flex: 0 1 auto;
+.grid {
 }
 
-    .link a {
-        text-decoration: none;
-        color: lightgrey;
-        font-size: 24px;
-        font-size: 1.2vw;
-        font-family: fantasy;
-    }
 
-        .link a:hover {
-            color: steelblue;
-        }
-
-        .link a::before {
-            content: '';
-            display: block;
-            position: absolute;
-            top: 0;
-            height: 2.5px;
-            width: 0%;
-            background-color: steelblue;
-            transition: all ease-in-out 250ms;
-        }
-
-        .link a:hover::before {
-            width: 100%;
-        }
-
-.dropdown {
-    position: relative;
-}
-
-.dropdown .dropbtn {
-    font-size: 28px;
-    font-size: 1.5vw;
-    color: lightgray;
-    background: none;
-    border: none;
-}
-
-.welcome {
-    color: white;
-}
-
-.dropdown-content {
-    position: absolute;
-    left: 45px;
-    list-style: none;
-    background-color: lightgray;
-    padding: 10px;
-    border-radius: 0 0 8px 8px;
-    box-shadow: 0 2px 5px 0 black;
-    opacity: 0;
-    transform: translateY(-10px);
-    transition: opacity 150ms ease-in-out, transform 150ms ease-in-out;
-}
-
-.dropdown-content li {
-    font-size: 18px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-
-.dropdown-content li:hover {
-    background: gray;
-}
-
-.dropdown > button:focus + .dropdown-content {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.logbutton {
-    background: lightgray;
-    color: black;
-    text-decoration: none;
-    text-transform: uppercase;
-    border-radius: 10px;
-}
-
-    .logbutton:hover {
-        background: steelblue;
-    }
-
-
-#sitetitle {
-    position: relative;
-    left: 180px;
+.sitetitle {
     margin: 0;
     padding: 0;
     color: whitesmoke;
     text-transform: uppercase;
-    font-family: Georgia, 'Times New Roman', Times, serif;
     font-size: 26px;
-    font-size: 1.5vw;
+    min-inline-size: 25px;
 }
 
-#motto {
-    position: relative;
-    left: 130px;
-    color: steelblue;
+.logo {
+    min-width: 100px;
+    max-width: 100px;
+}
+
+.infobox ul {
+    display: flex;
+}
+
+.infobox a {
+    padding: 10px;
+    margin: 0 5px;
+    border-radius: 10px;
+    color: lightgrey;
+    background-color: rgba(255, 255, 255, 0.4);
+    font-size: 24px;
     text-transform: uppercase;
-    font-family: 'Brush Script MT';
-    font-size: 20px;
-    font-size: 1vw;
-}
-/*Adjusted navlist and userbox to be position absolute, and use vw=view width for different size screens*/
-#navlist {
-    position: absolute;
-    left: 60vw;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    flex: 0 1 auto;
+    font-family: fantasy;
 }
 
-#userbox {
-    position: absolute;
-    padding-top: 10px;
-    left: 80vw;
-    align-content: center;
-    text-align: center;
-    flex: 0 1 auto;
+.infobox a:hover {
+    color: steelblue;
+    transform: scale(0.8);
+}
+
+.userbox {
+    margin: 20px;
+    padding: 10px 10px;
+    color: whitesmoke;
+    background-color: steelblue;
+    border-radius: 15px;
 }
 
 
-
-.page {
+@media(max-width: 768px) {
+    .infobox ul a {
+        font-size: 13px;
+    }
 }
 
+@media(max-width: 500px) {
+    .infobox ul a {
+        font-size: 13px;
+    }
+}
+
+/*
 .top-row ::deep a, .top-row .btn-link {
     white-space: nowrap;
     margin-left: 1.5rem;
@@ -219,9 +161,7 @@ header::after {
 }
 
 @media (min-width: 641px) {
-    .page {
-        flex-direction: row;
-    }
+
 
     .sidebar {
         width: 250px;
@@ -241,3 +181,4 @@ header::after {
         padding-right: 1.5rem !important;
     }
 }
+    */

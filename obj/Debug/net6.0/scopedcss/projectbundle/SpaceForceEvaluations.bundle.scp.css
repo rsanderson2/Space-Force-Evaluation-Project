@@ -173,16 +173,34 @@ body[b-99lf2g0kor]{
 :root[b-4m02i15hvc] {
 }
 
+*[b-4m02i15hvc]   {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+h1[b-4m02i15hvc] {
+    line-height: 2;
+}
+
+a[b-4m02i15hvc] {
+    text-decoration: none;
+}
+
+ul[b-4m02i15hvc] {
+    list-style: none;
+}
+
+img[b-4m02i15hvc] {
+    width: 100%;
+}
+
 body[b-4m02i15hvc] {
     background-image: url(https://i.imgur.com/t2DloqT.jpeg);
     background-attachment: fixed;
     background-position: center;
     background-size: cover;
-    flex: 0 1 auto;
-}
-
-header[b-4m02i15hvc] {
-    background-image: linear-gradient(180deg, #002035 0%, #000f 99%);
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 footer[b-4m02i15hvc] {
@@ -192,12 +210,6 @@ footer[b-4m02i15hvc] {
 
 footer a[b-4m02i15hvc] {
     color: white;
-}
-
-header[b-4m02i15hvc]::after {
-    content: '';
-    display: table;
-    clear: both;
 }
 
 .topbox[b-4m02i15hvc] {
@@ -214,205 +226,134 @@ header[b-4m02i15hvc]::after {
 }
 
 .infobox[b-4m02i15hvc] {
+}
+
+.infobox .flex[b-4m02i15hvc] {
+    justify-content: space-between;
+    margin: 40px auto;
+}
+
+.flex[b-4m02i15hvc] {
     display: flex;
-    height: 5vw;
-
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
 }
 
-.logo[b-4m02i15hvc] {
-    display: block;
-    position: relative;
-    left: 8vw;
-    top:  -20px;
-    width: 6%;
-    height: auto;
+.container[b-4m02i15hvc] {
+    max-width: 1600px;
+    margin: 0 auto;
+    overflow: auto;
+    padding: 10px 40px;
 }
 
-.link[b-4m02i15hvc] {
-    display: inline-block;
-    position: relative;
-    margin-left: 5vw;
-    padding-top: 1vw;
-    text-transform: uppercase;
-    flex: 0 1 auto;
+.grid[b-4m02i15hvc] {
 }
 
-    .link a[b-4m02i15hvc] {
-        text-decoration: none;
-        color: lightgrey;
-        font-size: 24px;
-        font-size: 1.2vw;
-        font-family: fantasy;
-    }
 
-        .link a:hover[b-4m02i15hvc] {
-            color: steelblue;
-        }
-
-        .link a[b-4m02i15hvc]::before {
-            content: '';
-            display: block;
-            position: absolute;
-            top: 0;
-            height: 2.5px;
-            width: 0%;
-            background-color: steelblue;
-            transition: all ease-in-out 250ms;
-        }
-
-        .link a:hover[b-4m02i15hvc]::before {
-            width: 100%;
-        }
-
-.dropdown[b-4m02i15hvc] {
-    position: relative;
-}
-
-.dropdown .dropbtn[b-4m02i15hvc] {
-    font-size: 28px;
-    font-size: 1.5vw;
-    color: lightgray;
-    background: none;
-    border: none;
-}
-
-.welcome[b-4m02i15hvc] {
-    color: white;
-}
-
-.dropdown-content[b-4m02i15hvc] {
-    position: absolute;
-    left: 45px;
-    list-style: none;
-    background-color: lightgray;
-    padding: 10px;
-    border-radius: 0 0 8px 8px;
-    box-shadow: 0 2px 5px 0 black;
-    opacity: 0;
-    transform: translateY(-10px);
-    transition: opacity 150ms ease-in-out, transform 150ms ease-in-out;
-}
-
-.dropdown-content li[b-4m02i15hvc] {
-    font-size: 18px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-
-.dropdown-content li:hover[b-4m02i15hvc] {
-    background: gray;
-}
-
-.dropdown > button:focus + .dropdown-content[b-4m02i15hvc] {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.logbutton[b-4m02i15hvc] {
-    background: lightgray;
-    color: black;
-    text-decoration: none;
-    text-transform: uppercase;
-    border-radius: 10px;
-}
-
-    .logbutton:hover[b-4m02i15hvc] {
-        background: steelblue;
-    }
-
-
-#sitetitle[b-4m02i15hvc] {
-    position: relative;
-    left: 180px;
+.sitetitle[b-4m02i15hvc] {
     margin: 0;
     padding: 0;
     color: whitesmoke;
     text-transform: uppercase;
-    font-family: Georgia, 'Times New Roman', Times, serif;
     font-size: 26px;
-    font-size: 1.5vw;
+    min-inline-size: 25px;
 }
 
-#motto[b-4m02i15hvc] {
-    position: relative;
-    left: 130px;
-    color: steelblue;
+.logo[b-4m02i15hvc] {
+    min-width: 100px;
+    max-width: 100px;
+}
+
+.infobox ul[b-4m02i15hvc] {
+    display: flex;
+}
+
+.infobox a[b-4m02i15hvc] {
+    padding: 10px;
+    margin: 0 5px;
+    border-radius: 10px;
+    color: lightgrey;
+    background-color: rgba(255, 255, 255, 0.4);
+    font-size: 24px;
     text-transform: uppercase;
-    font-family: 'Brush Script MT';
-    font-size: 20px;
-    font-size: 1vw;
-}
-/*Adjusted navlist and userbox to be position absolute, and use vw=view width for different size screens*/
-#navlist[b-4m02i15hvc] {
-    position: absolute;
-    left: 60vw;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    flex: 0 1 auto;
+    font-family: fantasy;
 }
 
-#userbox[b-4m02i15hvc] {
-    position: absolute;
-    padding-top: 10px;
-    left: 80vw;
-    align-content: center;
-    text-align: center;
-    flex: 0 1 auto;
+.infobox a:hover[b-4m02i15hvc] {
+    color: steelblue;
+    transform: scale(0.8);
+}
+
+.userbox[b-4m02i15hvc] {
+    margin: 20px;
+    padding: 10px 10px;
+    color: whitesmoke;
+    background-color: steelblue;
+    border-radius: 15px;
 }
 
 
-
-.page[b-4m02i15hvc] {
+@media(max-width: 768px) {
+    .infobox ul a[b-4m02i15hvc] {
+        font-size: 13px;
+    }
 }
 
-.top-row[b-4m02i15hvc]  a, .top-row .btn-link[b-4m02i15hvc] {
+@media(max-width: 500px) {
+    .infobox ul a[b-4m02i15hvc] {
+        font-size: 13px;
+    }
+}
+
+/*
+.top-row ::deep a, .top-row .btn-link {
     white-space: nowrap;
     margin-left: 1.5rem;
 }
 
-.top-row a:first-child[b-4m02i15hvc] {
+.top-row a:first-child {
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
 @media (max-width: 640.98px) {
-    .top-row:not(.auth)[b-4m02i15hvc] {
+    .top-row:not(.auth) {
         display: none;
     }
 
-    .top-row.auth[b-4m02i15hvc] {
+    .top-row.auth {
         justify-content: space-between;
     }
 
-    .top-row a[b-4m02i15hvc], .top-row .btn-link[b-4m02i15hvc] {
+    .top-row a, .top-row .btn-link {
         margin-left: 0;
     }
 }
 
 @media (min-width: 641px) {
-    .page[b-4m02i15hvc] {
-        flex-direction: row;
-    }
 
-    .sidebar[b-4m02i15hvc] {
+
+    .sidebar {
         width: 250px;
         height: 100vh;
         position: sticky;
         top: 0;
     }
 
-    .top-row[b-4m02i15hvc] {
+    .top-row {
         position: sticky;
         top: 0;
         z-index: 1;
     }
 
-    .top-row[b-4m02i15hvc], article[b-4m02i15hvc] {
+    .top-row, article {
         padding-left: 2rem !important;
         padding-right: 1.5rem !important;
     }
 }
+    */
 /* _content/SpaceForceEvaluations/Shared/NavMenu.razor.rz.scp.css */
 .navbar-toggler[b-gm337wb2xa] {
     background-color: rgba(255, 255, 255, 0.1);
