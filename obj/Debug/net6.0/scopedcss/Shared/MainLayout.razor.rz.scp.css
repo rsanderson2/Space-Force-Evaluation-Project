@@ -58,7 +58,7 @@ footer a[b-4m02i15hvc] {
 
 .infobox .flex[b-4m02i15hvc] {
     justify-content: space-between;
-    margin: 40px auto;
+    margin: 0px auto;
 }
 
 .flex[b-4m02i15hvc] {
@@ -122,19 +122,55 @@ footer a[b-4m02i15hvc] {
 }
 
 
+/* Tablets */
 @media(max-width: 768px) {
     .infobox ul[b-4m02i15hvc] {
         flex-wrap: wrap;
         justify-content: center;
-        height: 110px;
+    }
+
+    .infobox a[b-4m02i15hvc] {
+        font-size: 14px;
+    }
+
+    .infobox[b-4m02i15hvc] {
+
     }
 }
 
+/* Most phones */
 @media(max-width: 500px){
+    .sitetitle[b-4m02i15hvc] {
+        font-size: 18px;
+    }
     .infobox ul[b-4m02i15hvc] {
         flex-wrap: wrap;
         justify-content: center;
-        height: 110px;
+        height: 80px;
+    }
+
+    .infobox a[b-4m02i15hvc] {
+        font-size: 12px;
+    }
+}
+
+/* Small phones */
+@media(max-width: 300px) {
+    .sitetitle[b-4m02i15hvc] {
+        font-size: 14px;
+    }
+
+    .infobox ul[b-4m02i15hvc] {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .infobox a[b-4m02i15hvc] {
+        font-size: 10px;
+    }
+
+    .userbox[b-4m02i15hvc] {
+        font-size: 10px;
     }
 }
 

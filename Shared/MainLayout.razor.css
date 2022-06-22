@@ -58,7 +58,7 @@ footer a {
 
 .infobox .flex {
     justify-content: space-between;
-    margin: 40px auto;
+    margin: 0px auto;
 }
 
 .flex {
@@ -122,19 +122,55 @@ footer a {
 }
 
 
+/* Tablets */
 @media(max-width: 768px) {
     .infobox ul {
         flex-wrap: wrap;
         justify-content: center;
-        height: 110px;
+    }
+
+    .infobox a {
+        font-size: 14px;
+    }
+
+    .infobox {
+
     }
 }
 
+/* Most phones */
 @media(max-width: 500px){
+    .sitetitle {
+        font-size: 18px;
+    }
     .infobox ul {
         flex-wrap: wrap;
         justify-content: center;
-        height: 110px;
+        height: 80px;
+    }
+
+    .infobox a {
+        font-size: 12px;
+    }
+}
+
+/* Small phones */
+@media(max-width: 300px) {
+    .sitetitle {
+        font-size: 14px;
+    }
+
+    .infobox ul {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .infobox a {
+        font-size: 10px;
+    }
+
+    .userbox {
+        font-size: 10px;
     }
 }
 
