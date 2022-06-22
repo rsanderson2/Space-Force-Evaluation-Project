@@ -258,7 +258,6 @@ footer a[b-4m02i15hvc] {
     color: whitesmoke;
     text-transform: uppercase;
     font-size: 26px;
-    min-inline-size: 25px;
 }
 
 .logo[b-4m02i15hvc] {
@@ -274,7 +273,7 @@ footer a[b-4m02i15hvc] {
     padding: 10px;
     margin: 0 5px;
     border-radius: 10px;
-    color: lightgrey;
+    color: whitesmoke;
     background-color: rgba(255, 255, 255, 0.4);
     font-size: 24px;
     text-transform: uppercase;
@@ -296,14 +295,18 @@ footer a[b-4m02i15hvc] {
 
 
 @media(max-width: 768px) {
-    .infobox ul a[b-4m02i15hvc] {
-        font-size: 13px;
+    .infobox ul[b-4m02i15hvc] {
+        flex-wrap: wrap;
+        justify-content: center;
+        height: 110px;
     }
 }
 
-@media(max-width: 500px) {
-    .infobox ul a[b-4m02i15hvc] {
-        font-size: 13px;
+@media(max-width: 500px){
+    .infobox ul[b-4m02i15hvc] {
+        flex-wrap: wrap;
+        justify-content: center;
+        height: 110px;
     }
 }
 
