@@ -40,8 +40,12 @@
 *@
     <h1>Please fill in the following information to complete your account registration process.</h1>
 
+    <!--Main form container-->
+    <div class="container">
     <EditForm Model="@userModel" OnValidSubmit="@HandleSubmit">
-        <div>
+
+        <!--User Rank-->
+        <div class="formoption">
             <label> Rank
                 <InputSelect @bind-Value="userModel.rank">
                     <option value="">Select Rank...</option>
@@ -59,7 +63,9 @@
                 </InputSelect>
             </label>
         </div>
-        <div>
+
+        <!--User's Team ID-->
+        <div class="formoption">
             <label>Team ID
                 <InputSelect @bind-Value="userModel.teamID">
                     <option value="">Select Team...</option>
@@ -70,7 +76,9 @@
                 </InputSelect>
             </label>
         </div>
-        <div>
+
+        <!--User's Job Title-->
+        <div class="formoption">
             <label> Job Title
                 <InputText @bind-Value="userModel.job"></InputText>
             </label>
@@ -81,7 +89,7 @@
 
 
     </EditForm>
-
+    </div>
 </div>
 
 

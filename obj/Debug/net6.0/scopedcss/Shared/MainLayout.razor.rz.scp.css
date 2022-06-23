@@ -1,6 +1,16 @@
 :root[b-4m02i15hvc] {
 }
 
+/* Body (Entire nav) */
+body[b-4m02i15hvc] {
+    background-image: url(https://i.imgur.com/t2DloqT.jpeg);
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+/* Basic CSS */
 *[b-4m02i15hvc]   {
     box-sizing: border-box;
     padding: 0;
@@ -23,14 +33,7 @@ img[b-4m02i15hvc] {
     width: 100%;
 }
 
-body[b-4m02i15hvc] {
-    background-image: url(https://i.imgur.com/t2DloqT.jpeg);
-    background-attachment: fixed;
-    background-position: center;
-    background-size: cover;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-}
-
+/* Footer for About link */
 footer[b-4m02i15hvc] {
     background: steelblue;
     text-align: center;
@@ -40,6 +43,7 @@ footer a[b-4m02i15hvc] {
     color: white;
 }
 
+/* Topbox (disabled) */
 .topbox[b-4m02i15hvc] {
     background: darkgray;
     border-bottom: 1px solid steelblue;
@@ -53,6 +57,7 @@ footer a[b-4m02i15hvc] {
     font-size: 18px;
 }
 
+/* Infobox (entire body of nav menu) */
 .infobox[b-4m02i15hvc] {
 }
 
@@ -61,6 +66,7 @@ footer a[b-4m02i15hvc] {
     margin: 0px auto;
 }
 
+/* Default flex CSS */
 .flex[b-4m02i15hvc] {
     display: flex;
     flex-direction: column;
@@ -69,6 +75,7 @@ footer a[b-4m02i15hvc] {
     height: 100%;
 }
 
+/* Container for page contents */
 .container[b-4m02i15hvc] {
     max-width: 1600px;
     margin: 0 auto;
@@ -76,10 +83,7 @@ footer a[b-4m02i15hvc] {
     padding: 10px 40px;
 }
 
-.grid[b-4m02i15hvc] {
-}
-
-
+/* Title */
 .sitetitle[b-4m02i15hvc] {
     margin: 0;
     padding: 0;
@@ -88,15 +92,18 @@ footer a[b-4m02i15hvc] {
     font-size: 26px;
 }
 
+/* Space Force Logo */
 .logo[b-4m02i15hvc] {
     min-width: 100px;
     max-width: 100px;
 }
 
+/* Navigation List */
 .infobox ul[b-4m02i15hvc] {
     display: flex;
 }
 
+/* Individual Links */
 .infobox a[b-4m02i15hvc] {
     padding: 10px;
     margin: 0 5px;
@@ -113,6 +120,7 @@ footer a[b-4m02i15hvc] {
     transform: scale(0.8);
 }
 
+/* Welcome User Box */
 .userbox[b-4m02i15hvc] {
     margin: 20px;
     padding: 10px 10px;
@@ -155,7 +163,7 @@ footer a[b-4m02i15hvc] {
 }
 
 /* Small phones */
-@media(max-width: 300px) {
+@media(max-width: 340px) {
     .sitetitle[b-4m02i15hvc] {
         font-size: 14px;
     }

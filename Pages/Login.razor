@@ -6,35 +6,40 @@
 <PageTitle>Login</PageTitle>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-
-<div class=mainDiv>
+<!--Main Body-->
+<body>
 
 <AuthorizeView>
     <Authorized>
-        <div class="flex">
-            <section class = "col-2">
+        <!--Container grid for the survey options-->
+        <div class="container grid">
+            <article class = "col-2">
                 <h2>Take <strong>Daily</strong> Survey</h2>
                 <input type = "button" class = "btn btn-primary" value ="Begin" onclick="location.href='/Survey'"/>
-            </section>
-            <span class="vline"></span>
-            <section class = "col-2">
+            </article>
+
+            <article class = "col-2">
                 <h2>Take <strong>Weekly</strong> Survey</h2>
                 <input type = "button" class = "btn btn-primary" value ="Begin" disabled=true; onclick="location.href='/Weekly'"/>
-            </section>
-            <span class="vline"></span>
-            <section class = "col-2">
+            </article>
+
+            <article class = "col-2">
                 <h2>Take <strong>Monthly</strong> Survey</h2>
                 <input type = "button" class = "btn btn-primary" disabled=true; value ="Begin"/>
-            </section>
+            </article>
         </div>
 
-        <h4>Logged in user is: @userName</h4>
-        <h4>Email: @emailAddress</h4>
-        <h4>Last Name: @userLastName</h4>
-        <h4>First Name: @userFirstName</h4>
+        <!--Container for user information-->
+        <div class="container">
+            <h4>Logged in user is: @userName</h4>
+            <h4>Email: @emailAddress</h4>
+            <h4>Last Name: @userLastName</h4>
+            <h4>First Name: @userFirstName</h4>
+        </div>
     </Authorized>
     <NotAuthorized>
-        <div>
+        <!--Container to login if the user is not authorized-->
+        <div class="container">
         <div class = "col-2">
             <input type = "button" class = "btn btn-primary" value ="Login" onclick="location.href='MicrosoftIdentity/Account/SignIn'"/>
         </div>
@@ -42,10 +47,7 @@
     </NotAuthorized>
 </AuthorizeView>
 
-
-
-</div>
-
+</body>
 @code
 {
     public string userName;

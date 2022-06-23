@@ -5,31 +5,29 @@
 @inject NavigationManager navMangager
 
 <div class="mainDiv">
-    <section>
-        <h1>My Profile</h1>
+    <div class="container grid">
+        <section>
+            <h1>My Profile</h1>
 
-        <div>
-            <div>
+            <div class="profileinfo">
                 <button @onclick="ClosePage"></button>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section>
-        <h2>My Account</h2>
-        <p>
-            <a href="MicrosoftIdentity/Account/EditProfile">
+        <section>
+            <h2>My Account</h2>
+            <p>
+            <a href="/Account">
                 Edit My Profile
             </a>
-        </p>
-    </section>
+            </p>
+        </section>
 
-    <section>
-        <div>
+        <section class="grid-col-span-2">
             <h2>Survey History</h2>
             <p>These are the surveys that you have completed.</p>
-        </div>
-    </section>
+        </section>
+    </div>
 </div>
 
 @code {

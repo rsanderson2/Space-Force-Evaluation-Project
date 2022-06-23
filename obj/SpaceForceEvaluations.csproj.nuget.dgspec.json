@@ -1,15 +1,15 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Zach\\Source\\Repos\\Space-Force-Evaluation-Project\\SpaceForceEvaluations.csproj": {}
+    "C:\\Users\\Zach\\source\\repos\\Space-Force-Evaluation-Project\\SpaceForceEvaluations.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Zach\\Source\\Repos\\Space-Force-Evaluation-Project\\SpaceForceEvaluationAppLibrary\\SpaceForceEvaluationAppLibrary.csproj": {
+    "C:\\Users\\Zach\\source\\repos\\Space-Force-Evaluation-Project\\SpaceForceEvaluationAppLibrary\\SpaceForceEvaluationAppLibrary.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Zach\\Source\\Repos\\Space-Force-Evaluation-Project\\SpaceForceEvaluationAppLibrary\\SpaceForceEvaluationAppLibrary.csproj",
+        "projectUniqueName": "C:\\Users\\Zach\\source\\repos\\Space-Force-Evaluation-Project\\SpaceForceEvaluationAppLibrary\\SpaceForceEvaluationAppLibrary.csproj",
         "projectName": "SpaceForceEvaluationAppLibrary",
-        "projectPath": "C:\\Users\\Zach\\Source\\Repos\\Space-Force-Evaluation-Project\\SpaceForceEvaluationAppLibrary\\SpaceForceEvaluationAppLibrary.csproj",
+        "projectPath": "C:\\Users\\Zach\\source\\repos\\Space-Force-Evaluation-Project\\SpaceForceEvaluationAppLibrary\\SpaceForceEvaluationAppLibrary.csproj",
         "packagesPath": "C:\\Users\\Zach\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\Zach\\Source\\Repos\\Space-Force-Evaluation-Project\\SpaceForceEvaluationAppLibrary\\obj\\",
         "projectStyle": "PackageReference",
@@ -17,7 +17,7 @@
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Zach\\Source\\Repos\\Space-Force-Evaluation-Project\\NuGet.Config",
+          "C:\\Users\\Zach\\source\\repos\\Space-Force-Evaluation-Project\\NuGet.Config",
           "C:\\Users\\Zach\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -77,20 +77,20 @@
         }
       }
     },
-    "C:\\Users\\Zach\\Source\\Repos\\Space-Force-Evaluation-Project\\SpaceForceEvaluations.csproj": {
+    "C:\\Users\\Zach\\source\\repos\\Space-Force-Evaluation-Project\\SpaceForceEvaluations.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Zach\\Source\\Repos\\Space-Force-Evaluation-Project\\SpaceForceEvaluations.csproj",
+        "projectUniqueName": "C:\\Users\\Zach\\source\\repos\\Space-Force-Evaluation-Project\\SpaceForceEvaluations.csproj",
         "projectName": "SpaceForceEvaluations",
-        "projectPath": "C:\\Users\\Zach\\Source\\Repos\\Space-Force-Evaluation-Project\\SpaceForceEvaluations.csproj",
+        "projectPath": "C:\\Users\\Zach\\source\\repos\\Space-Force-Evaluation-Project\\SpaceForceEvaluations.csproj",
         "packagesPath": "C:\\Users\\Zach\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Zach\\Source\\Repos\\Space-Force-Evaluation-Project\\obj\\",
+        "outputPath": "C:\\Users\\Zach\\source\\repos\\Space-Force-Evaluation-Project\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Zach\\Source\\Repos\\Space-Force-Evaluation-Project\\NuGet.Config",
+          "C:\\Users\\Zach\\source\\repos\\Space-Force-Evaluation-Project\\NuGet.Config",
           "C:\\Users\\Zach\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -106,8 +106,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\Zach\\Source\\Repos\\Space-Force-Evaluation-Project\\SpaceForceEvaluationAppLibrary\\SpaceForceEvaluationAppLibrary.csproj": {
-                "projectPath": "C:\\Users\\Zach\\Source\\Repos\\Space-Force-Evaluation-Project\\SpaceForceEvaluationAppLibrary\\SpaceForceEvaluationAppLibrary.csproj"
+              "C:\\Users\\Zach\\source\\repos\\Space-Force-Evaluation-Project\\SpaceForceEvaluationAppLibrary\\SpaceForceEvaluationAppLibrary.csproj": {
+                "projectPath": "C:\\Users\\Zach\\source\\repos\\Space-Force-Evaluation-Project\\SpaceForceEvaluationAppLibrary\\SpaceForceEvaluationAppLibrary.csproj"
               }
             }
           }
@@ -153,7 +153,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "c:\\program files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
         }
       }
     }

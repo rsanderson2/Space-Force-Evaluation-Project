@@ -1,6 +1,16 @@
 :root {
 }
 
+/* Body (Entire nav) */
+body {
+    background-image: url(https://i.imgur.com/t2DloqT.jpeg);
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+/* Basic CSS */
 *   {
     box-sizing: border-box;
     padding: 0;
@@ -23,14 +33,7 @@ img {
     width: 100%;
 }
 
-body {
-    background-image: url(https://i.imgur.com/t2DloqT.jpeg);
-    background-attachment: fixed;
-    background-position: center;
-    background-size: cover;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-}
-
+/* Footer for About link */
 footer {
     background: steelblue;
     text-align: center;
@@ -40,6 +43,7 @@ footer a {
     color: white;
 }
 
+/* Topbox (disabled) */
 .topbox {
     background: darkgray;
     border-bottom: 1px solid steelblue;
@@ -53,6 +57,7 @@ footer a {
     font-size: 18px;
 }
 
+/* Infobox (entire body of nav menu) */
 .infobox {
 }
 
@@ -61,6 +66,7 @@ footer a {
     margin: 0px auto;
 }
 
+/* Default flex CSS */
 .flex {
     display: flex;
     flex-direction: column;
@@ -69,6 +75,7 @@ footer a {
     height: 100%;
 }
 
+/* Container for page contents */
 .container {
     max-width: 1600px;
     margin: 0 auto;
@@ -76,10 +83,7 @@ footer a {
     padding: 10px 40px;
 }
 
-.grid {
-}
-
-
+/* Title */
 .sitetitle {
     margin: 0;
     padding: 0;
@@ -88,15 +92,18 @@ footer a {
     font-size: 26px;
 }
 
+/* Space Force Logo */
 .logo {
     min-width: 100px;
     max-width: 100px;
 }
 
+/* Navigation List */
 .infobox ul {
     display: flex;
 }
 
+/* Individual Links */
 .infobox a {
     padding: 10px;
     margin: 0 5px;
@@ -113,6 +120,7 @@ footer a {
     transform: scale(0.8);
 }
 
+/* Welcome User Box */
 .userbox {
     margin: 20px;
     padding: 10px 10px;
@@ -155,7 +163,7 @@ footer a {
 }
 
 /* Small phones */
-@media(max-width: 300px) {
+@media(max-width: 340px) {
     .sitetitle {
         font-size: 14px;
     }
