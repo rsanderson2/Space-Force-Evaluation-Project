@@ -21,6 +21,13 @@ public class MongoUserData : IUserData
         return results.ToList();
     }
 
+    // returns a list of users models that contain the same teamId
+    public async Task<List<UserModel>> GetUsersFromTeam(string teamId)
+    {
+        var results = await _users.FindAsync(u => u.teamID == teamId);
+        return results.ToList();
+    }
+
     // returns user record by the parameter id.
     public async Task<UserModel> GetUser(string id)
     {
