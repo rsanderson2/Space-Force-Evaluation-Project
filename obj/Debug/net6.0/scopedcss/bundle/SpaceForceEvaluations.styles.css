@@ -166,6 +166,8 @@ h2[b-qyds3voz9g] {
     background-color: lightblue;
     height: 100%;
     min-width: 300px;
+
+    margin: auto;
 }
 
 /* Default grid CSS */
@@ -188,6 +190,12 @@ h2[b-qyds3voz9g] {
 @media(max-width: 1000px) {
     .grid[b-qyds3voz9g] {
         grid-template-columns: 1fr;
+    }
+}
+
+@media(max-width: 350px) {
+    .col-2[b-qyds3voz9g] {
+        min-width: 180px;
     }
 }
 /* _content/SpaceForceEvaluations/Pages/Profile.razor.rz.scp.css */
