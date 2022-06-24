@@ -10,6 +10,11 @@
 <div class=maincomponent>
     <p>Please answer the following question to the best of your ability</p>
     <h5>@TestQuestion</h5>
+    <h5>Survey Type = @SurveyQuestionType</h5>
+    @if (@SurveyQuestionType == 2)
+    {
+        <h5>This question is in regards to your teammate @teammate</h5>
+    }
 
 @*    <form class=mainclass id="dailyquestionform">
 
@@ -62,6 +67,11 @@
     // Store information from form so that information can be pushed to the surveys table
     // push answered question to surveys table
 
+    DateTime surveyDate;
+    public string teammate;
+    public string questionSubjectID;
+    public int SurveyQuestionType;
+    public int questionSubject;
     public int questionResponse;
     public int questionNumber;
     public string questionCategory;
@@ -71,6 +81,8 @@
 
     public string TestQuestion = "";
     private Random rnd = new Random();
+
+
 
     // We will need a function to get the maximum number of questions from the question bank
 
@@ -82,9 +94,23 @@
         surveyModel.category = questionCategory;
         surveyModel.takerID = surveyTaker;
         surveyModel.subjectID = surveySubject;
+        surveyDate = DateTime.Today;
         await surveyData.CreateSurvey(surveyModel);
+        await UpdateUser();
         navManager.NavigateTo("/Landing");
 
+        // Get the date that the survey is done
+
+        // store the date in the current logged in user
+    }
+
+    private async Task UpdateUser()
+    {
+        var questionTaker = await AuthenticationStateProviderHelpers.GetUserFromAuth(authProvider, userData);
+
+        questionTaker.dailyDate = surveyDate;
+
+        await userData.UpdateUser(questionTaker); 
     }
 
     private int getMaxClimate()
@@ -104,19 +130,55 @@
         return rnd.Next(1,getMaxClimate());
     }
 
-    private async Task GenerateQuestion()
+    public async Task GenerateQuestion()
     {
+        // Find out which type of question is going to be displayed
+        // If 1, Question will be Climate
+        GetQuestionType();
         var user = await AuthenticationStateProviderHelpers.GetUserFromAuth(authProvider, userData);
-        //DailyQuestionsModel dailyQuestionModel = await dailyQuestionData.GetDailyQuestion(GetDailyQuestionNumber()); 
-        ClimateQuestionsModel climateQuestionModel = await questionData.GetClimateQuestion(GetClimateQuestionNumber());
-        TestQuestion = climateQuestionModel.text;
-        questionNumber = climateQuestionModel.QuestionID;
-        questionCategory = climateQuestionModel.category;
-        surveyTaker = user.userID;
+        if (SurveyQuestionType == 1)
+        {
+            ClimateQuestionsModel climateQuestionModel = await questionData.GetClimateQuestion(GetClimateQuestionNumber());
+            TestQuestion = climateQuestionModel.text;
+            questionNumber = climateQuestionModel.QuestionID;
+            questionCategory = climateQuestionModel.category;
+            surveyTaker = user.userID;            
+        }
+        // Else, Question will be Personnel
+        else
+        {
+            // Pull in a list of users
+            string subjectID = await GetListOfUsers(user.teamID);
+            UserModel subject = await userData.GetUser(subjectID);
+            teammate = subject.firstName + " " + subject.lastName;
+            DailyQuestionsModel dailyQuestionModel = await dailyQuestionData.GetDailyQuestion(GetDailyQuestionNumber());
+            TestQuestion = dailyQuestionModel.text;
+            questionNumber = dailyQuestionModel.QuestionID;
+            questionCategory = dailyQuestionModel.category;
+            surveyTaker = user.userID;
+            surveySubject = subject.userID;
+        }
+        user.dailyDate = surveyDate;
     }
 
+    // Function to pull a list of users that are in the same "team" as the survey taker
+    private async Task<string> GetListOfUsers(string teamId)
+    {
+        var results = await userData.GetUsersFromTeam(teamId);
+        results.ToList();
+        int questionSubject = rnd.Next(1, results.Count);
+        // Get the user associated with int questionSubject
+        return results[questionSubject].userID;
+    }
+
+
+    private int GetQuestionType()
+    {
+        return SurveyQuestionType = rnd.Next(1, 3);
+    }
     protected override async Task OnInitializedAsync()
     {
+
         await GenerateQuestion();
     }
 }
