@@ -17,88 +17,26 @@
 
 
 @code {
-    private SurveyModel survey = new();
-    private UserModel loggedInUser;
-    private string surveyItem = "";
-    private string surveyItem2 = "";
-    private string surveyItem3 = "";
-    private string WeeklyPoll = "What feedback do you have?";
-    private Random rnd = new Random();
-    private int NumQuestion;
-    private string SurveyType;
-    private int numWeekly;
+    //private SurveyModel survey = new();
+    //private UserModel loggedInUser;
+    //private string surveyItem = "";
+    //private string surveyItem2 = "";
+    //private string surveyItem3 = "";
+    //private string WeeklyPoll = "What feedback do you have?";
+    //private Random rnd = new Random();
+    //private int NumQuestion;
+    //private string SurveyType;
+    //private int numWeekly;
 
     bool IsTaskRunning = false;
 
-    private string testQuestion = "This is a test Question";
+    //private string testQuestion = "This is a test Question";
 
     // Function for showing the question
-    private string showQuestion(int questionNumber)
-    {
-        return "This is Question number " + questionNumber + ".";
-    }
-
-    // Function to return a specific question based on a random number
-    //private int getQuestion(Random rnd, string SurveyType)
+    //private string showQuestion(int questionNumber)
     //{
-    //    //If daily question
-    //    if (SurveyType == "Daily")
-    //    {
-    //        return rnd.Next(1,getMax());
-    //    }
-
-    //    // If weekly
-    //    if (SurveyType == "Weekly")
-    //    {
-    //        Random random = new Random();
-    //        int j = random.Next(1,4);
-    //        //Generate 1-3 questions
-    //        for (int i = 1; i <= j;i++)
-    //        {
-    //            numWeekly = i;
-
-    //            // !NOTE, We still need to generate and get questions for each of these
-    //            if (surveyItem =="")
-    //            {
-    //                surveyItem = testQuestion;
-    //            }
-    //            // If survey question 1 has been filled in, move to the next one
-    //            else if (surveyItem2 == "")
-    //            {
-    //                surveyItem2 = testQuestion;
-    //            }
-    //            else if (surveyItem3 == "")
-    //            {
-    //                surveyItem3 = testQuestion;
-    //            }
-    //        }           
-    //    }
-
-    //    //If Monthly
-
-
-    //    //for now, we will always return for daily
-    //    return rnd.Next(getMax());
-
+    //    return "This is Question number " + questionNumber + ".";
     //}
 
-    //private void ShowDaily()
-    //{
-    //    // Disable the button
-    //    IsTaskRunning = true;
-    //    // Set the survey type to daily
-    //    SurveyType = "Daily";
-    //    // Get the question Number
-    //    NumQuestion = getQuestion(rnd, SurveyType);
-    //    // Generate the question based on the number
-    //    surveyItem =showQuestion(NumQuestion);
-    //}
-    //private void ShowWeekly()
-    //{
-    //    IsTaskRunning = true;
-    //    SurveyType = "Weekly";
-    //    NumQuestion = getQuestion(rnd, SurveyType);
-
-    //}
 }
 
