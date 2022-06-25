@@ -26,5 +26,10 @@ public class MongoReportData
         _reports = db.ReportsCollection;
     }
 
+    public Task CreateReport(ReportModel report)
+    {
+        var results = _reports.InsertOneAsync(report);
+        return results;
+    }
 
 }

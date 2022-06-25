@@ -43,7 +43,22 @@ public class MongoSurveyData : ISurveyData
         _cache.Remove(CacheName);
     }
 
-    // this is the big one update later to add all functionality
+    // this task returns a list of survey models that the specified user
+    // taken
+    public async Task<List<SurveyModel>> GetListOfSurveys(string takerID)
+    {
+        var results = await _surveys.FindAsync(s => s.takerID == takerID);
+        return results.ToList();
+    }
+
+    // this task returns a list of all surveys in the survey collection
+    public async Task<List<SurveyModel>> GetAllSurveys()
+    {
+        var results = await _surveys.FindAsync(_ => true);
+        return results.ToList();
+    }
+
+    // This task creates a new survey in the database
     public Task CreateSurvey(SurveyModel survey)
     {
         return _surveys.InsertOneAsync(survey);

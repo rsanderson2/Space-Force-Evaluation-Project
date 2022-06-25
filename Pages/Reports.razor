@@ -1,0 +1,67 @@
+﻿@page "/Reports"
+
+@inject ISurveyData surveyData
+@inject IUserData userData
+
+
+<div class="mainDiv">
+    <h1>Reports</h1>
+    <button class="btn-primary" @onclick=ShowDiv>Show All Reports</button>
+    <div class="container" style="visibility: @shown">
+        <h3 class="p-3 text-center">Reports List: </h3>
+        <div class="scroll">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>QuestionID</th>
+                        <th>Question Text</th>
+                        <th>Response</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var SurveyModel in surveyQuestion)
+                    {
+                        <tr>
+                            <td>@SurveyModel.surveyID</td>
+                            <td>@SurveyModel.question</td>
+                            <td>@SurveyModel.response</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@code {
+    string shown = "hidden";
+    public bool disableButton = false;
+
+    // create a new list of survey models called survey question
+    List<SurveyModel> surveyQuestion = new List<SurveyModel>();
+    // set the list equal to the full collection of all surveys taken
+
+    private async Task<List<SurveyModel>> GetAllSurveys()
+    {
+        var results = await surveyData.GetAllSurveys();
+        surveyQuestion = results.ToList();
+        return surveyQuestion;
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+
+        await GetAllSurveys();
+    }
+    private async Task ShowDiv()
+    {
+        if (shown=="")
+        {
+            shown = "hidden";
+        }
+        else
+        {
+          shown = "";          
+        }
+    }
+}

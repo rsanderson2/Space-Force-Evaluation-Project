@@ -505,3 +505,4 @@ C:\Users\Zach\Source\Repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\refin
 C:\Users\Zach\Source\Repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\SpaceForceEvaluations.pdb
 C:\Users\Zach\Source\Repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\SpaceForceEvaluations.genruntimeconfig.cache
 C:\Users\Zach\Source\Repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\ref\SpaceForceEvaluations.dll
+C:\Users\grayn\source\repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\scopedcss\Pages\Reports.razor.rz.scp.css

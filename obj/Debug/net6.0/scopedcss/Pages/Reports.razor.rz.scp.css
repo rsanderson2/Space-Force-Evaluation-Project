@@ -1,0 +1,32 @@
+body[b-o2ye6ss7r8] {
+}
+
+.mainDiv[b-o2ye6ss7r8] {
+    background-image: linear-gradient(180deg, #002035 0%, #000f 99%);
+    color: #7f838a;
+    height: 100vh;
+    text-align: center;
+}
+
+.container[b-o2ye6ss7r8] {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    justify-items: center;
+    text-align: center;
+}
+
+table[b-o2ye6ss7r8] {
+    color: white;
+}
+
+.scroll[b-o2ye6ss7r8] {
+    height: 75vh;
+    overflow-y: auto;
+}
+
+.btn-primary[b-o2ye6ss7r8] {
+    min-width: 200px;
+    font-size: 16px;
+    position: center;
+}
