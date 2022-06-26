@@ -13,7 +13,7 @@
     <Authorized>
         <!--Container grid for the survey options-->
         <div class="container grid">
-            <article class = "col-2">
+            <article class = "col-2 @(lastDaily ? "taken" : "notTaken")">
                 @*<h2>last daily was @lastSurvey and <br />today is @today</h2>*@
                 <h2>Take <strong>Daily</strong> Survey</h2>
                 <input type = "button" class = "btn btn-primary" value ="Begin"  disabled=@lastDaily onclick="location.href='/Survey'"/>

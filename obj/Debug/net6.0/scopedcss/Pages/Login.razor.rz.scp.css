@@ -63,6 +63,11 @@ h2[b-qyds3voz9g] {
     margin: auto;
 }
 
+.taken[b-qyds3voz9g] {
+    background-color: green;
+    border: 3px solid black;
+}
+
 /* Default grid CSS */
 .grid[b-qyds3voz9g] {
     display: grid;
