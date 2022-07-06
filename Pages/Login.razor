@@ -16,12 +16,12 @@
             <article class = "col-2 @(lastDaily ? "taken" : "notTaken")">
                 @*<h2>last daily was @lastSurvey and <br />today is @today</h2>*@
                 <h2>Take <strong>Daily</strong> Survey</h2>
-                <input type = "button" class = "btn btn-primary" value ="Begin"  disabled=@lastDaily onclick="location.href='/Survey'"/>
+                <input type = "button" class = "btn btn-primary" value ="Begin" onclick="location.href='/Survey'" style="visibility:@showDailyButton"/>
             </article>
 
             <article class = "col-2">
                 <h2>Take <strong>Weekly</strong> Survey</h2>
-                <input type = "button" class = "btn btn-primary" value ="Begin" disabled=true; onclick="location.href='/Weekly'"/>
+                <input type = "button" class = "btn btn-primary" value ="Begin" onclick="location.href='/Weekly'"/>
             </article>
 
             <article class = "col-2">
@@ -54,6 +54,8 @@
     DateTime today;
     DateTime lastSurvey;
     public bool lastDaily = false;
+    public bool lastWeekly = false;
+    public string showDailyButton = "";
     public string userName;
     public string userObjectID;
     public string emailAddress;
@@ -103,9 +105,14 @@
 
         // Get who is logged in
         UserModel currentUser = await AuthenticationStateProviderHelpers.GetUserFromAuth(authProvider, userData);
-        checkDailySurveyEligible(currentUser);
+        if (currentUser != null)
+        {
+            checkDailySurveyEligible(currentUser);           
+        }
+
     }
 
+    // Function to check if the user is eligible to take the daily survey
     private void checkDailySurveyEligible(UserModel currentUser)
     {
         today = DateTime.Today;
@@ -117,6 +124,7 @@
         else
         {
             lastDaily = true;
+            showDailyButton = "hidden";
         }
 
     }

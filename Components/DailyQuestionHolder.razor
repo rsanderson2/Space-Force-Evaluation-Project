@@ -7,7 +7,7 @@
 
 @*<button @onclick="@GenerateQuestion">Click to show your RaNdOmLy GeNeRaTeD qUeStIoN</button>*@
 
-<div class=maincomponent>
+<div class=maincomponent style="visibility: @showQuestion">
     <p>Please answer the following question to the best of your ability</p>
     <h5>@TestQuestion</h5>
     @*<h5>Survey Type = @SurveyQuestionType</h5>*@
@@ -15,25 +15,6 @@
     {
         <h5>This question is in regards to your teammate @teammate</h5>
     }
-
-@*    <form class=mainclass id="dailyquestionform">
-
-    <!--Radio button for responses-->
-    <input type="radio" id="radioOne" name="value" value=1>
-    <span>Strongly Disagree</span>
-
-    <input type="radio" id="radioTwo" name="value" value=2>
-    <span>Somewhat Disagree</span>
-
-    <input type="radio" id="radioThree" name="value" value=3>
-    <span>Neither Agree nor Disagree</span>
-
-    <input type="radio" id="radioFour" name="value" value=4>
-    <span>Somewhat Agree</span>
-
-    <input type="radio" id="radioFive" name="value" value=5 >
-    <span>Strongly Agree</span>
-    </form>*@
 
     <EditForm Model="@surveyModel" OnValidSubmit="@HandleSubmit" id="dailyQuestionForm">
         <InputRadioGroup @bind-Value="@surveyModel.response">
@@ -61,11 +42,6 @@
 </div>
 
 @code {
-    //##TODO
-    // Inject Survey Model
-    //convert form to edit form with model = survey model
-    // Store information from form so that information can be pushed to the surveys table
-    // push answered question to surveys table
 
     DateTime surveyDate;
     public string teammate;
@@ -80,6 +56,7 @@
     private SurveyModel surveyModel = new SurveyModel();
 
     public string TestQuestion = "";
+    public string showQuestion = "";
     private Random rnd = new Random();
 
 
@@ -97,13 +74,15 @@
         surveyDate = DateTime.Today;
         await surveyData.CreateSurvey(surveyModel);
         await UpdateUser();
-        navManager.NavigateTo("/Landing");
+        await ShowDiv();
+        //navManager.NavigateTo("/Landing");
 
         // Get the date that the survey is done
 
         // store the date in the current logged in user
     }
 
+    // Update the question date for the user answering the question
     private async Task UpdateUser()
     {
         var questionTaker = await AuthenticationStateProviderHelpers.GetUserFromAuth(authProvider, userData);
@@ -181,4 +160,17 @@
 
         await GenerateQuestion();
     }
+
+    private async Task ShowDiv()
+    {
+        if (showQuestion=="")
+        {
+            showQuestion = "hidden";
+        }
+        else
+        {
+          showQuestion = "";          
+        }
+    }
+
 }

@@ -11,24 +11,25 @@
 
     <!--Survey questions hidden by default-->
     <SpaceForceEvaluations.Components.DailyQuestionHolder></SpaceForceEvaluations.Components.DailyQuestionHolder>
-@*    <div><button type="submit" onclick="location.href='/Landing'">Submit</button></div>*@
+    <div><button style="visibility: @showButton"type="submit" onclick="location.href='/Landing'">Complete Survey</button></div>
 
 </div>
 
 
 @code {
-    //private SurveyModel survey = new();
-    //private UserModel loggedInUser;
-    //private string surveyItem = "";
-    //private string surveyItem2 = "";
-    //private string surveyItem3 = "";
-    //private string WeeklyPoll = "What feedback do you have?";
-    //private Random rnd = new Random();
-    //private int NumQuestion;
-    //private string SurveyType;
-    //private int numWeekly;
-
+    public string showButton = "Hidden";
     bool IsTaskRunning = false;
+    protected override async Task OnInitializedAsync()
+    {
+        await ShowButton();
+    }
+
+    // Don't show the navigate button for 10 seconds on page load
+    private async Task ShowButton()
+    {
+        await Task.Delay(10000);
+        showButton = "";
+    }
 
     //private string testQuestion = "This is a test Question";
 

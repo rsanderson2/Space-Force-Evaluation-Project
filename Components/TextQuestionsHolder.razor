@@ -1,0 +1,68 @@
+﻿@inject IClimateQuestionsData questionData
+@inject IDailyQuestionsData dailyQuestionData
+@inject IUserData userData
+@inject ISurveyData surveyData
+@inject NavigationManager navManager
+@inject AuthenticationStateProvider authProvider
+
+<div class="maincomponent" style="visibility: @showQuestion">
+    <p>Please answer the following question to the best of your ability</p>
+    <h5>@questionInput</h5>
+
+    <EditForm Model="@surveyModel" OnValidSubmit="@HandleSubmit">
+        <InputTextArea @bind-Value="@questionResponse"></InputTextArea>
+        <div>
+            <button type="submit">Submit</button>
+        </div>
+    </EditForm>
+
+</div>
+@code {
+    [Parameter]
+    public string questionInput { get; set; }
+
+
+
+    public string TestQuestion;
+    public int questionNumber;
+    public string questionResponse;
+    public string questionCategory;
+    public string surveyTaker;
+    public string surveySubject;
+    DateTime surveyDate;
+    private SurveyModel surveyModel = new SurveyModel();
+    public string showQuestion = "";
+
+    private async Task HandleSubmit()
+    {
+        // need to store the response as a string, and push it to the database
+        //questionResponse = surveyModel.freeResonseText;
+        surveyModel.question = TestQuestion;
+        surveyModel.surveyID = questionNumber;
+        surveyModel.category = questionCategory;
+        surveyModel.takerID = surveyTaker;
+        surveyModel.subjectID = surveySubject;
+        surveyDate = DateTime.Today;
+        await surveyData.CreateSurvey(surveyModel);
+        //await UpdateUser();
+        await ShowDiv();
+
+    }
+    
+    protected override async Task OnInitializedAsync()
+    {
+
+    }
+
+    private async Task ShowDiv()
+    {
+        if (showQuestion=="")
+        {
+            showQuestion = "hidden";
+        }
+        else
+        {
+          showQuestion = "";          
+        }
+    }
+}

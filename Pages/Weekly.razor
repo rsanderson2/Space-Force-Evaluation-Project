@@ -1,24 +1,28 @@
 ﻿@page "/Weekly"
 @inject IDailyQuestionsData questionData
-
+<PageTitle>Weekly</PageTitle>
 <h3>Weekly</h3>
-@if (numOfQuestions == 1)
-{
-     <SpaceForceEvaluations.Components.DailyQuestionHolder></SpaceForceEvaluations.Components.DailyQuestionHolder>   
-}
-@if (numOfQuestions == 2)
-{
-     <SpaceForceEvaluations.Components.DailyQuestionHolder></SpaceForceEvaluations.Components.DailyQuestionHolder>   
-     <SpaceForceEvaluations.Components.DailyQuestionHolder></SpaceForceEvaluations.Components.DailyQuestionHolder>
-}
-@if (numOfQuestions == 3)
-{
-    <SpaceForceEvaluations.Components.DailyQuestionHolder></SpaceForceEvaluations.Components.DailyQuestionHolder>
-    <SpaceForceEvaluations.Components.DailyQuestionHolder></SpaceForceEvaluations.Components.DailyQuestionHolder>
-    <SpaceForceEvaluations.Components.DailyQuestionHolder></SpaceForceEvaluations.Components.DailyQuestionHolder>
+
+<div class="mainDiv">
+    @if (numOfQuestions == 1)
+    {
+         <SpaceForceEvaluations.Components.DailyQuestionHolder></SpaceForceEvaluations.Components.DailyQuestionHolder>   
+    }
+    @if (numOfQuestions == 2)
+    {
+         <SpaceForceEvaluations.Components.DailyQuestionHolder></SpaceForceEvaluations.Components.DailyQuestionHolder>   
+         <SpaceForceEvaluations.Components.DailyQuestionHolder></SpaceForceEvaluations.Components.DailyQuestionHolder>
+    }
+    @if (numOfQuestions == 3)
+    {
+        <SpaceForceEvaluations.Components.DailyQuestionHolder></SpaceForceEvaluations.Components.DailyQuestionHolder>
+        <SpaceForceEvaluations.Components.DailyQuestionHolder></SpaceForceEvaluations.Components.DailyQuestionHolder>
+        <SpaceForceEvaluations.Components.DailyQuestionHolder></SpaceForceEvaluations.Components.DailyQuestionHolder>
     
-}
-<div><button type="submit" onclick="location.href='/Landing'">Submit</button></div>
+    }
+    <div><button type="submit" onclick="location.href='/Landing'">Complete Survey</button></div>
+</div>
+
 @code {
     public int numOfQuestions;
 
