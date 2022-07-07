@@ -1,7 +1,42 @@
 ﻿@page "/Monthly"
+@attribute [Authorize]
 <PageTitle>Monthly</PageTitle>
-<h3>Monthly</h3>
 <div class="mainDiv">
+
+    <!--Disable these as comments when the trial period is over for guardians-->
+
+    @if (@numOfQuestions == 1)
+    {
+        <SpaceForceEvaluations.Components.DailyQuestionHolder questionType="@questionType"></SpaceForceEvaluations.Components.DailyQuestionHolder>        
+    }
+    @if (@numOfQuestions == 2)
+    {
+        <SpaceForceEvaluations.Components.DailyQuestionHolder questionType="@questionType"></SpaceForceEvaluations.Components.DailyQuestionHolder>
+        <SpaceForceEvaluations.Components.DailyQuestionHolder questionType="@questionType"></SpaceForceEvaluations.Components.DailyQuestionHolder>
+    }
+    @if (@numOfQuestions == 3)
+    {
+        <SpaceForceEvaluations.Components.DailyQuestionHolder questionType="@questionType"></SpaceForceEvaluations.Components.DailyQuestionHolder>
+        <SpaceForceEvaluations.Components.DailyQuestionHolder questionType="@questionType"></SpaceForceEvaluations.Components.DailyQuestionHolder>   
+        <SpaceForceEvaluations.Components.DailyQuestionHolder questionType="@questionType"></SpaceForceEvaluations.Components.DailyQuestionHolder>   
+    }
+    @if (@numOfQuestions == 4)
+    {
+        <SpaceForceEvaluations.Components.DailyQuestionHolder questionType="@questionType"></SpaceForceEvaluations.Components.DailyQuestionHolder>    
+        <SpaceForceEvaluations.Components.DailyQuestionHolder questionType="@questionType"></SpaceForceEvaluations.Components.DailyQuestionHolder>   
+        <SpaceForceEvaluations.Components.DailyQuestionHolder questionType="@questionType"></SpaceForceEvaluations.Components.DailyQuestionHolder>   
+        <SpaceForceEvaluations.Components.DailyQuestionHolder questionType="@questionType"></SpaceForceEvaluations.Components.DailyQuestionHolder>   
+        <SpaceForceEvaluations.Components.DailyQuestionHolder questionType="@questionType"></SpaceForceEvaluations.Components.DailyQuestionHolder>   
+    }
+    @if (@numOfQuestions == 5)
+    {
+        <SpaceForceEvaluations.Components.DailyQuestionHolder questionType="@questionType"></SpaceForceEvaluations.Components.DailyQuestionHolder>   
+        <SpaceForceEvaluations.Components.DailyQuestionHolder questionType="@questionType"></SpaceForceEvaluations.Components.DailyQuestionHolder>   
+        <SpaceForceEvaluations.Components.DailyQuestionHolder questionType="@questionType"></SpaceForceEvaluations.Components.DailyQuestionHolder>   
+        <SpaceForceEvaluations.Components.DailyQuestionHolder questionType="@questionType"></SpaceForceEvaluations.Components.DailyQuestionHolder>   
+        <SpaceForceEvaluations.Components.DailyQuestionHolder questionType="@questionType"></SpaceForceEvaluations.Components.DailyQuestionHolder>   
+    }
+
 
     <SpaceForceEvaluations.Components.TextQuestionsHolder questionInput="@questionOne"></SpaceForceEvaluations.Components.TextQuestionsHolder>
     <SpaceForceEvaluations.Components.TextQuestionsHolder questionInput="@questionTwo"></SpaceForceEvaluations.Components.TextQuestionsHolder>
@@ -17,4 +52,18 @@
     public string questionThree = "How likely would you be to recommend pulse surveys as this one you've used the past 4 weeks to a USSF Guardian for feedback and appraisals (Scale of 1-5)?";
     public string questionFour = "Please describe your reasoning for the previous questions.";
     public string questionFive = "Anything else you'd like to share?";
+
+    public int numOfQuestions;
+    public string questionType = "Monthly";
+
+    private async Task GenerateNumber()
+    {
+        Random rnd = new Random();
+        numOfQuestions = rnd.Next(1, 4);
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await GenerateNumber();
+    }
 }

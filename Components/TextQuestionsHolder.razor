@@ -10,7 +10,7 @@
     <h5>@questionInput</h5>
 
     <EditForm Model="@surveyModel" OnValidSubmit="@HandleSubmit">
-        <InputTextArea @bind-Value="@questionResponse"></InputTextArea>
+        <InputText @bind-Value="@questionResponse" style="width: 25%" rows="2"></InputText>
         <div>
             <button type="submit">Submit</button>
         </div>
@@ -36,7 +36,7 @@
     private async Task HandleSubmit()
     {
         // need to store the response as a string, and push it to the database
-        //questionResponse = surveyModel.freeResonseText;
+        surveyModel.freeResonseText = questionResponse;
         surveyModel.question = TestQuestion;
         surveyModel.surveyID = questionNumber;
         surveyModel.category = questionCategory;
@@ -44,14 +44,14 @@
         surveyModel.subjectID = surveySubject;
         surveyDate = DateTime.Today;
         await surveyData.CreateSurvey(surveyModel);
-        //await UpdateUser();
         await ShowDiv();
 
     }
-    
+
     protected override async Task OnInitializedAsync()
     {
-
+        var user = await AuthenticationStateProviderHelpers.GetUserFromAuth(authProvider, userData);
+        surveyTaker = user.userID;
     }
 
     private async Task ShowDiv()

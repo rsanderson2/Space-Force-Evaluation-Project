@@ -1,19 +1,13 @@
 ﻿@inject NavigationManager navManager
 
-<div class = mainDiv>
+<div class="mainDiv"> 
+    <h1>Authorization Required</h1>
+    <p>
+        You are not authorized to access this section. You need to be logged in
+        to view this page.
+    </p>
     <div>
-        <div>
-            <div>   
-                <div>Authorization Required</div>
-                <p>
-                    You are not authorized to access this section. You need to be logged in
-                    to take a survey.
-                </p>
-            </div>
-            <div>
-                <button @onclick="ClosePage">Return</button>
-            </div>
-        </div>
+        <button @onclick="ClosePage">Return</button>
     </div>
 </div>
 

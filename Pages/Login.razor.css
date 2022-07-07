@@ -53,18 +53,18 @@ h2 {
 /* Custom card for contents inside Containers */
 .col-2 {
     padding: 10px 0;
-    border: 3px solid gray;
     border-radius: 15px;
-    box-shadow: 5px 5px 3px 4px black;
-    background-color: lightblue;
+    background: rgb(102,0,0);
+    background: linear-gradient(90deg, rgba(102,0,0,1) 0%, rgba(227,7,7,1) 45%, rgba(97,0,0,1) 100%);
+    border: 3px solid black;
     height: 100%;
     min-width: 300px;
-
     margin: auto;
 }
 
 .taken {
-    background-color: green;
+    background: rgb(0,119,20);
+    background: radial-gradient(circle, rgba(0,119,20,1) 0%, rgba(7,227,36,1) 45%, rgba(0,119,20,1) 100%);
     border: 3px solid black;
 }
 

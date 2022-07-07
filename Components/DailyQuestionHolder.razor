@@ -5,12 +5,11 @@
 @inject NavigationManager navManager
 @inject AuthenticationStateProvider authProvider
 
-@*<button @onclick="@GenerateQuestion">Click to show your RaNdOmLy GeNeRaTeD qUeStIoN</button>*@
 
 <div class=maincomponent style="visibility: @showQuestion">
     <p>Please answer the following question to the best of your ability</p>
     <h5>@TestQuestion</h5>
-    @*<h5>Survey Type = @SurveyQuestionType</h5>*@
+
     @if (@SurveyQuestionType == 2)
     {
         <h5>This question is in regards to your teammate @teammate</h5>
@@ -42,6 +41,10 @@
 </div>
 
 @code {
+    [Parameter]
+    public string questionType { get; set; }
+
+
 
     DateTime surveyDate;
     public string teammate;
@@ -87,7 +90,20 @@
     {
         var questionTaker = await AuthenticationStateProviderHelpers.GetUserFromAuth(authProvider, userData);
 
-        questionTaker.dailyDate = surveyDate;
+        // Update the date that the user is taking the survey
+        if (questionType == "Monthly")
+        {
+            questionTaker.monthlyDate = surveyDate; 
+        }
+        else if (questionType == "Weekly")
+        {
+            questionTaker.weeklyDate = surveyDate;
+        }
+        else 
+        {
+            questionTaker.dailyDate = surveyDate;           
+        }
+
 
         await userData.UpdateUser(questionTaker); 
     }

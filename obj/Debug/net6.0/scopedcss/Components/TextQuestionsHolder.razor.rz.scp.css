@@ -15,3 +15,10 @@ input[type="radio"][b-2vrc6v01fr] {
 input[type="InputRadio"][b-2vrc6v01fr] {
     margin: 0 5px 25px 10px;
 }
+
+input[type="text"][b-2vrc6v01fr] {
+    width: 200px;
+}
+button[b-2vrc6v01fr]{
+    margin-top: 1vh;
+}

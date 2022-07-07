@@ -58,6 +58,18 @@ public class MongoSurveyData : ISurveyData
         return results.ToList();
     }
 
+    // this task returns a list of all surveys about a specified user.
+    public async Task<List<SurveyModel>> GetSurveysAboutUser(string subjectID)
+    {
+        var results = await _surveys.FindAsync(s => s.subjectID == subjectID);
+        return results.ToList();
+    }
+
+    // public async Task<List<SurveyModel>> GetSurveysByTeam(string teamID)
+    // {
+    //    
+    // }
+
     // This task creates a new survey in the database
     public Task CreateSurvey(SurveyModel survey)
     {

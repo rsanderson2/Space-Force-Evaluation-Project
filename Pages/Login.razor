@@ -14,19 +14,18 @@
         <!--Container grid for the survey options-->
         <div class="container grid">
             <article class = "col-2 @(lastDaily ? "taken" : "notTaken")">
-                @*<h2>last daily was @lastSurvey and <br />today is @today</h2>*@
                 <h2>Take <strong>Daily</strong> Survey</h2>
                 <input type = "button" class = "btn btn-primary" value ="Begin" onclick="location.href='/Survey'" style="visibility:@showDailyButton"/>
             </article>
 
-            <article class = "col-2">
+            <article class = "col-2 @(lastWeekly ? "taken" : "notTaken")">
                 <h2>Take <strong>Weekly</strong> Survey</h2>
-                <input type = "button" class = "btn btn-primary" value ="Begin" onclick="location.href='/Weekly'"/>
+                <input type = "button" class = "btn btn-primary" value ="Begin" onclick="location.href='/Weekly'" style="visibility:@showWeeklyButton"/>
             </article>
 
-            <article class = "col-2">
+            <article class = "col-2 @(lastMonthly ? "taken" : "notTaken")">
                 <h2>Take <strong>Monthly</strong> Survey</h2>
-                <input type = "button" class = "btn btn-primary" disabled=true; value ="Begin"/>
+                <input type = "button" class = "btn btn-primary" value ="Begin" onclick="location.href='/Monthly'" style="visibility:@showMonthlyButton"/>
             </article>
         </div>
 
@@ -53,9 +52,14 @@
 {
     DateTime today;
     DateTime lastSurvey;
+    DateTime lastSurveyWeekly;
+    DateTime lastSurveyMonthly;
     public bool lastDaily = false;
     public bool lastWeekly = false;
+    public bool lastMonthly = false;
     public string showDailyButton = "";
+    public string showWeeklyButton = "";
+    public string showMonthlyButton = "";
     public string userName;
     public string userObjectID;
     public string emailAddress;
@@ -107,7 +111,9 @@
         UserModel currentUser = await AuthenticationStateProviderHelpers.GetUserFromAuth(authProvider, userData);
         if (currentUser != null)
         {
-            checkDailySurveyEligible(currentUser);           
+            checkDailySurveyEligible(currentUser);
+            checkWeeklySurveyEligible(currentUser);
+            checkMonthlySurveyEligible(currentUser);
         }
 
     }
@@ -128,7 +134,32 @@
         }
 
     }
-
+    private void checkWeeklySurveyEligible(UserModel currentUser)
+    {
+        lastSurveyWeekly = currentUser.weeklyDate;
+        if ((today - lastSurveyWeekly).TotalDays >= 7)
+        {
+            lastWeekly = false;
+        }
+        else
+        {
+            lastWeekly = true;
+            showWeeklyButton = "hidden";
+        }
+    }
+    private void checkMonthlySurveyEligible(UserModel currentUser)
+    {
+        lastSurveyMonthly = currentUser.monthlyDate;
+        if ((today - lastSurveyMonthly).TotalDays >= 30)
+        {
+            lastMonthly = false;
+        }
+        else
+        {
+            lastMonthly = true;
+            showMonthlyButton = "hidden";
+        }
+    }
     protected override async Task OnInitializedAsync()
     {
         await LoadAndVerifyUser();

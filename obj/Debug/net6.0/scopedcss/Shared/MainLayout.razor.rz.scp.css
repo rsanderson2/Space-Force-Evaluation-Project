@@ -37,6 +37,9 @@ img[b-4m02i15hvc] {
 footer[b-4m02i15hvc] {
     background: steelblue;
     text-align: center;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
 }
 
 footer a[b-4m02i15hvc] {
@@ -104,7 +107,7 @@ footer a[b-4m02i15hvc] {
 }
 
 /* Individual Links */
-.infobox a[b-4m02i15hvc] {
+ul a[b-4m02i15hvc] {
     padding: 10px;
     margin: 0 5px;
     border-radius: 10px;
@@ -115,7 +118,7 @@ footer a[b-4m02i15hvc] {
     font-family: fantasy;
 }
 
-.infobox a:hover[b-4m02i15hvc] {
+ul a:hover[b-4m02i15hvc] {
     color: steelblue;
     transform: scale(0.8);
 }

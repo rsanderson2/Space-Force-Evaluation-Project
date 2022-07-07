@@ -11,6 +11,7 @@ namespace SpaceForceEvaluationAppLibrary.DataAccess
         Task<List<SurveyModel>> GetAllSurveys();
         Task<List<SurveyModel>> GetListOfSurveys(string takerID);
         Task<SurveyModel> GetSurvey(string id);
+        Task<List<SurveyModel>> GetSurveysAboutUser(string subjectID);
         Task UpdateSurvey(SurveyModel survey);
     }
 }

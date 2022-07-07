@@ -37,6 +37,9 @@ img {
 footer {
     background: steelblue;
     text-align: center;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
 }
 
 footer a {
@@ -104,7 +107,7 @@ footer a {
 }
 
 /* Individual Links */
-.infobox a {
+ul a {
     padding: 10px;
     margin: 0 5px;
     border-radius: 10px;
@@ -115,7 +118,7 @@ footer a {
     font-family: fantasy;
 }
 
-.infobox a:hover {
+ul a:hover {
     color: steelblue;
     transform: scale(0.8);
 }

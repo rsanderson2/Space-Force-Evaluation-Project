@@ -15,3 +15,10 @@ input[type="radio"] {
 input[type="InputRadio"] {
     margin: 0 5px 25px 10px;
 }
+
+input[type="text"] {
+    width: 200px;
+}
+button{
+    margin-top: 1vh;
+}

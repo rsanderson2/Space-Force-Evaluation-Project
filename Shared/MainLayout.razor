@@ -1,5 +1,6 @@
 ﻿@inherits LayoutComponentBase
-
+@inject AuthenticationStateProvider authProvider
+@inject IUserData userData
 
 <PageTitle>SpaceForceEvaluations</PageTitle>
 
@@ -16,7 +17,7 @@
 
         <!--The Page Title, Motto, Logo-->
         <div class="container flex">
-            <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/f/fb/Seal_of_the_United_States_Space_Force.png" href="/Landing">
+            <a href="/"><img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/f/fb/Seal_of_the_United_States_Space_Force.png" href="/Landing"></a>
             <h1 class="sitetitle">Space Force Evaluations</h1>
 
             <!--Navigation Links-->
@@ -37,7 +38,7 @@
             <AuthorizeView>
                 <Authorized>
                     <div class="userbox">
-                        <p>Welcome, <!--@userName-->Blank</p>
+                        <p>Welcome, @userFirstName</p>
                     </div>
                 </Authorized>
             </AuthorizeView>
@@ -69,3 +70,19 @@
 
 </body>
 
+@code{
+    public string userFirstName = "";
+
+    protected override async Task OnInitializedAsync()
+    {
+        await getUserLogin();
+    }
+    private async Task getUserLogin()
+    {
+        UserModel currentUser = await AuthenticationStateProviderHelpers.GetUserFromAuth(authProvider, userData);
+        if (currentUser != null)
+        {
+            userFirstName = currentUser.firstName;
+        }
+    }
+}
