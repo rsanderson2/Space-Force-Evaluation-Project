@@ -19,8 +19,8 @@
     </contentFiles>
   </metadata>
   <files>
-    <file src="C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\SpaceForceEvaluationAppLibrary\bin\Debug\net6.0\SpaceForceEvaluationAppLibrary.dll" target="lib\net6.0\SpaceForceEvaluationAppLibrary.dll" />
-    <file src="C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\SpaceForceEvaluationAppLibrary\NuGet.Config" target="content\NuGet.Config" />
-    <file src="C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\SpaceForceEvaluationAppLibrary\NuGet.Config" target="contentFiles\any\net6.0\NuGet.Config" />
+    <file src="C:\Users\grayn\source\repos\Space-Force-Evaluation-Project\SpaceForceEvaluationAppLibrary\bin\Debug\net6.0\SpaceForceEvaluationAppLibrary.dll" target="lib\net6.0\SpaceForceEvaluationAppLibrary.dll" />
+    <file src="C:\Users\grayn\source\repos\Space-Force-Evaluation-Project\SpaceForceEvaluationAppLibrary\NuGet.Config" target="content\NuGet.Config" />
+    <file src="C:\Users\grayn\source\repos\Space-Force-Evaluation-Project\SpaceForceEvaluationAppLibrary\NuGet.Config" target="contentFiles\any\net6.0\NuGet.Config" />
   </files>
 </package>

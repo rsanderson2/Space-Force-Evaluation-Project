@@ -9,7 +9,7 @@ namespace SpaceForceEvaluationAppLibrary.DataAccess;
 public class MongoSurveyData : ISurveyData
 {
     private readonly IMongoCollection<SurveyModel> _surveys;
-    private readonly IUserData _userData;
+    private readonly IUserData _users;
     private readonly IDbConnection _db;
     private readonly IMemoryCache _cache;
     private const string CacheName = "SurveyData";
@@ -18,13 +18,11 @@ public class MongoSurveyData : ISurveyData
     // and initializes a connection to the SurveyCollection in the database.
     public MongoSurveyData(IDbConnection db, IUserData userData, IMemoryCache cache)
     {
-        _userData = userData;
+        _users = userData;
         _db = db;
         _cache = cache;
         _surveys = db.SurveyCollection;
     }
-
-
 
     // Here is the task that returns a specific survey by searching for the
     // surveyID string.
@@ -65,10 +63,25 @@ public class MongoSurveyData : ISurveyData
         return results.ToList();
     }
 
-    // public async Task<List<SurveyModel>> GetSurveysByTeam(string teamID)
-    // {
-    //    
-    // }
+    // this task returns a list of all surveys about a specified category
+    public async Task<List<SurveyModel>> GetSurveysByCategory(string category)
+    {
+        var results = await _surveys.FindAsync(s => s.category == category);
+        return results.ToList();
+    }
+
+    // this task returns a list of all surveys that a team has taken
+    public async Task<List<SurveyModel>> GetSurveysByTeam(string teamID)
+    {
+        var results = new List<SurveyModel>();
+        List<UserModel> users = await _users.GetUsersFromTeam(teamID);
+        foreach (UserModel user in users)
+        {
+            var userSurveys = await _surveys.FindAsync(s => s.takerID == user.userID);
+            results.Add((SurveyModel)userSurveys);
+        }
+        return results.ToList();
+    }
 
     // This task creates a new survey in the database
     public Task CreateSurvey(SurveyModel survey)

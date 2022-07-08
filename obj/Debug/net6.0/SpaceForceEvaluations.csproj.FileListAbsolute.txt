@@ -511,3 +511,6 @@ C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\sc
 C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\scopedcss\Components\TextQuestionsHolder.razor.rz.scp.css
 C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\scopedcss\Pages\Monthly.razor.rz.scp.css
 C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\scopedcss\Pages\Weekly.razor.rz.scp.css
+C:\Users\grayn\source\repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\scopedcss\Components\TextQuestionsHolder.razor.rz.scp.css
+C:\Users\grayn\source\repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\scopedcss\Pages\Monthly.razor.rz.scp.css
+C:\Users\grayn\source\repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\scopedcss\Pages\Weekly.razor.rz.scp.css
