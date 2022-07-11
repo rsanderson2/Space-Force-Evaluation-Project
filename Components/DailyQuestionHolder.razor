@@ -56,6 +56,7 @@
     public string questionCategory;
     public string surveyTaker;
     public string surveySubject;
+    public string takerTeamID;
     private SurveyModel surveyModel = new SurveyModel();
 
     public string TestQuestion = "";
@@ -74,6 +75,7 @@
         surveyModel.category = questionCategory;
         surveyModel.takerID = surveyTaker;
         surveyModel.subjectID = surveySubject;
+        surveyModel.teamID = takerTeamID;
         surveyDate = DateTime.Today;
         await surveyData.CreateSurvey(surveyModel);
         await UpdateUser();
@@ -154,6 +156,7 @@
             surveySubject = subject.userID;
         }
         user.dailyDate = surveyDate;
+        takerTeamID = user.teamID;
     }
 
     // Function to pull a list of users that are in the same "team" as the survey taker

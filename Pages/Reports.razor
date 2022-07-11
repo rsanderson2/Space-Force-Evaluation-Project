@@ -2,10 +2,101 @@
 @attribute [Authorize]
 @inject ISurveyData surveyData
 @inject IUserData userData
-
+@inject AuthenticationStateProvider authProvider
 
 <div class="mainDiv">
     <h1>Reports</h1>
+<EditForm Model = "@surveyModel" OnValidSubmit="@HandleSubmit">
+        <div class="">
+            <label> Category
+                <InputSelect @bind-Value="surveyModel.category">
+                    <option value="">Select a Category...</option>
+                    <option value="Available Resources and Support Administrative Support Staff meets my needs">Available resources and support administrative support staff meets my needs</option>
+                    <option value="Communication/Flow of Information">Communication/Flow of Information</option>
+                    <option value="Enforcement/Obedience of Rules">Enforcement/Obedience of Rules</option>
+                    <option value="Engagement">Engagement</option>
+                    <option value="Exhaustion">Exhaustion</option>
+                    <option value="Fairness">Fairness</option>
+                    <option value="Family Support">Family Support</option>
+                    <option value="Favoritism">Favoritism</option>
+                    <option value="Feedback and Recognition">Feedback and Recognition</option>
+                    <option value="Hazing">Hazing</option>
+                    <option value="Help Seeking Behaviors">Help Seeking Behaviors</option>
+                    <option value="Inclusion">Inclusion</option>
+                    <option value="Intention to Stay">Intention to Stay</option>
+                    <option value="Interpersonal Relations/Social Interactions">Interpersonal Relations/Social Interactions</option>
+                    <option value="Leadership Accessibility/Openness">Leadership Accessibility/Openness</option>
+                    <option value="Leadership Effectiveness">Leadership Effectiveness</option>
+                    <option value="Military-Civillian Relations">Military-Civillian Relations</option>
+                    <option value="Operational Stress Control">Operational Stress Control</option>
+                    <option value="Physical Environment">Physical Environment</option>
+                    <option value="Physical Health/Well-being">Physical Health/Well-being</option>
+                    <option value="Respect for Individuals">Respect for Individuals</option>
+                    <option value="Sexual Harassment / Discrimination">Sexual Harassment / Discrimination</option>
+                    <option value="Skill Utilization / Appropriate Level of Assigned Duties">Skill Utilization / Appropriate Level of Assigned Duties</option>
+                    <option value="Special Observances / Cultural Celebrations">Special Observances / Cultural Celebrations</option>
+                    <option value="Teamwork / Team Cohesion / Morale">Teamwork / Team Cohesion / Morale</option>
+                    <option value="Training, Knowledge, and Professional Development">Training, Knowledge, and Professional Development</option>
+                </InputSelect>
+            </label>
+                <button class="" @onclick=ShowDiv>Show Category Reports</button>
+                <div class="container" style="visibility: @shown">
+                    <h3 class="p-3 text-center">Reports List: </h3>
+                    <div class="scroll">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>QuestionID</th>
+                                    <th>Question Text</th>
+                                    <th>Response</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var SurveyModel in categoryQuestions)
+                                {
+                                    <tr>
+                                        <td>@SurveyModel.surveyID</td>
+                                        <td>@SurveyModel.question</td>
+                                        <td>@SurveyModel.response</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+        </div>
+</EditForm>
+    <AuthorizeView Policy="Admin">
+        <Authorized>
+                <button class="btn-primary" @onclick=ShowDiv>Show Team Reports</button>
+                <div class="container" style="visibility: @shown">
+                    <h3 class="p-3 text-center">Reports List: </h3>
+                    <div class="scroll">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>QuestionID</th>
+                                    <th>Question Text</th>
+                                    <th>Response</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var SurveyModel in teamQuestions)
+                                {
+                                    <tr>
+                                        <td>@SurveyModel.surveyID</td>
+                                        <td>@SurveyModel.question</td>
+                                        <td>@SurveyModel.response</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+        </Authorized>
+
+    </AuthorizeView>
     <button class="btn-primary" @onclick=ShowDiv>Show All Reports</button>
     <div class="container" style="visibility: @shown">
         <h3 class="p-3 text-center">Reports List: </h3>
@@ -35,10 +126,14 @@
 
 @code {
     string shown = "hidden";
+    private string teamID;
     public bool disableButton = false;
+    private SurveyModel surveyModel = new SurveyModel();
 
     // create a new list of survey models called survey question
     List<SurveyModel> surveyQuestion = new List<SurveyModel>();
+    List<SurveyModel> teamQuestions = new List<SurveyModel>();
+    List<SurveyModel> categoryQuestions = new List<SurveyModel>();
     // set the list equal to the full collection of all surveys taken
 
     private async Task<List<SurveyModel>> GetAllSurveys()
@@ -52,6 +147,8 @@
     {
 
         await GetAllSurveys();
+        await GetLogin();
+        await GetTeamSurveys();
     }
     private async Task ShowDiv()
     {
@@ -61,7 +158,25 @@
         }
         else
         {
-          shown = "";          
+            shown = "";          
         }
+    }
+    private async Task GetLogin()
+    {
+        UserModel currentUser = await AuthenticationStateProviderHelpers.GetUserFromAuth(authProvider, userData);
+        teamID = currentUser.teamID;
+    }
+    private async Task <List<SurveyModel>> GetTeamSurveys()
+    {
+        var teamSurveys = await surveyData.GetSurveysByTeam(teamID);
+        teamQuestions = teamSurveys.ToList();
+        return teamQuestions;
+    }
+    private async Task<List<SurveyModel>> HandleSubmit()
+    {
+        var categories = await surveyData.GetSurveysByCategory(surveyModel.category);
+        categoryQuestions = categories.ToList();
+        return categoryQuestions;
+
     }
 }
