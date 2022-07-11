@@ -1,13 +1,8 @@
 C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\bin\Debug\net6.0\Microsoft.Azure.Cosmos.ServiceInterop.dll
 C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\bin\Debug\net6.0\Cosmos.CRTCompat.dll
 C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\bin\Debug\net6.0\NuGet.Config
-C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\bin\Debug\net6.0\SpaceForceEvaluationAppLibrary\bin\Debug\net6.0\NuGet.Config
-C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\bin\Debug\net6.0\SpaceForceEvaluationAppLibrary\NuGet.Config
 C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\bin\Debug\net6.0\appsettings.Development.json
 C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\bin\Debug\net6.0\appsettings.json
-C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\bin\Debug\net6.0\SpaceForceEvaluationAppLibrary\bin\Debug\net6.0\SpaceForceEvaluationAppLibrary.deps.json
-C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\bin\Debug\net6.0\SpaceForceEvaluationAppLibrary\obj\project.assets.json
-C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\bin\Debug\net6.0\SpaceForceEvaluationAppLibrary\obj\SpaceForceEvaluationAppLibrary.csproj.nuget.dgspec.json
 C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\bin\Debug\net6.0\SpaceForceEvaluations.staticwebassets.runtime.json
 C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\bin\Debug\net6.0\SpaceForceEvaluations.exe
 C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\bin\Debug\net6.0\SpaceForceEvaluations.deps.json

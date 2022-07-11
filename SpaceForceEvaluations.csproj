@@ -14,6 +14,14 @@
 	<GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
 	<ErrorOnDuplicatePublishOutputFiles>false</ErrorOnDuplicatePublishOutputFiles>
   </PropertyGroup>
+	
+
+  <ItemGroup>
+    <Compile Remove="SpaceForceEvaluationAppLibrary\**" />
+    <Content Remove="SpaceForceEvaluationAppLibrary\**" />
+    <EmbeddedResource Remove="SpaceForceEvaluationAppLibrary\**" />
+    <None Remove="SpaceForceEvaluationAppLibrary\**" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Azure.Cosmos" Version="3.27.0" />
@@ -22,6 +30,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Data\" />
     <Folder Include="Models\" />
     <Folder Include="NewFolder\" />
     <Folder Include="wwwroot\images\" />

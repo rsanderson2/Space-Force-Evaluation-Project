@@ -23,16 +23,8 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ291bnRlci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Preston/source/repos/Space-Force-Evaluation-Project/Pages/FetchData.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRmV0Y2hEYXRhLnJhem9y
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/Preston/source/repos/Space-Force-Evaluation-Project/Pages/SampleData.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2FtcGxlRGF0YS5yYXpvcg==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Preston/source/repos/Space-Force-Evaluation-Project/Pages/Signup.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2lnbnVwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Preston/source/repos/Space-Force-Evaluation-Project/Shared/SurveyPrompt.razor]
