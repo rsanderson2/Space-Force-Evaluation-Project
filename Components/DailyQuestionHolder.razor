@@ -77,7 +77,7 @@
         surveyDate = DateTime.Today;
         await surveyData.CreateSurvey(surveyModel);
         await UpdateUser();
-        await ShowDiv();
+        ShowDiv();
         //navManager.NavigateTo("/Landing");
 
         // Get the date that the survey is done
@@ -177,7 +177,7 @@
         await GenerateQuestion();
     }
 
-    private async Task ShowDiv()
+    private void ShowDiv()
     {
         if (showQuestion=="")
         {
