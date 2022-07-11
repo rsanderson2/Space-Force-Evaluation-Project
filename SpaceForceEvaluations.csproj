@@ -24,9 +24,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="bunit.core" Version="1.9.8" />
+    <PackageReference Include="bunit.web" Version="1.9.8" />
+    <PackageReference Include="bunit.xunit" Version="1.0.0-preview-02" />
     <PackageReference Include="Microsoft.Azure.Cosmos" Version="3.27.0" />
     <PackageReference Include="Microsoft.Identity.Web" Version="1.24.1" />
     <PackageReference Include="Microsoft.Identity.Web.UI" Version="1.24.1" />
+    <PackageReference Include="NUnit" Version="3.13.3" />
   </ItemGroup>
 
   <ItemGroup>

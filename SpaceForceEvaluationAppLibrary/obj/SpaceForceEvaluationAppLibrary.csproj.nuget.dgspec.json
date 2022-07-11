@@ -55,6 +55,14 @@
             "MongoDB.Driver": {
               "target": "Package",
               "version": "[2.15.1, )"
+            },
+            "bunit.core": {
+              "target": "Package",
+              "version": "[1.9.8, )"
+            },
+            "bunit.xunit": {
+              "target": "Package",
+              "version": "[1.0.0-preview-02, )"
             }
           },
           "imports": [

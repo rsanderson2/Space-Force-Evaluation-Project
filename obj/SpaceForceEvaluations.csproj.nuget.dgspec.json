@@ -55,6 +55,14 @@
             "MongoDB.Driver": {
               "target": "Package",
               "version": "[2.15.1, )"
+            },
+            "bunit.core": {
+              "target": "Package",
+              "version": "[1.9.8, )"
+            },
+            "bunit.xunit": {
+              "target": "Package",
+              "version": "[1.0.0-preview-02, )"
             }
           },
           "imports": [
@@ -131,6 +139,22 @@
             "Microsoft.Identity.Web.UI": {
               "target": "Package",
               "version": "[1.24.1, )"
+            },
+            "NUnit": {
+              "target": "Package",
+              "version": "[3.13.3, )"
+            },
+            "bunit.core": {
+              "target": "Package",
+              "version": "[1.9.8, )"
+            },
+            "bunit.web": {
+              "target": "Package",
+              "version": "[1.9.8, )"
+            },
+            "bunit.xunit": {
+              "target": "Package",
+              "version": "[1.0.0-preview-02, )"
             }
           },
           "imports": [

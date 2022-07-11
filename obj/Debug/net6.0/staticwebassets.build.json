@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "nQnvNGC3Dxv89B4c/vYyD4Jz4ZYYvAPO4+rDPBwMrA0=",
+  "Hash": "xetgnP2vipSXNHAWLLpEhoIEoOp921r0QpimOyHxpK8=",
   "Source": "SpaceForceEvaluations",
   "BasePath": "_content/SpaceForceEvaluations",
   "Mode": "Default",
@@ -16,6 +16,23 @@
     }
   ],
   "Assets": [
+    {
+      "Identity": "C:\\Users\\Preston\\.nuget\\packages\\microsoft.aspnetcore.components.webassembly.authentication\\6.0.0\\staticwebassets\\AuthenticationService.js",
+      "SourceId": "Microsoft.AspNetCore.Components.WebAssembly.Authentication",
+      "SourceType": "Package",
+      "ContentRoot": "C:\\Users\\Preston\\.nuget\\packages\\microsoft.aspnetcore.components.webassembly.authentication\\6.0.0\\staticwebassets\\",
+      "BasePath": "_content/Microsoft.AspNetCore.Components.WebAssembly.Authentication",
+      "RelativePath": "AuthenticationService.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\Users\\Preston\\.nuget\\packages\\microsoft.aspnetcore.components.webassembly.authentication\\6.0.0\\staticwebassets\\AuthenticationService.js"
+    },
     {
       "Identity": "C:\\Users\\Preston\\source\\repos\\Space-Force-Evaluation-Project\\obj\\Debug\\net6.0\\scopedcss\\bundle\\SpaceForceEvaluations.styles.css",
       "SourceId": "SpaceForceEvaluations",

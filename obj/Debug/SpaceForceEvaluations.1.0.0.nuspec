@@ -13,6 +13,10 @@
         <dependency id="Microsoft.Azure.Cosmos" version="3.27.0" exclude="Build,Analyzers" />
         <dependency id="Microsoft.Identity.Web" version="1.24.1" exclude="Build,Analyzers" />
         <dependency id="Microsoft.Identity.Web.UI" version="1.24.1" exclude="Build,Analyzers" />
+        <dependency id="NUnit" version="3.13.3" exclude="Build,Analyzers" />
+        <dependency id="bunit.core" version="1.9.8" exclude="Build,Analyzers" />
+        <dependency id="bunit.web" version="1.9.8" exclude="Build,Analyzers" />
+        <dependency id="bunit.xunit" version="1.0.0-preview-02" exclude="Build,Analyzers" />
       </group>
     </dependencies>
     <frameworkReferences>
@@ -24,6 +28,10 @@
       <files include="any/net6.0/NuGet.Config" buildAction="Content" />
       <files include="any/net6.0/appsettings.Development.json" buildAction="Content" />
       <files include="any/net6.0/appsettings.json" buildAction="Content" />
+      <files include="any/net6.0/TestCases/bin/Debug/net6.0/TestCases.deps.json" buildAction="Content" />
+      <files include="any/net6.0/TestCases/bin/Debug/net6.0/TestCases.runtimeconfig.json" buildAction="Content" />
+      <files include="any/net6.0/TestCases/obj/project.assets.json" buildAction="Content" />
+      <files include="any/net6.0/TestCases/obj/TestCases.csproj.nuget.dgspec.json" buildAction="Content" />
     </contentFiles>
   </metadata>
   <files>
@@ -53,5 +61,13 @@
     <file src="C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\appsettings.Development.json" target="contentFiles\any\net6.0\appsettings.Development.json" />
     <file src="C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\appsettings.json" target="content\appsettings.json" />
     <file src="C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\appsettings.json" target="contentFiles\any\net6.0\appsettings.json" />
+    <file src="C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\TestCases\bin\Debug\net6.0\TestCases.deps.json" target="content\TestCases\bin\Debug\net6.0\TestCases.deps.json" />
+    <file src="C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\TestCases\bin\Debug\net6.0\TestCases.deps.json" target="contentFiles\any\net6.0\TestCases\bin\Debug\net6.0\TestCases.deps.json" />
+    <file src="C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\TestCases\bin\Debug\net6.0\TestCases.runtimeconfig.json" target="content\TestCases\bin\Debug\net6.0\TestCases.runtimeconfig.json" />
+    <file src="C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\TestCases\bin\Debug\net6.0\TestCases.runtimeconfig.json" target="contentFiles\any\net6.0\TestCases\bin\Debug\net6.0\TestCases.runtimeconfig.json" />
+    <file src="C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\TestCases\obj\project.assets.json" target="content\TestCases\obj\project.assets.json" />
+    <file src="C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\TestCases\obj\project.assets.json" target="contentFiles\any\net6.0\TestCases\obj\project.assets.json" />
+    <file src="C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\TestCases\obj\TestCases.csproj.nuget.dgspec.json" target="content\TestCases\obj\TestCases.csproj.nuget.dgspec.json" />
+    <file src="C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\TestCases\obj\TestCases.csproj.nuget.dgspec.json" target="contentFiles\any\net6.0\TestCases\obj\TestCases.csproj.nuget.dgspec.json" />
   </files>
 </package>
