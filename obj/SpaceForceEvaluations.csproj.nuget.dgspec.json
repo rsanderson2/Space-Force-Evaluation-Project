@@ -56,6 +56,10 @@
               "target": "Package",
               "version": "[2.15.1, )"
             },
+            "Moq": {
+              "target": "Package",
+              "version": "[4.18.1, )"
+            },
             "bunit.core": {
               "target": "Package",
               "version": "[1.9.8, )"
@@ -139,6 +143,10 @@
             "Microsoft.Identity.Web.UI": {
               "target": "Package",
               "version": "[1.24.1, )"
+            },
+            "Moq": {
+              "target": "Package",
+              "version": "[4.18.1, )"
             },
             "NUnit": {
               "target": "Package",
