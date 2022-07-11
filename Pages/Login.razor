@@ -1,4 +1,5 @@
 ﻿@page "/"
+@using NUnit.Framework
 @inject AuthenticationStateProvider authProvider
 @inject IUserData userData
 @inject NavigationManager navManager
@@ -8,7 +9,6 @@
 
 <!--Main Body-->
 <body>
-
 <AuthorizeView>
     <Authorized>
         <!--Container grid for the survey options-->
@@ -50,10 +50,10 @@
 </body>
 @code
 {
-    DateTime today;
-    DateTime lastSurvey;
-    DateTime lastSurveyWeekly;
-    DateTime lastSurveyMonthly;
+        DateTime today;
+        DateTime lastSurvey;
+        DateTime lastSurveyWeekly;
+        DateTime lastSurveyMonthly;
     public bool lastDaily = false;
     public bool lastWeekly = false;
     public bool lastMonthly = false;
@@ -164,4 +164,7 @@
     {
         await LoadAndVerifyUser();
     }
+
+
+    //--------------------------------------------------------------------------------------------------------//
 }
