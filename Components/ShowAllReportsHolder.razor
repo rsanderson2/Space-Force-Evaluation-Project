@@ -1,0 +1,35 @@
+﻿@inject ISurveyData surveyData
+@inject NavigationManager navManager
+
+<div class="mainDiv">
+    <div class="container">
+        <h3 class="p-3 text-center">Reports List: </h3>
+        <div class="scroll">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>QuestionID</th>
+                        <th>Question Text</th>
+                        <th>Response</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var SurveyModel in surveyQuestion)
+                    {
+                        <tr>
+                            <td>@SurveyModel.surveyID</td>
+                            <td>@SurveyModel.question</td>
+                            <td>@SurveyModel.response</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public List<SurveyModel> surveyQuestion{ get; set; }
+
+}

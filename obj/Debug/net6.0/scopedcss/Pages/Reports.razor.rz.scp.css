@@ -30,3 +30,7 @@ table[b-o2ye6ss7r8] {
     font-size: 16px;
     position: center;
 }
+.reportComponent[b-o2ye6ss7r8] {
+    position: absolute;
+    width: 100%;
+}

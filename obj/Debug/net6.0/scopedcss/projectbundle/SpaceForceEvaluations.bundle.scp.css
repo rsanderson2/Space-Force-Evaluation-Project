@@ -239,6 +239,7 @@ h2[b-qyds3voz9g] {
     padding: 0.5px;
 }
 
+
 /* Mobile View */
 @media(max-width: 1000px) {
     .grid[b-qyds3voz9g] {
@@ -394,6 +395,10 @@ table[b-o2ye6ss7r8] {
     min-width: 200px;
     font-size: 16px;
     position: center;
+}
+.reportComponent[b-o2ye6ss7r8] {
+    position: absolute;
+    width: 100%;
 }
 /* _content/SpaceForceEvaluations/Pages/Survey.razor.rz.scp.css */
 /* Main page */
