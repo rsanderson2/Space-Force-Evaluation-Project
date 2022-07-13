@@ -36,7 +36,7 @@
     private async Task HandleSubmit()
     {
         // need to store the response as a string, and push it to the database
-        surveyModel.freeResonseText = questionResponse;
+        surveyModel.freeResponseText = questionResponse;
         surveyModel.question = TestQuestion;
         surveyModel.surveyID = questionNumber;
         surveyModel.category = questionCategory;

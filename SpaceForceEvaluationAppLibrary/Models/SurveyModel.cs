@@ -14,6 +14,6 @@ public class SurveyModel
     public DateTime date { get; set; } = DateTime.UtcNow;
     public string question { get; set; }
     public int response { get; set; }
-    public string freeResonseText { get; set; }
+    public string freeResponseText { get; set; }
 }
 
