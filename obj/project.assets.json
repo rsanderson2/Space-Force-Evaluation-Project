@@ -6695,25 +6695,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\grayn\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\Preston\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\grayn\\source\\repos\\Space-Force-Evaluation-Project\\SpaceForceEvaluations.csproj",
+      "projectUniqueName": "C:\\Users\\Preston\\source\\repos\\Space-Force-Evaluation-Project\\SpaceForceEvaluations.csproj",
       "projectName": "SpaceForceEvaluations",
-      "projectPath": "C:\\Users\\grayn\\source\\repos\\Space-Force-Evaluation-Project\\SpaceForceEvaluations.csproj",
-      "packagesPath": "C:\\Users\\grayn\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\grayn\\source\\repos\\Space-Force-Evaluation-Project\\obj\\",
+      "projectPath": "C:\\Users\\Preston\\source\\repos\\Space-Force-Evaluation-Project\\SpaceForceEvaluations.csproj",
+      "packagesPath": "C:\\Users\\Preston\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Preston\\source\\repos\\Space-Force-Evaluation-Project\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\grayn\\source\\repos\\Space-Force-Evaluation-Project\\NuGet.Config",
-        "C:\\Users\\grayn\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\Preston\\source\\repos\\Space-Force-Evaluation-Project\\NuGet.Config",
+        "C:\\Users\\Preston\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -6727,8 +6726,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\grayn\\source\\repos\\Space-Force-Evaluation-Project\\SpaceForceEvaluationAppLibrary\\SpaceForceEvaluationAppLibrary.csproj": {
-              "projectPath": "C:\\Users\\grayn\\source\\repos\\Space-Force-Evaluation-Project\\SpaceForceEvaluationAppLibrary\\SpaceForceEvaluationAppLibrary.csproj"
+            "C:\\Users\\Preston\\source\\repos\\Space-Force-Evaluation-Project\\SpaceForceEvaluationAppLibrary\\SpaceForceEvaluationAppLibrary.csproj": {
+              "projectPath": "C:\\Users\\Preston\\source\\repos\\Space-Force-Evaluation-Project\\SpaceForceEvaluationAppLibrary\\SpaceForceEvaluationAppLibrary.csproj"
             }
           }
         }
