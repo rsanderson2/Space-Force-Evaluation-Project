@@ -8,6 +8,7 @@
     <h1>Reports</h1>
 <button class="renderButton" @onclick=ShowCategories>Category Reports</button>
 <button class="renderButton" @onclick=ShowAll>All Reports</button>
+<button class="renderButton" @onclick=ShowDateRange>Show Reports by Date</button>
 <div class="reportComponent" style="visibility: @showCategories">
         <SpaceForceEvaluations.Components.CategoriesReport></SpaceForceEvaluations.Components.CategoriesReport>  
 </div>
@@ -16,13 +17,16 @@
         <SpaceForceEvaluations.Components.ShowAllReportsHolder surveyQuestion="@surveyQuestion"></SpaceForceEvaluations.Components.ShowAllReportsHolder>   
 </div>
 
+<div class="reportComponent" style="visibility: @showDateRange">
+    <SpaceForceEvaluations.Components.SurveyTakenInRange surveyQuestion="@surveyQuestion"></SpaceForceEvaluations.Components.SurveyTakenInRange>
+</div>
 
 
 
     <AuthorizeView Policy="Admin">
         <Authorized>
-                <button class="btn-primary" @onclick=ShowDiv>Show Team Reports</button>
-                <div class="container" style="visibility: @shown">
+                <button class="btn-primary" @onclick=ShowTeam>Show Team Reports</button>
+                <div class="container" style="visibility: @showTeam">
                     <h3 class="p-3 text-center">Reports List: </h3>
                     <div class="scroll">
                         <table class="table table-bordered">
@@ -30,6 +34,7 @@
                                 <tr>
                                     <th>QuestionID</th>
                                     <th>Question Text</th>
+                                    <th>Taker ID</th>
                                     <th>Response</th>
                                 </tr>
                             </thead>
@@ -39,6 +44,7 @@
                                     <tr>
                                         <td>@SurveyModel.surveyID</td>
                                         <td>@SurveyModel.question</td>
+                                        <td>@SurveyModel.takerID</td>
                                         <td>@SurveyModel.response</td>
                                     </tr>
                                 }
@@ -54,12 +60,12 @@
 
 @code {
 
-    //### TODO: Hide other renders when one button is clicked, so that only one can be active at a time. 
-    string shown = "hidden";
+    string showTeam = "hidden";
     private string teamID;
     public bool disableButton = false;
     public string showCategories = "hidden";
     public string showAll = "hidden";
+    public string showDateRange = "hidden";
     public bool shouldRender = true;
     private SurveyModel surveyModel = new SurveyModel();
 
@@ -69,11 +75,26 @@
     List<SurveyModel> categoryQuestions = new List<SurveyModel>();
     // set the list equal to the full collection of all surveys taken
 
+
+    // Functions to show and hide buttons
+    private void ShowDateRange()
+    {
+        if (showDateRange == "hidden")
+        {
+            showDateRange = "";
+            showAll = "hidden";
+            showTeam = "hidden";
+            showCategories = "hidden";
+        }
+    }
     private void ShowCategories()
     {
         if (showCategories == "hidden")
         {
             showCategories = "";
+            showAll = "hidden";
+            showTeam = "hidden";
+            showDateRange = "hidden";
         }
         else
         {
@@ -86,17 +107,30 @@
         if (showAll == "hidden")
         {
             showAll = "";
+            showTeam = "hidden";
+            showCategories = "hidden";
+            showDateRange = "hidden";
         }
         else
         {
             showAll = "hidden";
         }
     }
-
-    protected override bool ShouldRender()
+    private async Task ShowTeam()
     {
-        return shouldRender;
+        if (showTeam=="hidden")
+        {
+            showTeam = "";
+            showAll = "hidden";
+            showCategories = "hidden";
+            showDateRange = "hidden";
+        }
+        else
+        {
+            showTeam = "hidden";          
+        }
     }
+
     private async Task<List<SurveyModel>> GetAllSurveys()
     {
         var results = await surveyData.GetAllSurveys();
@@ -111,17 +145,7 @@
         await GetLogin();
         await GetTeamSurveys();
     }
-    private async Task ShowDiv()
-    {
-        if (shown=="")
-        {
-            shown = "hidden";
-        }
-        else
-        {
-            shown = "";          
-        }
-    }
+
     private async Task GetLogin()
     {
         UserModel currentUser = await AuthenticationStateProviderHelpers.GetUserFromAuth(authProvider, userData);

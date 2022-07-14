@@ -8,12 +8,13 @@
 
 <div class=maincomponent style="visibility: @showQuestion">
     <p>Please answer the following question to the best of your ability</p>
+    @if (@SurveyQuestionType == 2)
+        {
+            <h5>This question is in regards to your teammate @teammate</h5>
+        }
     <h5>@TestQuestion</h5>
 
-    @if (@SurveyQuestionType == 2)
-    {
-        <h5>This question is in regards to your teammate @teammate</h5>
-    }
+
 
     <EditForm Model="@surveyModel" OnValidSubmit="@HandleSubmit" id="dailyQuestionForm">
         <InputRadioGroup @bind-Value="@surveyModel.response">
@@ -146,6 +147,11 @@
         {
             // Pull in a list of users
             string subjectID = await GetListOfUsers(user.teamID);
+            // If the question is about the person taking the survey, pull a new question.
+            if (subjectID == user.userID)
+            {
+                GenerateQuestion();
+            }
             UserModel subject = await userData.GetUser(subjectID);
             teammate = subject.firstName + " " + subject.lastName;
             DailyQuestionsModel dailyQuestionModel = await dailyQuestionData.GetDailyQuestion(GetDailyQuestionNumber());
@@ -170,6 +176,7 @@
     }
 
 
+    // Function to choose the type of question
     private int GetQuestionType()
     {
         return SurveyQuestionType = rnd.Next(1, 3);
@@ -180,6 +187,7 @@
         await GenerateQuestion();
     }
 
+    // Function to hide the question once it has been taken.
     private void ShowDiv()
     {
         if (showQuestion=="")
