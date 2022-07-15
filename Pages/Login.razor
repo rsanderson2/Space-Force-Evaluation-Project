@@ -13,20 +13,39 @@
     <Authorized>
         <!--Container grid for the survey options-->
         <div class="container grid">
-            <article class = "col-2 @(lastDaily ? "taken" : "notTaken")">
-                <h2>Take <strong>Daily</strong> Survey</h2>
-                <input type = "button" class = "btn btn-primary" value ="Begin" onclick="location.href='/Survey'" style="visibility:@showDailyButton"/>
-            </article>
+            <div>
+                <article class = "col-2 @(lastDaily ? "taken" : "notTaken")">
+                    <h2>Take <strong>Daily</strong> Survey</h2>
+                    <input type = "button" class = "btn btn-primary" value ="Begin" onclick="location.href='/Survey'" style="visibility:@showDailyButton"/>
+                </article>
+                @if (@lastDaily)
+                {
+                    <h4>Daily Survey is Completed</h4>
+                }
+            </div>
 
-            <article class = "col-2 @(lastWeekly ? "taken" : "notTaken")">
-                <h2>Take <strong>Weekly</strong> Survey</h2>
-                <input type = "button" class = "btn btn-primary" value ="Begin" onclick="location.href='/Weekly'" style="visibility:@showWeeklyButton"/>
-            </article>
+            <div>
+                <article class = "col-2 @(lastWeekly ? "taken" : "notTaken")">
+                    <h2>Take <strong>Weekly</strong> Survey</h2>
+                    <input type = "button" class = "btn btn-primary" value ="Begin" onclick="location.href='/Weekly'" style="visibility:@showWeeklyButton"/>
+                </article>
+                @if (@lastWeekly)
+                {
+                    <h4>Weekly Survey is Completed</h4>
+                }
 
-            <article class = "col-2 @(lastMonthly ? "taken" : "notTaken")">
-                <h2>Take <strong>Monthly</strong> Survey</h2>
-                <input type = "button" class = "btn btn-primary" value ="Begin" onclick="location.href='/Monthly'" style="visibility:@showMonthlyButton"/>
-            </article>
+            </div>
+
+            <div>
+                <article class = "col-2 @(lastMonthly ? "taken" : "notTaken")">
+                    <h2>Take <strong>Monthly</strong> Survey</h2>
+                    <input type = "button" class = "btn btn-primary" value ="Begin" onclick="location.href='/Monthly'" style="visibility:@showMonthlyButton"/>
+                </article>
+                @if (@lastMonthly)
+                {
+                    <h4>Monthly Survey is Completed</h4>
+                }
+            </div>
         </div>
 
         <!--Container for user information-->
@@ -36,32 +55,24 @@
             <h4>Last Name: @userLastName</h4>
             <h4>First Name: @userFirstName</h4>*@
 
-            @if (@lastDaily)
-           {
-               <h4>Daily Survey is Completed</h4>
-           }
-           @if (@lastWeekly)
-                {
-                    <h4>Weekly Survey is Completed</h4>
-                }
+        
 
-            @if (@lastMonthly)
-            {
-                <h4>Monthly Survey is Completed</h4>
-            }
+
             @if (@lastDaily || @lastWeekly || @lastMonthly)
-                {
-                <div class="">
-                    <article class = "">
+            {
+
+                <h3>Thank you, your response has been noted.</h3>
+                <div class="flex">
+                    <article class = "col-2">
                         <input type = "button" class = "btn btn-primary" value ="Log Out" onclick="location.href='MicrosoftIdentity/Account/SignOut'"/>
                     </article>
 
-                    <article class = "">
+                    <article class = "col-2">
                         <input type = "button" class = "btn btn-primary" value ="Provide feedback on Teams" onclick="window.open('https://dod.teams.microsoft.us/l/team/19%3adod%3a2bf5dee9da7546c494c8d3b5f52f5878%40thread.tacv2/conversations?groupId=cebcc84c-7f65-4e78-9bf8-da0af1e01ded&tenantId=8331b18d-2d87-48ef-a35f-ac8818ebf9b4')"/>
                     </article>
                 </div>                    
-                }
-            </div>
+            }
+        </div>
     </Authorized>
     <NotAuthorized>
         <!--Container to login if the user is not authorized-->

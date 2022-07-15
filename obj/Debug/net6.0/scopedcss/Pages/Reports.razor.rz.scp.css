@@ -22,7 +22,7 @@ table[b-o2ye6ss7r8] {
 
 .scroll[b-o2ye6ss7r8] {
     height: 75vh;
-    overflow-y: auto;
+    overflow-y: scroll;
 }
 
 .btn-primary[b-o2ye6ss7r8] {

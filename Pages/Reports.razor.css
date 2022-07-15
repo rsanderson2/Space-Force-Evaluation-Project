@@ -22,7 +22,7 @@ table {
 
 .scroll {
     height: 75vh;
-    overflow-y: auto;
+    overflow-y: scroll;
 }
 
 .btn-primary {
