@@ -1,3 +1,35 @@
+/* _content/SpaceForceEvaluations/Components/CategoriesReport.razor.rz.scp.css */
+body[b-n8ybiyasca] {
+}
+
+
+.container[b-n8ybiyasca] {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    justify-items: center;
+    text-align: center;
+}
+
+table[b-n8ybiyasca] {
+    color: white;
+}
+
+.scroll[b-n8ybiyasca] {
+    height: 75vh;
+    overflow-y: auto;
+}
+
+.btn-primary[b-n8ybiyasca] {
+    min-width: 200px;
+    font-size: 16px;
+    position: center;
+}
+
+.reportComponent[b-n8ybiyasca] {
+    position: absolute;
+    width: 100%;
+}
 /* _content/SpaceForceEvaluations/Components/DailyQuestionHolder.razor.rz.scp.css */
 body[b-a5t3ivg6ll] {
 
@@ -36,6 +68,70 @@ button[b-a5t3ivg6ll] {
 button:hover[b-a5t3ivg6ll] {
     background: linear-gradient(to bottom, #77a809 5%, #89c403 100%);
     background-color: #77a809;
+}
+/* _content/SpaceForceEvaluations/Components/ShowAllReportsHolder.razor.rz.scp.css */
+body[b-jb4h1quasc] {
+}
+
+
+.container[b-jb4h1quasc] {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    justify-items: center;
+    text-align: center;
+}
+
+table[b-jb4h1quasc] {
+    color: white;
+}
+
+.scroll[b-jb4h1quasc] {
+    height: 75vh;
+    overflow-y: scroll;
+}
+
+.btn-primary[b-jb4h1quasc] {
+    min-width: 200px;
+    font-size: 16px;
+    position: center;
+}
+
+.reportComponent[b-jb4h1quasc] {
+    position: absolute;
+    width: 100%;
+}
+/* _content/SpaceForceEvaluations/Components/SurveyTakenInRange.razor.rz.scp.css */
+body[b-swnugojhh8] {
+}
+
+
+.container[b-swnugojhh8] {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    justify-items: center;
+    text-align: center;
+}
+
+table[b-swnugojhh8] {
+    color: white;
+}
+
+.scroll[b-swnugojhh8] {
+    height: 65vh;
+    overflow-y: auto;
+}
+
+.btn-primary[b-swnugojhh8] {
+    min-width: 200px;
+    font-size: 16px;
+    position: center;
+}
+
+.reportComponent[b-swnugojhh8] {
+    position: absolute;
+    width: 100%;
 }
 /* _content/SpaceForceEvaluations/Components/TextQuestionsHolder.razor.rz.scp.css */
 body[b-2vrc6v01fr] {

@@ -1,0 +1,31 @@
+﻿body {
+}
+
+
+.container {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    justify-items: center;
+    text-align: center;
+}
+
+table {
+    color: white;
+}
+
+.scroll {
+    height: 75vh;
+    overflow-y: scroll;
+}
+
+.btn-primary {
+    min-width: 200px;
+    font-size: 16px;
+    position: center;
+}
+
+.reportComponent {
+    position: absolute;
+    width: 100%;
+}

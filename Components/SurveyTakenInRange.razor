@@ -23,11 +23,15 @@
                     {
                         @if (@SurveyModel.date > @fromDate && @SurveyModel.date < @toDate)
                         {
-                            <tr>
+                            @if(@SurveyModel.question != null)
+                            {
+                             <tr>
                                 <td>@SurveyModel.surveyID</td>
                                 <td>@SurveyModel.question</td>
                                 <td>@SurveyModel.response</td>
-                            </tr>                            
+                            </tr>                                
+                            }
+                           
                         }
 
                     }

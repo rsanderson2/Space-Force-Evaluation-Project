@@ -436,3 +436,6 @@ C:\Users\Zach\Source\Repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\refin
 C:\Users\Zach\Source\Repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\SpaceForceEvaluations.pdb
 C:\Users\Zach\Source\Repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\SpaceForceEvaluations.genruntimeconfig.cache
 C:\Users\Zach\Source\Repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\ref\SpaceForceEvaluations.dll
+C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\scopedcss\Components\CategoriesReport.razor.rz.scp.css
+C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\scopedcss\Components\ShowAllReportsHolder.razor.rz.scp.css
+C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\scopedcss\Components\SurveyTakenInRange.razor.rz.scp.css

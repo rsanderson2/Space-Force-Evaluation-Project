@@ -21,9 +21,6 @@
     [Parameter]
     public string questionInput { get; set; }
 
-
-
-    public string TestQuestion;
     public int questionNumber;
     public string questionResponse;
     public string questionCategory;
@@ -37,7 +34,7 @@
     {
         // need to store the response as a string, and push it to the database
         surveyModel.freeResponseText = questionResponse;
-        surveyModel.question = TestQuestion;
+        surveyModel.question = questionInput;
         surveyModel.surveyID = questionNumber;
         surveyModel.category = questionCategory;
         surveyModel.takerID = surveyTaker;
