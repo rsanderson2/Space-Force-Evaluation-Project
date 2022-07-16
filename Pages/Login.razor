@@ -64,7 +64,7 @@
                 <h3>Thank you, your response has been noted.</h3>
                 <div class="flex">
                     <article class = "col-2">
-                        <input type = "button" class = "btn btn-primary" value ="Log Out" onclick="location.href='MicrosoftIdentity/Account/SignOut'"/>
+                        <input type = "button" class = "btn btn-primary" value ="Log Out" onclick="location.href='MicrosoftIdentity/Account/SignOut'll"/>
                     </article>
 
                     <article class = "col-2">
@@ -160,7 +160,7 @@
     {
         today = DateTime.Today;
         lastSurvey = currentUser.dailyDate;
-        if ((today - lastSurvey).TotalDays >= 1)
+        if ((today - lastSurvey).TotalDays > 0)
         {
             lastDaily = false;
         }
