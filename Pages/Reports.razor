@@ -9,6 +9,8 @@
 <button class="renderButton" @onclick=ShowCategories>Category Reports</button>
 <button class="renderButton" @onclick=ShowAll>All Reports</button>
 <button class="renderButton" @onclick=ShowDateRange>Show Reports by Date</button>
+<button class="renderButton" @onclick=ShowIndividualQuestions>Show Individual Questions</button>
+<button class="renderButton" @onclick=ShowTextResponses>Show Text Response Questions</button>
 <div class="reportComponent" style="visibility: @showCategories">
         <SpaceForceEvaluations.Components.CategoriesReport></SpaceForceEvaluations.Components.CategoriesReport>  
 </div>
@@ -20,7 +22,12 @@
 <div class="reportComponent" style="visibility: @showDateRange">
     <SpaceForceEvaluations.Components.SurveyTakenInRange surveyQuestion="@surveyQuestion"></SpaceForceEvaluations.Components.SurveyTakenInRange>
 </div>
-
+<div class="reportComponent" style="visibility: @showIndividuals">
+    <SpaceForceEvaluations.Components.IndividualQuestionsReportsHolder surveyQuestion="@surveyQuestion"></SpaceForceEvaluations.Components.IndividualQuestionsReportsHolder>
+</div>
+<div class="reportComponent" style="visibility: @showTextResponses">
+    <SpaceForceEvaluations.Components.TextResponseReportHolder surveyQuestion="@surveyQuestion"></SpaceForceEvaluations.Components.TextResponseReportHolder>
+</div>
 
 
     <AuthorizeView Policy="Admin">
@@ -66,6 +73,8 @@
     public string showCategories = "hidden";
     public string showAll = "hidden";
     public string showDateRange = "hidden";
+    public string showIndividuals = "hidden";
+    public string showTextResponses = "hidden";
     public bool shouldRender = true;
     private SurveyModel surveyModel = new SurveyModel();
 
@@ -85,6 +94,12 @@
             showAll = "hidden";
             showTeam = "hidden";
             showCategories = "hidden";
+            showIndividuals = "hidden"; 
+            showTextResponses = "hidden";  
+        }
+        else
+        {
+            showDateRange = "hidden";
         }
     }
     private void ShowCategories()
@@ -95,6 +110,8 @@
             showAll = "hidden";
             showTeam = "hidden";
             showDateRange = "hidden";
+            showIndividuals = "hidden"; 
+            showTextResponses = "hidden";  
         }
         else
         {
@@ -110,6 +127,8 @@
             showTeam = "hidden";
             showCategories = "hidden";
             showDateRange = "hidden";
+            showIndividuals = "hidden"; 
+            showTextResponses = "hidden";  
         }
         else
         {
@@ -124,11 +143,49 @@
             showAll = "hidden";
             showCategories = "hidden";
             showDateRange = "hidden";
+            showIndividuals = "hidden";  
+            showTextResponses = "hidden";  
         }
         else
         {
             showTeam = "hidden";          
         }
+    }
+
+    private async Task ShowIndividualQuestions()
+    {
+        if (showIndividuals=="hidden")
+        {
+            showIndividuals = "";
+            showAll = "hidden";
+            showCategories = "hidden";
+            showDateRange = "hidden";
+            showTeam = "hidden";
+            showTextResponses = "hidden";                      
+
+        }
+        else
+        {
+            showIndividuals = "hidden";
+        }
+        
+    }
+    private async Task ShowTextResponses()
+    {
+        if (showTextResponses=="hidden")
+        {
+            showTextResponses = "";
+            showAll = "hidden";
+            showCategories = "hidden";
+            showDateRange = "hidden";
+            showTeam = "hidden";
+            showIndividuals = "hidden"; 
+        }
+        else
+        {
+            showTextResponses = "hidden";          
+        }
+        
     }
 
     private async Task<List<SurveyModel>> GetAllSurveys()

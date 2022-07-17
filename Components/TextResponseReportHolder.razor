@@ -1,0 +1,38 @@
+﻿@inject ISurveyData surveyData
+@inject NavigationManager navManager
+
+
+<div class="mainDiv">
+    <div class="container">
+        <h3 class="p-3 text-center">Reports List: </h3>
+        <div class="scroll">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Question Text</th>
+                        <th>Response</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var SurveyModel in surveyQuestion)
+                    {
+                        @if (@SurveyModel.freeResponseText != null && @SurveyModel.freeResponseText != "Test")
+                        {
+                         <tr>
+                            <td>@SurveyModel.question</td>
+                            <td>@SurveyModel.freeResponseText</td>
+                        </tr>                           
+                        }
+
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public List<SurveyModel> surveyQuestion{ get; set; }
+
+}

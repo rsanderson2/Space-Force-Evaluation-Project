@@ -5,7 +5,7 @@
     <InputDate @bind-Value="fromDate" />
     <InputDate @bind-Value="toDate"></InputDate>
 </EditForm>
-<h2>@fromDate</h2>
+
 <div class="mainDiv">
     <div class="container">
         <h3 class="p-3 text-center">Reports List: </h3>
@@ -30,10 +30,8 @@
                                 <td>@SurveyModel.question</td>
                                 <td>@SurveyModel.response</td>
                             </tr>                                
-                            }
-                           
+                            }                         
                         }
-
                     }
                 </tbody>
             </table>

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "xetgnP2vipSXNHAWLLpEhoIEoOp921r0QpimOyHxpK8=",
+  "Hash": "Q0yFV3a4A4MOkIFEVV1SSQN/3QeMeJLojSX2wxy/Gh8=",
   "Source": "SpaceForceEvaluations",
   "BasePath": "_content/SpaceForceEvaluations",
   "Mode": "Default",
@@ -16,6 +16,40 @@
     }
   ],
   "Assets": [
+    {
+      "Identity": "C:\\Users\\Preston\\.nuget\\packages\\chartjs.blazor.fork\\2.0.2\\contentFiles\\any\\netstandard2.1\\wwwroot\\ChartJsBlazorInterop.js",
+      "SourceId": "SpaceForceEvaluations",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Preston\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\",
+      "BasePath": "_content/SpaceForceEvaluations",
+      "RelativePath": "ChartJsBlazorInterop.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\Users\\Preston\\.nuget\\packages\\chartjs.blazor.fork\\2.0.2\\contentFiles\\any\\netstandard2.1\\wwwroot\\ChartJsBlazorInterop.js"
+    },
+    {
+      "Identity": "C:\\Users\\Preston\\.nuget\\packages\\chartjs.blazor.fork\\2.0.2\\staticwebassets\\ChartJsBlazorInterop.js",
+      "SourceId": "ChartJs.Blazor.Fork",
+      "SourceType": "Package",
+      "ContentRoot": "C:\\Users\\Preston\\.nuget\\packages\\chartjs.blazor.fork\\2.0.2\\staticwebassets\\",
+      "BasePath": "_content/ChartJs.Blazor.Fork",
+      "RelativePath": "ChartJsBlazorInterop.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\Users\\Preston\\.nuget\\packages\\chartjs.blazor.fork\\2.0.2\\staticwebassets\\ChartJsBlazorInterop.js"
+    },
     {
       "Identity": "C:\\Users\\Preston\\.nuget\\packages\\microsoft.aspnetcore.components.webassembly.authentication\\6.0.0\\staticwebassets\\AuthenticationService.js",
       "SourceId": "Microsoft.AspNetCore.Components.WebAssembly.Authentication",

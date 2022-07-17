@@ -439,3 +439,6 @@ C:\Users\Zach\Source\Repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\ref\S
 C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\scopedcss\Components\CategoriesReport.razor.rz.scp.css
 C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\scopedcss\Components\ShowAllReportsHolder.razor.rz.scp.css
 C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\scopedcss\Components\SurveyTakenInRange.razor.rz.scp.css
+C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\scopedcss\Components\IndividualQuestionsReportsHolder.razor.rz.scp.css
+C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\bin\Debug\net6.0\ChartJs.Blazor.dll
+C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\scopedcss\Components\TextResponseReportHolder.razor.rz.scp.css

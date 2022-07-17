@@ -4,6 +4,7 @@
 // to generate and store surveys in the database.
 // ================================================================================================
 using Microsoft.Extensions.Caching.Memory;
+using System.Linq;
 namespace SpaceForceEvaluationAppLibrary.DataAccess;
 
 public class MongoSurveyData : ISurveyData
@@ -73,9 +74,77 @@ public class MongoSurveyData : ISurveyData
     // this task returns a list of all surveys that a team has taken
     public async Task<List<SurveyModel>> GetSurveysByTeam(string teamID)
     {
-        var results = await _surveys.FindAsync(s => s.teamID == teamID); 
+        var results = await _surveys.FindAsync(s => s.teamID == teamID);
         return results.ToList();
     }
+
+    public async Task<List<SurveyModel>> GetAllFreeResponse()
+    {
+        var results = await _surveys.FindAsync(s => s.surveyID == 0);
+        return results.ToList();
+    }
+
+    //public async Task<List<SurveyModel>> GetAllUserFreeResponse(string userID)
+    //{
+    //      var results = await _surveys.FindAsync(s => s.surveyID == 0 && s.takerID == userID);
+    //      return results.ToList();
+    //}
+    //public async Task<float> GetAvgOfCategory(string category)
+    //{
+    //    int i;
+    //    float avg = 0;
+    //    List<SurveyModel> results = await _surveys.FindAsync(s => s.category == category);
+    //    results.ToList();
+    //    foreach(var item in results)
+    //    {
+    //        avg += item.response;
+    //        i++;
+    //    }
+    //    avg = avg / i;
+    //    return avg;
+    //}
+
+    //public async Task<float> GetAvgOfTeam(string teamID)
+    //{
+    //     var results = await _surveys.FindAsync(s => s.teamID == teamID);
+    //     var average = results.response.Average();
+    //     return average.ToFloat();
+    //}
+
+    //public async Task<float> GetAvgOfTeamByCategory(string teamID, string category)
+    //{
+    //     var results = await _surveys.FindAysnc(s => s.teamID == teamID && s.category == category);
+    //     var average = results.response.Average();
+    //     return average.ToFloat();
+    //}
+
+    //public async Task<float> GetAvgOfUser(string userID)
+    //{
+    //     var results = await _surveys.FindAsync(s => s.takerID == userID);
+    //     var average = results.response.Average();
+    //     return average.ToFloat();
+    //}
+
+    //public async Task<float> GetAvgOfUserByCategory(string userID, string category)
+    //{
+    //     var results = await _surveys.FindAsync(s => s.TakerID == userID && s.category == category);
+    //     var average = results.response.Average();
+    //     return average.ToFloat();
+    //}
+
+    //public async Task<float> GetAvgAboutUser(string userID)
+    //{
+    //     var results = await _surveys.FindAsync(s => s.subjectID == userID);
+    //     var average = results.response.Average();
+    //     return average.ToFloat();
+    //}
+
+    //public async Task<float> GetAvgAboutUserByCategory(string userID, string category)
+    //{
+    //     var results = await _surveys.FindAsync(s => s.subjectID == userID && s.category == category);
+    //     var average = results.response.Average();
+    //     return average.ToFloat();
+    //}   
 
     // This task creates a new survey in the database
     public Task CreateSurvey(SurveyModel survey)

@@ -1,0 +1,62 @@
+﻿@using ChartJs.Blazor.Common
+@using ChartJs.Blazor.PieChart
+@using ChartJs.Blazor.Util
+@inject NavigationManager navManager;
+
+
+<button @onclick="ShowChart">Show Chart</button>
+<Chart Config="_config"></Chart>
+@code {
+    [Parameter]
+    public int firstNum { get; set; }
+    [Parameter]
+    public int secondNum { get; set; }
+    [Parameter]
+    public int thirdNum { get; set; }
+    [Parameter]
+    public int fourthNum { get; set; }
+    [Parameter]
+    public int fifthNum { get; set; }
+
+    private PieConfig _config;
+
+        PieDataset<int> dataset = new PieDataset<int>(new[] { 0, 0, 0, 0, 0 })
+        {
+        BackgroundColor = new[]
+        {
+            ColorUtil.ColorHexString(255, 99, 132), // Slice 1 aka "Red"
+            ColorUtil.ColorHexString(255, 205, 86), // Slice 2 aka "Yellow"
+            ColorUtil.ColorHexString(75, 192, 192), // Slice 3 aka "Green"
+            ColorUtil.ColorHexString(54, 162, 235), // Slice 4 aka "Blue"
+            ColorUtil.ColorHexString(100,100,100),
+        }
+    };
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        _config = new PieConfig
+    {
+        Options = new PieOptions
+        {
+            Responsive = true,
+        }
+    };
+
+        foreach (string color in new[] { "Strongly Disagree", "Somewhat Disagree", "Neither Agree nor Disagree", "Somewhat Agree", "Strongly Agree" })
+        {
+            _config.Data.Labels.Add(color);
+        }
+
+        _config.Data.Datasets.Add(dataset);    
+
+    }
+    public void ShowChart()
+    {
+        dataset[0] = firstNum;
+        dataset[1] = secondNum;
+        dataset[2] = thirdNum;
+        dataset[3] = fourthNum;
+        dataset[4] = fifthNum; 
+    }
+}

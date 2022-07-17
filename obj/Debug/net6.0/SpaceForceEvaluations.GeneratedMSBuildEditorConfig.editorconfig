@@ -19,6 +19,14 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Preston/source/repos/Space-Force-Evaluation-Project/Components/BarGraph.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xCYXJHcmFwaC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Preston/source/repos/Space-Force-Evaluation-Project/Components/PieChartHolder.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQaWVDaGFydEhvbGRlci5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Preston/source/repos/Space-Force-Evaluation-Project/Pages/Counter.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ291bnRlci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
@@ -43,6 +51,10 @@ build_metadata.AdditionalFiles.CssScope = b-n8ybiyasca
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xEYWlseVF1ZXN0aW9uSG9sZGVyLnJhem9y
 build_metadata.AdditionalFiles.CssScope = b-a5t3ivg6ll
 
+[C:/Users/Preston/source/repos/Space-Force-Evaluation-Project/Components/IndividualQuestionsReportsHolder.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xJbmRpdmlkdWFsUXVlc3Rpb25zUmVwb3J0c0hvbGRlci5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-95d7e831j8
+
 [C:/Users/Preston/source/repos/Space-Force-Evaluation-Project/Components/ShowAllReportsHolder.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xTaG93QWxsUmVwb3J0c0hvbGRlci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = b-jb4h1quasc
@@ -54,6 +66,10 @@ build_metadata.AdditionalFiles.CssScope = b-swnugojhh8
 [C:/Users/Preston/source/repos/Space-Force-Evaluation-Project/Components/TextQuestionsHolder.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xUZXh0UXVlc3Rpb25zSG9sZGVyLnJhem9y
 build_metadata.AdditionalFiles.CssScope = b-2vrc6v01fr
+
+[C:/Users/Preston/source/repos/Space-Force-Evaluation-Project/Components/TextResponseReportHolder.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xUZXh0UmVzcG9uc2VSZXBvcnRIb2xkZXIucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-jb99hgfe50
 
 [C:/Users/Preston/source/repos/Space-Force-Evaluation-Project/Pages/Account.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWNjb3VudC5yYXpvcg==

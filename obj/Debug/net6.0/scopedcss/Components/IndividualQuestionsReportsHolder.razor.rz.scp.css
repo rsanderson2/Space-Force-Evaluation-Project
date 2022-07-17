@@ -1,0 +1,36 @@
+body[b-95d7e831j8] {
+}
+
+
+.container[b-95d7e831j8] {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    justify-items: center;
+    text-align: center;
+}
+
+table[b-95d7e831j8] {
+    color: white;
+}
+
+.scroll[b-95d7e831j8] {
+    height: 75vh;
+    overflow-y: auto;
+}
+
+.btn-primary[b-95d7e831j8] {
+    min-width: 200px;
+    font-size: 16px;
+    position: center;
+}
+
+.reportComponent[b-95d7e831j8] {
+    position: absolute;
+    width: 100%;
+}
+input[b-95d7e831j8]::-webkit-inner-spin-button,
+input[b-95d7e831j8]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
