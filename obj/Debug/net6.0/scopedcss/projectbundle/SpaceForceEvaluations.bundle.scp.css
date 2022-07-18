@@ -36,7 +36,7 @@ body[b-a5t3ivg6ll] {
 }
 .maincomponent[b-a5t3ivg6ll] {
     background-image: linear-gradient(180deg, #002035 0%, #000f 99%);
-    color: #7f838a;
+    color: white;
     border-style: double;
     border-color: #7f838a;
     margin-bottom: 1vh;
@@ -176,7 +176,7 @@ body[b-2vrc6v01fr] {
 
 .maincomponent[b-2vrc6v01fr] {
     background-image: linear-gradient(180deg, #002035 0%, #000f 99%);
-    color: #7f838a;
+    color: white;
     border-style: double;
     border-color: #7f838a;
 }
@@ -324,7 +324,8 @@ EditForm[b-9c49sc1y2p] {
 /* Main body CSS */
 body[b-qyds3voz9g] {
     background-image: linear-gradient(180deg, #002035 0%, #000f 99%);
-    color: #7f838a;
+    /*color: #7f838a;*/
+    color: white;
     min-height: 800px;
 }
 

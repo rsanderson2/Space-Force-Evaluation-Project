@@ -186,8 +186,9 @@
     }
     private void checkMonthlySurveyEligible(UserModel currentUser)
     {
+        // Set the total days back to 30 when feedback is finished being collected. 
         lastSurveyMonthly = currentUser.monthlyDate;
-        if ((today - lastSurveyMonthly).TotalDays >= 30)
+        if ((today - lastSurveyMonthly).TotalDays >= 0)
         {
             lastMonthly = false;
         }
