@@ -42,19 +42,22 @@
                                     <th>QuestionID</th>
                                     <th>Question Text</th>
                                     <th>Taker ID</th>
+                                    <th>Taker Name</th>
                                     <th>Response</th>
                                 </tr>
                             </thead>
                             <tbody>
+
                                 @foreach (var SurveyModel in teamQuestions)
                                 {
                                     <tr>
-                                        <td>@SurveyModel.surveyID</td>
-                                        <td>@SurveyModel.question</td>
-                                        <td>@SurveyModel.takerID</td>
-                                        <td>@SurveyModel.response</td>
-                                    </tr>
-                                }
+                                            <td>@SurveyModel.surveyID</td>
+                                            <td>@SurveyModel.question</td>
+                                            <td>@SurveyModel.takerID</td>
+                                            <td>@SurveyModel.name</td>
+                                            <td>@SurveyModel.response</td>
+                                    </tr>                               
+                                }                                   
                             </tbody>
                         </table>
                     </div>
@@ -82,7 +85,14 @@
     List<SurveyModel> surveyQuestion = new List<SurveyModel>();
     List<SurveyModel> teamQuestions = new List<SurveyModel>();
     List<SurveyModel> categoryQuestions = new List<SurveyModel>();
-    // set the list equal to the full collection of all surveys taken
+
+
+
+    public int i, j, k = 0;
+    public int z = 0;
+
+    public string[] testUser = new string[1000000];
+    public string userHolder;
 
 
     // Functions to show and hide buttons
@@ -168,7 +178,7 @@
         {
             showIndividuals = "hidden";
         }
-        
+
     }
     private async Task ShowTextResponses()
     {
@@ -185,7 +195,7 @@
         {
             showTextResponses = "hidden";          
         }
-        
+
     }
 
     private async Task<List<SurveyModel>> GetAllSurveys()

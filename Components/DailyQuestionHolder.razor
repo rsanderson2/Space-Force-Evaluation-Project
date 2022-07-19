@@ -58,6 +58,7 @@
     public string surveyTaker;
     public string surveySubject;
     public string takerTeamID;
+    public string takerName;
     private SurveyModel surveyModel = new SurveyModel();
 
     public string TestQuestion = "";
@@ -77,6 +78,7 @@
         surveyModel.takerID = surveyTaker;
         surveyModel.subjectID = surveySubject;
         surveyModel.teamID = takerTeamID;
+        surveyModel.name = takerName;
         surveyDate = DateTime.Today;
         await surveyData.CreateSurvey(surveyModel);
         await UpdateUser();
@@ -161,6 +163,7 @@
             surveyTaker = user.userID;
             surveySubject = subject.userID;
         }
+        takerName = user.firstName + " " + user.lastName;
         user.dailyDate = surveyDate;
         takerTeamID = user.teamID;
     }

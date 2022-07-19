@@ -35,13 +35,6 @@ public class MongoSurveyData : ISurveyData
         return results.FirstOrDefault();
     }
 
-    // here is the task that updates the survey passed into the task.
-    public async Task UpdateSurvey(SurveyModel survey)
-    {
-        await _surveys.ReplaceOneAsync(s => s.Id == survey.Id, survey);
-        _cache.Remove(CacheName);
-    }
-
     // this task returns a list of survey models that the specified user
     // taken
     public async Task<List<SurveyModel>> GetListOfSurveys(string takerID)
@@ -145,6 +138,13 @@ public class MongoSurveyData : ISurveyData
     //     var average = results.response.Average();
     //     return average.ToFloat();
     //}   
+    //public Task UpdateSurvey(SurveyModel survey)
+    //{
+    //    var user = _users.GetUser(survey.takerID);
+    //    survey.name = user.firstName + " " + user.lastName;
+    //    var filter = Builders<SurveyModel>.Filter.Eq("takerID", survey.takerID);
+    //    return _surveys.ReplaceOne(filter, survey, new ReplaceOptions { IsUpsert = true });
+    //}
 
     // This task creates a new survey in the database
     public Task CreateSurvey(SurveyModel survey)

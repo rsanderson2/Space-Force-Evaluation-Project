@@ -26,6 +26,7 @@
     public string questionCategory;
     public string surveyTaker;
     public string surveySubject;
+    public string takerName;
     DateTime surveyDate;
     private SurveyModel surveyModel = new SurveyModel();
     public string showQuestion = "";
@@ -39,6 +40,7 @@
         surveyModel.category = questionCategory;
         surveyModel.takerID = surveyTaker;
         surveyModel.subjectID = surveySubject;
+        surveyModel.name = takerName;
         surveyDate = DateTime.Today;
         await surveyData.CreateSurvey(surveyModel);
         await ShowDiv();
@@ -49,6 +51,7 @@
     {
         var user = await AuthenticationStateProviderHelpers.GetUserFromAuth(authProvider, userData);
         surveyTaker = user.userID;
+        takerName = user.firstName + " " + user.lastName;
     }
 
     private async Task ShowDiv()

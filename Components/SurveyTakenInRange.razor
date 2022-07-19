@@ -25,6 +25,27 @@
                         {
                             @if(@SurveyModel.question != null)
                             {
+                            addQuestions(@SurveyModel.response);
+                            @if (@SurveyModel.response == 1)
+                            {
+                                incrementOne();
+                            }
+                            @if (@SurveyModel.response == 2)
+                            {
+                                incrementTwo();
+                            }
+                            @if (@SurveyModel.response == 3)
+                            {
+                                incrementThree();
+                            }
+                            @if (@SurveyModel.response == 4)
+                            {
+                                incrementFour();
+                            }
+                            @if (@SurveyModel.response == 5)
+                            {
+                                incrementFive();
+                            }
                              <tr>
                                 <td>@SurveyModel.surveyID</td>
                                 <td>@SurveyModel.question</td>
@@ -35,6 +56,7 @@
                     }
                 </tbody>
             </table>
+            <PieChartHolder firstNum="firstNum" secondNum="secondNum" thirdNum="thirdNum" fourthNum="fourthNum" fifthNum="fifthNum"></PieChartHolder>   
         </div>
     </div>
 </div>
@@ -47,7 +69,44 @@
     DateTime toDate = DateTime.Now;
 
     public string firstString, secondString = "";
-
+    public int firstNum, secondNum, thirdNum, fourthNum, fifthNum = 0;
+    private int questionNumber;
+    private int totalQuestions;
+    private int totalResponse;
+    private double average;
+    private void incrementOne()
+    {
+        firstNum++;
+    }
+    private void incrementTwo()
+    {
+        secondNum++;
+    }
+    private void incrementThree()
+    {
+        thirdNum++;
+    }
+    private void incrementFour()
+    {
+        fourthNum++;
+    }
+    private void incrementFive()
+    {
+        fifthNum++  ;
+    }
+    private void addQuestions(int response)
+    {
+        totalQuestions++;
+        totalResponse += response;
+    }
+    private double getAverage(int totalResponse, int totalQuestions)
+    {
+        if (totalResponse != 0 && totalQuestions != 0)
+        {
+            average = (double)totalResponse / (double)totalQuestions;            
+        }
+        return average;
+    }
     private void HandleSubmit()
     {
         

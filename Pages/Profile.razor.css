@@ -36,6 +36,26 @@ img {
     text-align: center;
 }
 
+.formoption {
+    width: 0;
+}
+
+.btn-primary {
+    min-width: 80px;
+    font-size: 16px;
+    position: center;
+    padding: 0.5px;
+}
+
+table {
+    color: white;
+}
+
+.scroll {
+    height: 75vh;
+    overflow-y: auto;
+}
+
 /* Default grid CSS */
 .grid {
     display: grid;

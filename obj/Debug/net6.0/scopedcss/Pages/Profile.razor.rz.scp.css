@@ -36,6 +36,26 @@ img[b-v2o82lkojk] {
     text-align: center;
 }
 
+.formoption[b-v2o82lkojk] {
+    width: 0;
+}
+
+.btn-primary[b-v2o82lkojk] {
+    min-width: 80px;
+    font-size: 16px;
+    position: center;
+    padding: 0.5px;
+}
+
+table[b-v2o82lkojk] {
+    color: white;
+}
+
+.scroll[b-v2o82lkojk] {
+    height: 75vh;
+    overflow-y: auto;
+}
+
 /* Default grid CSS */
 .grid[b-v2o82lkojk] {
     display: grid;

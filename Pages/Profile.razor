@@ -3,60 +3,210 @@
 @inject ISurveyData surveyData
 @inject IUserData userData
 @inject NavigationManager navMangager
+@inject AuthenticationStateProvider authProvider
 
 <div class="mainDiv">
     <div class="container grid">
+        <!--User Profile Information-->
         <section>
             <h1>My Profile</h1>
 
             <div class="profileinfo">
-                <button @onclick="ClosePage"></button>
+                <h4><b>Name: </b> @firstName @lastName</h4>
+                <h4><b>Email Address: </b> @emailAddress</h4>
+                <h4><b>Rank: </b> @rank</h4>
+                <h4><b>Job: </b> @job</h4>
+                <h4><b>Team: </b> @team</h4>
             </div>
         </section>
 
         <section>
             <h2>My Account</h2>
-            <p>
-            <a href="/Account">
-                Edit My Profile
-            </a>
-            </p>
+            <button class="btn-primary" @onclick=UpdateB2CInfo>Update First/Last Name</button>
+            <!--Update User Rank-->
+            <button class="btn-primary" @onclick=ShowUpdateRank>Update Rank</button>
+            <div style="visibility: @showUpdateRank">
+                <EditForm Model="@userModel" OnValidSubmit="@HandleRankUpdate">
+                    <!--User Rank-->
+                    <div class="formoption">
+                        <label> Rank
+                            <InputSelect @bind-Value="userModel.rank">
+                                <option value="">Select Rank...</option>
+                                <option value="Specialist One (Spc1/E-1)">Specialist One (Spc1/E-1)</option>
+                                <option value="Specialist Two (Spc2/E-2)">Specialist Two (Spc2/E-2)</option>
+                                <option value="Specialist Three (Spc3/E-3)">Specialist Three (Spc3/E-3)</option>
+                                <option value="Specialist Four (Spc4/E-4)">Specialist Four (Spc4/E-4)</option>
+                                <option value="Sergeant (Sgt/E-5)">Sergeant (Sgt/E-5)</option>
+                                <option value="Technical Sergeant (TSgt/E-6)">Technical Sergeant (TSgt/E-6)</option>
+                                <option value="Second Lieutenant (2d Lt/0-1)">Second Lieutenant (2d Lt/0-1)</option>
+                                <option value="First Lieutenant (1st LD/0-2)">First Lieutenant (1st LD/0-2)</option>
+                                <option value="Captain (Capt/0-3)">Captain (Capt/0-3)</option>
+                                <option value="Major (Maj/0-4)">Major (Maj/0-4)</option>
+                                <option value="Lieutenant Colonel (Lt Col/0-5)">Lieutenant Colonel (Lt Col/0-5)</option>
+                            </InputSelect>
+                        </label>
+                    </div>
+                    <button type="submit">Submit</button>
+                </EditForm>
+            </div>
+
+            <!--Update User Job-->
+            <button class="btn-primary" @onclick=ShowUpdateJob>Update Job</button>
+            <div style="visibility: @showUpdateJob">
+                <EditForm Model="@userModel" OnValidSubmit="@HandleJobUpdate">
+                    <label> Job Title
+                        <InputText @bind-Value="userModel.job"></InputText>
+                    </label>
+                    <button type="submit">Submit</button>
+                </EditForm>
+            </div>
+
+            <!--Update User Team-->
+            <button class="btn-primary" @onclick=ShowUpdateTeam>Update Team</button>
+            <div style="visibility: @showUpdateTeam">
+                <EditForm Model="@userModel" OnValidSubmit="@HandleTeamUpdate">
+                    <div class="formoption">
+                        <label>Team ID
+                            <InputSelect @bind-Value="userModel.teamID">
+                                <option value="">Select Team...</option>
+                                <option value="Sales">Sales</option>
+                                <option value="Accounting">Accounting</option>
+                                <option value="Management">Management</option>
+                                <option value="Human Resources">Human Resources</option>
+                            </InputSelect>
+                        </label>
+                    </div> 
+                    <button type="submit">Submit</button>
+                </EditForm>
+            </div>
         </section>
 
+        <!--User Survey History-->
         <section class="grid-col-span-2">
             <h2>Survey History</h2>
             <p>These are the surveys that you have completed.</p>
+            <div class="scroll">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>QuestionID</th>
+                            <th>Question Text</th>
+                            <th>Response</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var SurveyModel in surveys)
+                        {
+                            <tr>
+                                <td>@SurveyModel.surveyID</td>
+                                <td>@SurveyModel.question</td>
+                                <td>@SurveyModel.response</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
         </section>
     </div>
 </div>
 
 @code {
-    //private UserModel loggedInUser;
-    //private List<SurveyModel> surveys;
-    //private List<SurveyModel> daily;
-    //private List<SurveyModel> weekly;
-    //private List<SurveyModel> monthly;
+    private UserModel loggedInUser;
+    private UserModel userModel = new UserModel();
+    private string firstName, lastName, emailAddress, rank, job, team = "";
+    private string showUpdateRank = "hidden";
+    private string showUpdateJob = "hidden";
+    private string showUpdateTeam = "hidden";
+    private string editB2Cinfo = "https://spaceforceevaluationsauth.b2clogin.com/spaceforceevaluationsauth.onmicrosoft.com/oauth2/v2.0/authorize?p=B2C_1_edit&client_id=90f2a18e-4d4b-48c3-b9b5-444253a6400d&nonce=defaultNonce&redirect_uri=https%3A%2F%2Fspaceforceevaluations.azurewebsites.net%2Fsignin-oidc&scope=openid&response_type=id_token&prompt=login";
+    private SurveyModel surveyModel = new SurveyModel();
+    List<SurveyModel> surveys = new List<SurveyModel>();
 
-    /*
-    protected async override Task OnIntializedAsync()
+    private void UpdateB2CInfo()
     {
-        // TODO: Replace with user lookup later...
-        loggedInUser = await userData.GetUserFromAuthentication("ABC-123");
-
-        // returns surveys the user has completed. In this case user "ABC-123"
-        var results = await userData.GetUsersSurveys(loggedInUser.Id);
-
-        if (loggedInUser is not null && results is not null)
+        navMangager.NavigateTo(editB2Cinfo);
+    }
+    private void ShowUpdateTeam()
+    {
+        if (showUpdateTeam == "hidden")
         {
-            // TODO: put get all surveys that this user took here
-            //submissions = results.OrderByDescending(s => s.date).ToList();
+            showUpdateTeam = "";
+        }
+        else
+        {
+            showUpdateTeam = "hidden";
         }
     }
-    */
-
+    private void ShowUpdateJob()
+    {
+        if (showUpdateJob == "hidden")
+        {
+            showUpdateJob = "";
+        }
+        else
+        {
+            showUpdateJob = "hidden";
+        }
+    }
+    private void ShowUpdateRank()
+    {
+        if (showUpdateRank == "hidden")
+        {
+            showUpdateRank = "";
+        }
+        else
+        {
+            showUpdateRank = "hidden";
+        }
+    }
+    private async Task HandleTeamUpdate()
+    {
+        team = userModel.teamID;
+        await UpdateUserTeam();
+    }
+    private async Task HandleRankUpdate()
+    {
+        rank = userModel.rank;
+        await UpdateUserRank();
+    }
+    private async Task HandleJobUpdate()
+    {
+        job = userModel.job;
+        await UpdateUserJob();
+    }
+    private async Task UpdateUserTeam()
+    {
+        loggedInUser.teamID = team;
+        await userData.UpdateUser(loggedInUser);
+    }
+    private async Task UpdateUserJob()
+    {
+        loggedInUser.job = job;
+        await userData.UpdateUser(loggedInUser);
+    }
+    private async Task UpdateUserRank()
+    {
+        loggedInUser.rank = rank;
+        await userData.UpdateUser(loggedInUser); 
+    }
+    protected async override Task OnInitializedAsync()
+    {
+        loggedInUser = await AuthenticationStateProviderHelpers.GetUserFromAuth(authProvider, userData);
+        firstName = loggedInUser.firstName;
+        lastName = loggedInUser.lastName;
+        emailAddress = loggedInUser.email;
+        rank = loggedInUser.rank;
+        job = loggedInUser.job;
+        team = loggedInUser.teamID;
+        await GetUserSurveys();
+    }
+    private async Task <List<SurveyModel>> GetUserSurveys()
+    {
+        var userSurveys = await surveyData.GetListOfSurveys(loggedInUser.userID);
+        surveys = userSurveys.ToList();
+        return surveys;
+    }
     private void ClosePage()
     {
         navMangager.NavigateTo("/");
     }
-
 }
