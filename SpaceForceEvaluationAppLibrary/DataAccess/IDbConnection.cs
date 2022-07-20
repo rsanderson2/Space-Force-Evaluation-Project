@@ -15,15 +15,13 @@ namespace SpaceForceEvaluationAppLibrary.DataAccess
         string DbName { get; }
         IMongoCollection<FeedbackModel> FeedbackCollection { get; }
         string FeedbackCollectionName { get; }
-        IMongoCollection<MonthlyQuestionsModel> MonthlyQuestionsCollection { get; }
-        string MonthlyQuestionsCollectionName { get; }
         IMongoCollection<ReportModel> ReportsCollection { get; }
         string ReportsCollectionName { get; }
         IMongoCollection<SurveyModel> SurveyCollection { get; }
         string SurveyCollectionName { get; }
         IMongoCollection<UserModel> UserCollection { get; }
         string UserCollectionName { get; }
-        IMongoCollection<WeeklyQuestionsModel> WeeklyQuestionsCollection { get; }
-        string WeeklyQuestionsCollectionName { get; }
+        IMongoCollection<AccoladeModel> AccoladesCollection { get; }
+        string AccoladesCollectionName { get; }
     }
 }

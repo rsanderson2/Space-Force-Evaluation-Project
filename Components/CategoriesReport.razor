@@ -88,6 +88,7 @@
         }
     }
 
+    // Function to get the list of survey responses based on the input category
     private async Task<List<SurveyModel>> HandleSubmit()
     {
         var categories = await surveyData.GetSurveysByCategory(surveyModel.category);

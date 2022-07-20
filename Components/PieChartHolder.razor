@@ -32,7 +32,7 @@
         }
     };
 
-
+    // Set up the new graph
     protected override async Task OnInitializedAsync()
     {
         _config = new PieConfig
@@ -51,6 +51,7 @@
         _config.Data.Datasets.Add(dataset);    
 
     }
+    // Populate the graph with values passed into the component
     public void ShowChart()
     {
         dataset[0] = firstNum;

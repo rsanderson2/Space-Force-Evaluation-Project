@@ -170,6 +170,15 @@ table[b-swnugojhh8] {
     position: absolute;
     width: 100%;
 }
+/* _content/SpaceForceEvaluations/Components/TeamAccoladesReportHolder.razor.rz.scp.css */
+body[b-n47gka2n2f] {
+}
+div[b-n47gka2n2f]{
+    color: white;
+}
+table[b-n47gka2n2f]{
+    color: white;
+}
 /* _content/SpaceForceEvaluations/Components/TextQuestionsHolder.razor.rz.scp.css */
 body[b-2vrc6v01fr] {
 }
@@ -229,6 +238,30 @@ table[b-jb99hgfe50] {
 }
 /* _content/SpaceForceEvaluations/Components/UserProfileHolder.razor.rz.scp.css */
 body[b-emw8fo77wp] {
+}
+/* _content/SpaceForceEvaluations/Pages/Accolades.razor.rz.scp.css */
+body[b-juzrpudchx] {
+}
+
+.mainDiv[b-juzrpudchx] {
+    background-image: linear-gradient(180deg, #002035 0%, #000f 99%);
+    color: #7f838a;
+    height: 100vh;
+    text-align: center;
+}
+
+.container[b-juzrpudchx] {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    justify-items: center;
+    text-align: center;
+}
+
+.btn-primary[b-juzrpudchx] {
+    font-size: 16px;
+    position: center;
+    padding: 0.5px;
 }
 /* _content/SpaceForceEvaluations/Pages/Account.razor.rz.scp.css */
 /* Main page */
@@ -494,7 +527,7 @@ button[b-14ehcwd0li] {
 /* Main page */
 .mainDiv[b-v2o82lkojk] {
     background-image: linear-gradient(180deg, #002035 0%, #000f 99%);
-    color: #7f838a;
+    color: white;
     height: 100vh;
     text-align: center;
     display: flex;
@@ -517,9 +550,16 @@ ul[b-v2o82lkojk] {
 }
 
 img[b-v2o82lkojk] {
-    width: 100%;
+    display: inline;
+    max-width: 2vw;
 }
-
+img:hover + .hide[b-v2o82lkojk]{
+    display: block;
+    color: white;
+}
+.hide[b-v2o82lkojk]{
+    display: none;
+}
 /* Container for page contents */
 .container[b-v2o82lkojk]  {
     max-width: 1600px;
@@ -575,7 +615,7 @@ body[b-o2ye6ss7r8] {
 
 .mainDiv[b-o2ye6ss7r8] {
     background-image: linear-gradient(180deg, #002035 0%, #000f 99%);
-    color: #7f838a;
+    color: white;
     min-height: 100vh;
     text-align: center;
 }

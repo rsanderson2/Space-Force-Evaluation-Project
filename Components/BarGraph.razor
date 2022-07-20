@@ -32,7 +32,7 @@
         }
     };
 
-
+    // Set up the new graph
     protected override async Task OnInitializedAsync()
     {
         _config = new BarConfig
@@ -51,6 +51,7 @@
         _config.Data.Datasets.Add(dataset);    
 
     }
+    // Update the graph with the variables that are being passed into the component
     public void ShowChart()
     {
         dataset[0] = firstNum;

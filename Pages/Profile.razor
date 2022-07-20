@@ -4,9 +4,10 @@
 @inject IUserData userData
 @inject NavigationManager navMangager
 @inject AuthenticationStateProvider authProvider
+@inject IAccoladeData accoladeData
 
 <div class="mainDiv">
-    <div class="container grid">
+    <div class="container grid"> 
         <!--User Profile Information-->
         <section>
             <h1>My Profile</h1>
@@ -82,7 +83,7 @@
         </section>
 
         <!--User Survey History-->
-        <section class="grid-col-span-2">
+        <section>
             <h2>Survey History</h2>
             <p>These are the surveys that you have completed.</p>
             <div class="scroll">
@@ -107,6 +108,34 @@
                 </table>
             </div>
         </section>
+
+        <!--User Received Accolades-->
+        <section>
+            <h2>Personal Accolades</h2>
+            <h4>Your accolade rank:
+            <img src="@accoladesRank"/>
+            <div class="hide">@rankName</div>
+            </h4>
+
+            <p>These are accolades that have been awarded anonymously from your team members</p>
+            <div class="scroll">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Accolade</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach(var AccoladeModel in accolades)
+                        {
+                            <tr>
+                                <td>@AccoladeModel.text</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </section>
     </div>
 </div>
 
@@ -114,13 +143,17 @@
     private UserModel loggedInUser;
     private UserModel userModel = new UserModel();
     private string firstName, lastName, emailAddress, rank, job, team = "";
+    private string accoladesRank;
+    private string rankName;
     private string showUpdateRank = "hidden";
     private string showUpdateJob = "hidden";
     private string showUpdateTeam = "hidden";
     private string editB2Cinfo = "https://spaceforceevaluationsauth.b2clogin.com/spaceforceevaluationsauth.onmicrosoft.com/oauth2/v2.0/authorize?p=B2C_1_edit&client_id=90f2a18e-4d4b-48c3-b9b5-444253a6400d&nonce=defaultNonce&redirect_uri=https%3A%2F%2Fspaceforceevaluations.azurewebsites.net%2Fsignin-oidc&scope=openid&response_type=id_token&prompt=login";
     private SurveyModel surveyModel = new SurveyModel();
     List<SurveyModel> surveys = new List<SurveyModel>();
+    List<AccoladeModel> accolades = new List<AccoladeModel>();
 
+    // Link the user to B2C to update their B2C specific information
     private void UpdateB2CInfo()
     {
         navMangager.NavigateTo(editB2Cinfo);
@@ -158,6 +191,8 @@
             showUpdateRank = "hidden";
         }
     }
+
+    // Functions for handling various updates for the user profile
     private async Task HandleTeamUpdate()
     {
         team = userModel.teamID;
@@ -198,15 +233,48 @@
         job = loggedInUser.job;
         team = loggedInUser.teamID;
         await GetUserSurveys();
+        await GetAccoladesAboutUser();
+        await GetAccoladeRank();
     }
+
+    // Function to get a list of accolades about the user
+    private async Task <List<AccoladeModel>> GetAccoladesAboutUser()
+    {
+        var userAccolades = await accoladeData.GetSubjectAccolades(loggedInUser.userID);
+        accolades = userAccolades.ToList();
+        return accolades;
+    }
+
+    // Function assigning arbitrary values to give "ranking" based on number of received accolades
+    private async Task GetAccoladeRank()
+    {
+        if (accolades.Count() > 10)
+        {
+            rankName = "Silver";
+            accoladesRank = "https://i.imgur.com/qBEYeux.png";
+        }
+        else if (accolades.Count() > 20)
+        {
+            rankName = "Gold";
+            accoladesRank = "https://i.imgur.com/xt4409s.png";
+        }
+        else if (accolades.Count() > 30)
+        {
+            rankName = "Platinum";
+            accoladesRank = "https://i.imgur.com/rK2dM1w.png";
+        }
+        else
+        {
+            rankName = "Bronze";
+            accoladesRank = "https://i.imgur.com/AhFMQ2P.png";
+        }
+    }
+    // Function to get a list of all surveys the user has taken
     private async Task <List<SurveyModel>> GetUserSurveys()
     {
         var userSurveys = await surveyData.GetListOfSurveys(loggedInUser.userID);
         surveys = userSurveys.ToList();
         return surveys;
     }
-    private void ClosePage()
-    {
-        navMangager.NavigateTo("/");
-    }
+
 }

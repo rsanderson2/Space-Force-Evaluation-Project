@@ -29,10 +29,14 @@
     <SpaceForceEvaluations.Components.TextResponseReportHolder surveyQuestion="@surveyQuestion"></SpaceForceEvaluations.Components.TextResponseReportHolder>
 </div>
 
-
     <AuthorizeView Policy="Admin">
         <Authorized>
                 <button class="btn-primary" @onclick=ShowTeam>Show Team Reports</button>
+
+                <div class="" style="visibility: @showTeam">
+                    <SpaceForceEvaluations.Components.TeamAccoladesReportHolder></SpaceForceEvaluations.Components.TeamAccoladesReportHolder>
+                </div>
+
                 <div class="container" style="visibility: @showTeam">
                     <h3 class="p-3 text-center">Reports List: </h3>
                     <div class="scroll">
@@ -65,7 +69,6 @@
         </Authorized>
 
     </AuthorizeView>
-
 </div>
 
 @code {

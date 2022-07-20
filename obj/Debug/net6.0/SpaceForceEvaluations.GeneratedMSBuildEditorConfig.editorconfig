@@ -63,6 +63,10 @@ build_metadata.AdditionalFiles.CssScope = b-jb4h1quasc
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xTdXJ2ZXlUYWtlbkluUmFuZ2UucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-swnugojhh8
 
+[C:/Users/Preston/source/repos/Space-Force-Evaluation-Project/Components/TeamAccoladesReportHolder.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xUZWFtQWNjb2xhZGVzUmVwb3J0SG9sZGVyLnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-n47gka2n2f
+
 [C:/Users/Preston/source/repos/Space-Force-Evaluation-Project/Components/TextQuestionsHolder.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xUZXh0UXVlc3Rpb25zSG9sZGVyLnJhem9y
 build_metadata.AdditionalFiles.CssScope = b-2vrc6v01fr
@@ -74,6 +78,10 @@ build_metadata.AdditionalFiles.CssScope = b-jb99hgfe50
 [C:/Users/Preston/source/repos/Space-Force-Evaluation-Project/Components/UserProfileHolder.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xVc2VyUHJvZmlsZUhvbGRlci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = b-emw8fo77wp
+
+[C:/Users/Preston/source/repos/Space-Force-Evaluation-Project/Pages/Accolades.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWNjb2xhZGVzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-juzrpudchx
 
 [C:/Users/Preston/source/repos/Space-Force-Evaluation-Project/Pages/Account.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWNjb3VudC5yYXpvcg==

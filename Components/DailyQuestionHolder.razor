@@ -67,8 +67,7 @@
 
 
 
-    // We will need a function to get the maximum number of questions from the question bank
-
+    // Function for handling when a response is submitted.
     private async Task HandleSubmit()
     {
         questionResponse = surveyModel.response;
@@ -83,11 +82,6 @@
         await surveyData.CreateSurvey(surveyModel);
         await UpdateUser();
         ShowDiv();
-        //navManager.NavigateTo("/Landing");
-
-        // Get the date that the survey is done
-
-        // store the date in the current logged in user
     }
 
     // Update the question date for the user answering the question
@@ -113,18 +107,22 @@
         await userData.UpdateUser(questionTaker); 
     }
 
+    // Current number of climate questions, this will need to be non-static at some point
     private int getMaxClimate()
     {
         return 166;
     }
+    // Current number of personelle questions, this will need to be non-static at some point
     private int getMaxDaily()
     {
         return 236;
     }
+    // Function to get a random number to pull a question from the list
     private int GetDailyQuestionNumber()
     {
         return rnd.Next(167,getMaxDaily());
     }
+    // Function to get a random number to pull a question from the climate list
     private int GetClimateQuestionNumber()
     {
         return rnd.Next(1,getMaxClimate());

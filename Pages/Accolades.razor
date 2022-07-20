@@ -1,0 +1,107 @@
+﻿@page "/Accolades"
+@attribute [Authorize]
+@inject AuthenticationStateProvider authProvider
+@inject NavigationManager navManager
+@inject IUserData userData
+@inject IAccoladeData accoladeData
+@inject IJSRuntime JsRuntime
+
+<PageTitle>Accolades</PageTitle>
+
+<div class="mainDiv">
+        <!--Change to Accolade Model, bind value to AccoladeModel.receiverName-->
+        <EditForm Model="@accoladeModel" OnValidSubmit="@HandleSubmit">
+        <!--Container to choose from list of team members-->
+        <div class="container">
+            <h2>Choose a recipient for your accolade</h2>
+            <InputSelect class="" @bind-Value="accoladeReceiver">
+                <option value="Default" selected disabled hidden>Choose here</option>
+                @foreach (var UserModel in teamList)
+                {
+                    @if (@UserModel.userID != giverID)
+                    {
+                        <option value="@UserModel.userID"> @UserModel.firstName @UserModel.lastName</option>                       
+                    }
+
+                }
+            </InputSelect>
+        </div>
+
+        <!--Container to give accolade feedback-->
+        <div class="container">
+            <h4>Provide some feedback about why they deserve this</h4>
+            <label>Feedback:</label>
+            <!--Change bind value to accolademodel.text-->
+            <InputText class="" @bind-Value="accoladeText"></InputText>
+            <button type="submit">Submit</button>
+        </div>
+        </EditForm>
+
+</div>
+
+@code {
+    private string teamID;
+    public string accoladeReceiver;
+    public string accoladeText;
+    public string receiverName;
+    public string giverName;
+    public string team;
+    public string giverID;
+    DateTime accoladeDate;
+
+    // Change to accoladeModel
+    private AccoladeModel accoladeModel = new AccoladeModel();
+    //private AccoladeModel accoladeModel = new AccoladeModel();
+    List<UserModel> teamList = new List<UserModel>();
+
+    private async Task HandleSubmit()
+    {
+        // If the user does not select a subject, warn them and deny the submission
+        if (accoladeReceiver == null)
+        {
+            await JsRuntime.InvokeVoidAsync("alert", "Please Select a User"); // Alert 
+        }
+        else
+        {
+        // Get the user associated with the ID
+        var accoladeUser = await userData.GetUser(accoladeReceiver);
+        // Grab the values associated
+        receiverName = accoladeUser.firstName + " " + accoladeUser.lastName;
+        accoladeDate = DateTime.Today;
+
+        // Push the fields to the database using an accoladeModel
+
+        accoladeModel.takerID = giverID;
+        accoladeModel.takerName = giverName;
+        accoladeModel.subjectID = accoladeReceiver;
+        accoladeModel.subjectName = receiverName;
+        accoladeModel.teamID = team;
+        accoladeModel.dateReceived = accoladeDate;
+        accoladeModel.text = accoladeText;
+        await accoladeData.CreateAccolade(accoladeModel);
+        navManager.NavigateTo("/");            
+        }
+
+    }
+    protected async override Task OnInitializedAsync()
+    {
+        await GetLogin();
+        await GetUsersFromTeam();
+    }
+    // Get logged in User
+    private async Task GetLogin()
+    {
+        UserModel currentUser = await AuthenticationStateProviderHelpers.GetUserFromAuth(authProvider, userData);
+        teamID = currentUser.teamID;
+        giverName = currentUser.firstName + " " + currentUser.lastName;
+        team = currentUser.teamID;
+        giverID = currentUser.userID;
+    }
+    // Get list of team members
+    private async Task <List<UserModel>> GetUsersFromTeam()
+    {
+        var teamMembers = await userData.GetUsersFromTeam(teamID);
+        teamList = teamMembers.ToList();
+        return teamList;
+    }
+}

@@ -290,6 +290,13 @@ C:\Users\Zach\Source\Repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\refin
 C:\Users\Zach\Source\Repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\SpaceForceEvaluations.pdb
 C:\Users\Zach\Source\Repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\SpaceForceEvaluations.genruntimeconfig.cache
 C:\Users\Zach\Source\Repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\ref\SpaceForceEvaluations.dll
+C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\SpaceForceEvaluations.csproj.AssemblyReference.cache
+C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\SpaceForceEvaluations.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\SpaceForceEvaluations.csproj.CoreCompileInputs.cache
+C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\SpaceForceEvaluations.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\SpaceForceEvaluations.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\SpaceForceEvaluations.RazorAssemblyInfo.cache
+C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\SpaceForceEvaluations.RazorAssemblyInfo.cs
 C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\bin\Debug\net6.0\Microsoft.Azure.Cosmos.ServiceInterop.dll
 C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\bin\Debug\net6.0\Cosmos.CRTCompat.dll
 C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\bin\Debug\net6.0\NuGet.Config
@@ -406,13 +413,6 @@ C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\bin\Debug\net6.0\ru
 C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
 C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\bin\Debug\net6.0\SpaceForceEvaluationAppLibrary.dll
 C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\bin\Debug\net6.0\SpaceForceEvaluationAppLibrary.pdb
-C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\SpaceForceEvaluations.csproj.AssemblyReference.cache
-C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\SpaceForceEvaluations.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\SpaceForceEvaluations.csproj.CoreCompileInputs.cache
-C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\SpaceForceEvaluations.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\SpaceForceEvaluations.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\SpaceForceEvaluations.RazorAssemblyInfo.cache
-C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\SpaceForceEvaluations.RazorAssemblyInfo.cs
 C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\staticwebassets.build.json
 C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\staticwebassets.development.json
 C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\scopedcss\Components\CategoriesReport.razor.rz.scp.css
@@ -423,6 +423,7 @@ C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\sc
 C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\scopedcss\Components\TextQuestionsHolder.razor.rz.scp.css
 C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\scopedcss\Components\TextResponseReportHolder.razor.rz.scp.css
 C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\scopedcss\Components\UserProfileHolder.razor.rz.scp.css
+C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\scopedcss\Pages\Accolades.razor.rz.scp.css
 C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\scopedcss\Pages\Account.razor.rz.scp.css
 C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\scopedcss\Pages\Landing.razor.rz.scp.css
 C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\scopedcss\Pages\Login.razor.rz.scp.css
@@ -443,3 +444,4 @@ C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\re
 C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\SpaceForceEvaluations.pdb
 C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\SpaceForceEvaluations.genruntimeconfig.cache
 C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\ref\SpaceForceEvaluations.dll
+C:\Users\Preston\source\repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\scopedcss\Components\TeamAccoladesReportHolder.razor.rz.scp.css

@@ -1,0 +1,58 @@
+﻿@inject IAccoladeData accoladeData
+@inject IUserData userData
+@inject AuthenticationStateProvider authProvider
+
+<div class="container">
+    <h3 class="p-3 text-center">Accolades List: </h3>
+    <div class="scroll">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Accolade</th>
+                    <th>Accolade Receiver</th>
+                    <th>Accolade Giver</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var Accolades in accolades)
+                {
+                    <tr>
+                        <td>@Accolades.text</td>
+                        <td>@Accolades.subjectName</td>
+                        <td>@Accolades.takerName</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@code {
+    public string teamID;
+
+    List<AccoladeModel> accolades = new List<AccoladeModel>();
+
+    // Function to get a list of accolades about the user
+    private async Task <List<AccoladeModel>> GetTeamAccolades()
+    {
+        var userAccolades = await accoladeData.GetTeamAccolades(teamID);
+        accolades = userAccolades.ToList();
+        return accolades;
+    }
+
+    protected override async  Task OnInitializedAsync()
+    {
+        await GetUser();
+        await GetTeamAccolades();
+    }
+    private async Task GetUser()
+    {
+        UserModel currentUser = await AuthenticationStateProviderHelpers.GetUserFromAuth(authProvider, userData);
+        teamID = currentUser.teamID;
+    }
+
+    private void ShowDiv()
+    {
+        
+    }
+}
