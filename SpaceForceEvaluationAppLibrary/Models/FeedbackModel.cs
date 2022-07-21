@@ -5,10 +5,10 @@ public class FeedbackModel
     [BsonId]
     [BsonRepresentation(BsonType.ObjectId)]
     public string Id { get; set; }
-    public string feedbackTableId { get; set; }
+    public string feedbackID { get; set; }
     public string userID { get; set; }
-    public string firstName { get; set; }
-    public string lastName { get; set; }
+    public string name { get; set; }
+    public string teamID { get; set; }
     public bool supervisor { get; set; } = false;
     public bool manager { get; set; } = false;
     public List<string> accolades { get; set; }
