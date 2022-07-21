@@ -29,7 +29,7 @@
     <SpaceForceEvaluations.Components.TextResponseReportHolder surveyQuestion="@surveyQuestion"></SpaceForceEvaluations.Components.TextResponseReportHolder>
 </div>
 
-    <AuthorizeView Policy="Admin">
+    <AuthorizeView Policy="TeamLeader">
         <Authorized>
                 <button class="btn-primary" @onclick=ShowTeam>Show Team Reports</button>
 
@@ -45,7 +45,6 @@
                                 <tr>
                                     <th>QuestionID</th>
                                     <th>Question Text</th>
-                                    <th>Taker ID</th>
                                     <th>Taker Name</th>
                                     <th>Response</th>
                                 </tr>
@@ -57,7 +56,6 @@
                                     <tr>
                                             <td>@SurveyModel.surveyID</td>
                                             <td>@SurveyModel.question</td>
-                                            <td>@SurveyModel.takerID</td>
                                             <td>@SurveyModel.name</td>
                                             <td>@SurveyModel.response</td>
                                     </tr>                               
@@ -88,15 +86,6 @@
     List<SurveyModel> surveyQuestion = new List<SurveyModel>();
     List<SurveyModel> teamQuestions = new List<SurveyModel>();
     List<SurveyModel> categoryQuestions = new List<SurveyModel>();
-
-
-
-    public int i, j, k = 0;
-    public int z = 0;
-
-    public string[] testUser = new string[1000000];
-    public string userHolder;
-
 
     // Functions to show and hide buttons
     private void ShowDateRange()
@@ -201,6 +190,7 @@
 
     }
 
+    // Function to get a list of all surveys completed
     private async Task<List<SurveyModel>> GetAllSurveys()
     {
         var results = await surveyData.GetAllSurveys();
@@ -208,6 +198,7 @@
         return surveyQuestion;
     }
 
+    // On page load
     protected override async Task OnInitializedAsync()
     {
 
@@ -216,11 +207,13 @@
         await GetTeamSurveys();
     }
 
+    // Function to get the current logged in user. 
     private async Task GetLogin()
     {
         UserModel currentUser = await AuthenticationStateProviderHelpers.GetUserFromAuth(authProvider, userData);
         teamID = currentUser.teamID;
     }
+    // Function to get a list of all team surveys.
     private async Task <List<SurveyModel>> GetTeamSurveys()
     {
         var teamSurveys = await surveyData.GetSurveysByTeam(teamID);

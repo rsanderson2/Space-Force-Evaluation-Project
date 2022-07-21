@@ -19,7 +19,6 @@ public class DbConnection : IDbConnection
     public string SurveyCollectionName { get; private set; } = "Surveys";
     public string DailyQuestionsCollectionName { get; private set; } = "dailyQuestions";
     public string ClimateQuestionsCollectionName { get; private set; } = "climateQuestions";
-    public string ReportsCollectionName { get; private set; } = "Reports";
     public string FeedbackCollectionName { get; private set; } = "Feedback";
     public string AccoladesCollectionName { get; private set; } = "Accolades";
 
@@ -30,7 +29,6 @@ public class DbConnection : IDbConnection
     public IMongoCollection<SurveyModel> SurveyCollection { get; private set; }
     public IMongoCollection<DailyQuestionsModel> DailyQuestionsCollection { get; private set; }
     public IMongoCollection<ClimateQuestionsModel> ClimateQuestionsCollection { get; private set; }
-    public IMongoCollection<ReportModel> ReportsCollection { get; private set; }
     public IMongoCollection<FeedbackModel> FeedbackCollection { get; private set; }
     public IMongoCollection<AccoladeModel> AccoladesCollection { get; private set; }
 
@@ -47,7 +45,6 @@ public class DbConnection : IDbConnection
         SurveyCollection = _db.GetCollection<SurveyModel>(SurveyCollectionName);
         DailyQuestionsCollection = _db.GetCollection<DailyQuestionsModel>(DailyQuestionsCollectionName);
         ClimateQuestionsCollection = _db.GetCollection<ClimateQuestionsModel>(ClimateQuestionsCollectionName);
-        ReportsCollection = _db.GetCollection<ReportModel>(ReportsCollectionName);
         FeedbackCollection = _db.GetCollection<FeedbackModel>(FeedbackCollectionName);
         AccoladesCollection = _db.GetCollection<AccoladeModel>(AccoladesCollectionName);
     }

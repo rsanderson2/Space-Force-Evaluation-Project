@@ -1,8 +1,8 @@
 /* Main page */
 .mainDiv[b-v2o82lkojk] {
     background-image: linear-gradient(180deg, #002035 0%, #000f 99%);
-    color: white;
-    height: 100vh;
+    color: black;
+    min-height: 100vh;
     text-align: center;
     display: flex;
     justify-content: space-around;
@@ -19,21 +19,27 @@ a[b-v2o82lkojk] {
     text-decoration: none;
 }
 
+h2[b-v2o82lkojk] {
+    border-bottom: 1px solid black;
+}
+
+h3[b-v2o82lkojk] {
+    font-size: 18px;
+}
+
 ul[b-v2o82lkojk] {
     list-style: none;
 }
 
 img[b-v2o82lkojk] {
-    display: inline;
-    max-width: 2vw;
+    width: 6vh;
+    height: 6vh;
 }
-img:hover + .hide[b-v2o82lkojk]{
-    display: block;
-    color: white;
+
+.rank[b-v2o82lkojk] {
+   
 }
-.hide[b-v2o82lkojk]{
-    display: none;
-}
+
 /* Container for page contents */
 .container[b-v2o82lkojk]  {
     max-width: 1600px;
@@ -43,30 +49,86 @@ img:hover + .hide[b-v2o82lkojk]{
     text-align: center;
 }
 
-.formoption[b-v2o82lkojk] {
-    width: 0;
+.card[b-v2o82lkojk] {
+    padding: 10px;
+    border-radius: 15px;
+    background: lightgray;
+    border: 2px solid black;
+    height: 100%;
+    min-width: 40vw;
+}
+
+.leftalign[b-v2o82lkojk] {
+    padding-left: 10px;
+    padding-top: 10px;
+    text-align: left;
+}
+
+.infotext[b-v2o82lkojk] {
+    text-transform: uppercase;
+    font-size: 18px;
+}
+
+.accountupdate[b-v2o82lkojk] {
+    display: block;
+    margin: 1vw auto;
+    text-align: center;
 }
 
 .btn-primary[b-v2o82lkojk] {
     min-width: 80px;
-    font-size: 16px;
+    font-size: 20px;
     position: center;
     padding: 0.5px;
 }
 
 table[b-v2o82lkojk] {
-    color: white;
+    color: black;
+    border: darkgray;
 }
 
 .scroll[b-v2o82lkojk] {
-    height: 75vh;
+    height: 45vh;
     overflow-y: auto;
+}
+
+.content[b-v2o82lkojk] {
+    position: relative;
+    margin: 0 10vw;
+}
+
+.content .hide[b-v2o82lkojk] {
+    position: absolute;
+    bottom: 0;
+    left: 55%;
+    min-width: 35%;
+    background: black;
+    border-radius: 10px;
+    color: white;
+    opacity: 0;
+    transition: .5s ease;
+}
+
+.content:hover > .hide[b-v2o82lkojk] {
+    opacity: 0.65;
 }
 
 /* Default grid CSS */
 .grid[b-v2o82lkojk] {
     display: grid;
     grid-template-columns: 1fr 1fr;
+}
+
+.profilegrid[b-v2o82lkojk] {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-bottom: 1px solid darkgray;
+}
+
+.flexbox[b-v2o82lkojk] {
+    margin-top: 1vh;
+    align-items: center;
+    align-content: center;
 }
 
 .grid-col-span-2[b-v2o82lkojk] {

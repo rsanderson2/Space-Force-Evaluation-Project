@@ -454,3 +454,12 @@ C:\Users\grayn\source\repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\scop
 C:\Users\grayn\source\repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\scopedcss\Components\TextResponseReportHolder.razor.rz.scp.css
 C:\Users\grayn\source\repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\scopedcss\Components\UserProfileHolder.razor.rz.scp.css
 C:\Users\grayn\source\repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\scopedcss\Pages\Accolades.razor.rz.scp.css
+C:\Users\Zach\Source\Repos\Space-Force-Evaluation-Project\bin\Debug\net6.0\ChartJs.Blazor.dll
+C:\Users\Zach\Source\Repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\scopedcss\Components\CategoriesReport.razor.rz.scp.css
+C:\Users\Zach\Source\Repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\scopedcss\Components\IndividualQuestionsReportsHolder.razor.rz.scp.css
+C:\Users\Zach\Source\Repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\scopedcss\Components\ShowAllReportsHolder.razor.rz.scp.css
+C:\Users\Zach\Source\Repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\scopedcss\Components\SurveyTakenInRange.razor.rz.scp.css
+C:\Users\Zach\Source\Repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\scopedcss\Components\TeamAccoladesReportHolder.razor.rz.scp.css
+C:\Users\Zach\Source\Repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\scopedcss\Components\TextResponseReportHolder.razor.rz.scp.css
+C:\Users\Zach\Source\Repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\scopedcss\Components\UserProfileHolder.razor.rz.scp.css
+C:\Users\Zach\Source\Repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\scopedcss\Pages\Accolades.razor.rz.scp.css

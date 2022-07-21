@@ -15,8 +15,6 @@ namespace SpaceForceEvaluationAppLibrary.DataAccess
         string DbName { get; }
         IMongoCollection<FeedbackModel> FeedbackCollection { get; }
         string FeedbackCollectionName { get; }
-        IMongoCollection<ReportModel> ReportsCollection { get; }
-        string ReportsCollectionName { get; }
         IMongoCollection<SurveyModel> SurveyCollection { get; }
         string SurveyCollectionName { get; }
         IMongoCollection<UserModel> UserCollection { get; }

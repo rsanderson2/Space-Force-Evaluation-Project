@@ -42,22 +42,16 @@ public class MongoUserData : IUserData
         return results.FirstOrDefault();
     }
 
+    // this task creates a new user and returns a question
     public Task CreateUser(UserModel user)
     {
         return _users.InsertOneAsync(user);
     }
 
+    // this task update an already existing user
     public Task UpdateUser(UserModel user)
     {
         var filter = Builders<UserModel>.Filter.Eq("userID", user.userID);
         return _users.ReplaceOneAsync(filter, user, new ReplaceOptions { IsUpsert = true });
-    }
-
-    public async Task<List<string>> GetUsersSurveys(string objectId)
-    {
-        UserModel user = (UserModel)await _users.FindAsync(u => u.ObjectIdentifier == objectId);
-        var results = user.surveyHistory.ToList();
-
-        return results;
     }
 }

@@ -47,6 +47,7 @@
 
 </div>
 @code {
+    // For version 2.0, or continuation, these will need to be changed to pull from a list of test questions that will be made in the database
     public string questionOne = "Please describe what you liked about the user experience of this Pulse Survey system:";
     public string questionTwo = "Please describe what you'd like changed or improved with this Pulse Survey system:";
     public string questionThree = "How likely would you be to recommend pulse surveys as this one you've used the past 4 weeks to a USSF Guardian for feedback and appraisals (Scale of 1-5)?";
@@ -56,6 +57,7 @@
     public int numOfQuestions;
     public string questionType = "Monthly";
 
+    // Function to generate the number of questions to display
     private async Task GenerateNumber()
     {
         Random rnd = new Random();

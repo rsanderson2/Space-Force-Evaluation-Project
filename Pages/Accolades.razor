@@ -9,7 +9,6 @@
 <PageTitle>Accolades</PageTitle>
 
 <div class="mainDiv">
-        <!--Change to Accolade Model, bind value to AccoladeModel.receiverName-->
         <EditForm Model="@accoladeModel" OnValidSubmit="@HandleSubmit">
         <!--Container to choose from list of team members-->
         <div class="container">
@@ -31,7 +30,6 @@
         <div class="container">
             <h4>Provide some feedback about why they deserve this</h4>
             <label>Feedback:</label>
-            <!--Change bind value to accolademodel.text-->
             <InputText class="" @bind-Value="accoladeText"></InputText>
             <button type="submit">Submit</button>
         </div>
@@ -49,9 +47,8 @@
     public string giverID;
     DateTime accoladeDate;
 
-    // Change to accoladeModel
+
     private AccoladeModel accoladeModel = new AccoladeModel();
-    //private AccoladeModel accoladeModel = new AccoladeModel();
     List<UserModel> teamList = new List<UserModel>();
 
     private async Task HandleSubmit()

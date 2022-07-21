@@ -140,26 +140,31 @@
             TestQuestion = climateQuestionModel.text;
             questionNumber = climateQuestionModel.QuestionID;
             questionCategory = climateQuestionModel.category;
-            surveyTaker = user.userID;            
+            surveyTaker = user.userID;
         }
         // Else, Question will be Personnel
         else
         {
             // Pull in a list of users
             string subjectID = await GetListOfUsers(user.teamID);
-            // If the question is about the person taking the survey, pull a new question.
+            // If the question is about the person taking the survey, remove them as a subject, and pull a new question.
             if (subjectID == user.userID)
             {
+                StateHasChanged();
                 GenerateQuestion();
             }
-            UserModel subject = await userData.GetUser(subjectID);
-            teammate = subject.firstName + " " + subject.lastName;
-            DailyQuestionsModel dailyQuestionModel = await dailyQuestionData.GetDailyQuestion(GetDailyQuestionNumber());
-            TestQuestion = dailyQuestionModel.text;
-            questionNumber = dailyQuestionModel.QuestionID;
-            questionCategory = dailyQuestionModel.category;
-            surveyTaker = user.userID;
-            surveySubject = subject.userID;
+            else
+            {
+                UserModel subject = await userData.GetUser(subjectID);
+                teammate = subject.firstName + " " + subject.lastName;
+                DailyQuestionsModel dailyQuestionModel = await dailyQuestionData.GetDailyQuestion(GetDailyQuestionNumber());
+                TestQuestion = dailyQuestionModel.text;
+                questionNumber = dailyQuestionModel.QuestionID;
+                questionCategory = dailyQuestionModel.category;
+                surveyTaker = user.userID;
+                surveySubject = subject.userID;               
+            }
+
         }
         takerName = user.firstName + " " + user.lastName;
         user.dailyDate = surveyDate;

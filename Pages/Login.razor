@@ -50,13 +50,7 @@
 
         <!--Container for user information-->
         <div class="container">
-@*            <h4>Logged in user is: @userName</h4>
-            <h4>Email: @emailAddress</h4>
-            <h4>Last Name: @userLastName</h4>
-            <h4>First Name: @userFirstName</h4>*@
-
-        
-
+       
 
             @if (@lastDaily || @lastWeekly || @lastMonthly)
             {
@@ -207,6 +201,4 @@
         await LoadAndVerifyUser();
     }
 
-
-    //--------------------------------------------------------------------------------------------------------//
 }

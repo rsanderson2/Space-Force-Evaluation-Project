@@ -1,4 +1,8 @@
-﻿using Microsoft.AspNetCore.Components.Authorization;
+﻿// =======================================================================================
+// This helper grabs the authentication token from AzureB2C then checks the database
+// for that user before returning the user model pertaining to the user
+// =======================================================================================
+using Microsoft.AspNetCore.Components.Authorization;
 namespace SpaceForceEvaluations.Helpers;
 
 public static class AuthenticationStateProviderHelpers

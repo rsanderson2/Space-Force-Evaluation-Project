@@ -11,7 +11,6 @@ namespace SpaceForceEvaluationAppLibrary.DataAccess
         Task<UserModel> GetUserFromAuthentication(string objectId);
         Task<List<UserModel>> GetUsersAsync();
         Task<List<UserModel>> GetUsersFromTeam(string teamId);
-        Task<List<string>> GetUsersSurveys(string objectId);
         Task UpdateUser(UserModel user);
     }
 }

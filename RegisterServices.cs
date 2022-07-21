@@ -17,14 +17,16 @@ public static class RegisterServices
         builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
             .AddMicrosoftIdentityWebApp(builder.Configuration.GetSection("AzureAdB2C"));
 
+        // adds the requirement of teamleader to certain functions of pages
         builder.Services.AddAuthorization(options =>
         {
-            options.AddPolicy("Admin", policy =>
+            options.AddPolicy("TeamLeader", policy =>
             {
-                policy.RequireClaim("jobTitle", "Admin");
+                policy.RequireClaim("jobTitle", "TeamLeader");
             });
         });
-
+        // Establishes the connection the database and each of the collections in the 
+        // database defined by the code in each of the I<>Data files
         builder.Services.AddSingleton<IDbConnection, DbConnection>();
         builder.Services.AddSingleton<ISurveyData, MongoSurveyData>();
         builder.Services.AddSingleton<IUserData, MongoUserData>();
