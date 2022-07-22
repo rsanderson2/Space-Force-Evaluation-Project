@@ -21,16 +21,17 @@ table {
 }
 
 .scroll {
-    height: 75vh;
+    height: 100vh;
     overflow-y: auto;
 }
+
 
 .btn-primary {
     min-width: 200px;
     font-size: 16px;
     position: center;
 }
+
 .reportComponent {
-    position: absolute;
-    width: 100%;
+    margin-top: 20px;
 }

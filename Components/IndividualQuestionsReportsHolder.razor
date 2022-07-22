@@ -1,62 +1,68 @@
 ﻿@inject ISurveyData surveyData
 
-<EditForm Model = "@surveyModel" OnValidSubmit="@HandleSubmit">
-    <InputNumber @bind-Value="questionNumber" style="-webkit-appearance: none"></InputNumber>
-
-</EditForm>
 <div class="mainDiv">
+
+    <label>Question ID: </label>
+    <EditForm Model = "@surveyModel" OnValidSubmit="@HandleSubmit">
+    <InputNumber @bind-Value="questionNumber" style="-webkit-appearance: none"></InputNumber>
+    </EditForm>
+
     <div class="container">
         <h3 class="p-3 text-center">Reports List: </h3>
-        <div class="scroll">
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>QuestionID</th>
-                        <th>Question Text</th>
-                        <th>Response</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var SurveyModel in surveyQuestion)
-                    {
-                        @if(@SurveyModel.surveyID == questionNumber)
+        <div class="flexitup">
+            <div class="scroll">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>QuestionID</th>
+                            <th>Question Text</th>
+                            <th>Response</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var SurveyModel in surveyQuestion)
                         {
-                            addQuestions(@SurveyModel.response);
-                            @if (@SurveyModel.response == 1)
+                            @if(@SurveyModel.surveyID == questionNumber)
                             {
-                                incrementOne();
-                            }
-                            @if (@SurveyModel.response == 2)
-                            {
-                                incrementTwo();
-                            }
-                            @if (@SurveyModel.response == 3)
-                            {
-                                incrementThree();
-                            }
-                            @if (@SurveyModel.response == 4)
-                            {
-                                incrementFour();
-                            }
-                            @if (@SurveyModel.response == 5)
-                            {
-                                incrementFive();
-                            }
+                                addQuestions(@SurveyModel.response);
+                                @if (@SurveyModel.response == 1)
+                                {
+                                    incrementOne();
+                                }
+                                @if (@SurveyModel.response == 2)
+                                {
+                                    incrementTwo();
+                                }
+                                @if (@SurveyModel.response == 3)
+                                {
+                                    incrementThree();
+                                }
+                                @if (@SurveyModel.response == 4)
+                                {
+                                    incrementFour();
+                                }
+                                @if (@SurveyModel.response == 5)
+                                {
+                                    incrementFive();
+                                }
 
-                             <tr>
-                                <td>@SurveyModel.surveyID</td>
-                                <td>@SurveyModel.question</td>
-                                <td>@SurveyModel.response</td>
-                            </tr>                             
-                        }                      
-                    }
-                </tbody>
-            </table>
-            <h2>Response Average: @getAverage(@totalResponse, @totalQuestions)</h2>
-            <PieChartHolder firstNum="firstNum" secondNum="secondNum" thirdNum="thirdNum" fourthNum="fourthNum" fifthNum="fifthNum"></PieChartHolder>        
+                                 <tr>
+                                    <td>@SurveyModel.surveyID</td>
+                                    <td>@SurveyModel.question</td>
+                                    <td>@SurveyModel.response</td>
+                                </tr>                             
+                            }                      
+                        }
+                    </tbody>
+                </table>                
+
+            </div>
+            <div class="chartDiv">
+                <PieChartHolder firstNum="firstNum" secondNum="secondNum" thirdNum="thirdNum" fourthNum="fourthNum" fifthNum="fifthNum"></PieChartHolder> 
+            </div>
         </div>
-
     </div>
+    <h2>Response Average: @getAverage(@totalResponse, @totalQuestions)</h2>
 </div>
 
 @code {
@@ -111,6 +117,8 @@
         totalQuestions++;
         totalResponse += response;
     }
+
+    // Get average response and limit it to 2 places
     private double getAverage(int totalResponse, int totalQuestions)
     {
         if (totalResponse != 0 && totalQuestions != 0)

@@ -56,7 +56,6 @@
                     }
                 </tbody>
             </table>
-            <PieChartHolder firstNum="firstNum" secondNum="secondNum" thirdNum="thirdNum" fourthNum="fourthNum" fifthNum="fifthNum"></PieChartHolder>   
         </div>
     </div>
 </div>
@@ -100,6 +99,7 @@
         totalQuestions++;
         totalResponse += response;
     }
+    // Get the average of all responses, and limit it to 2 decimal places
     private double getAverage(int totalResponse, int totalQuestions)
     {
         if (totalResponse != 0 && totalQuestions != 0)

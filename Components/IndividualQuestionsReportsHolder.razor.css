@@ -1,7 +1,6 @@
 ﻿body {
 }
 
-
 .container {
     max-width: 1600px;
     margin: 0 auto;
@@ -15,7 +14,8 @@ table {
 }
 
 .scroll {
-    height: 75vh;
+    max-height: 75vh;
+    min-width: 50%;
     overflow-y: auto;
 }
 
@@ -25,12 +25,20 @@ table {
     position: center;
 }
 
+.flexitup {
+    display: flex;
+    gap: 100px;
+}
+
 .reportComponent {
     position: absolute;
-    width: 100%;
 }
+
 input::-webkit-inner-spin-button,
 input::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
+}
+.chartDiv{
+    width: 75%;
 }

@@ -1,7 +1,6 @@
 body[b-95d7e831j8] {
 }
 
-
 .container[b-95d7e831j8] {
     max-width: 1600px;
     margin: 0 auto;
@@ -15,7 +14,8 @@ table[b-95d7e831j8] {
 }
 
 .scroll[b-95d7e831j8] {
-    height: 75vh;
+    max-height: 75vh;
+    min-width: 50%;
     overflow-y: auto;
 }
 
@@ -25,12 +25,20 @@ table[b-95d7e831j8] {
     position: center;
 }
 
+.flexitup[b-95d7e831j8] {
+    display: flex;
+    gap: 100px;
+}
+
 .reportComponent[b-95d7e831j8] {
     position: absolute;
-    width: 100%;
 }
+
 input[b-95d7e831j8]::-webkit-inner-spin-button,
 input[b-95d7e831j8]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
+}
+.chartDiv[b-95d7e831j8]{
+    width: 75%;
 }

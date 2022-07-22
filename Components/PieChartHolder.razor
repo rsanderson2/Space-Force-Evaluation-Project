@@ -3,9 +3,11 @@
 @using ChartJs.Blazor.Util
 @inject NavigationManager navManager;
 
+<div class="mainDiv">
+    <button @onclick="ShowChart">Show Chart</button>
+    <Chart Config="_config"></Chart>
+</div>
 
-<button @onclick="ShowChart">Show Chart</button>
-<Chart Config="_config"></Chart>
 @code {
     [Parameter]
     public int firstNum { get; set; }

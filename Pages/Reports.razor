@@ -6,38 +6,45 @@
 
 <div class="mainDiv">
     <h1>Reports</h1>
-<button class="renderButton" @onclick=ShowCategories>Category Reports</button>
-<button class="renderButton" @onclick=ShowAll>All Reports</button>
-<button class="renderButton" @onclick=ShowDateRange>Show Reports by Date</button>
-<button class="renderButton" @onclick=ShowIndividualQuestions>Show Individual Questions</button>
-<button class="renderButton" @onclick=ShowTextResponses>Show Text Response Questions</button>
-<div class="reportComponent" style="visibility: @showCategories">
-        <SpaceForceEvaluations.Components.CategoriesReport></SpaceForceEvaluations.Components.CategoriesReport>  
-</div>
 
-<div class ="reportComponent scroll" style="visibility: @showAll">
-        <SpaceForceEvaluations.Components.ShowAllReportsHolder surveyQuestion="@surveyQuestion"></SpaceForceEvaluations.Components.ShowAllReportsHolder>   
-</div>
 
-<div class="reportComponent" style="visibility: @showDateRange">
-    <SpaceForceEvaluations.Components.SurveyTakenInRange surveyQuestion="@surveyQuestion"></SpaceForceEvaluations.Components.SurveyTakenInRange>
-</div>
-<div class="reportComponent" style="visibility: @showIndividuals">
-    <SpaceForceEvaluations.Components.IndividualQuestionsReportsHolder surveyQuestion="@surveyQuestion"></SpaceForceEvaluations.Components.IndividualQuestionsReportsHolder>
-</div>
-<div class="reportComponent" style="visibility: @showTextResponses">
-    <SpaceForceEvaluations.Components.TextResponseReportHolder surveyQuestion="@surveyQuestion"></SpaceForceEvaluations.Components.TextResponseReportHolder>
-</div>
 
-    <AuthorizeView Policy="TeamLeader">
+    <button class="renderButton" @onclick=ShowCategories>Category Reports</button>
+    <button class="renderButton" @onclick=ShowAll>All Reports</button>
+    <button class="renderButton" @onclick=ShowDateRange>Show Reports by Date</button>
+    <button class="renderButton" @onclick=ShowIndividualQuestions>Show Individual Questions</button>
+    <button class="renderButton" @onclick=ShowTextResponses>Show Text Response Questions</button>
+     <AuthorizeView Policy="TeamLeader">
         <Authorized>
                 <button class="btn-primary" @onclick=ShowTeam>Show Team Reports</button>
+        </Authorized>
+    </AuthorizeView>
 
-                <div class="" style="visibility: @showTeam">
+    <div class="reportComponent" style="display: @showCategories">
+            <SpaceForceEvaluations.Components.CategoriesReport></SpaceForceEvaluations.Components.CategoriesReport>  
+    </div>
+
+    <div class ="reportComponent scroll" style="display: @showAll">
+            <SpaceForceEvaluations.Components.ShowAllReportsHolder surveyQuestion="@surveyQuestion"></SpaceForceEvaluations.Components.ShowAllReportsHolder>   
+    </div>
+
+    <div class="reportComponent" style="display: @showDateRange">
+        <SpaceForceEvaluations.Components.SurveyTakenInRange surveyQuestion="@surveyQuestion"></SpaceForceEvaluations.Components.SurveyTakenInRange>
+    </div>
+    <div class="reportComponent" style="display: @showIndividuals">
+        <SpaceForceEvaluations.Components.IndividualQuestionsReportsHolder surveyQuestion="@surveyQuestion"></SpaceForceEvaluations.Components.IndividualQuestionsReportsHolder>
+    </div>
+    <div class="reportComponent" style="display: @showTextResponses">
+        <SpaceForceEvaluations.Components.TextResponseReportHolder surveyQuestion="@surveyQuestion"></SpaceForceEvaluations.Components.TextResponseReportHolder>
+    </div>
+
+   <AuthorizeView Policy="TeamLeader">
+       <Authorized>
+                <div class="" style="display: @showTeam">
                     <SpaceForceEvaluations.Components.TeamAccoladesReportHolder></SpaceForceEvaluations.Components.TeamAccoladesReportHolder>
                 </div>
 
-                <div class="container" style="visibility: @showTeam">
+                <div class="container" style="display: @showTeam">
                     <h3 class="p-3 text-center">Reports List: </h3>
                     <div class="scroll">
                         <table class="table table-bordered">
@@ -65,20 +72,19 @@
                     </div>
                 </div>
         </Authorized>
-
     </AuthorizeView>
 </div>
 
 @code {
 
-    string showTeam = "hidden";
+    string showTeam = "none";
     private string teamID;
     public bool disableButton = false;
-    public string showCategories = "hidden";
-    public string showAll = "hidden";
-    public string showDateRange = "hidden";
-    public string showIndividuals = "hidden";
-    public string showTextResponses = "hidden";
+    public string showCategories = "none";
+    public string showAll = "none";
+    public string showDateRange = "none";
+    public string showIndividuals = "none";
+    public string showTextResponses = "none";
     public bool shouldRender = true;
     private SurveyModel surveyModel = new SurveyModel();
 
@@ -90,102 +96,102 @@
     // Functions to show and hide buttons
     private void ShowDateRange()
     {
-        if (showDateRange == "hidden")
+        if (showDateRange == "none")
         {
             showDateRange = "";
-            showAll = "hidden";
-            showTeam = "hidden";
-            showCategories = "hidden";
-            showIndividuals = "hidden"; 
-            showTextResponses = "hidden";  
+            showAll = "none";
+            showTeam = "none";
+            showCategories = "none";
+            showIndividuals = "none"; 
+            showTextResponses = "none";  
         }
         else
         {
-            showDateRange = "hidden";
+            showDateRange = "none";
         }
     }
     private void ShowCategories()
     {
-        if (showCategories == "hidden")
+        if (showCategories == "none")
         {
             showCategories = "";
-            showAll = "hidden";
-            showTeam = "hidden";
-            showDateRange = "hidden";
-            showIndividuals = "hidden"; 
-            showTextResponses = "hidden";  
+            showAll = "none";
+            showTeam = "none";
+            showDateRange = "none";
+            showIndividuals = "none"; 
+            showTextResponses = "none";  
         }
         else
         {
-            showCategories = "hidden";
+            showCategories = "none";
         }
     }
 
     private void ShowAll()
     {
-        if (showAll == "hidden")
+        if (showAll == "none")
         {
             showAll = "";
-            showTeam = "hidden";
-            showCategories = "hidden";
-            showDateRange = "hidden";
-            showIndividuals = "hidden"; 
-            showTextResponses = "hidden";  
+            showTeam = "none";
+            showCategories = "none";
+            showDateRange = "none";
+            showIndividuals = "none"; 
+            showTextResponses = "none";  
         }
         else
         {
-            showAll = "hidden";
+            showAll = "none";
         }
     }
     private async Task ShowTeam()
     {
-        if (showTeam=="hidden")
+        if (showTeam=="none")
         {
             showTeam = "";
-            showAll = "hidden";
-            showCategories = "hidden";
-            showDateRange = "hidden";
-            showIndividuals = "hidden";  
-            showTextResponses = "hidden";  
+            showAll = "none";
+            showCategories = "none";
+            showDateRange = "none";
+            showIndividuals = "none";  
+            showTextResponses = "none";  
         }
         else
         {
-            showTeam = "hidden";          
+            showTeam = "none";          
         }
     }
 
     private async Task ShowIndividualQuestions()
     {
-        if (showIndividuals=="hidden")
+        if (showIndividuals=="none")
         {
             showIndividuals = "";
-            showAll = "hidden";
-            showCategories = "hidden";
-            showDateRange = "hidden";
-            showTeam = "hidden";
-            showTextResponses = "hidden";                      
+            showAll = "none";
+            showCategories = "none";
+            showDateRange = "none";
+            showTeam = "none";
+            showTextResponses = "none";                      
 
         }
         else
         {
-            showIndividuals = "hidden";
+            showIndividuals = "none";
         }
 
     }
     private async Task ShowTextResponses()
     {
-        if (showTextResponses=="hidden")
+        if (showTextResponses=="none")
         {
             showTextResponses = "";
-            showAll = "hidden";
-            showCategories = "hidden";
-            showDateRange = "hidden";
-            showTeam = "hidden";
-            showIndividuals = "hidden"; 
+            showAll = "none";
+            showCategories = "none";
+            showDateRange = "none";
+            showTeam = "none";
+            showIndividuals = "none"; 
         }
         else
         {
-            showTextResponses = "hidden";          
+            showTextResponses = "none";          
         }
 
     }
