@@ -6395,25 +6395,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Zach\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\Preston\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Zach\\Source\\Repos\\Space-Force-Evaluation-Project\\SpaceForceEvaluationAppLibrary\\SpaceForceEvaluationAppLibrary.csproj",
+      "projectUniqueName": "C:\\Users\\Preston\\source\\repos\\Space-Force-Evaluation-Project\\SpaceForceEvaluationAppLibrary\\SpaceForceEvaluationAppLibrary.csproj",
       "projectName": "SpaceForceEvaluationAppLibrary",
-      "projectPath": "C:\\Users\\Zach\\Source\\Repos\\Space-Force-Evaluation-Project\\SpaceForceEvaluationAppLibrary\\SpaceForceEvaluationAppLibrary.csproj",
-      "packagesPath": "C:\\Users\\Zach\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Zach\\Source\\Repos\\Space-Force-Evaluation-Project\\SpaceForceEvaluationAppLibrary\\obj\\",
+      "projectPath": "C:\\Users\\Preston\\source\\repos\\Space-Force-Evaluation-Project\\SpaceForceEvaluationAppLibrary\\SpaceForceEvaluationAppLibrary.csproj",
+      "packagesPath": "C:\\Users\\Preston\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Preston\\source\\repos\\Space-Force-Evaluation-Project\\SpaceForceEvaluationAppLibrary\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Zach\\Source\\Repos\\Space-Force-Evaluation-Project\\NuGet.Config",
-        "C:\\Users\\Zach\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\Preston\\source\\repos\\Space-Force-Evaluation-Project\\NuGet.Config",
+        "C:\\Users\\Preston\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -6479,7 +6478,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "c:\\program files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
       }
     }
   }

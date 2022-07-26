@@ -172,7 +172,7 @@
     private void checkWeeklySurveyEligible(UserModel currentUser)
     {
         lastSurveyWeekly = currentUser.weeklyDate;
-        if ((today - lastSurveyWeekly).TotalDays < 1000)
+        if ((today - lastSurveyWeekly).TotalDays > 7)
         {
             lastWeekly = false;
         }
@@ -186,7 +186,7 @@
     {
         // Set the total days back to 30 when feedback is finished being collected. 
         lastSurveyMonthly = currentUser.monthlyDate;
-        if ((today - lastSurveyMonthly).TotalDays < 1000)
+        if ((today - lastSurveyMonthly).TotalDays > 30)
         {
             lastMonthly = false;
         }
