@@ -110,22 +110,24 @@
     // Current number of climate questions, this will need to be non-static at some point
     private int getMaxClimate()
     {
-        return 166;
+        return 2;
+        //166;
     }
     // Current number of personelle questions, this will need to be non-static at some point
     private int getMaxDaily()
     {
-        return 236;
+        return 2;
+        //236;
     }
     // Function to get a random number to pull a question from the list
     private int GetDailyQuestionNumber()
     {
-        return rnd.Next(167,getMaxDaily());
+        return rnd.Next(1,2/*getMaxDaily()*/);
     }
     // Function to get a random number to pull a question from the climate list
     private int GetClimateQuestionNumber()
     {
-        return rnd.Next(1,getMaxClimate());
+        return rnd.Next(1,3/*getMaxClimate()*/);
     }
 
     public async Task GenerateQuestion()
@@ -176,16 +178,19 @@
     {
         var results = await userData.GetUsersFromTeam(teamId);
         results.ToList();
-        int questionSubject = rnd.Next(1, results.Count);
+        int questionSubject = 0;
+        //rnd.Next(1, results.Count);
         // Get the user associated with int questionSubject
-        return results[questionSubject].userID;
+        System.Console.WriteLine(results.Count);
+        return results[0/*questionSubject*/].userID;
     }
 
 
     // Function to choose the type of question
     private int GetQuestionType()
     {
-        return SurveyQuestionType = rnd.Next(1, 3);
+        return SurveyQuestionType = 1;
+        //rnd.Next(1, 3);
     }
     protected override async Task OnInitializedAsync()
     {
