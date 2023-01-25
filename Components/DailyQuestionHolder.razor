@@ -110,7 +110,7 @@
     // Current number of climate questions, this will need to be non-static at some point
     private int getMaxClimate()
     {
-        return 2;
+        return 3;
         //166;
     }
     // Current number of personelle questions, this will need to be non-static at some point
@@ -130,6 +130,81 @@
         return rnd.Next(1,3/*getMaxClimate()*/);
     }
 
+    private string GetCategory()
+    {
+        int categoryNumber = rnd.Next(1, 33);
+        switch (categoryNumber)
+        {
+            case 1:
+                return "Learning goal orientation";
+            case 2:
+                return "Accountability";
+            case 3:
+                return "Feedback Seeking";
+            case 4:
+                return "Psychological Saftey";
+            case 5:
+                return "Interpersonal Justice";
+            case 6:
+                return "General Risk Propensity";
+            case 7:
+                return "Authenticity - Authentic Living";
+            case 8:
+                return "DEI";
+            case 9:
+                return "Honesty/Candor";
+            case 10:
+                return "Fairness";
+            case 11:
+                return "Innovation Climate";
+            case 12:
+                return "Innovator";
+            case 13:
+                return "Information Sharing";
+            case 14:
+                return "Intellectual Stimulation";
+            case 15:
+                return "Job Dedication";
+            case 16:
+                return "Supporting";
+            case 17:
+                return "OCB-O";
+            case 18:
+                return "Trust";
+            case 19:
+                return "Servant Leadership";
+            case 20:
+                return "Moral strivings";
+            case 21:
+                return "Informational Justice";
+            case 22:
+                return "Resource Availability";
+            case 23:
+                return "TP";
+            case 24:
+                return "OCB-I";
+            case 25:
+                return "Feedback from Agents";
+            case 26:
+                return "Communication/Cooperation";
+            case 27:
+                return "Supervisor Task Support";
+            case 28:
+                return "Moral Courage";
+            case 29:
+                return "Risk Attitude ";
+            case 30:
+                return "Managerial Behavior: Broker";
+            case 31:
+                return "Integrity";
+            case 32:
+                return "Help-Seeking Problem-solving assistance";
+            case 33:
+                return "Inclusion";
+            default:
+                return "Inclusion";
+        }
+    }
     public async Task GenerateQuestion()
     {
         // Find out which type of question is going to be displayed
@@ -138,7 +213,7 @@
         var user = await AuthenticationStateProviderHelpers.GetUserFromAuth(authProvider, userData);
         if (SurveyQuestionType == 1)
         {
-            ClimateQuestionsModel climateQuestionModel = await questionData.GetClimateQuestion(GetClimateQuestionNumber());
+            ClimateQuestionsModel climateQuestionModel = await questionData.GetClimateQuestionsByCategory(GetCategory());
             TestQuestion = climateQuestionModel.text;
             questionNumber = climateQuestionModel.QuestionID;
             questionCategory = climateQuestionModel.category;
