@@ -4,7 +4,6 @@
 <div class="mainDiv">
 
     <!--Disable these as comments when the trial period is over for guardians-->
-
     @if (@numOfQuestions == 1)
     {
         <SpaceForceEvaluations.Components.DailyQuestionHolder questionType="@questionType"></SpaceForceEvaluations.Components.DailyQuestionHolder>        
@@ -43,8 +42,9 @@
     <SpaceForceEvaluations.Components.TextQuestionsHolder questionInput="@questionThree"></SpaceForceEvaluations.Components.TextQuestionsHolder>
     <SpaceForceEvaluations.Components.TextQuestionsHolder questionInput="@questionFour"></SpaceForceEvaluations.Components.TextQuestionsHolder>
     <SpaceForceEvaluations.Components.TextQuestionsHolder questionInput="@questionFive"></SpaceForceEvaluations.Components.TextQuestionsHolder>
-    <div><button type="submit" onclick="location.href='/'">Complete Survey</button></div>
 
+    <div><button type="submit" onclick="location.href='/'">Complete Survey</button></div>
+    
 </div>
 @code {
     // For version 2.0, or continuation, these will need to be changed to pull from a list of test questions that will be made in the database

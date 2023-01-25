@@ -68,6 +68,7 @@
 
 
     // Function for handling when a response is submitted.
+    // needs to be fixed to properly save questions
     private async Task HandleSubmit()
     {
         questionResponse = surveyModel.response;
@@ -132,7 +133,7 @@
 
     private string GetCategory()
     {
-        int categoryNumber = rnd.Next(1, 33);
+        int categoryNumber = 32;
         switch (categoryNumber)
         {
             case 1:
@@ -147,8 +148,6 @@
                 return "Interpersonal Justice";
             case 6:
                 return "General Risk Propensity";
-            case 7:
-                return "Authenticity - Authentic Living";
             case 8:
                 return "DEI";
             case 9:
