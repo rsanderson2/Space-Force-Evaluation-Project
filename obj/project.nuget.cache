@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "bhRJZXON6Re5ftwtNwkcCHGWrmNadFifU6oaQzDiRFM/e+t6Q/Be61WMpOsEcpC451zKTVdCtsec/qjWBOCRGQ==",
+  "dgSpecHash": "lXjBqReLGbvtDW8FDrphLJ2oR182uoKfXEA0yLN17DYZxail1IET674a9XiDny6f0oiKcUE9C99/2qwfJTzjLg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\ethan\\Source\\Repos\\Space-Force-Evaluation-Project\\SpaceForceEvaluations.csproj",
+  "projectFilePath": "C:\\Users\\ethan\\source\\repos\\Space-Force-Evaluation-Project\\SpaceForceEvaluations.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ethan\\.nuget\\packages\\anglesharp\\0.17.1\\anglesharp.0.17.1.nupkg.sha512",
     "C:\\Users\\ethan\\.nuget\\packages\\anglesharp.css\\0.16.4\\anglesharp.css.0.16.4.nupkg.sha512",
