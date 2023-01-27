@@ -5,6 +5,7 @@
 // ================================================================================================
 using Microsoft.Extensions.Configuration;
 using MongoDB.Driver;
+using SpaceForceEvaluationAppLibrary.Models;
 
 namespace SpaceForceEvaluationAppLibrary.DataAccess;
 public class DbConnection : IDbConnection
@@ -21,6 +22,7 @@ public class DbConnection : IDbConnection
     public string ClimateQuestionsCollectionName { get; private set; } = "climateQuestions";
     public string FeedbackCollectionName { get; private set; } = "Feedback";
     public string AccoladesCollectionName { get; private set; } = "Accolades";
+    public string WeeklyQuestionsCollectionName { get; private set; } = "weeklyQuestions";
 
     // here each of the collections is intialized as a type referencing their respective models
     // located in SpaceForceEvaluationAppLibrary/Models.
@@ -31,6 +33,8 @@ public class DbConnection : IDbConnection
     public IMongoCollection<ClimateQuestionsModel> ClimateQuestionsCollection { get; private set; }
     public IMongoCollection<FeedbackModel> FeedbackCollection { get; private set; }
     public IMongoCollection<AccoladeModel> AccoladesCollection { get; private set; }
+
+    public IMongoCollection<WeeklyQuestionsModel> WeeklyQuestionsCollection { get; private set; }
 
     // here is the constructor for the database connection. The database connection is made first, then
     // each of the collections are connected.
@@ -47,5 +51,6 @@ public class DbConnection : IDbConnection
         ClimateQuestionsCollection = _db.GetCollection<ClimateQuestionsModel>(ClimateQuestionsCollectionName);
         FeedbackCollection = _db.GetCollection<FeedbackModel>(FeedbackCollectionName);
         AccoladesCollection = _db.GetCollection<AccoladeModel>(AccoladesCollectionName);
+        WeeklyQuestionsCollection = _db.GetCollection<WeeklyQuestionsModel>(WeeklyQuestionsCollectionName);
     }
 }
