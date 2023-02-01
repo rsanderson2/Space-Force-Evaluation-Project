@@ -34,5 +34,6 @@ public static class RegisterServices
         builder.Services.AddSingleton<IClimateQuestionsData, MongoClimateQuestionsData>();
         builder.Services.AddSingleton<IAccoladeData, MongoAccoladeData>();
         builder.Services.AddSingleton<IWeeklyQuestionsData, MongoWeeklyQuestionsData>();
+        builder.Services.AddSingleton<IMonthlyQuestionsData, MongoMonthlyQuestionsData>();
     }
 }

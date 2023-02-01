@@ -24,6 +24,7 @@ public class DbConnection : IDbConnection
     public string AccoladesCollectionName { get; private set; } = "Accolades";
     public string WeeklyQuestionsCollectionName { get; private set; } = "WeeklyQuestions";
 
+    public string MonthlyQuestionsCollectionName { get; private set; } = "MonthlyQuestions";
     // here each of the collections is intialized as a type referencing their respective models
     // located in SpaceForceEvaluationAppLibrary/Models.
     public MongoClient Client { get; private set; }
@@ -33,6 +34,8 @@ public class DbConnection : IDbConnection
     public IMongoCollection<ClimateQuestionsModel> ClimateQuestionsCollection { get; private set; }
     public IMongoCollection<FeedbackModel> FeedbackCollection { get; private set; }
     public IMongoCollection<AccoladeModel> AccoladesCollection { get; private set; }
+
+    public IMongoCollection<MonthlyQuestionsModel> MonthlyQuestionsCollection { get; private set; }
 
     public IMongoCollection<WeeklyQuestionsModel> WeeklyQuestionsCollection { get; private set; }
 
@@ -52,5 +55,6 @@ public class DbConnection : IDbConnection
         FeedbackCollection = _db.GetCollection<FeedbackModel>(FeedbackCollectionName);
         AccoladesCollection = _db.GetCollection<AccoladeModel>(AccoladesCollectionName);
         WeeklyQuestionsCollection = _db.GetCollection<WeeklyQuestionsModel>(WeeklyQuestionsCollectionName);
+        MonthlyQuestionsCollection = _db.GetCollection<MonthlyQuestionsModel>(MonthlyQuestionsCollectionName);
     }
 }
