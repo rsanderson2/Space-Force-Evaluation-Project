@@ -24,6 +24,11 @@
     <EmbeddedResource Remove="SpaceForceEvaluationAppLibrary\**" />
     <None Remove="SpaceForceEvaluationAppLibrary\**" />
   </ItemGroup>
+	
+
+  <ItemGroup>
+    <Compile Remove="Components\CodeFile.cs" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="bunit.core" Version="1.9.8" />

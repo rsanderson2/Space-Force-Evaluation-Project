@@ -1,12 +1,12 @@
 ﻿// ================================================================================================
-// This is the interface for the dailyQuestions data access file.
+// This is the interface for the MonthlyQuestions data access file.
 // ================================================================================================
 namespace SpaceForceEvaluationAppLibrary.DataAccess
 {
-    public interface IDailyQuestionsData
+    public interface IMonthlyQuestionsData
     {
-        Task<DailyQuestionsModel> GetDailyQuestion(int Id);
+        Task<MonthlyQuestionsModel> GetMonthlyQuestion(int Id);
 
-        Task<DailyQuestionsModel> GetDailyQuestionsByCategory(string category);
+        Task<MonthlyQuestionsModel> GetMonthlyQuestionsByCategory(string category);
     }
 }
