@@ -18,7 +18,7 @@ public class DbConnection : IDbConnection
     // the name of the collections in the database.
     public string UserCollectionName { get; private set; } = "Users";
     public string SurveyCollectionName { get; private set; } = "Surveys";
-    public string DailyQuestionsCollectionName { get; private set; } = "dailyQuestions";
+    public string DailyQuestionsCollectionName { get; private set; } = "DailyQuestions";
     public string ClimateQuestionsCollectionName { get; private set; } = "climateQuestions";
     public string FeedbackCollectionName { get; private set; } = "Feedback";
     public string AccoladesCollectionName { get; private set; } = "Accolades";

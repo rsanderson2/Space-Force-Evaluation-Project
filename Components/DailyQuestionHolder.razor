@@ -1,5 +1,5 @@
 ﻿@inject IClimateQuestionsData questionData
-@inject IDailyQuestionsData dailyQuestionData
+@inject IDailyQuestionsData DailyQuestionData
 @inject IUserData userData
 @inject ISurveyData surveyData
 @inject NavigationManager navManager
@@ -197,7 +197,7 @@
             case 31:
                 return "Integrity";
             case 32:
-                return "Help-Seeking Problem-solving assistance";
+                return "Inclusion";
             case 33:
                 return "Inclusion";
             default:
@@ -212,10 +212,10 @@
         var user = await AuthenticationStateProviderHelpers.GetUserFromAuth(authProvider, userData);
         if (SurveyQuestionType == 1)
         {
-            ClimateQuestionsModel climateQuestionModel = await questionData.GetClimateQuestionsByCategory(GetCategory());
-            TestQuestion = climateQuestionModel.text;
-            questionNumber = climateQuestionModel.QuestionID;
-            questionCategory = climateQuestionModel.category;
+            DailyQuestionsModel dailyQuestionModel = await DailyQuestionData.GetDailyQuestionsByCategory(GetCategory());
+            TestQuestion = dailyQuestionModel.text;
+            questionNumber = dailyQuestionModel.QuestionID;
+            questionCategory = dailyQuestionModel.category;
             surveyTaker = user.userID;
         }
         // Else, Question will be Personnel
@@ -233,7 +233,7 @@
             {
                 UserModel subject = await userData.GetUser(subjectID);
                 teammate = subject.firstName + " " + subject.lastName;
-                DailyQuestionsModel dailyQuestionModel = await dailyQuestionData.GetDailyQuestion(GetDailyQuestionNumber());
+                DailyQuestionsModel dailyQuestionModel = await DailyQuestionData.GetDailyQuestion(GetDailyQuestionNumber());
                 TestQuestion = dailyQuestionModel.text;
                 questionNumber = dailyQuestionModel.QuestionID;
                 questionCategory = dailyQuestionModel.category;
