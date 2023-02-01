@@ -622,4 +622,4 @@ C:\Users\ethan\Source\Repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\refi
 C:\Users\ethan\Source\Repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\SpaceForceEvaluations.pdb
 C:\Users\ethan\Source\Repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\SpaceForceEvaluations.genruntimeconfig.cache
 C:\Users\ethan\Source\Repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\ref\SpaceForceEvaluations.dll
-C:\Users\ethan\source\repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\scopedcss\Pages\OldWeekly.razor.rz.scp.css
+C:\Users\ethan\source\repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\scopedcss\Pages\Weekly.razor.rz.scp.css

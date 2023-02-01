@@ -22,7 +22,7 @@ public class DbConnection : IDbConnection
     public string ClimateQuestionsCollectionName { get; private set; } = "climateQuestions";
     public string FeedbackCollectionName { get; private set; } = "Feedback";
     public string AccoladesCollectionName { get; private set; } = "Accolades";
-    public string WeeklyQuestionsCollectionName { get; private set; } = "weeklyQuestions";
+    public string WeeklyQuestionsCollectionName { get; private set; } = "WeeklyQuestions";
 
     // here each of the collections is intialized as a type referencing their respective models
     // located in SpaceForceEvaluationAppLibrary/Models.

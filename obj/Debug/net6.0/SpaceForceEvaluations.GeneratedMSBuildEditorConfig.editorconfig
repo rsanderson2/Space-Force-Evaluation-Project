@@ -28,12 +28,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQaWVDaGFydEhvbGRlci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ethan/source/repos/Space-Force-Evaluation-Project/Pages/Counter.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ291bnRlci5yYXpvcg==
+[C:/Users/ethan/source/repos/Space-Force-Evaluation-Project/Components/WeeklyQuestionHolder.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xXZWVrbHlRdWVzdGlvbkhvbGRlci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ethan/source/repos/Space-Force-Evaluation-Project/Pages/Weekly.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcV2Vla2x5LnJhem9y
+[C:/Users/ethan/source/repos/Space-Force-Evaluation-Project/Pages/Component.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29tcG9uZW50LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ethan/source/repos/Space-Force-Evaluation-Project/Pages/Counter.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ291bnRlci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/ethan/source/repos/Space-Force-Evaluation-Project/Shared/SurveyPrompt.razor]
@@ -111,6 +115,10 @@ build_metadata.AdditionalFiles.CssScope = b-o2ye6ss7r8
 [C:/Users/ethan/source/repos/Space-Force-Evaluation-Project/Pages/Survey.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3VydmV5LnJhem9y
 build_metadata.AdditionalFiles.CssScope = b-5j160uinxx
+
+[C:/Users/ethan/source/repos/Space-Force-Evaluation-Project/Pages/Weekly.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcV2Vla2x5LnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-qyidqirjlb
 
 [C:/Users/ethan/source/repos/Space-Force-Evaluation-Project/Shared/LoginDisplay.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXExvZ2luRGlzcGxheS5yYXpvcg==
