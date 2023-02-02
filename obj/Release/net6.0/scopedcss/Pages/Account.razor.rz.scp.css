@@ -1,0 +1,36 @@
+/* Main page */
+.mainDiv[b-9c49sc1y2p] {
+    background-image: linear-gradient(180deg, #002035 0%, #000f 99%);
+    color: #7f838a;
+    height: 100vh;
+    text-align: center;
+}
+
+h1[b-9c49sc1y2p] {
+    line-height: 2;
+    border-bottom: 1px solid gray;
+}
+
+/* Container for page contents */
+.container[b-9c49sc1y2p] {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 40px 20px;
+
+}
+
+/* Aligns content in the container to the left */
+.formoption[b-9c49sc1y2p] {
+    width: 0;
+}
+
+label[b-9c49sc1y2p] {
+    font-size: 18px;
+    text-align: left;
+    padding: 15px 0px;
+}
+
+EditForm[b-9c49sc1y2p] {
+    display: inline-block;
+    border-top: 1px solid gray;
+}

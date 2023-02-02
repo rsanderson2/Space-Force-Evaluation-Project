@@ -1,0 +1,234 @@
+:root[b-4m02i15hvc] {
+}
+
+/* Body (Entire nav) */
+body[b-4m02i15hvc] {
+    background-image: url(https://i.imgur.com/t2DloqT.jpeg);
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+/* Basic CSS */
+*[b-4m02i15hvc]   {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+h1[b-4m02i15hvc] {
+    line-height: 2;
+}
+
+a[b-4m02i15hvc] {
+    text-decoration: none;
+}
+
+ul[b-4m02i15hvc] {
+    list-style: none;
+}
+
+img[b-4m02i15hvc] {
+    width: 100%;
+}
+
+/* Footer for About link */
+footer[b-4m02i15hvc] {
+    background: steelblue;
+    text-align: center;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+}
+
+footer a[b-4m02i15hvc] {
+    color: white;
+}
+
+/* Topbox (disabled) */
+.topbox[b-4m02i15hvc] {
+    background: darkgray;
+    border-bottom: 1px solid steelblue;
+    padding-bottom: 0;
+    height: 22px;
+    text-align: center;
+    flex: 0 1 auto;
+}
+
+.topbox p a[b-4m02i15hvc] {
+    font-size: 18px;
+}
+
+/* Infobox (entire body of nav menu) */
+.infobox[b-4m02i15hvc] {
+}
+
+.infobox .flex[b-4m02i15hvc] {
+    justify-content: space-between;
+    margin: 0px auto;
+}
+
+/* Default flex CSS */
+.flex[b-4m02i15hvc] {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+/* Container for page contents */
+.container[b-4m02i15hvc] {
+    max-width: 1600px;
+    margin: 0 auto;
+    overflow: auto;
+    padding: 10px 40px;
+}
+
+/* Title */
+.sitetitle[b-4m02i15hvc] {
+    margin: 0;
+    padding: 0;
+    color: whitesmoke;
+    text-transform: uppercase;
+    font-size: 26px;
+}
+
+/* Space Force Logo */
+.logo[b-4m02i15hvc] {
+    min-width: 100px;
+    max-width: 100px;
+}
+
+/* Navigation List */
+.infobox ul[b-4m02i15hvc] {
+    display: flex;
+}
+
+/* Individual Links */
+ul a[b-4m02i15hvc] {
+    padding: 10px;
+    margin: 0 5px;
+    border-radius: 10px;
+    color: whitesmoke;
+    background-color: rgba(255, 255, 255, 0.4);
+    font-size: 24px;
+    text-transform: uppercase;
+    font-family: fantasy;
+}
+
+ul a:hover[b-4m02i15hvc] {
+    color: steelblue;
+    transform: scale(0.8);
+}
+
+/* Welcome User Box */
+.userbox[b-4m02i15hvc] {
+    margin: 20px;
+    padding: 10px 10px;
+    color: whitesmoke;
+    background-color: steelblue;
+    border-radius: 15px;
+}
+
+
+/* Tablets */
+@media(max-width: 768px) {
+    .infobox ul[b-4m02i15hvc] {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .infobox a[b-4m02i15hvc] {
+        font-size: 14px;
+    }
+
+    .infobox[b-4m02i15hvc] {
+
+    }
+}
+
+/* Most phones */
+@media(max-width: 500px){
+    .sitetitle[b-4m02i15hvc] {
+        font-size: 18px;
+    }
+    .infobox ul[b-4m02i15hvc] {
+        flex-wrap: wrap;
+        justify-content: center;
+        height: 80px;
+    }
+
+    .infobox a[b-4m02i15hvc] {
+        font-size: 12px;
+    }
+}
+
+/* Small phones */
+@media(max-width: 340px) {
+    .sitetitle[b-4m02i15hvc] {
+        font-size: 14px;
+    }
+
+    .infobox ul[b-4m02i15hvc] {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .infobox a[b-4m02i15hvc] {
+        font-size: 10px;
+    }
+
+    .userbox[b-4m02i15hvc] {
+        font-size: 10px;
+    }
+}
+
+/*
+.top-row ::deep a, .top-row .btn-link {
+    white-space: nowrap;
+    margin-left: 1.5rem;
+}
+
+.top-row a:first-child {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@media (max-width: 640.98px) {
+    .top-row:not(.auth) {
+        display: none;
+    }
+
+    .top-row.auth {
+        justify-content: space-between;
+    }
+
+    .top-row a, .top-row .btn-link {
+        margin-left: 0;
+    }
+}
+
+@media (min-width: 641px) {
+
+
+    .sidebar {
+        width: 250px;
+        height: 100vh;
+        position: sticky;
+        top: 0;
+    }
+
+    .top-row {
+        position: sticky;
+        top: 0;
+        z-index: 1;
+    }
+
+    .top-row, article {
+        padding-left: 2rem !important;
+        padding-right: 1.5rem !important;
+    }
+}
+    */

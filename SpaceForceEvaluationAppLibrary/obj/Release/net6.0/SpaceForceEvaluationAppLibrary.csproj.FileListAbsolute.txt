@@ -1,0 +1,11 @@
+C:\Users\ethan\source\repos\Space-Force-Evaluation-Project\SpaceForceEvaluationAppLibrary\bin\Release\net6.0\NuGet.Config
+C:\Users\ethan\source\repos\Space-Force-Evaluation-Project\SpaceForceEvaluationAppLibrary\bin\Release\net6.0\SpaceForceEvaluationAppLibrary.deps.json
+C:\Users\ethan\source\repos\Space-Force-Evaluation-Project\SpaceForceEvaluationAppLibrary\bin\Release\net6.0\SpaceForceEvaluationAppLibrary.dll
+C:\Users\ethan\source\repos\Space-Force-Evaluation-Project\SpaceForceEvaluationAppLibrary\bin\Release\net6.0\SpaceForceEvaluationAppLibrary.pdb
+C:\Users\ethan\source\repos\Space-Force-Evaluation-Project\SpaceForceEvaluationAppLibrary\obj\Release\net6.0\SpaceForceEvaluationAppLibrary.csproj.AssemblyReference.cache
+C:\Users\ethan\source\repos\Space-Force-Evaluation-Project\SpaceForceEvaluationAppLibrary\obj\Release\net6.0\SpaceForceEvaluationAppLibrary.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ethan\source\repos\Space-Force-Evaluation-Project\SpaceForceEvaluationAppLibrary\obj\Release\net6.0\SpaceForceEvaluationAppLibrary.csproj.CoreCompileInputs.cache
+C:\Users\ethan\source\repos\Space-Force-Evaluation-Project\SpaceForceEvaluationAppLibrary\obj\Release\net6.0\SpaceForceEvaluationAppLibrary.dll
+C:\Users\ethan\source\repos\Space-Force-Evaluation-Project\SpaceForceEvaluationAppLibrary\obj\Release\net6.0\refint\SpaceForceEvaluationAppLibrary.dll
+C:\Users\ethan\source\repos\Space-Force-Evaluation-Project\SpaceForceEvaluationAppLibrary\obj\Release\net6.0\SpaceForceEvaluationAppLibrary.pdb
+C:\Users\ethan\source\repos\Space-Force-Evaluation-Project\SpaceForceEvaluationAppLibrary\obj\Release\net6.0\ref\SpaceForceEvaluationAppLibrary.dll

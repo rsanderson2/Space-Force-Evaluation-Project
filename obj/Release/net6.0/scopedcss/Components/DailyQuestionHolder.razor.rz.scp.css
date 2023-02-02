@@ -1,0 +1,38 @@
+body[b-a5t3ivg6ll] {
+
+}
+.maincomponent[b-a5t3ivg6ll] {
+    background-image: linear-gradient(180deg, #002035 0%, #000f 99%);
+    color: white;
+    border-style: double;
+    border-color: #7f838a;
+    margin-bottom: 1vh;
+}
+input[type="radio"][b-a5t3ivg6ll] {
+    margin: 0 5px 25px 10px;
+}
+input[type="InputRadio"][b-a5t3ivg6ll] {
+    margin: 0 5px 25px 10px;
+}
+button[b-a5t3ivg6ll] {
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+    box-shadow: inset 0px 1px 0px 0px #a4e271;
+    background: linear-gradient(to bottom, #89c403 5%, #77a809 100%);
+    background-color: #89c403;
+    border-radius: 6px;
+    border: 1px solid #74b807;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Arial;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 6px 24px;
+    text-decoration: none;
+    text-shadow: 0px 1px 0px #528009;
+}
+button:hover[b-a5t3ivg6ll] {
+    background: linear-gradient(to bottom, #77a809 5%, #89c403 100%);
+    background-color: #77a809;
+}

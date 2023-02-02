@@ -1,0 +1,31 @@
+body[b-jb4h1quasc] {
+}
+
+
+.container[b-jb4h1quasc] {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    justify-items: center;
+    text-align: center;
+}
+
+table[b-jb4h1quasc] {
+    color: white;
+}
+
+.scroll[b-jb4h1quasc] {
+    height: 75vh;
+    overflow-y: scroll;
+}
+
+.btn-primary[b-jb4h1quasc] {
+    min-width: 200px;
+    font-size: 16px;
+    position: center;
+}
+
+.reportComponent[b-jb4h1quasc] {
+    position: absolute;
+    width: 100%;
+}

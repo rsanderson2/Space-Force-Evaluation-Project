@@ -1,0 +1,24 @@
+body[b-2vrc6v01fr] {
+}
+
+.maincomponent[b-2vrc6v01fr] {
+    background-image: linear-gradient(180deg, #002035 0%, #000f 99%);
+    color: white;
+    border-style: double;
+    border-color: #7f838a;
+}
+
+input[type="radio"][b-2vrc6v01fr] {
+    margin: 0 5px 25px 10px;
+}
+
+input[type="InputRadio"][b-2vrc6v01fr] {
+    margin: 0 5px 25px 10px;
+}
+
+input[type="text"][b-2vrc6v01fr] {
+    width: 200px;
+}
+button[b-2vrc6v01fr]{
+    margin-top: 1vh;
+}
