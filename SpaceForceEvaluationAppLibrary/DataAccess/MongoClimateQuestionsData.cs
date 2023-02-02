@@ -24,4 +24,13 @@ public class MongoClimateQuestionsData : IClimateQuestionsData
         var returned = await _questions.FindAsync(q => q.QuestionID == questionID);
         return returned.FirstOrDefault();
     }
+
+    // task that takes in a category and returns a list of questions asyncronously from the 
+    // climateQuestions collection by the string variable Category.
+
+    public async Task<ClimateQuestionsModel> GetClimateQuestionsByCategory(string category)
+    {
+        var returned = await _questions.FindAsync(q => q.category == category);
+        return returned.FirstOrDefault();
+    }
 }

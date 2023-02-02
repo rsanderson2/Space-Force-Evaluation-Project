@@ -1,42 +1,23 @@
 ﻿@page "/Weekly"
 @attribute [Authorize]
-@inject IDailyQuestionsData questionData
-<PageTitle>Weekly</PageTitle>
+@inject IWeeklyQuestionsData questionData
+@inject AuthenticationStateProvider authProvider
+@inject IUserData userData
+@inject NavigationManager navManager
+
+<PageTitle>Survey</PageTitle>
 
 <div class="mainDiv">
-    @if (numOfQuestions == 1)
-    {
-         <SpaceForceEvaluations.Components.DailyQuestionHolder questionType="@questionType"></SpaceForceEvaluations.Components.DailyQuestionHolder>   
-    }
-    @if (numOfQuestions == 2)
-    {
-         <SpaceForceEvaluations.Components.DailyQuestionHolder questionType="@questionType"></SpaceForceEvaluations.Components.DailyQuestionHolder>   
-         <SpaceForceEvaluations.Components.DailyQuestionHolder questionType="@questionType"></SpaceForceEvaluations.Components.DailyQuestionHolder>
-    }
-    @if (numOfQuestions == 3)
-    {
-        <SpaceForceEvaluations.Components.DailyQuestionHolder questionType="@questionType"></SpaceForceEvaluations.Components.DailyQuestionHolder>
-        <SpaceForceEvaluations.Components.DailyQuestionHolder questionType="@questionType"></SpaceForceEvaluations.Components.DailyQuestionHolder>
-        <SpaceForceEvaluations.Components.DailyQuestionHolder questionType="@questionType"></SpaceForceEvaluations.Components.DailyQuestionHolder>
-    
-    }
+
+    <!--Survey questions hidden by default-->
+    <SpaceForceEvaluations.Components.WeeklyQuestionHolder></SpaceForceEvaluations.Components.WeeklyQuestionHolder>
     <div><button type="submit" onclick="location.href='/'">Complete Survey</button></div>
+
 </div>
 
+
 @code {
-    public int numOfQuestions;
-    public string questionType = "Weekly";
 
-    // Task to get a random number to choose how many questions to display. 
-    private async Task GenerateNumber()
-    {
-        Random rnd = new Random();
-        numOfQuestions = rnd.Next(1, 4);
-    }
-
-    protected override async Task OnInitializedAsync()
-    {
-        await GenerateNumber();
-    }
 
 }
+

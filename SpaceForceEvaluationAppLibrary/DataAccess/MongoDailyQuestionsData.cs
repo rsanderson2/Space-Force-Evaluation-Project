@@ -25,4 +25,10 @@ public class MongoDailyQuestionsData : IDailyQuestionsData
         return returned.FirstOrDefault();
 
     }
+
+    public async Task<DailyQuestionsModel> GetDailyQuestionsByCategory(string category)
+    {
+        var returned = await _questions.FindAsync(q => q.category == category);
+        return returned.FirstOrDefault();
+    }
 }

@@ -7,5 +7,7 @@ namespace SpaceForceEvaluationAppLibrary.DataAccess
     public interface IClimateQuestionsData
     {
         Task<ClimateQuestionsModel> GetClimateQuestion(int Id);
+
+        Task<ClimateQuestionsModel> GetClimateQuestionsByCategory(string category);
     }
 }
