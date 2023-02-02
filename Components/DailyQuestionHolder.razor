@@ -130,7 +130,7 @@
     {
         return rnd.Next(1,3/*getMaxClimate()*/);
     }
-    private int addWeightCategoryNumber(string category)
+    private int addWeightCategoryId(string category)
     {
         //inverse the switch statement in the function GetCategory
         switch (category)
@@ -175,7 +175,7 @@
                 return 20;
             case "Informational Justice":
                 return 21;
-            case "Resource Availability";
+            case "Resource Availability":
                 return 22;
             case "TP":
                 return 23;
@@ -201,30 +201,30 @@
         return 2;
     }
 
-    private int generateCategory(int catagoryNumber, int weight)
+    private int GenerateCategory(int catagoryId, int weight)
     {
         // return a random number 1-32 each with a 1/32 chance of being chosen
         // based on what the categoryNumber is, that number is more likely to be chosen randomly
+        int numCategories = 32;
         
         // array of numbers 1-32
-        int[] numbers = new int[32];
-        for (int i = 0; i < 32; i++)
+        int[] numbers = new int[numCategories];
+        for (int i = 0; i < numCategories; i++)
         {
             numbers[i] = i + 1;
         }
         // insert the category number into the array weight number of times
-        for (int i = 32-1; i < weight; i++)
+        for (int i = numCategories - 1; i < weight; i++)
         {
-            numbers[i] = catagoryNumber;
+            numbers[i] = catagoryId;
         }
         // return a random number from the array from 1- the size of teh array
         return numbers[rnd.Next(1, numbers.Length)];
 
     }
 
-    private string GetCategory()
+    private string GetCategory(int categoryNumber)
     {
-        int categoryNumber = 32;
         switch (categoryNumber)
         {
             case 1:
@@ -303,7 +303,7 @@
         var user = await AuthenticationStateProviderHelpers.GetUserFromAuth(authProvider, userData);
         if (SurveyQuestionType == 1)
         {
-            DailyQuestionsModel dailyQuestionModel = await DailyQuestionData.GetDailyQuestionsByCategory(GetCategory());
+            DailyQuestionsModel dailyQuestionModel = await DailyQuestionData.GetDailyQuestionsByCategory(GetCategory(GenerateCategory(32,4)));
             TestQuestion = dailyQuestionModel.text;
             questionNumber = dailyQuestionModel.QuestionID;
             questionCategory = dailyQuestionModel.category;
