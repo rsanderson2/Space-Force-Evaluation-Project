@@ -131,8 +131,14 @@
         return rnd.Next(1,3/*getMaxClimate()*/);
     }
 
+    private int GenerateCategoryNumber()
+    {
+        // Changing the weights of categoryNumber will go here
+        return 32;
+    }
     private string GetCategory()
     {
+        //after generating the category number, the number generated will go here
         int categoryNumber = 32;
         switch (categoryNumber)
         {
