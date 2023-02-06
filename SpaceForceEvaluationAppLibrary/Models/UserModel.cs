@@ -23,4 +23,6 @@ public class UserModel
     public string feedbackTableID { get; set; }
     public int surveyCounter { get; set; }
     public List<String> flags { get; set; }
+    public List<String> subordinates { get; set; }
+    public List<String> superiors { get; set; }
 }
