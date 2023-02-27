@@ -35,6 +35,75 @@ public class MongoUserData : IUserData
         return results.FirstOrDefault();
     }
 
+    public async Task<List<UserModel>> getAllUsers()
+    {
+        var results = await _users.FindAsync(u => u.firstName != "");
+        return results.ToList();
+    }
+
+    
+    public async Task<UserModel> GetUserFromFirstName(string firstName)
+    {
+        var results = await _users.FindAsync(u => u.firstName == firstName);
+        return results.FirstOrDefault();
+    }
+
+    public async Task AddUserToSubordinates(UserModel currentUser, string subordinateId)
+    {
+        if(currentUser.subordinates == null)
+        {
+            List<string> newSubordinates = new List<string>();
+            newSubordinates.Add(subordinateId);
+            currentUser.subordinates = newSubordinates;
+        }
+        else
+        {
+            currentUser.subordinates.Add(subordinateId);
+        }
+
+        await UpdateUser(currentUser);
+
+    }
+    /*
+    public async Task<List<UserModel>> GetUsersFromIdList(List<string> userIds) // TODO: test
+    {
+        List<UserModel> usersFromList = new List<UserModel>();
+        foreach(var id in userIds)
+        {
+            UserModel curUser = await GetUser(id);
+            usersFromList.Add(curUser);
+        }
+        return usersFromList;
+    }
+
+    public async Task<List<UserModel>> GetAllSubordinates(string ObjectIdentifier) // TODO: test
+    {
+        UserModel user = await GetUserFromAuthentication(ObjectIdentifier);
+        List<UserModel> subordinates = await GetUsersFromIdList(user.subordinates);
+        return subordinates;
+    }
+
+    public async Task<UserModel> GetDirectSuperior(string id) // TODO: test
+    {
+        UserModel user = await GetUser(id);
+        return await GetUser(user.superiors[0]);
+    }
+
+    public async Task<UserModel> GetClosestCommander(string id) // TODO: test
+    {
+        UserModel currentUser = await GetUser(id);
+
+        if(currentUser.rank == "Commander" || currentUser.rank == "HQ")
+        {
+            return currentUser;
+        }
+        else
+        {
+            return await GetClosestCommander(currentUser.superiors[0]);
+        }
+    }
+    */
+
     // returns user record by the parameter objectId.
     public async Task<UserModel> GetUserFromAuthentication(string objectId)
     {

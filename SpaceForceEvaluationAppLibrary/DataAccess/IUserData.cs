@@ -9,8 +9,19 @@ namespace SpaceForceEvaluationAppLibrary.DataAccess
         Task CreateUser(UserModel user);
         Task<UserModel> GetUser(string id);
         Task<UserModel> GetUserFromAuthentication(string objectId);
+        Task<UserModel> GetUserFromFirstName(string firstName);
+
+        /*
+        Task<List<UserModel>> GetUsersFromIdList(List<string> userIds);
+        Task<List<UserModel>> GetAllSubordinates(string ObjectIdentifier);
+        Task<UserModel> GetDirectSuperior(string id);
+        Task<UserModel> GetClosestCommander(string id);
+        */
+        Task AddUserToSubordinates(UserModel currentUser, string subordinateId);
+
         Task<List<UserModel>> GetUsersAsync();
         Task<List<UserModel>> GetUsersFromTeam(string teamId);
+        Task<List<UserModel>> getAllUsers();
         Task UpdateUser(UserModel user);
     }
 }

@@ -2,10 +2,17 @@
 @inject AuthenticationStateProvider authProvider
 @inject IUserData userData
 
+
+<RadzenDialog />
+<RadzenNotification />
+<RadzenContextMenu />
+<RadzenTooltip />
+
 <PageTitle>SpaceForceEvaluations</PageTitle>
 
 
 <body>
+
             <!--Reference bar
             <div class="topbox">
                 <p>Provide <a target="_blank" href="https://dod.teams.microsoft.us/l/team/19%3adod%3a2bf5dee9da7546c494c8d3b5f52f5878%40thread.tacv2/conversations?groupId=cebcc84c-7f65-4e78-9bf8-da0af1e01ded&tenantId=8331b18d-2d87-48ef-a35f-ac8818ebf9b4">Feedback</a> On Teams</p>
@@ -26,6 +33,7 @@
                     <li><a href="/">Home</a></li>
                     <li><a href="/Profile">Profile</a></li>
                     <li><a href="/Reports">Reports</a></li>
+                    <li><a href="/Teammanagement">Team Management</a></li>
                     <AuthorizeView>
                         <Authorized>
                             <li><a href="/MicrosoftIdentity/Account/SignOut">Log out</a></li>
@@ -43,6 +51,7 @@
                 </Authorized>
             </AuthorizeView>
         </div>
+
     </div>
 
         <div class="mainDiv">

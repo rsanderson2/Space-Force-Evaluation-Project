@@ -1,0 +1,163 @@
+﻿@page "/Teammanagement"
+@attribute [Authorize]
+@inject AuthenticationStateProvider authProvider
+@inject NavigationManager navManager
+@inject IUserData userData
+@inject IAccoladeData accoladeData
+@inject IJSRuntime JsRuntime 
+@inject DialogService DialogService
+
+
+<PageTitle>Team Management</PageTitle>
+
+<div class="mainDiv">
+
+    <EditForm Model="@searchModel" OnValidSubmit="@HandleSearch">
+        <!--Update User Rank-->
+        <label>
+            Search By:
+            <InputSelect @bind-Value=searchModel.filter>
+                <option value="">Select Rank...</option>
+                <option value="firstName">First name</option>
+            </InputSelect>
+            <InputText @bind-Value=searchModel.searchInput></InputText>
+        </label>
+        <button type="submit">Submit</button>
+    </EditForm>
+
+
+    <div class="container" style="display: @showAllUsers">
+        @if(users != null) {
+            <div class="scroll">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th style="color: white">First Name</th>
+                            <th style="color: white">Last Name</th>
+                            <th style="color: white">Rank</th>
+                            <th style="color: white">Job</th>
+                            <th style="color: white">Subordinates</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @foreach (var UserModel in users)
+                        {
+                            <tr @onclick="() => ShowInlineDialog(UserModel)">
+                                <td style="color: white">@UserModel.firstName</td>
+                                <td style="color: white">@UserModel.lastName</td>
+                                <td style="color: white">@UserModel.rank</td>
+                                <td style="color: white">@UserModel.job</td>
+                                <td style="color: white"><span>testing</span></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+
+    </div>
+
+</div>
+
+
+
+@code {
+
+    public class SearchModel {
+        public string filter;
+        public string searchInput;
+    }
+
+    SearchModel searchModel = new();
+
+    string showAllUsers = "block";
+    List<UserModel> users;
+
+    public string searchFilter;
+    public string userSearchInput;
+    UserModel userSearchResult;
+    bool foundUser = false;
+
+    UserModel currentUser;
+
+    private async Task HandleSearch() {
+
+        if(searchModel.filter == "firstName") {
+            userSearchResult = await userData.GetUserFromFirstName(searchModel.searchInput);
+        }
+        else if(searchModel.filter == "lastName") {
+            // TOOD: add search by last name here
+        }
+        else {
+            // TODO: ask user to pick filter here
+            foundUser = false;
+        }
+
+        if (userSearchResult != null) {
+            foundUser = true;
+        }
+        else {
+            foundUser = false;
+        }
+    }
+
+    // Function to get the current logged in user.
+    private async Task GetLogin()
+    {
+        currentUser = await AuthenticationStateProviderHelpers.GetUserFromAuth(authProvider, userData);
+    }
+
+
+    async Task getAllUsers()
+    {
+        users = await userData.getAllUsers();
+    }
+
+    async Task addUserToSubordinates(string subordinateId)
+    {
+        await userData.AddUserToSubordinates(currentUser, subordinateId);
+    }
+
+    protected async override Task OnInitializedAsync()
+    {
+        await GetLogin();
+        await getAllUsers();
+    }
+
+    bool checkIfAlreadySubordinate(string subordinateId) {
+        for(var i = 0; i < currentUser.subordinates.Count; i++){
+            if(currentUser.subordinates[i] == subordinateId) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    async Task ShowInlineDialog(UserModel selectedUser)
+    {
+        <!-- TODO: see if the current user is superior to the selected user, if so, set a flag so we can add actions laters.  -->
+        var result = await DialogService.OpenAsync("Simple Dialog", ds =>
+    @<div>
+        <!-- TODO: show the selectedUser's data here' -->
+        <p class="mb-4">@selectedUser.firstName</p>
+            @if (checkIfAlreadySubordinate(selectedUser.userID) && selectedUser.userID == currentUser.userID) {
+                <p>is subordinate to you</p>
+            }
+            else
+            {
+                <p>is NOT subordinate to you</p>
+                <RadzenButton Text="Add to your subordinates" Click="() => addUserToSubordinates(selectedUser.userID)" class="me-1" />
+
+
+            }
+        <div class="row">
+            <div class="col">
+                <RadzenButton Text="Ok" Click="() => ds.Close(true)" class="me-1" Style="width: 80px;" />
+                <RadzenButton Text="Cancel" Click="() => ds.Close(false)" ButtonStyle="ButtonStyle.Light" class="me-1" />
+            </div>
+        </div>
+    </div>);
+    }
+}
