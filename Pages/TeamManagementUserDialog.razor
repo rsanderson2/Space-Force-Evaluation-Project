@@ -9,24 +9,31 @@
                 {
                     <p>Under your adminstrative control</p>
                 }
-                else if (hasGreatORequalRank && !isSameUser)
+                else if (hasGreatORequalRole && !isSameUser)
                 {
                     <p>Is not under your administrative control</p>
                     <MudButton OnClick="() => addUserToSubordinates(selectedUser.userID)">Request ADCON</MudButton>
                 }
             <p>TODO: show more information here</p>
+            <p>Reports to?</p>
+            <p>last daily survey taken?</p>
+            <p>last weekly survey taken?</p>
+            <p>last monthly survey taken?</p>
+            <p>What operations they are in?</p>
+
+
+
             <!-- TODO: conditionally disable buttons when necessary -->
 
-            <MudButton OnClick="() => Cancel()">Request ADCON</MudButton>
-            <MudButton OnClick="() => Cancel()">Request OPCON</MudButton>
-            <MudButton OnClick="() => Cancel()">Assign as Evaulator</MudButton>
+            
         
         </div>
     </DialogContent>
     <DialogActions>
-        
         <MudButton OnClick="Cancel">Cancel</MudButton>
-        <MudButton Color="Color.Primary" OnClick="Submit">Ok</MudButton>
+        <MudButton OnClick="() => Cancel()">Request ADCON</MudButton>
+        <MudButton OnClick="() => Cancel()">Request OPCON</MudButton>
+        <MudButton OnClick="() => Cancel()">Request to be evaulator</MudButton>
     </DialogActions>
 </MudDialog>
 @code {
@@ -38,12 +45,13 @@
 
     bool hasADCON = false;
     bool hasOPCON = false;
-    bool hasGreatORequalRank = false;
+    bool hasGreatORequalRole = false;
     bool isSameUser = false;
+    bool selectedUserHasUnassignedRole;
+    bool canCurrentUserAssignRoles = false;
 
     void Submit() => MudDialog.Close(DialogResult.Ok(true));
     void Cancel() => MudDialog.Cancel();
-
 
 
     async Task addUserToSubordinates(string subordinateId)
@@ -55,6 +63,7 @@
     {
         // TODO: send request to appropriate commanders if necessary.
     }
+
 
 
     bool hasADCONOverUser(string userId)
@@ -73,7 +82,7 @@
         return false;
     }
 
-    IDictionary<string, int> ranks = new Dictionary<string, int>() {
+    IDictionary<string, int> roles = new Dictionary<string, int>() {
         { "HQ", 1 },
         { "Commander", 2 },
         { "Supervisor", 3 },
@@ -81,13 +90,13 @@
     };
 
 
-    bool isSuperiorToSelectedUser(string selectedUserRank)
+    bool isSuperiorToSelectedUser(string selectedUserRole)
     {
-        if (selectedUserRank == "HQ" || selectedUserRank == "Commander" || selectedUserRank == "Supervisor" || selectedUserRank == "Member")
+        if (selectedUserRole == "HQ" || selectedUserRole == "Commander" || selectedUserRole == "Supervisor" || selectedUserRole == "Member")
         {
-            if (currentUser.rank == "HQ" || currentUser.rank == "Commander" || currentUser.rank == "Supervisor" || currentUser.rank == "Member")
+            if (currentUser.role == "HQ" || currentUser.role == "Commander" || currentUser.role == "Supervisor" || currentUser.role == "Member")
             {
-                if (ranks[selectedUserRank] <= ranks[currentUser.rank])
+                if (roles[selectedUserRole] <= roles[currentUser.role])
                 {
                     return true;
                 }
@@ -97,11 +106,18 @@
         return false;
     }
 
+    bool doesUserHaveUnassignedRole(UserModel selectedUser)
+    {
+        return selectedUser.role == null;
+    }
+
     protected async override Task OnInitializedAsync()
     {
         hasADCON = hasADCONOverUser(selectedUser.userID);
         hasOPCON = false;
-        hasGreatORequalRank = isSuperiorToSelectedUser(selectedUser.rank);
+        hasGreatORequalRole = isSuperiorToSelectedUser(selectedUser.role);
+        selectedUserHasUnassignedRole = doesUserHaveUnassignedRole(selectedUser);
+        canCurrentUserAssignRoles = (currentUser?.role == "Commander" || currentUser?.role == "HQ");
         isSameUser = selectedUser.userID == currentUser.userID;
     }
 }

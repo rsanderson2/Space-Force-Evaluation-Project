@@ -26,5 +26,8 @@ namespace SpaceForceEvaluationAppLibrary.DataAccess
 
         IMongoCollection<MonthlyQuestionsModel> MonthlyQuestionsCollection { get; }
         string MonthlyQuestionsCollectionName { get; }
+
+        IMongoCollection<TransferRequestModel> TransferRequest { get; }
+        string TransferRequestCollectionName { get; }
     }
 }

@@ -1,0 +1,166 @@
+﻿@page "/Teammanagement/Requests"
+@attribute [Authorize]
+@inject AuthenticationStateProvider authProvider
+@inject NavigationManager navManager
+@inject IUserData userData
+@inject ITransferRequests transferRequest
+
+
+<PageTitle>Team Management</PageTitle>
+
+<div>
+
+    <MudPaper Width="100%" Class="py-3 mb-4" Elevation="1">
+        <MudNavMenu>
+            <MudNavGroup Title="@transferRequestTitle" @bind-Expanded=_ADCONisExpanded>
+                <MudTable Items="@transferRequests">
+                    <HeaderContent>
+                        <MudTh>User</MudTh>
+                        <MudTh>Current Superior</MudTh>
+                        <MudTh>New Superior</MudTh>
+                    </HeaderContent>
+                    <RowTemplate>
+                        <MudTd>@context.userID</MudTd>
+                        <MudTd>@context.old_Superior</MudTd>
+                        <MudTd>@context.new_Superior</MudTd>
+                        <MudTd>
+                            <MudButton Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary">
+                                View More
+                            </MudButton>
+                            <MudButton Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary">
+                                Approve
+                            </MudButton>
+                            <MudButton Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary">
+                                Deny
+                            </MudButton>
+                        </MudTd>
+                    </RowTemplate>
+                </MudTable>
+            </MudNavGroup>
+            
+            <MudNavGroup Title="OPCON Outsource Requests" @bind-Expanded=_OPCONisExpanded>
+                <MudTable Items="@transferRequests">
+                    <HeaderContent>
+                        <MudTh>User</MudTh>
+                        <MudTh>Current Superior</MudTh>
+                        <MudTh>New Superior</MudTh>
+                    </HeaderContent>
+                    <RowTemplate>
+                        <MudTd>@context.userID</MudTd>
+                        <MudTd>@context.old_Superior</MudTd>
+                        <MudTd>@context.new_Superior</MudTd>
+                        <MudTd>
+                            <MudButton Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary">
+                                View More
+                            </MudButton>
+                            <MudButton Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary">
+                                Approve
+                            </MudButton>
+                            <MudButton Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary">
+                                Deny
+                            </MudButton>
+                        </MudTd>
+                    </RowTemplate>
+                </MudTable>
+            </MudNavGroup>
+
+            <MudNavGroup Title="Evauation Assignemnt Requests" @bind-Expanded=_evaluationIsExpanded>
+                <MudTable Items="@transferRequests">
+                    <HeaderContent>
+                        <MudTh>User</MudTh>
+                        <MudTh>Current Superior</MudTh>
+                        <MudTh>New Superior</MudTh>
+                    </HeaderContent>
+                    <RowTemplate>
+                        <MudTd>@context.userID</MudTd>
+                        <MudTd>@context.old_Superior</MudTd>
+                        <MudTd>@context.new_Superior</MudTd>
+                        <MudTd>
+                            <MudButton Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary">
+                                View More
+                            </MudButton>
+                            <MudButton Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary">
+                                Approve
+                            </MudButton>
+                            <MudButton Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary">
+                                Deny
+                            </MudButton>
+                        </MudTd>
+                    </RowTemplate>
+                </MudTable>
+            </MudNavGroup>
+
+            <MudNavGroup Title="Role Assignment Requests" @bind-Expanded=_roleIsExpanded>
+                <MudTable Items="@transferRequests">
+                    <HeaderContent>
+                        <MudTh>User</MudTh>
+                        <MudTh>Current Superior</MudTh>
+                        <MudTh>New Superior</MudTh>
+                    </HeaderContent>
+                    <RowTemplate>
+                        <MudTd>@context.userID</MudTd>
+                        <MudTd>@context.old_Superior</MudTd>
+                        <MudTd>@context.new_Superior</MudTd>
+                        <MudTd>
+                            <MudButton Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary">
+                                View More
+                            </MudButton>
+                            <MudButton Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary">
+                                Approve
+                            </MudButton>
+                            <MudButton Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary">
+                                Deny
+                            </MudButton>
+                        </MudTd>
+                    </RowTemplate>
+                </MudTable>
+            </MudNavGroup>
+        </MudNavMenu>
+    </MudPaper>
+
+    
+</div>
+
+
+
+
+
+
+
+
+@code {
+    bool _OPCONisExpanded = false;
+    bool _ADCONisExpanded = true;
+    bool _roleIsExpanded = false;
+    bool _evaluationIsExpanded = false;
+
+
+    UserModel currentUser;
+    List<TransferRequestModel> transferRequests = new List<TransferRequestModel>();
+
+    int numberPendingTransferRequest;
+    string transferRequestTitle;
+    // Function to get the current logged in user.
+    private async Task GetLogin()
+    {
+        currentUser = await AuthenticationStateProviderHelpers.GetUserFromAuth(authProvider, userData);
+    }
+
+
+    protected async override Task OnInitializedAsync()
+    {
+        TransferRequestModel request1 = new TransferRequestModel();
+        request1.Id = "abc";
+        request1.userID = "Darrell";
+        request1.old_Superior = "Kyle";
+        request1.new_Superior = "Ethan";
+        transferRequests.Add(request1);
+        numberPendingTransferRequest = transferRequests.Count;
+        transferRequestTitle = "ADCON transfer Requests: " + numberPendingTransferRequest + " Pending";
+
+        //TransferRequestModel test = await transferRequest.GetRequest("asdf");
+    }
+    
+
+  
+}

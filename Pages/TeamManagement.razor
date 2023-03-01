@@ -13,18 +13,23 @@
 <div>
     <!-- <MudDataGrid T="Element" MultiSelection="true" Items="@Elements" SortMode="SortMode.Multiple" Filterable="true" QuickFilter="@_quickFilter"
     Hideable="true" RowClick="@RowClicked" SelectedItemsChanged="@SelectedItemsChanged">-->
-    <MudText Typo="Typo.inherit">Show: </MudText>
-    <div class="d-flex flex-wrap mt-4">       
-        <MudSwitch @bind-Checked="@showUsersWhoHaveADCON" Color="Color.Primary">Guardians who have ADCON over you</MudSwitch>
-        <MudSwitch @bind-Checked="@showUsersWhoYouHaveADCON" Color="Color.Primary">Guardians who you have ADCON over</MudSwitch>
-        <MudSwitch @bind-Checked="@showUsersWhoHaveOPCON" Color="Color.Primary">Guardians who have OPCON over you</MudSwitch>
-        <MudSwitch @bind-Checked="@showUsersWhoYouHaveOPCON" Color="Color.Primary">Guardians who you have OPCON over</MudSwitch>
-        <MudSwitch @bind-Checked="@showEvaluators" Color="Color.Primary">Guardians who evaluate you</MudSwitch>
-        <MudSwitch @bind-Checked="@showUsersThatYouEvaluate" Color="Color.Primary">Guardians that you evaluate</MudSwitch>
+    <!-- <div class="d-flex flex-wrap mt-4">  -->
 
+    <MudPaper Width="400px" Class="py-3 mb-4" Elevation="1">
+        <MudNavMenu>
+            <MudNavGroup Title="Additional Filters" @bind-Expanded=_additionalFeaturesIsExpanded>
+                <MudSwitch @bind-Checked="@showUsersWhoHaveADCON" Color="Color.Primary">Guardians who have ADCON over you</MudSwitch>
+                <MudSwitch @bind-Checked="@showUsersWhoYouHaveADCON" Color="Color.Primary">Guardians who you have ADCON over</MudSwitch>
+                <MudSwitch @bind-Checked="@showUsersWhoHaveOPCON" Color="Color.Primary">Guardians who have OPCON over you</MudSwitch>
+                <MudSwitch @bind-Checked="@showUsersWhoYouHaveOPCON" Color="Color.Primary">Guardians who you have OPCON over</MudSwitch>
+                <MudSwitch @bind-Checked="@showEvaluators" Color="Color.Primary">Guardians who evaluate you</MudSwitch>
+                <MudSwitch @bind-Checked="@showUsersThatYouEvaluate" Color="Color.Primary">Guardians that you evaluate</MudSwitch>
+            </MudNavGroup>
+        </MudNavMenu>
+    </MudPaper>
 
-    </div>
-    <MudDataGrid Items="@users" MultiSelection="true" Hideable="true" Filterable="true" QuickFilter="@_quickFilter">
+   <!-- </div> -->
+    <MudDataGrid Items="@users" MultiSelection="true" Hideable="true" Filterable="true" QuickFilter="@_quickFilter" Loading="@isLoading">
         <ToolBarContent>
             <MudText Typo="Typo.h6">Guardians</MudText>
             <MudSpacer />
@@ -34,6 +39,7 @@
         <Columns >
             <Column T="UserModel" Field="firstName" Title="First Name"/>
             <Column T="UserModel" Field="lastName" Title="Last Name" />
+            <Column T="UserModel" Field="email" Title="Contact" />
             <Column T="UserModel" Field="rank" />
             <Column T="UserModel" Field="job" />
             <Column T="UserModel" Filterable="false" Hideable="false">
@@ -63,6 +69,11 @@
     bool showUsersWhoYouHaveOPCON;
     bool showEvaluators;
     bool showUsersThatYouEvaluate;
+    bool _additionalFeaturesIsExpanded;
+    bool isLoading = true;
+
+    List<UserModel> users;
+    UserModel currentUser;
 
     private string _searchString;
 
@@ -88,43 +99,6 @@
         DialogService.Show<TeamManagementUserDialog>("User Data", parameters, options );
     }
 
-    public class SearchModel {
-        public string filter;
-        public string searchInput;
-    }
-
-    SearchModel searchModel = new();
-
-    string showAllUsers = "block";
-    List<UserModel> users;
-
-    public string searchFilter;
-    public string userSearchInput;
-    UserModel userSearchResult;
-    bool foundUser = false;
-
-    UserModel currentUser;
-
-    private async Task HandleSearch() {
-
-        if(searchModel.filter == "firstName") {
-            userSearchResult = await userData.GetUserFromFirstName(searchModel.searchInput);
-        }
-        else if(searchModel.filter == "lastName") {
-            // TOOD: add search by last name here
-        }
-        else {
-            // TODO: ask user to pick filter here
-            foundUser = false;
-        }
-
-        if (userSearchResult != null) {
-            foundUser = true;
-        }
-        else {
-            foundUser = false;
-        }
-    }
 
     // Function to get the current logged in user.
     private async Task GetLogin()
@@ -142,6 +116,7 @@
     {
         await GetLogin();
         await getAllUsers();
+        isLoading = false;
     }
   
 }

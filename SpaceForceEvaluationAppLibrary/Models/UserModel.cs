@@ -20,6 +20,7 @@ public class UserModel
     public DateTime monthlyDate { get; set; }
     public List<String> surveyHistory { get; set; }
     public List<String> reportHistory { get; set; }
+    public List<String> evaluators { get; set; }
     public string feedbackTableID { get; set; }
     public int surveyCounter { get; set; }
     public List<String> flags { get; set; }
