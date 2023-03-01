@@ -21,6 +21,11 @@
             <p>last monthly survey taken?</p>
             <p>What operations they are in?</p>
 
+            @foreach (var user in subordinateUsers)
+            {
+                <p>@user.firstName</p>
+            }
+
 
 
             <!-- TODO: conditionally disable buttons when necessary -->
@@ -42,6 +47,8 @@
     [CascadingParameter] MudDialogInstance MudDialog { get; set; }
     [Parameter] public UserModel selectedUser { get; set; }
     [Parameter] public UserModel currentUser { get; set; }
+
+    List<UserModel> subordinateUsers = new List<UserModel>();
 
     bool hasADCON = false;
     bool hasOPCON = false;
@@ -111,6 +118,19 @@
         return selectedUser.role == null;
     }
 
+    async Task getSubordinates()
+    {
+
+        List<String>subordinateIds = currentUser.subordinates;
+
+        foreach (String us in subordinateIds)
+        {
+            UserModel tmp = await userData.GetUserFromAuthentication(us);
+            subordinateUsers.Add(tmp);
+        }
+    }
+
+
     protected async override Task OnInitializedAsync()
     {
         hasADCON = hasADCONOverUser(selectedUser.userID);
@@ -119,5 +139,6 @@
         selectedUserHasUnassignedRole = doesUserHaveUnassignedRole(selectedUser);
         canCurrentUserAssignRoles = (currentUser?.role == "Commander" || currentUser?.role == "HQ");
         isSameUser = selectedUser.userID == currentUser.userID;
+        await getSubordinates();
     }
 }
