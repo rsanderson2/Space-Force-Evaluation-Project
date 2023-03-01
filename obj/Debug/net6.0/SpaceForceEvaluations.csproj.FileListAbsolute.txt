@@ -781,3 +781,13 @@ C:\Users\Darrell\Documents\GitHub\Space-Force-Evaluation-Project\obj\Debug\net6.
 C:\Users\Darrell\Documents\GitHub\Space-Force-Evaluation-Project\obj\Debug\net6.0\scopedcss\Pages\TeamManagement.razor.rz.scp.css
 C:\Users\Darrell\Documents\GitHub\Space-Force-Evaluation-Project\bin\Debug\net6.0\Radzen.Blazor.dll
 C:\Users\Darrell\Documents\GitHub\Space-Force-Evaluation-Project\bin\Debug\net6.0\System.Linq.Dynamic.Core.dll
+C:\Users\Darrell\Documents\GitHub\Space-Force-Evaluation-Project\bin\Debug\net6.0\Microsoft.AspNetCore.Authorization.dll
+C:\Users\Darrell\Documents\GitHub\Space-Force-Evaluation-Project\bin\Debug\net6.0\Microsoft.AspNetCore.Components.dll
+C:\Users\Darrell\Documents\GitHub\Space-Force-Evaluation-Project\bin\Debug\net6.0\Microsoft.AspNetCore.Components.Forms.dll
+C:\Users\Darrell\Documents\GitHub\Space-Force-Evaluation-Project\bin\Debug\net6.0\Microsoft.AspNetCore.Components.Web.dll
+C:\Users\Darrell\Documents\GitHub\Space-Force-Evaluation-Project\bin\Debug\net6.0\Microsoft.AspNetCore.Metadata.dll
+C:\Users\Darrell\Documents\GitHub\Space-Force-Evaluation-Project\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\Darrell\Documents\GitHub\Space-Force-Evaluation-Project\bin\Debug\net6.0\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\Darrell\Documents\GitHub\Space-Force-Evaluation-Project\bin\Debug\net6.0\Microsoft.JSInterop.dll
+C:\Users\Darrell\Documents\GitHub\Space-Force-Evaluation-Project\bin\Debug\net6.0\MudBlazor.dll
+C:\Users\Darrell\Documents\GitHub\Space-Force-Evaluation-Project\bin\Debug\net6.0\System.IO.Pipelines.dll

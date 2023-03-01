@@ -5,65 +5,88 @@
 @inject IUserData userData
 @inject IAccoladeData accoladeData
 @inject IJSRuntime JsRuntime 
-@inject DialogService DialogService
+@inject IDialogService DialogService
 
 
 <PageTitle>Team Management</PageTitle>
 
-<div class="mainDiv">
+<div>
+    <!-- <MudDataGrid T="Element" MultiSelection="true" Items="@Elements" SortMode="SortMode.Multiple" Filterable="true" QuickFilter="@_quickFilter"
+    Hideable="true" RowClick="@RowClicked" SelectedItemsChanged="@SelectedItemsChanged">-->
+    <MudText Typo="Typo.inherit">Show: </MudText>
+    <div class="d-flex flex-wrap mt-4">       
+        <MudSwitch @bind-Checked="@showUsersWhoHaveADCON" Color="Color.Primary">Guardians who have ADCON over you</MudSwitch>
+        <MudSwitch @bind-Checked="@showUsersWhoYouHaveADCON" Color="Color.Primary">Guardians who you have ADCON over</MudSwitch>
+        <MudSwitch @bind-Checked="@showUsersWhoHaveOPCON" Color="Color.Primary">Guardians who have OPCON over you</MudSwitch>
+        <MudSwitch @bind-Checked="@showUsersWhoYouHaveOPCON" Color="Color.Primary">Guardians who you have OPCON over</MudSwitch>
+        <MudSwitch @bind-Checked="@showEvaluators" Color="Color.Primary">Guardians who evaluate you</MudSwitch>
+        <MudSwitch @bind-Checked="@showUsersThatYouEvaluate" Color="Color.Primary">Guardians that you evaluate</MudSwitch>
 
-    <EditForm Model="@searchModel" OnValidSubmit="@HandleSearch">
-        <!--Update User Rank-->
-        <label>
-            Search By:
-            <InputSelect @bind-Value=searchModel.filter>
-                <option value="">Select Rank...</option>
-                <option value="firstName">First name</option>
-            </InputSelect>
-            <InputText @bind-Value=searchModel.searchInput></InputText>
-        </label>
-        <button type="submit">Submit</button>
-    </EditForm>
-
-
-    <div class="container" style="display: @showAllUsers">
-        @if(users != null) {
-            <div class="scroll">
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th style="color: white">First Name</th>
-                            <th style="color: white">Last Name</th>
-                            <th style="color: white">Rank</th>
-                            <th style="color: white">Job</th>
-                            <th style="color: white">Subordinates</th>
-
-                        </tr>
-                    </thead>
-                    <tbody>
-
-                        @foreach (var UserModel in users)
-                        {
-                            <tr @onclick="() => ShowInlineDialog(UserModel)">
-                                <td style="color: white">@UserModel.firstName</td>
-                                <td style="color: white">@UserModel.lastName</td>
-                                <td style="color: white">@UserModel.rank</td>
-                                <td style="color: white">@UserModel.job</td>
-                                <td style="color: white"><span>testing</span></td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
-        }
 
     </div>
+    <MudDataGrid Items="@users" MultiSelection="true" Hideable="true" Filterable="true" QuickFilter="@_quickFilter">
+        <ToolBarContent>
+            <MudText Typo="Typo.h6">Guardians</MudText>
+            <MudSpacer />
+            <MudTextField @bind-Value="_searchString" Placeholder="Search" Adornment="Adornment.Start" Immediate="true"
+                          AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
+        </ToolBarContent>
+        <Columns >
+            <Column T="UserModel" Field="firstName" Title="First Name"/>
+            <Column T="UserModel" Field="lastName" Title="Last Name" />
+            <Column T="UserModel" Field="rank" />
+            <Column T="UserModel" Field="job" />
+            <Column T="UserModel" Filterable="false" Hideable="false">
+                <CellTemplate>
+                    <MudButton Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary" OnClick="@(() => OpenDialog(context.Item, currentUser))">
+                        View More
+                    </MudButton>
+                </CellTemplate>
+            </Column>
+        </Columns>
+    </MudDataGrid>
 
 </div>
 
 
 
+
+
+
+
+
 @code {
+
+    bool showUsersWhoHaveADCON;
+    bool showUsersWhoYouHaveADCON;
+    bool showUsersWhoHaveOPCON;
+    bool showUsersWhoYouHaveOPCON;
+    bool showEvaluators;
+    bool showUsersThatYouEvaluate;
+
+    private string _searchString;
+
+    private Func<UserModel, bool> _quickFilter => x =>
+    {
+        if (string.IsNullOrWhiteSpace(_searchString))
+            return true;
+
+        if (x.firstName.Contains(_searchString, StringComparison.OrdinalIgnoreCase))
+            return true;
+
+        return false;
+    };
+
+    private void OpenDialog(UserModel selectedUser, UserModel currentUser)
+    {
+        var parameters = new DialogParameters();
+        var options = new DialogOptions { CloseOnEscapeKey = true };
+
+        parameters.Add("selectedUser", selectedUser);
+        parameters.Add("currentUser", currentUser);
+
+        DialogService.Show<TeamManagementUserDialog>("User Data", parameters, options );
+    }
 
     public class SearchModel {
         public string filter;
@@ -115,49 +138,10 @@
         users = await userData.getAllUsers();
     }
 
-    async Task addUserToSubordinates(string subordinateId)
-    {
-        await userData.AddUserToSubordinates(currentUser, subordinateId);
-    }
-
     protected async override Task OnInitializedAsync()
     {
         await GetLogin();
         await getAllUsers();
     }
-
-    bool checkIfAlreadySubordinate(string subordinateId) {
-        for(var i = 0; i < currentUser.subordinates.Count; i++){
-            if(currentUser.subordinates[i] == subordinateId) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    async Task ShowInlineDialog(UserModel selectedUser)
-    {
-        <!-- TODO: see if the current user is superior to the selected user, if so, set a flag so we can add actions laters.  -->
-        var result = await DialogService.OpenAsync("Simple Dialog", ds =>
-    @<div>
-        <!-- TODO: show the selectedUser's data here' -->
-        <p class="mb-4">@selectedUser.firstName</p>
-            @if (checkIfAlreadySubordinate(selectedUser.userID) && selectedUser.userID == currentUser.userID) {
-                <p>is subordinate to you</p>
-            }
-            else
-            {
-                <p>is NOT subordinate to you</p>
-                <RadzenButton Text="Add to your subordinates" Click="() => addUserToSubordinates(selectedUser.userID)" class="me-1" />
-
-
-            }
-        <div class="row">
-            <div class="col">
-                <RadzenButton Text="Ok" Click="() => ds.Close(true)" class="me-1" Style="width: 80px;" />
-                <RadzenButton Text="Cancel" Click="() => ds.Close(false)" ButtonStyle="ButtonStyle.Light" class="me-1" />
-            </div>
-        </div>
-    </div>);
-    }
+  
 }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.UI;
+using MudBlazor.Services;
 using Radzen;
 using SpaceForceEvaluationAppLibrary.DataAccess;
 
@@ -11,10 +12,7 @@ public static class RegisterServices
     public static void ConfigureServices(this WebApplicationBuilder builder)
     {
         // adds services to the container
-        builder.Services.AddScoped<DialogService>();
-        builder.Services.AddScoped<NotificationService>();
-        builder.Services.AddScoped<TooltipService>();
-        builder.Services.AddScoped<ContextMenuService>(); 
+        builder.Services.AddMudServices();
         builder.Services.AddRazorPages();
         builder.Services.AddServerSideBlazor().AddMicrosoftIdentityConsentHandler();
         builder.Services.AddMemoryCache();

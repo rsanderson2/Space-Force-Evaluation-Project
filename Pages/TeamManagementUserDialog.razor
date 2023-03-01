@@ -1,0 +1,107 @@
+﻿@inject IUserData userData
+
+<MudDialog>
+    <DialogContent>
+        <div>
+            <!-- TODO: show the selectedUser's data here' -->
+            <p class="mb-4">@selectedUser.firstName</p>
+                @if (hasADCON && !isSameUser)
+                {
+                    <p>Under your adminstrative control</p>
+                }
+                else if (hasGreatORequalRank && !isSameUser)
+                {
+                    <p>Is not under your administrative control</p>
+                    <MudButton OnClick="() => addUserToSubordinates(selectedUser.userID)">Request ADCON</MudButton>
+                }
+            <p>TODO: show more information here</p>
+            <!-- TODO: conditionally disable buttons when necessary -->
+
+            <MudButton OnClick="() => Cancel()">Request ADCON</MudButton>
+            <MudButton OnClick="() => Cancel()">Request OPCON</MudButton>
+            <MudButton OnClick="() => Cancel()">Assign as Evaulator</MudButton>
+        
+        </div>
+    </DialogContent>
+    <DialogActions>
+        
+        <MudButton OnClick="Cancel">Cancel</MudButton>
+        <MudButton Color="Color.Primary" OnClick="Submit">Ok</MudButton>
+    </DialogActions>
+</MudDialog>
+@code {
+
+
+    [CascadingParameter] MudDialogInstance MudDialog { get; set; }
+    [Parameter] public UserModel selectedUser { get; set; }
+    [Parameter] public UserModel currentUser { get; set; }
+
+    bool hasADCON = false;
+    bool hasOPCON = false;
+    bool hasGreatORequalRank = false;
+    bool isSameUser = false;
+
+    void Submit() => MudDialog.Close(DialogResult.Ok(true));
+    void Cancel() => MudDialog.Cancel();
+
+
+
+    async Task addUserToSubordinates(string subordinateId)
+    {
+        await userData.AddUserToSubordinates(currentUser, subordinateId);
+    }
+
+    async Task requestADCONOverUser(string userId)
+    {
+        // TODO: send request to appropriate commanders if necessary.
+    }
+
+
+    bool hasADCONOverUser(string userId)
+    {
+        if (currentUser.subordinates == null)
+        {
+            return false;
+        }
+        for (var i = 0; i < currentUser.subordinates.Count; i++)
+        {
+            if (currentUser.subordinates[i] == userId)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    IDictionary<string, int> ranks = new Dictionary<string, int>() {
+        { "HQ", 1 },
+        { "Commander", 2 },
+        { "Supervisor", 3 },
+        { "Member", 4 },
+    };
+
+
+    bool isSuperiorToSelectedUser(string selectedUserRank)
+    {
+        if (selectedUserRank == "HQ" || selectedUserRank == "Commander" || selectedUserRank == "Supervisor" || selectedUserRank == "Member")
+        {
+            if (currentUser.rank == "HQ" || currentUser.rank == "Commander" || currentUser.rank == "Supervisor" || currentUser.rank == "Member")
+            {
+                if (ranks[selectedUserRank] <= ranks[currentUser.rank])
+                {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    protected async override Task OnInitializedAsync()
+    {
+        hasADCON = hasADCONOverUser(selectedUser.userID);
+        hasOPCON = false;
+        hasGreatORequalRank = isSuperiorToSelectedUser(selectedUser.rank);
+        isSameUser = selectedUser.userID == currentUser.userID;
+    }
+}

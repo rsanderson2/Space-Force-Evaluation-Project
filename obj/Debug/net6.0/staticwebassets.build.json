@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "2+V4kyFrD/GVfVV+4iTqoVkp7PAeVFmbhvVCL5WL7JI=",
+  "Hash": "62FxpOsi1E2LQOqox7TuthKKq6CGA0bnmpv6L/a9nsY=",
   "Source": "SpaceForceEvaluations",
   "BasePath": "_content/SpaceForceEvaluations",
   "Mode": "Default",
@@ -66,6 +66,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\Darrell\\.nuget\\packages\\microsoft.aspnetcore.components.webassembly.authentication\\6.0.0\\staticwebassets\\AuthenticationService.js"
+    },
+    {
+      "Identity": "C:\\Users\\Darrell\\.nuget\\packages\\mudblazor\\6.1.9\\staticwebassets\\MudBlazor.min.css",
+      "SourceId": "MudBlazor",
+      "SourceType": "Package",
+      "ContentRoot": "C:\\Users\\Darrell\\.nuget\\packages\\mudblazor\\6.1.9\\staticwebassets\\",
+      "BasePath": "_content/MudBlazor",
+      "RelativePath": "MudBlazor.min.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\Users\\Darrell\\.nuget\\packages\\mudblazor\\6.1.9\\staticwebassets\\MudBlazor.min.css"
+    },
+    {
+      "Identity": "C:\\Users\\Darrell\\.nuget\\packages\\mudblazor\\6.1.9\\staticwebassets\\MudBlazor.min.js",
+      "SourceId": "MudBlazor",
+      "SourceType": "Package",
+      "ContentRoot": "C:\\Users\\Darrell\\.nuget\\packages\\mudblazor\\6.1.9\\staticwebassets\\",
+      "BasePath": "_content/MudBlazor",
+      "RelativePath": "MudBlazor.min.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\Users\\Darrell\\.nuget\\packages\\mudblazor\\6.1.9\\staticwebassets\\MudBlazor.min.js"
     },
     {
       "Identity": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\css\\dark.css",
