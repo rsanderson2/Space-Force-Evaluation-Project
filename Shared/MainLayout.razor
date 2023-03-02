@@ -10,12 +10,78 @@
 <PageTitle>SpaceForceEvaluations</PageTitle>
 <head>
     <style>
+
+        body {
+            background-color: #003B73;
+        }
+
+        .container-fluid {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            padding: 8px 12px;
+
+            position: absolute;
+            /* width: 1406px;*/
+            width: 98%;
+            height: 79px;
+            left: 17px;
+            top: 5px;
+
+            background: #E7F1FF;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
+            border-radius: 15px;
+            }
+
+        .navbar-brand {
+            width: 121px;
+            height: 72px;
+            font-family: 'HelveticaNeueW01-87HvCnObl';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 48px;
+            line-height: 150%;
+
+            display: flex;
+            align-items: center;
+            text-align: center;
+            letter-spacing: 0.1em;
+
+            color: #000000;
+            opacity: 0.9;
+
+            flex: none;
+            order: 0;
+            flex-grow: 0;
+        }
+
+        .navbar-nav {
+            font-family: 'Helvetica Neue Medium Extended';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 150%;
+       
+            color: #003B73;
+
+            flex: none;
+            order: 0;
+            flex-grow: 0;
+        }
+
+    </style>
+</head>
+
+
+<!-- 
+<head>
+    <style>
         ul {
             list-style-type: none;
             margin: 0;
             padding: 0;
             overflow: hidden;
-            background-color: #333;
+            background-color: #E7F1FF;
         }
 
         li {
@@ -35,20 +101,53 @@
                 }
     </style>
 </head>
+-->
+
 <body>
     <!--Navigation Links-->
     <AuthorizeView>
         <Authorized>
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <span class="navbar-brand mb-0 h1">GAEA</span>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" aria-current="page" href="/">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Profile">Profile</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Reports">Reports</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Teammanagement">Team Management</a>
+                            </li>
+                            <li class="nav-item" id="Logoutbutton">
+                                <a class="nav-link" href="/MicrosoftIdentity/Account/SignOut">Logout</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            <!--
             <nav>
                 <ul>
+                    <li>GAEA</li>
                     <li><a href="/">Home</a></li>
                     <li><a href="/Profile">Profile</a></li>
                     <li><a href="/Reports">Reports</a></li>
                     <li><a href="/Teammanagement">Team Management</a></li>
-
-                            <li><a href="/MicrosoftIdentity/Account/SignOut">Log out</a></li>
+                    <li><a href="/MicrosoftIdentity/Account/SignOut">Log out</a></li>
                 </ul>
             </nav>
+            -->
         </Authorized>
     </AuthorizeView>
 
