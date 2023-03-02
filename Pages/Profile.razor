@@ -10,72 +10,65 @@
     <div class="container grid"> 
         <!--User Profile Information-->
         <section class="card">
-            <h2>My Profile</h2>
+            
+            <MudGrid>
+                <MudItem xs="12" sm="12" md="12" lg="12" xl="12">
+                    <h3>My Profile</h3>
+                    <MudGrid>
+                        <MudItem xs="12" sm="12" md="12" lg="12" xl="12">
+                            <h5 class="infotext">Name: @firstName @lastName</h5>
+                        </MudItem>
+                        <MudItem xs="12" sm="12" md="12" lg="12" xl="12">
+                            <h5 class="infotext">Email: @emailAddress</h5>
+                        </MudItem>
+                    </MudGrid>
+                </MudItem>
 
-            <div class="profileinfo">
-                <div class="leftalign">
-                    <h3>Basic info</h3>
-                </div>
-
-                <div class="profilegrid">
-                    <div class="leftalign">
-                        <h4 class="infotext">Name</h4>
-                    </div>
-                    <div class="leftalign">
-                        <h4>@firstName @lastName</h4>
-                    </div>
-                </div>
-
-                <div class="profilegrid">
-                    <div class="leftalign">
-                        <h4 class="infotext">Email</h4>
-                    </div>
-                    <div class="leftalign">
-                        <h4>@emailAddress</h4>
-                    </div>
-                </div>
-
-                <div class="leftalign">
-                    <h3>Space Force info</h3>
-                </div>
-
-                <div class="profilegrid">
-                    <div class="leftalign">
-                        <h4 class="infotext">Rank</h4>
-                    </div>
-                    <div class="leftalign">
-                        <h4>@rank</h4>
-                    </div>
-                </div>
-
-                <div class="profilegrid">
-                    <div class="leftalign">
-                        <h4 class="infotext">Job</h4>
-                    </div>
-                    <div class="leftalign">
-                        <h4>@job</h4>
-                    </div>
-                </div>
-
-                <div class="profilegrid">
-                    <div class="leftalign">
-                        <h4 class="infotext">Team</h4>
-                    </div>
-                    <div class="leftalign">
-                        <h4>@team</h4>
-                    </div>
-                </div>
-
-            </div>
+                <MudItem xs="12" sm="12" md="12" lg="12" xl="12">
+                    <MudGrid>
+                        <MudItem xs="12" sm="12" md="12" lg="12" xl="12">
+                            <h5 class="infotext">Rank: @rank</h5>
+                        </MudItem>
+                        <MudItem xs="12" sm="12" md="12" lg="12" xl="12">
+                            <h5 class="infotext">Job: @job</h5>
+                        </MudItem>
+                        <MudItem xs="12" sm="12" md="12" lg="12" xl="12">
+                            <h5 class="infotext">Team: @team</h5>
+                        </MudItem>
+                    </MudGrid>
+                </MudItem>
+            </MudGrid>
+           
         </section>
 
         <section class="card">
-            <h2>My Account</h2>
+            <h3>Account Options</h3>
+            <MudGrid>
+                <MudItem xs="12" sm="12" md="12" lg="12" xl="12">
+                    <MudButton Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary" >
+                        Update First/Last Name
+                    </MudButton>
+                </MudItem>
+                <MudItem xs="12" sm="12" md="12" lg="12" xl="12">
+                    <MudButton Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary" >
+                        Update Rank
+                    </MudButton>
+                </MudItem>
+                <MudItem xs="12" sm="12" md="12" lg="12" xl="12">
+                    <MudButton Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary" >
+                        Update Job
+                    </MudButton>
+                </MudItem>
+                <MudItem xs="12" sm="12" md="12" lg="12" xl="12">
+                    <MudButton Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary" >
+                        Update Team
+                    </MudButton>
+                </MudItem>
+            </MudGrid>
             <div class="flexbox">
-                <button class="btn-primary" @onclick=UpdateB2CInfo>Update First/Last Name</button>
-                <button class="btn-primary" @onclick=ShowUpdateRank>Update Rank</button>
-                <button class="btn-primary" @onclick=ShowUpdateJob>Update Job</button>
-                <button class="btn-primary" @onclick=ShowUpdateTeam>Update Team</button>
+                
+                
+                
             </div>
 
             <div class="accountupdate">

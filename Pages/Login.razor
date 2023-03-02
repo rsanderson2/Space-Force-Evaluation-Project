@@ -112,11 +112,28 @@
     </Authorized>
     <NotAuthorized>
         <!--Container to login if the user is not authorized-->
-        <div class="container">
-            <div class = "col-2">
-                <input type = "button" class = "btn btn-primary" value ="Login" onclick="location.href='MicrosoftIdentity/Account/SignIn'"/>
-            </div>
-        </div>
+            @{
+                try
+                {
+                    var hasJSRuntime = navManager != null && (navManager.GetType()?.GetProperty("HasAttachedJSRuntime") != null ?
+                    (bool)navManager.GetType().GetProperty("HasAttachedJSRuntime").GetValue(navManager) : true);
+
+                    if (hasJSRuntime)
+                    {
+                        navManager.NavigateTo("MicrosoftIdentity/Account/SignIn", true);
+                    }
+
+                }
+                catch
+                {
+                    <div class="container">
+                        <div class="col-2">
+                            <input type="button" class="btn btn-primary" value="Login" onclick="location.href='MicrosoftIdentity/Account/SignIn'" />
+                        </div>
+                    </div>
+                }
+            }
+
     </NotAuthorized>
 </AuthorizeView>
 
@@ -140,6 +157,8 @@
     public string userFirstName;
 
     private UserModel loggedInUser = new UserModel();
+
+    
 
     private void navigateToSurvey()
     {

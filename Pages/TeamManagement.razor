@@ -24,12 +24,18 @@
                 <MudSwitch @bind-Checked="@showUsersWhoYouHaveOPCON" Color="Color.Primary">Guardians who you have OPCON over</MudSwitch>
                 <MudSwitch @bind-Checked="@showEvaluators" Color="Color.Primary">Guardians who evaluate you</MudSwitch>
                 <MudSwitch @bind-Checked="@showUsersThatYouEvaluate" Color="Color.Primary">Guardians that you evaluate</MudSwitch>
+                <MudButton Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary" OnClick="@(() => onFilterChange())">
+                        Update Filters
+                </MudButton>
+                <MudButton Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary" OnClick="@(() => onFilterReset())">
+                    Remove Filters
+                </MudButton>
             </MudNavGroup>
         </MudNavMenu>
     </MudPaper>
 
    <!-- </div> -->
-    <MudDataGrid Items="@users" MultiSelection="true" Hideable="true" Filterable="true" QuickFilter="@_quickFilter" Loading="@isLoading">
+    <MudDataGrid Items="@(displayedUsers.Count == 0 || filtersHaveBeenReset ? users : displayedUsers)" MultiSelection="true" Hideable="true" Filterable="true" QuickFilter="@_quickFilter" Loading="@isLoading">
         <ToolBarContent>
             <MudText Typo="Typo.h6">Guardians</MudText>
             <MudSpacer />
@@ -62,6 +68,10 @@
 
 
 @code {
+    List<UserModel> users;
+    UserModel currentUser;
+    List<UserModel> subordinateUsers = new ();
+    List<UserModel> displayedUsers = new();
 
     bool showUsersWhoHaveADCON;
     bool showUsersWhoYouHaveADCON;
@@ -69,11 +79,63 @@
     bool showUsersWhoYouHaveOPCON;
     bool showEvaluators;
     bool showUsersThatYouEvaluate;
+    bool filtersHaveBeenReset;
     bool _additionalFeaturesIsExpanded;
     bool isLoading = true;
 
-    List<UserModel> users;
-    UserModel currentUser;
+    async Task onFilterChange()
+    {
+        if (showUsersWhoYouHaveADCON == true)
+        {
+            if(subordinateUsers.Count == 0)
+            {
+                subordinateUsers = await getDirectSubordinates();
+            }
+            foreach (UserModel us in subordinateUsers)
+            {
+                displayedUsers.Add(us);
+            }
+            filtersHaveBeenReset = false;
+        }
+        else if (showUsersWhoHaveADCON)
+        {
+            // TODO: get direct superior here
+            filtersHaveBeenReset = false;
+        }
+        else if (showUsersWhoHaveOPCON)
+        {
+            // TODO: get users under OPCON
+            filtersHaveBeenReset = false;
+        }
+        else if (showUsersWhoYouHaveOPCON)
+        {
+            // TODO: get all operation leads
+            filtersHaveBeenReset = false;
+        }
+        else if (showEvaluators)
+        {
+            // TODO: show all people that evaluate you
+            filtersHaveBeenReset = false;
+        }
+        else if (showUsersThatYouEvaluate)
+        {
+            // TODO: show all people that you evaluate. 
+            filtersHaveBeenReset = false;
+        }
+        
+        
+    }
+
+    void onFilterReset()
+    {
+        showUsersWhoHaveADCON = false;
+        showUsersWhoYouHaveADCON = false;
+        showUsersWhoHaveOPCON = false;
+        showUsersWhoYouHaveOPCON = false;
+        showEvaluators = false;
+        showUsersThatYouEvaluate = false;
+        filtersHaveBeenReset = true;
+    }
 
     private string _searchString;
 
@@ -87,6 +149,7 @@
 
         return false;
     };
+
 
     private void OpenDialog(UserModel selectedUser, UserModel currentUser)
     {
@@ -112,10 +175,30 @@
         users = await userData.getAllUsers();
     }
 
+
+    async Task<List<UserModel>> getDirectSubordinates()
+    {
+        List<UserModel> subordinateUsers = new List<UserModel>();
+        if (currentUser?.subordinates == null)
+        {
+            return subordinateUsers;
+        }
+        List<String> subordinateIds = currentUser.subordinates;
+
+        foreach (String us in subordinateIds)
+        {
+            UserModel tmp = await userData.GetUserFromAuthentication(us);
+            subordinateUsers.Add(tmp);
+        }
+        // displayedUsers = subordinateUsers;
+        return subordinateUsers;
+    }
+
     protected async override Task OnInitializedAsync()
     {
         await GetLogin();
         await getAllUsers();
+        //subordinateUsers = await getDirectSubordinates();
         isLoading = false;
     }
   
