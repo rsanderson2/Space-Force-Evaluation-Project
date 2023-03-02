@@ -37,44 +37,20 @@
 </head>
 <body>
     <!--Navigation Links-->
-    <nav>
-        <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/Profile">Profile</a></li>
-            <li><a href="/Reports">Reports</a></li>
-            <li><a href="/Teammanagement">Team Management</a></li>
-            <AuthorizeView>
-                <Authorized>
-                    <li><a href="/MicrosoftIdentity/Account/SignOut">Log out</a></li>
-                </Authorized>
-            </AuthorizeView>
-        </ul>
-    </nav>
+    <AuthorizeView>
+        <Authorized>
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/Profile">Profile</a></li>
+                    <li><a href="/Reports">Reports</a></li>
+                    <li><a href="/Teammanagement">Team Management</a></li>
 
-    <!--Main Information Bar-->
-    <div class="infobox">
-
-        <!--The Page Title, Motto, Logo-->
-        <div class="container flex">
-
-            
-            
-
-            <!--User Profile Box, only Visible if Signed in-->
-            <AuthorizeView>
-                <Authorized>
-                    <div class="userbox">
-                        <p>Welcome, @userFirstName</p>
-                    </div>
-                </Authorized>
-            </AuthorizeView>
-        </div>
-
-    </div>
-
-        <div class="mainDiv">
-
-        </div>
+                            <li><a href="/MicrosoftIdentity/Account/SignOut">Log out</a></li>
+                </ul>
+            </nav>
+        </Authorized>
+    </AuthorizeView>
 
         <main>
             <div class="top-row px-4">

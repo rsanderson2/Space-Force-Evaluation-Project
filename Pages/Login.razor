@@ -14,62 +14,100 @@
         <!--Container grid for the survey options-->
         <div class="container grid">
             <div>
-                <article class = "col-2 @(lastDaily ? "taken" : "notTaken")">
-                    <h2>Take <strong>Daily</strong> Survey</h2>
-                    <input type = "button" class = "btn btn-primary" value ="Begin" onclick="location.href='/Survey'" style="visibility:@showDailyButton"/>
-                </article>
-                @if (@lastDaily)
-                {
-                    <h4>Daily Survey is Completed</h4>
-                }
+                    <MudSimpleTable Style="overflow-x: auto;" Elevation="0">
+                        <tbody>
+  
+                                <tr>
+                                    <td>
+                                        <MudCard width="100%" height="150px">
+                                            <MudCardContent>
+                                                <h2>Daily Survey</h2>
+                                                @if(lastDaily)
+                                                {
+                                                    <p>Survey Complete</p>
+                                                }
+                                            </MudCardContent>
+                                            @if (!@lastDaily)
+                                            {
+                                                <MudCardActions>
+                                                    <MudButton OnClick="() => navigateToSurvey()" Variant="Variant.Text" Color="Color.Primary">Begin</MudButton>
+                                                </MudCardActions>
+                                            }
+                                        </MudCard>
+                                    </td>
+                                <td>
+                                    <MudCard width="100%" height="150px">
+                                        <MudCardContent>
+                                            <h2>Weekly Survey</h2>
+                                            @if (lastWeekly)
+                                            {
+                                                <p>Survey Complete</p>
+                                            }
+                                        </MudCardContent>
+                                        @if (!@lastWeekly)
+                                        {
+                                            <MudCardActions>
+                                                <MudButton OnClick="() => navigateToSurvey()" Variant="Variant.Text" Color="Color.Primary">Begin</MudButton>
+                                            </MudCardActions>
+                                        }
+                                    </MudCard>
+                                </td>
+                                                                    <td>
+                                        <MudCard width="100%" height="150px">
+                                            <MudCardContent>
+                                                <h2>Monthly Survey</h2>
+                                                @if(lastMonthly)
+                                                {
+                                                    <p>Survey Complete</p>
+                                                }
+                                            </MudCardContent>
+                                            @if (!@lastMonthly)
+                                            {
+                                                <MudCardActions>
+                                                    <MudButton OnClick="() => navigateToSurvey()" Variant="Variant.Text" Color="Color.Primary">Begin</MudButton>
+                                                </MudCardActions>
+                                            }
+                                        </MudCard>
+                                    </td>
+                                </tr>
+                        </tbody>
+                    </MudSimpleTable>
+
+        <MudSimpleTable>
+                        <tbody>
+
+            <tr>
+                                <td></td>
+                                <td>
+                    <MudCard width="100%" Elevation="0">
+                        <MudCardContent>
+                                    @if (@lastDaily || @lastWeekly || @lastMonthly)
+                                    {
+
+                                <h3>Thank you, your response has been noted.</h3>
+                                <div class="flex">
+                                    <article class="col-2">
+                                        <input type="button" class="btn btn-primary" value="Log Out" onclick="location.href='MicrosoftIdentity/Account/SignOut'" />
+                                    </article>
+
+                                    <article class="col-2">
+                                        <input type="button" class="btn btn-primary" value="Provide feedback on Teams" onclick="window.open('https://dod.teams.microsoft.us/l/team/19%3adod%3a2bf5dee9da7546c494c8d3b5f52f5878%40thread.tacv2/conversations?groupId=cebcc84c-7f65-4e78-9bf8-da0af1e01ded&tenantId=8331b18d-2d87-48ef-a35f-ac8818ebf9b4')" />
+                                    </article>
+
+                                    <article class="col-2">
+                                        <input type="button" class="btn btn-primary" value="Offer additional accolades" onclick="location.href='/Accolades'" />
+                                    </article>
+                                </div>
+                                    }
+                        </MudCardContent>
+                    </MudCard>
+
+                </td>
+                                <td></td>
+            </tr>
+            </tbody>
+            </MudSimpleTable>
             </div>
-
-            <div>
-                <article class = "col-2 @(lastWeekly ? "taken" : "notTaken")">
-                    <h2>Take <strong>Weekly</strong> Survey</h2>
-                    <input type = "button" class = "btn btn-primary" value ="Begin" onclick="location.href='/Weekly'" style="visibility:@showWeeklyButton"/>
-                </article>
-                @if (@lastWeekly)
-                {
-                    <h4>Weekly Survey is Completed</h4>
-                }
-
-            </div>
-
-            <div>
-                <article class = "col-2 @(lastMonthly ? "taken" : "notTaken")">
-                    <h2>Take <strong>Monthly</strong> Survey</h2>
-                    <input type = "button" class = "btn btn-primary" value ="Begin" onclick="location.href='/Monthly'" style="visibility:@showMonthlyButton"/>
-                </article>
-                @if (@lastMonthly)
-                {
-                    <h4>Monthly Survey is Completed</h4>
-                }
-            </div>
-        </div>
-
-        <!--Container for user information-->
-        <div class="container">
-       
-
-            @if (@lastDaily || @lastWeekly || @lastMonthly)
-            {
-
-                <h3>Thank you, your response has been noted.</h3>
-                <div class="flex">
-                    <article class = "col-2">
-                        <input type = "button" class = "btn btn-primary" value ="Log Out" onclick="location.href='MicrosoftIdentity/Account/SignOut'"/>
-                    </article>
-                    
-                    <article class = "col-2">
-                        <input type = "button" class = "btn btn-primary" value ="Provide feedback on Teams" onclick="window.open('https://dod.teams.microsoft.us/l/team/19%3adod%3a2bf5dee9da7546c494c8d3b5f52f5878%40thread.tacv2/conversations?groupId=cebcc84c-7f65-4e78-9bf8-da0af1e01ded&tenantId=8331b18d-2d87-48ef-a35f-ac8818ebf9b4')"/>
-                    </article>
-
-                    <article class = "col-2">
-                        <input type = "button" class = "btn btn-primary" value ="Offer additional accolades" onclick="location.href='/Accolades'"/>
-                    </article>
-                </div>                    
-            }
         </div>
     </Authorized>
     <NotAuthorized>
@@ -85,10 +123,10 @@
 </body>
 @code
 {
-        DateTime today;
-        DateTime lastSurvey;
-        DateTime lastSurveyWeekly;
-        DateTime lastSurveyMonthly;
+    DateTime today;
+    DateTime lastSurvey;
+    DateTime lastSurveyWeekly;
+    DateTime lastSurveyMonthly;
     public bool lastDaily = false;
     public bool lastWeekly = false;
     public bool lastMonthly = false;
@@ -103,6 +141,10 @@
 
     private UserModel loggedInUser = new UserModel();
 
+    private void navigateToSurvey()
+    {
+        navManager.NavigateTo("/Survey");
+    }
     // Function to check that the user is logged in, and get the information from their b2c profile
     private async Task LoadAndVerifyUser()
     {
@@ -135,10 +177,6 @@
             if (checkUser == null)
             {
                 await userData.CreateUser(loggedInUser);                  
-            }
-            else if (checkUser.teamID == null)
-            {
-                navManager.NavigateTo("/Account");
             }
         }
 
