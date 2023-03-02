@@ -1014,40 +1014,41 @@ ul a:hover[b-4m02i15hvc] {
 }
     */
 /* _content/SpaceForceEvaluations/Shared/NavMenu.razor.rz.scp.css */
-.navbar-toggler[b-gm337wb2xa] {
+/* 
+.navbar-toggler {
     background-color: rgba(255, 255, 255, 0.1);
 }
 
-.top-row[b-gm337wb2xa] {
+.top-row {
     height: 3.5rem;
     background-color: rgba(0,0,0,0.4);
 }
 
-.navbar-brand[b-gm337wb2xa] {
+.navbar-brand {
     font-size: 1.1rem;
 }
 
-.oi[b-gm337wb2xa] {
+.oi {
     width: 2rem;
     font-size: 1.1rem;
     vertical-align: text-top;
     top: -2px;
 }
 
-.nav-item[b-gm337wb2xa] {
+.nav-item {
     font-size: 0.9rem;
     padding-bottom: 0.5rem;
 }
 
-    .nav-item:first-of-type[b-gm337wb2xa] {
+    .nav-item:first-of-type {
         padding-top: 1rem;
     }
 
-    .nav-item:last-of-type[b-gm337wb2xa] {
+    .nav-item:last-of-type {
         padding-bottom: 1rem;
     }
 
-    .nav-item[b-gm337wb2xa]  a {
+    .nav-item ::deep a {
         color: #d7d7d7;
         border-radius: 4px;
         height: 3rem;
@@ -1056,26 +1057,27 @@ ul a:hover[b-4m02i15hvc] {
         line-height: 3rem;
     }
 
-.nav-item[b-gm337wb2xa]  a.active {
+.nav-item ::deep a.active {
     background-color: rgba(255,255,255,0.25);
     color: white;
 }
 
-.nav-item[b-gm337wb2xa]  a:hover {
+.nav-item ::deep a:hover {
     background-color: rgba(255,255,255,0.1);
     color: white;
 }
 
 @media (min-width: 641px) {
-    .navbar-toggler[b-gm337wb2xa] {
+    .navbar-toggler {
         display: none;
     }
 
-    .collapse[b-gm337wb2xa] {
+    .collapse {
         /* Never collapse the sidebar for wide screens */
-        display: block;
+        display: block;[b-gm337wb2xa]
     }
 }
+*/[b-gm337wb2xa]
 /* _content/SpaceForceEvaluations/Shared/NotAuthorized.razor.rz.scp.css */
 
 .mainDiv[b-t0ec31nrvo] {

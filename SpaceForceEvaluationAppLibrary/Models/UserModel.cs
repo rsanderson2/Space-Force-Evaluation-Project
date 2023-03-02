@@ -14,6 +14,7 @@ public class UserModel
     public string rank { get; set; }
     public string teamID { get; set; }
     public string job { get; set; }
+    public string role { get; set; }
     public DateTime dailyDate { get; set; }
     public DateTime weeklyDate { get; set; }
     public DateTime monthlyDate { get; set; }
