@@ -9,12 +9,32 @@
       "PackagePath": "staticwebassets\\SpaceForceEvaluations.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\ppriy\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\css\\Helvetica-Neue-Medium.otf",
+      "PackagePath": "staticwebassets\\css\\Helvetica-Neue-Medium.otf"
+    },
+    {
+      "Id": "C:\\Users\\ppriy\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\css\\Helvetica-Neue-Medium.ttf",
+      "PackagePath": "staticwebassets\\css\\Helvetica-Neue-Medium.ttf"
+    },
+    {
+      "Id": "C:\\Users\\ppriy\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\css\\Helvetica-Neue-W01.otf",
+      "PackagePath": "staticwebassets\\css\\Helvetica-Neue-W01.otf"
+    },
+    {
+      "Id": "C:\\Users\\ppriy\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\css\\Helvetica-Neue-W01.ttf",
+      "PackagePath": "staticwebassets\\css\\Helvetica-Neue-W01.ttf"
+    },
+    {
       "Id": "C:\\Users\\ppriy\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
       "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.min.css"
     },
     {
       "Id": "C:\\Users\\ppriy\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\css\\bootstrap\\bootstrap.min.css.map",
       "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\ppriy\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\css\\fonts.css",
+      "PackagePath": "staticwebassets\\css\\fonts.css"
     },
     {
       "Id": "C:\\Users\\ppriy\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\css\\open-iconic\\FONT-LICENSE",

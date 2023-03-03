@@ -123,11 +123,16 @@
 
         List<String>subordinateIds = currentUser.subordinates;
 
-        foreach (String us in subordinateIds)
+        // Added this null checker
+        if (subordinateIds != null)
         {
-            UserModel tmp = await userData.GetUserFromAuthentication(us);
-            subordinateUsers.Add(tmp);
+            foreach (String us in subordinateIds)
+            {
+                UserModel tmp = await userData.GetUserFromAuthentication(us);
+                subordinateUsers.Add(tmp);
+            }
         }
+      
     }
 
 

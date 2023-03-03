@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "62FxpOsi1E2LQOqox7TuthKKq6CGA0bnmpv6L/a9nsY=",
+  "Hash": "/AJkSzaVBwIcRzISOvjfYa9gX2ar9rg+7bTYjv7Xugk=",
   "Source": "SpaceForceEvaluations",
   "BasePath": "_content/SpaceForceEvaluations",
   "Mode": "Default",
@@ -10,17 +10,17 @@
     {
       "Name": "SpaceForceEvaluations\\wwwroot",
       "Source": "SpaceForceEvaluations",
-      "ContentRoot": "C:\\Users\\Darrell\\Documents\\GitHub\\Space-Force-Evaluation-Project\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\ppriy\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\",
       "BasePath": "_content/SpaceForceEvaluations",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "C:\\Users\\Darrell\\.nuget\\packages\\chartjs.blazor.fork\\2.0.2\\contentFiles\\any\\netstandard2.1\\wwwroot\\ChartJsBlazorInterop.js",
+      "Identity": "C:\\Users\\ppriy\\.nuget\\packages\\chartjs.blazor.fork\\2.0.2\\contentFiles\\any\\netstandard2.1\\wwwroot\\ChartJsBlazorInterop.js",
       "SourceId": "SpaceForceEvaluations",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Darrell\\Documents\\GitHub\\Space-Force-Evaluation-Project\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\ppriy\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\",
       "BasePath": "_content/SpaceForceEvaluations",
       "RelativePath": "ChartJsBlazorInterop.js",
       "AssetKind": "All",
@@ -31,13 +31,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\Darrell\\.nuget\\packages\\chartjs.blazor.fork\\2.0.2\\contentFiles\\any\\netstandard2.1\\wwwroot\\ChartJsBlazorInterop.js"
+      "OriginalItemSpec": "C:\\Users\\ppriy\\.nuget\\packages\\chartjs.blazor.fork\\2.0.2\\contentFiles\\any\\netstandard2.1\\wwwroot\\ChartJsBlazorInterop.js"
     },
     {
-      "Identity": "C:\\Users\\Darrell\\.nuget\\packages\\chartjs.blazor.fork\\2.0.2\\staticwebassets\\ChartJsBlazorInterop.js",
+      "Identity": "C:\\Users\\ppriy\\.nuget\\packages\\chartjs.blazor.fork\\2.0.2\\staticwebassets\\ChartJsBlazorInterop.js",
       "SourceId": "ChartJs.Blazor.Fork",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\Darrell\\.nuget\\packages\\chartjs.blazor.fork\\2.0.2\\staticwebassets\\",
+      "ContentRoot": "C:\\Users\\ppriy\\.nuget\\packages\\chartjs.blazor.fork\\2.0.2\\staticwebassets\\",
       "BasePath": "_content/ChartJs.Blazor.Fork",
       "RelativePath": "ChartJsBlazorInterop.js",
       "AssetKind": "All",
@@ -48,13 +48,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\Darrell\\.nuget\\packages\\chartjs.blazor.fork\\2.0.2\\staticwebassets\\ChartJsBlazorInterop.js"
+      "OriginalItemSpec": "C:\\Users\\ppriy\\.nuget\\packages\\chartjs.blazor.fork\\2.0.2\\staticwebassets\\ChartJsBlazorInterop.js"
     },
     {
-      "Identity": "C:\\Users\\Darrell\\.nuget\\packages\\microsoft.aspnetcore.components.webassembly.authentication\\6.0.0\\staticwebassets\\AuthenticationService.js",
+      "Identity": "C:\\Users\\ppriy\\.nuget\\packages\\microsoft.aspnetcore.components.webassembly.authentication\\6.0.0\\staticwebassets\\AuthenticationService.js",
       "SourceId": "Microsoft.AspNetCore.Components.WebAssembly.Authentication",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\Darrell\\.nuget\\packages\\microsoft.aspnetcore.components.webassembly.authentication\\6.0.0\\staticwebassets\\",
+      "ContentRoot": "C:\\Users\\ppriy\\.nuget\\packages\\microsoft.aspnetcore.components.webassembly.authentication\\6.0.0\\staticwebassets\\",
       "BasePath": "_content/Microsoft.AspNetCore.Components.WebAssembly.Authentication",
       "RelativePath": "AuthenticationService.js",
       "AssetKind": "All",
@@ -65,13 +65,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\Darrell\\.nuget\\packages\\microsoft.aspnetcore.components.webassembly.authentication\\6.0.0\\staticwebassets\\AuthenticationService.js"
+      "OriginalItemSpec": "C:\\Users\\ppriy\\.nuget\\packages\\microsoft.aspnetcore.components.webassembly.authentication\\6.0.0\\staticwebassets\\AuthenticationService.js"
     },
     {
-      "Identity": "C:\\Users\\Darrell\\.nuget\\packages\\mudblazor\\6.1.9\\staticwebassets\\MudBlazor.min.css",
+      "Identity": "C:\\Users\\ppriy\\.nuget\\packages\\mudblazor\\6.1.9\\staticwebassets\\MudBlazor.min.css",
       "SourceId": "MudBlazor",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\Darrell\\.nuget\\packages\\mudblazor\\6.1.9\\staticwebassets\\",
+      "ContentRoot": "C:\\Users\\ppriy\\.nuget\\packages\\mudblazor\\6.1.9\\staticwebassets\\",
       "BasePath": "_content/MudBlazor",
       "RelativePath": "MudBlazor.min.css",
       "AssetKind": "All",
@@ -82,13 +82,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\Darrell\\.nuget\\packages\\mudblazor\\6.1.9\\staticwebassets\\MudBlazor.min.css"
+      "OriginalItemSpec": "C:\\Users\\ppriy\\.nuget\\packages\\mudblazor\\6.1.9\\staticwebassets\\MudBlazor.min.css"
     },
     {
-      "Identity": "C:\\Users\\Darrell\\.nuget\\packages\\mudblazor\\6.1.9\\staticwebassets\\MudBlazor.min.js",
+      "Identity": "C:\\Users\\ppriy\\.nuget\\packages\\mudblazor\\6.1.9\\staticwebassets\\MudBlazor.min.js",
       "SourceId": "MudBlazor",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\Darrell\\.nuget\\packages\\mudblazor\\6.1.9\\staticwebassets\\",
+      "ContentRoot": "C:\\Users\\ppriy\\.nuget\\packages\\mudblazor\\6.1.9\\staticwebassets\\",
       "BasePath": "_content/MudBlazor",
       "RelativePath": "MudBlazor.min.js",
       "AssetKind": "All",
@@ -99,13 +99,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\Darrell\\.nuget\\packages\\mudblazor\\6.1.9\\staticwebassets\\MudBlazor.min.js"
+      "OriginalItemSpec": "C:\\Users\\ppriy\\.nuget\\packages\\mudblazor\\6.1.9\\staticwebassets\\MudBlazor.min.js"
     },
     {
-      "Identity": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\css\\dark.css",
+      "Identity": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\css\\dark.css",
       "SourceId": "Radzen.Blazor",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\",
+      "ContentRoot": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\",
       "BasePath": "_content/Radzen.Blazor",
       "RelativePath": "css/dark.css",
       "AssetKind": "All",
@@ -116,13 +116,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\css\\dark.css"
+      "OriginalItemSpec": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\css\\dark.css"
     },
     {
-      "Identity": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\css\\dark-base.css",
+      "Identity": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\css\\dark-base.css",
       "SourceId": "Radzen.Blazor",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\",
+      "ContentRoot": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\",
       "BasePath": "_content/Radzen.Blazor",
       "RelativePath": "css/dark-base.css",
       "AssetKind": "All",
@@ -133,13 +133,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\css\\dark-base.css"
+      "OriginalItemSpec": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\css\\dark-base.css"
     },
     {
-      "Identity": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\css\\default.css",
+      "Identity": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\css\\default.css",
       "SourceId": "Radzen.Blazor",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\",
+      "ContentRoot": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\",
       "BasePath": "_content/Radzen.Blazor",
       "RelativePath": "css/default.css",
       "AssetKind": "All",
@@ -150,13 +150,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\css\\default.css"
+      "OriginalItemSpec": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\css\\default.css"
     },
     {
-      "Identity": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\css\\default-base.css",
+      "Identity": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\css\\default-base.css",
       "SourceId": "Radzen.Blazor",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\",
+      "ContentRoot": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\",
       "BasePath": "_content/Radzen.Blazor",
       "RelativePath": "css/default-base.css",
       "AssetKind": "All",
@@ -167,13 +167,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\css\\default-base.css"
+      "OriginalItemSpec": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\css\\default-base.css"
     },
     {
-      "Identity": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\css\\humanistic.css",
+      "Identity": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\css\\humanistic.css",
       "SourceId": "Radzen.Blazor",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\",
+      "ContentRoot": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\",
       "BasePath": "_content/Radzen.Blazor",
       "RelativePath": "css/humanistic.css",
       "AssetKind": "All",
@@ -184,13 +184,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\css\\humanistic.css"
+      "OriginalItemSpec": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\css\\humanistic.css"
     },
     {
-      "Identity": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\css\\humanistic-base.css",
+      "Identity": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\css\\humanistic-base.css",
       "SourceId": "Radzen.Blazor",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\",
+      "ContentRoot": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\",
       "BasePath": "_content/Radzen.Blazor",
       "RelativePath": "css/humanistic-base.css",
       "AssetKind": "All",
@@ -201,13 +201,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\css\\humanistic-base.css"
+      "OriginalItemSpec": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\css\\humanistic-base.css"
     },
     {
-      "Identity": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\css\\material.css",
+      "Identity": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\css\\material.css",
       "SourceId": "Radzen.Blazor",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\",
+      "ContentRoot": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\",
       "BasePath": "_content/Radzen.Blazor",
       "RelativePath": "css/material.css",
       "AssetKind": "All",
@@ -218,13 +218,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\css\\material.css"
+      "OriginalItemSpec": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\css\\material.css"
     },
     {
-      "Identity": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\css\\material-base.css",
+      "Identity": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\css\\material-base.css",
       "SourceId": "Radzen.Blazor",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\",
+      "ContentRoot": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\",
       "BasePath": "_content/Radzen.Blazor",
       "RelativePath": "css/material-base.css",
       "AssetKind": "All",
@@ -235,13 +235,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\css\\material-base.css"
+      "OriginalItemSpec": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\css\\material-base.css"
     },
     {
-      "Identity": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\css\\software.css",
+      "Identity": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\css\\software.css",
       "SourceId": "Radzen.Blazor",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\",
+      "ContentRoot": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\",
       "BasePath": "_content/Radzen.Blazor",
       "RelativePath": "css/software.css",
       "AssetKind": "All",
@@ -252,13 +252,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\css\\software.css"
+      "OriginalItemSpec": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\css\\software.css"
     },
     {
-      "Identity": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\css\\software-base.css",
+      "Identity": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\css\\software-base.css",
       "SourceId": "Radzen.Blazor",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\",
+      "ContentRoot": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\",
       "BasePath": "_content/Radzen.Blazor",
       "RelativePath": "css/software-base.css",
       "AssetKind": "All",
@@ -269,13 +269,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\css\\software-base.css"
+      "OriginalItemSpec": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\css\\software-base.css"
     },
     {
-      "Identity": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\css\\standard.css",
+      "Identity": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\css\\standard.css",
       "SourceId": "Radzen.Blazor",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\",
+      "ContentRoot": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\",
       "BasePath": "_content/Radzen.Blazor",
       "RelativePath": "css/standard.css",
       "AssetKind": "All",
@@ -286,13 +286,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\css\\standard.css"
+      "OriginalItemSpec": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\css\\standard.css"
     },
     {
-      "Identity": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\css\\standard-base.css",
+      "Identity": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\css\\standard-base.css",
       "SourceId": "Radzen.Blazor",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\",
+      "ContentRoot": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\",
       "BasePath": "_content/Radzen.Blazor",
       "RelativePath": "css/standard-base.css",
       "AssetKind": "All",
@@ -303,13 +303,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\css\\standard-base.css"
+      "OriginalItemSpec": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\css\\standard-base.css"
     },
     {
-      "Identity": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\fonts\\MaterialIcons-Regular.woff",
+      "Identity": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\fonts\\MaterialIcons-Regular.woff",
       "SourceId": "Radzen.Blazor",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\",
+      "ContentRoot": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\",
       "BasePath": "_content/Radzen.Blazor",
       "RelativePath": "fonts/MaterialIcons-Regular.woff",
       "AssetKind": "All",
@@ -320,13 +320,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\fonts\\MaterialIcons-Regular.woff"
+      "OriginalItemSpec": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\fonts\\MaterialIcons-Regular.woff"
     },
     {
-      "Identity": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\fonts\\roboto-v15-latin-300.woff",
+      "Identity": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\fonts\\roboto-v15-latin-300.woff",
       "SourceId": "Radzen.Blazor",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\",
+      "ContentRoot": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\",
       "BasePath": "_content/Radzen.Blazor",
       "RelativePath": "fonts/roboto-v15-latin-300.woff",
       "AssetKind": "All",
@@ -337,13 +337,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\fonts\\roboto-v15-latin-300.woff"
+      "OriginalItemSpec": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\fonts\\roboto-v15-latin-300.woff"
     },
     {
-      "Identity": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\fonts\\roboto-v15-latin-700.woff",
+      "Identity": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\fonts\\roboto-v15-latin-700.woff",
       "SourceId": "Radzen.Blazor",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\",
+      "ContentRoot": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\",
       "BasePath": "_content/Radzen.Blazor",
       "RelativePath": "fonts/roboto-v15-latin-700.woff",
       "AssetKind": "All",
@@ -354,13 +354,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\fonts\\roboto-v15-latin-700.woff"
+      "OriginalItemSpec": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\fonts\\roboto-v15-latin-700.woff"
     },
     {
-      "Identity": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\fonts\\roboto-v15-latin-regular.woff",
+      "Identity": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\fonts\\roboto-v15-latin-regular.woff",
       "SourceId": "Radzen.Blazor",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\",
+      "ContentRoot": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\",
       "BasePath": "_content/Radzen.Blazor",
       "RelativePath": "fonts/roboto-v15-latin-regular.woff",
       "AssetKind": "All",
@@ -371,13 +371,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\fonts\\roboto-v15-latin-regular.woff"
+      "OriginalItemSpec": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\fonts\\roboto-v15-latin-regular.woff"
     },
     {
-      "Identity": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\fonts\\roboto-v30-latin-300.woff",
+      "Identity": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\fonts\\roboto-v30-latin-300.woff",
       "SourceId": "Radzen.Blazor",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\",
+      "ContentRoot": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\",
       "BasePath": "_content/Radzen.Blazor",
       "RelativePath": "fonts/roboto-v30-latin-300.woff",
       "AssetKind": "All",
@@ -388,13 +388,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\fonts\\roboto-v30-latin-300.woff"
+      "OriginalItemSpec": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\fonts\\roboto-v30-latin-300.woff"
     },
     {
-      "Identity": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\fonts\\roboto-v30-latin-500.woff",
+      "Identity": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\fonts\\roboto-v30-latin-500.woff",
       "SourceId": "Radzen.Blazor",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\",
+      "ContentRoot": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\",
       "BasePath": "_content/Radzen.Blazor",
       "RelativePath": "fonts/roboto-v30-latin-500.woff",
       "AssetKind": "All",
@@ -405,13 +405,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\fonts\\roboto-v30-latin-500.woff"
+      "OriginalItemSpec": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\fonts\\roboto-v30-latin-500.woff"
     },
     {
-      "Identity": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\fonts\\roboto-v30-latin-700.woff",
+      "Identity": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\fonts\\roboto-v30-latin-700.woff",
       "SourceId": "Radzen.Blazor",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\",
+      "ContentRoot": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\",
       "BasePath": "_content/Radzen.Blazor",
       "RelativePath": "fonts/roboto-v30-latin-700.woff",
       "AssetKind": "All",
@@ -422,13 +422,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\fonts\\roboto-v30-latin-700.woff"
+      "OriginalItemSpec": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\fonts\\roboto-v30-latin-700.woff"
     },
     {
-      "Identity": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\fonts\\roboto-v30-latin-regular.woff",
+      "Identity": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\fonts\\roboto-v30-latin-regular.woff",
       "SourceId": "Radzen.Blazor",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\",
+      "ContentRoot": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\",
       "BasePath": "_content/Radzen.Blazor",
       "RelativePath": "fonts/roboto-v30-latin-regular.woff",
       "AssetKind": "All",
@@ -439,13 +439,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\fonts\\roboto-v30-latin-regular.woff"
+      "OriginalItemSpec": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\fonts\\roboto-v30-latin-regular.woff"
     },
     {
-      "Identity": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\fonts\\SourceSansPro-Black.woff",
+      "Identity": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\fonts\\SourceSansPro-Black.woff",
       "SourceId": "Radzen.Blazor",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\",
+      "ContentRoot": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\",
       "BasePath": "_content/Radzen.Blazor",
       "RelativePath": "fonts/SourceSansPro-Black.woff",
       "AssetKind": "All",
@@ -456,13 +456,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\fonts\\SourceSansPro-Black.woff"
+      "OriginalItemSpec": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\fonts\\SourceSansPro-Black.woff"
     },
     {
-      "Identity": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\fonts\\SourceSansPro-BlackIt.woff",
+      "Identity": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\fonts\\SourceSansPro-BlackIt.woff",
       "SourceId": "Radzen.Blazor",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\",
+      "ContentRoot": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\",
       "BasePath": "_content/Radzen.Blazor",
       "RelativePath": "fonts/SourceSansPro-BlackIt.woff",
       "AssetKind": "All",
@@ -473,13 +473,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\fonts\\SourceSansPro-BlackIt.woff"
+      "OriginalItemSpec": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\fonts\\SourceSansPro-BlackIt.woff"
     },
     {
-      "Identity": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\fonts\\SourceSansPro-Bold.woff",
+      "Identity": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\fonts\\SourceSansPro-Bold.woff",
       "SourceId": "Radzen.Blazor",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\",
+      "ContentRoot": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\",
       "BasePath": "_content/Radzen.Blazor",
       "RelativePath": "fonts/SourceSansPro-Bold.woff",
       "AssetKind": "All",
@@ -490,13 +490,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\fonts\\SourceSansPro-Bold.woff"
+      "OriginalItemSpec": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\fonts\\SourceSansPro-Bold.woff"
     },
     {
-      "Identity": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\fonts\\SourceSansPro-BoldIt.woff",
+      "Identity": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\fonts\\SourceSansPro-BoldIt.woff",
       "SourceId": "Radzen.Blazor",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\",
+      "ContentRoot": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\",
       "BasePath": "_content/Radzen.Blazor",
       "RelativePath": "fonts/SourceSansPro-BoldIt.woff",
       "AssetKind": "All",
@@ -507,13 +507,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\fonts\\SourceSansPro-BoldIt.woff"
+      "OriginalItemSpec": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\fonts\\SourceSansPro-BoldIt.woff"
     },
     {
-      "Identity": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\fonts\\SourceSansPro-ExtraLight.woff",
+      "Identity": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\fonts\\SourceSansPro-ExtraLight.woff",
       "SourceId": "Radzen.Blazor",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\",
+      "ContentRoot": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\",
       "BasePath": "_content/Radzen.Blazor",
       "RelativePath": "fonts/SourceSansPro-ExtraLight.woff",
       "AssetKind": "All",
@@ -524,13 +524,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\fonts\\SourceSansPro-ExtraLight.woff"
+      "OriginalItemSpec": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\fonts\\SourceSansPro-ExtraLight.woff"
     },
     {
-      "Identity": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\fonts\\SourceSansPro-ExtraLightIt.woff",
+      "Identity": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\fonts\\SourceSansPro-ExtraLightIt.woff",
       "SourceId": "Radzen.Blazor",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\",
+      "ContentRoot": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\",
       "BasePath": "_content/Radzen.Blazor",
       "RelativePath": "fonts/SourceSansPro-ExtraLightIt.woff",
       "AssetKind": "All",
@@ -541,13 +541,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\fonts\\SourceSansPro-ExtraLightIt.woff"
+      "OriginalItemSpec": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\fonts\\SourceSansPro-ExtraLightIt.woff"
     },
     {
-      "Identity": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\fonts\\SourceSansPro-It.woff",
+      "Identity": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\fonts\\SourceSansPro-It.woff",
       "SourceId": "Radzen.Blazor",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\",
+      "ContentRoot": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\",
       "BasePath": "_content/Radzen.Blazor",
       "RelativePath": "fonts/SourceSansPro-It.woff",
       "AssetKind": "All",
@@ -558,13 +558,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\fonts\\SourceSansPro-It.woff"
+      "OriginalItemSpec": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\fonts\\SourceSansPro-It.woff"
     },
     {
-      "Identity": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\fonts\\SourceSansPro-Light.woff",
+      "Identity": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\fonts\\SourceSansPro-Light.woff",
       "SourceId": "Radzen.Blazor",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\",
+      "ContentRoot": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\",
       "BasePath": "_content/Radzen.Blazor",
       "RelativePath": "fonts/SourceSansPro-Light.woff",
       "AssetKind": "All",
@@ -575,13 +575,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\fonts\\SourceSansPro-Light.woff"
+      "OriginalItemSpec": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\fonts\\SourceSansPro-Light.woff"
     },
     {
-      "Identity": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\fonts\\SourceSansPro-LightIt.woff",
+      "Identity": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\fonts\\SourceSansPro-LightIt.woff",
       "SourceId": "Radzen.Blazor",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\",
+      "ContentRoot": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\",
       "BasePath": "_content/Radzen.Blazor",
       "RelativePath": "fonts/SourceSansPro-LightIt.woff",
       "AssetKind": "All",
@@ -592,13 +592,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\fonts\\SourceSansPro-LightIt.woff"
+      "OriginalItemSpec": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\fonts\\SourceSansPro-LightIt.woff"
     },
     {
-      "Identity": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\fonts\\SourceSansPro-Regular.woff",
+      "Identity": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\fonts\\SourceSansPro-Regular.woff",
       "SourceId": "Radzen.Blazor",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\",
+      "ContentRoot": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\",
       "BasePath": "_content/Radzen.Blazor",
       "RelativePath": "fonts/SourceSansPro-Regular.woff",
       "AssetKind": "All",
@@ -609,13 +609,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\fonts\\SourceSansPro-Regular.woff"
+      "OriginalItemSpec": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\fonts\\SourceSansPro-Regular.woff"
     },
     {
-      "Identity": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\fonts\\SourceSansPro-Semibold.woff",
+      "Identity": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\fonts\\SourceSansPro-Semibold.woff",
       "SourceId": "Radzen.Blazor",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\",
+      "ContentRoot": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\",
       "BasePath": "_content/Radzen.Blazor",
       "RelativePath": "fonts/SourceSansPro-Semibold.woff",
       "AssetKind": "All",
@@ -626,13 +626,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\fonts\\SourceSansPro-Semibold.woff"
+      "OriginalItemSpec": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\fonts\\SourceSansPro-Semibold.woff"
     },
     {
-      "Identity": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\fonts\\SourceSansPro-SemiboldIt.woff",
+      "Identity": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\fonts\\SourceSansPro-SemiboldIt.woff",
       "SourceId": "Radzen.Blazor",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\",
+      "ContentRoot": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\",
       "BasePath": "_content/Radzen.Blazor",
       "RelativePath": "fonts/SourceSansPro-SemiboldIt.woff",
       "AssetKind": "All",
@@ -643,13 +643,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\fonts\\SourceSansPro-SemiboldIt.woff"
+      "OriginalItemSpec": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\fonts\\SourceSansPro-SemiboldIt.woff"
     },
     {
-      "Identity": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\Radzen.Blazor.js",
+      "Identity": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\Radzen.Blazor.js",
       "SourceId": "Radzen.Blazor",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\",
+      "ContentRoot": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\",
       "BasePath": "_content/Radzen.Blazor",
       "RelativePath": "Radzen.Blazor.js",
       "AssetKind": "All",
@@ -660,13 +660,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\Darrell\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\Radzen.Blazor.js"
+      "OriginalItemSpec": "C:\\Users\\ppriy\\.nuget\\packages\\radzen.blazor\\4.7.2\\staticwebassets\\Radzen.Blazor.js"
     },
     {
-      "Identity": "C:\\Users\\Darrell\\Documents\\GitHub\\Space-Force-Evaluation-Project\\obj\\Debug\\net6.0\\scopedcss\\bundle\\SpaceForceEvaluations.styles.css",
+      "Identity": "C:\\Users\\ppriy\\source\\repos\\Space-Force-Evaluation-Project\\obj\\Debug\\net6.0\\scopedcss\\bundle\\SpaceForceEvaluations.styles.css",
       "SourceId": "SpaceForceEvaluations",
       "SourceType": "Computed",
-      "ContentRoot": "C:\\Users\\Darrell\\Documents\\GitHub\\Space-Force-Evaluation-Project\\obj\\Debug\\net6.0\\scopedcss\\bundle\\",
+      "ContentRoot": "C:\\Users\\ppriy\\source\\repos\\Space-Force-Evaluation-Project\\obj\\Debug\\net6.0\\scopedcss\\bundle\\",
       "BasePath": "_content/SpaceForceEvaluations",
       "RelativePath": "SpaceForceEvaluations.styles.css",
       "AssetKind": "All",
@@ -677,13 +677,13 @@
       "AssetTraitValue": "ApplicationBundle",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\Darrell\\Documents\\GitHub\\Space-Force-Evaluation-Project\\obj\\Debug\\net6.0\\scopedcss\\bundle\\SpaceForceEvaluations.styles.css"
+      "OriginalItemSpec": "C:\\Users\\ppriy\\source\\repos\\Space-Force-Evaluation-Project\\obj\\Debug\\net6.0\\scopedcss\\bundle\\SpaceForceEvaluations.styles.css"
     },
     {
-      "Identity": "C:\\Users\\Darrell\\Documents\\GitHub\\Space-Force-Evaluation-Project\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\SpaceForceEvaluations.bundle.scp.css",
+      "Identity": "C:\\Users\\ppriy\\source\\repos\\Space-Force-Evaluation-Project\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\SpaceForceEvaluations.bundle.scp.css",
       "SourceId": "SpaceForceEvaluations",
       "SourceType": "Computed",
-      "ContentRoot": "C:\\Users\\Darrell\\Documents\\GitHub\\Space-Force-Evaluation-Project\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\",
+      "ContentRoot": "C:\\Users\\ppriy\\source\\repos\\Space-Force-Evaluation-Project\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\",
       "BasePath": "_content/SpaceForceEvaluations",
       "RelativePath": "SpaceForceEvaluations.bundle.scp.css",
       "AssetKind": "All",
@@ -694,13 +694,13 @@
       "AssetTraitValue": "ProjectBundle",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\Darrell\\Documents\\GitHub\\Space-Force-Evaluation-Project\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\SpaceForceEvaluations.bundle.scp.css"
+      "OriginalItemSpec": "C:\\Users\\ppriy\\source\\repos\\Space-Force-Evaluation-Project\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\SpaceForceEvaluations.bundle.scp.css"
     },
     {
-      "Identity": "C:\\Users\\Darrell\\Documents\\GitHub\\Space-Force-Evaluation-Project\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
+      "Identity": "C:\\Users\\ppriy\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
       "SourceId": "SpaceForceEvaluations",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Darrell\\Documents\\GitHub\\Space-Force-Evaluation-Project\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\ppriy\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\",
       "BasePath": "_content/SpaceForceEvaluations",
       "RelativePath": "css/bootstrap/bootstrap.min.css",
       "AssetKind": "All",
@@ -714,10 +714,10 @@
       "OriginalItemSpec": "wwwroot\\css\\bootstrap\\bootstrap.min.css"
     },
     {
-      "Identity": "C:\\Users\\Darrell\\Documents\\GitHub\\Space-Force-Evaluation-Project\\wwwroot\\css\\bootstrap\\bootstrap.min.css.map",
+      "Identity": "C:\\Users\\ppriy\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\css\\bootstrap\\bootstrap.min.css.map",
       "SourceId": "SpaceForceEvaluations",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Darrell\\Documents\\GitHub\\Space-Force-Evaluation-Project\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\ppriy\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\",
       "BasePath": "_content/SpaceForceEvaluations",
       "RelativePath": "css/bootstrap/bootstrap.min.css.map",
       "AssetKind": "All",
@@ -731,10 +731,95 @@
       "OriginalItemSpec": "wwwroot\\css\\bootstrap\\bootstrap.min.css.map"
     },
     {
-      "Identity": "C:\\Users\\Darrell\\Documents\\GitHub\\Space-Force-Evaluation-Project\\wwwroot\\css\\open-iconic\\font\\css\\open-iconic-bootstrap.min.css",
+      "Identity": "C:\\Users\\ppriy\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\css\\fonts.css",
       "SourceId": "SpaceForceEvaluations",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Darrell\\Documents\\GitHub\\Space-Force-Evaluation-Project\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\ppriy\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\",
+      "BasePath": "_content/SpaceForceEvaluations",
+      "RelativePath": "css/fonts.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\fonts.css"
+    },
+    {
+      "Identity": "C:\\Users\\ppriy\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\css\\Helvetica-Neue-Medium.otf",
+      "SourceId": "SpaceForceEvaluations",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\ppriy\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\",
+      "BasePath": "_content/SpaceForceEvaluations",
+      "RelativePath": "css/Helvetica-Neue-Medium.otf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\Helvetica-Neue-Medium.otf"
+    },
+    {
+      "Identity": "C:\\Users\\ppriy\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\css\\Helvetica-Neue-Medium.ttf",
+      "SourceId": "SpaceForceEvaluations",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\ppriy\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\",
+      "BasePath": "_content/SpaceForceEvaluations",
+      "RelativePath": "css/Helvetica-Neue-Medium.ttf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\Helvetica-Neue-Medium.ttf"
+    },
+    {
+      "Identity": "C:\\Users\\ppriy\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\css\\Helvetica-Neue-W01.otf",
+      "SourceId": "SpaceForceEvaluations",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\ppriy\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\",
+      "BasePath": "_content/SpaceForceEvaluations",
+      "RelativePath": "css/Helvetica-Neue-W01.otf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\Helvetica-Neue-W01.otf"
+    },
+    {
+      "Identity": "C:\\Users\\ppriy\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\css\\Helvetica-Neue-W01.ttf",
+      "SourceId": "SpaceForceEvaluations",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\ppriy\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\",
+      "BasePath": "_content/SpaceForceEvaluations",
+      "RelativePath": "css/Helvetica-Neue-W01.ttf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\Helvetica-Neue-W01.ttf"
+    },
+    {
+      "Identity": "C:\\Users\\ppriy\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\css\\open-iconic\\font\\css\\open-iconic-bootstrap.min.css",
+      "SourceId": "SpaceForceEvaluations",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\ppriy\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\",
       "BasePath": "_content/SpaceForceEvaluations",
       "RelativePath": "css/open-iconic/font/css/open-iconic-bootstrap.min.css",
       "AssetKind": "All",
@@ -748,10 +833,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\font\\css\\open-iconic-bootstrap.min.css"
     },
     {
-      "Identity": "C:\\Users\\Darrell\\Documents\\GitHub\\Space-Force-Evaluation-Project\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.eot",
+      "Identity": "C:\\Users\\ppriy\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.eot",
       "SourceId": "SpaceForceEvaluations",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Darrell\\Documents\\GitHub\\Space-Force-Evaluation-Project\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\ppriy\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\",
       "BasePath": "_content/SpaceForceEvaluations",
       "RelativePath": "css/open-iconic/font/fonts/open-iconic.eot",
       "AssetKind": "All",
@@ -765,10 +850,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.eot"
     },
     {
-      "Identity": "C:\\Users\\Darrell\\Documents\\GitHub\\Space-Force-Evaluation-Project\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.otf",
+      "Identity": "C:\\Users\\ppriy\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.otf",
       "SourceId": "SpaceForceEvaluations",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Darrell\\Documents\\GitHub\\Space-Force-Evaluation-Project\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\ppriy\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\",
       "BasePath": "_content/SpaceForceEvaluations",
       "RelativePath": "css/open-iconic/font/fonts/open-iconic.otf",
       "AssetKind": "All",
@@ -782,10 +867,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.otf"
     },
     {
-      "Identity": "C:\\Users\\Darrell\\Documents\\GitHub\\Space-Force-Evaluation-Project\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.svg",
+      "Identity": "C:\\Users\\ppriy\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.svg",
       "SourceId": "SpaceForceEvaluations",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Darrell\\Documents\\GitHub\\Space-Force-Evaluation-Project\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\ppriy\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\",
       "BasePath": "_content/SpaceForceEvaluations",
       "RelativePath": "css/open-iconic/font/fonts/open-iconic.svg",
       "AssetKind": "All",
@@ -799,10 +884,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.svg"
     },
     {
-      "Identity": "C:\\Users\\Darrell\\Documents\\GitHub\\Space-Force-Evaluation-Project\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.ttf",
+      "Identity": "C:\\Users\\ppriy\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.ttf",
       "SourceId": "SpaceForceEvaluations",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Darrell\\Documents\\GitHub\\Space-Force-Evaluation-Project\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\ppriy\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\",
       "BasePath": "_content/SpaceForceEvaluations",
       "RelativePath": "css/open-iconic/font/fonts/open-iconic.ttf",
       "AssetKind": "All",
@@ -816,10 +901,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.ttf"
     },
     {
-      "Identity": "C:\\Users\\Darrell\\Documents\\GitHub\\Space-Force-Evaluation-Project\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.woff",
+      "Identity": "C:\\Users\\ppriy\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.woff",
       "SourceId": "SpaceForceEvaluations",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Darrell\\Documents\\GitHub\\Space-Force-Evaluation-Project\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\ppriy\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\",
       "BasePath": "_content/SpaceForceEvaluations",
       "RelativePath": "css/open-iconic/font/fonts/open-iconic.woff",
       "AssetKind": "All",
@@ -833,10 +918,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.woff"
     },
     {
-      "Identity": "C:\\Users\\Darrell\\Documents\\GitHub\\Space-Force-Evaluation-Project\\wwwroot\\css\\open-iconic\\FONT-LICENSE",
+      "Identity": "C:\\Users\\ppriy\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\css\\open-iconic\\FONT-LICENSE",
       "SourceId": "SpaceForceEvaluations",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Darrell\\Documents\\GitHub\\Space-Force-Evaluation-Project\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\ppriy\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\",
       "BasePath": "_content/SpaceForceEvaluations",
       "RelativePath": "css/open-iconic/FONT-LICENSE",
       "AssetKind": "All",
@@ -850,10 +935,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\FONT-LICENSE"
     },
     {
-      "Identity": "C:\\Users\\Darrell\\Documents\\GitHub\\Space-Force-Evaluation-Project\\wwwroot\\css\\open-iconic\\ICON-LICENSE",
+      "Identity": "C:\\Users\\ppriy\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\css\\open-iconic\\ICON-LICENSE",
       "SourceId": "SpaceForceEvaluations",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Darrell\\Documents\\GitHub\\Space-Force-Evaluation-Project\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\ppriy\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\",
       "BasePath": "_content/SpaceForceEvaluations",
       "RelativePath": "css/open-iconic/ICON-LICENSE",
       "AssetKind": "All",
@@ -867,10 +952,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\ICON-LICENSE"
     },
     {
-      "Identity": "C:\\Users\\Darrell\\Documents\\GitHub\\Space-Force-Evaluation-Project\\wwwroot\\css\\open-iconic\\README.md",
+      "Identity": "C:\\Users\\ppriy\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\css\\open-iconic\\README.md",
       "SourceId": "SpaceForceEvaluations",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Darrell\\Documents\\GitHub\\Space-Force-Evaluation-Project\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\ppriy\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\",
       "BasePath": "_content/SpaceForceEvaluations",
       "RelativePath": "css/open-iconic/README.md",
       "AssetKind": "All",
@@ -884,10 +969,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\README.md"
     },
     {
-      "Identity": "C:\\Users\\Darrell\\Documents\\GitHub\\Space-Force-Evaluation-Project\\wwwroot\\css\\site.css",
+      "Identity": "C:\\Users\\ppriy\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\css\\site.css",
       "SourceId": "SpaceForceEvaluations",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Darrell\\Documents\\GitHub\\Space-Force-Evaluation-Project\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\ppriy\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\",
       "BasePath": "_content/SpaceForceEvaluations",
       "RelativePath": "css/site.css",
       "AssetKind": "All",
@@ -901,10 +986,10 @@
       "OriginalItemSpec": "wwwroot\\css\\site.css"
     },
     {
-      "Identity": "C:\\Users\\Darrell\\Documents\\GitHub\\Space-Force-Evaluation-Project\\wwwroot\\favicon.ico",
+      "Identity": "C:\\Users\\ppriy\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\favicon.ico",
       "SourceId": "SpaceForceEvaluations",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Darrell\\Documents\\GitHub\\Space-Force-Evaluation-Project\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\ppriy\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\",
       "BasePath": "_content/SpaceForceEvaluations",
       "RelativePath": "favicon.ico",
       "AssetKind": "All",
