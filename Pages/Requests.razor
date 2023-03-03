@@ -90,31 +90,33 @@
                 </MudTable>
             </MudNavGroup>
 
-            <MudNavGroup Title="Role Assignment Requests" @bind-Expanded=_roleIsExpanded>
-                <MudTable Items="@transferRequests">
-                    <HeaderContent>
-                        <MudTh>User</MudTh>
-                        <MudTh>Current Superior</MudTh>
-                        <MudTh>New Superior</MudTh>
-                    </HeaderContent>
-                    <RowTemplate>
-                        <MudTd>@context.userID</MudTd>
-                        <MudTd>@context.old_Superior</MudTd>
-                        <MudTd>@context.new_Superior</MudTd>
-                        <MudTd>
-                            <MudButton Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary">
-                                View More
-                            </MudButton>
-                            <MudButton Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary">
-                                Approve
-                            </MudButton>
-                            <MudButton Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary">
-                                Deny
-                            </MudButton>
-                        </MudTd>
-                    </RowTemplate>
-                </MudTable>
-            </MudNavGroup>
+            <!-- 
+                <MudNavGroup Title="Role Assignment Requests" @bind-Expanded=_roleIsExpanded>
+                    <MudTable Items="@transferRequests">
+                        <HeaderContent>
+                            <MudTh>User</MudTh>
+                            <MudTh>Current Superior</MudTh>
+                            <MudTh>New Superior</MudTh>
+                        </HeaderContent>
+                        <RowTemplate>
+                            <MudTd>@context.userID</MudTd>
+                            <MudTd>@context.old_Superior</MudTd>
+                            <MudTd>@context.new_Superior</MudTd>
+                            <MudTd>
+                                <MudButton Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary">
+                                    View More
+                                </MudButton>
+                                <MudButton Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary">
+                                    Approve
+                                </MudButton>
+                                <MudButton Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary">
+                                    Deny
+                                </MudButton>
+                            </MudTd>
+                        </RowTemplate>
+                    </MudTable>
+                </MudNavGroup>
+            -->
         </MudNavMenu>
     </MudPaper>
 

@@ -20,8 +20,10 @@
             <MudNavGroup Title="Additional Filters" @bind-Expanded=_additionalFeaturesIsExpanded>
                 <MudSwitch @bind-Checked="@showUsersWhoHaveADCON" Color="Color.Primary">Guardians who have ADCON over you</MudSwitch>
                 <MudSwitch @bind-Checked="@showUsersWhoYouHaveADCON" Color="Color.Primary">Guardians who you have ADCON over</MudSwitch>
-                <MudSwitch @bind-Checked="@showUsersWhoHaveOPCON" Color="Color.Primary">Guardians who have OPCON over you</MudSwitch>
-                <MudSwitch @bind-Checked="@showUsersWhoYouHaveOPCON" Color="Color.Primary">Guardians who you have OPCON over</MudSwitch>
+                <!-- 
+                    <MudSwitch @bind-Checked="@showUsersWhoHaveOPCON" Color="Color.Primary">Guardians who have OPCON over you</MudSwitch>
+                    <MudSwitch @bind-Checked="@showUsersWhoYouHaveOPCON" Color="Color.Primary">Guardians who you have OPCON over</MudSwitch>
+                -->
                 <MudSwitch @bind-Checked="@showEvaluators" Color="Color.Primary">Guardians who evaluate you</MudSwitch>
                 <MudSwitch @bind-Checked="@showUsersThatYouEvaluate" Color="Color.Primary">Guardians that you evaluate</MudSwitch>
                 <MudButton Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary" OnClick="@(() => onFilterChange())">
@@ -68,6 +70,9 @@
 
 
 @code {
+
+    Dictionary<String, bool> DisplayedUsersDictionary = new Dictionary<String, bool>();
+
     List<UserModel> users;
     UserModel currentUser;
     List<UserModel> subordinateUsers = new ();
@@ -85,15 +90,22 @@
 
     async Task onFilterChange()
     {
+        resetUsersDictionary(DisplayedUsersDictionary);
+
         if (showUsersWhoYouHaveADCON == true)
         {
             if(subordinateUsers.Count == 0)
             {
                 subordinateUsers = await getDirectSubordinates();
             }
-            foreach (UserModel us in subordinateUsers)
+            foreach (UserModel user in subordinateUsers)
             {
-                displayedUsers.Add(us);
+                // displayedUsers.Add(user);
+                if(DisplayedUsersDictionary[user.Id] == false)
+                {
+                    displayedUsers.Add(user);
+                    DisplayedUsersDictionary[user.Id] = true;
+                }
             }
             filtersHaveBeenReset = false;
         }
@@ -122,8 +134,8 @@
             // TODO: show all people that you evaluate. 
             filtersHaveBeenReset = false;
         }
-        
-        
+
+
     }
 
     void onFilterReset()
@@ -169,6 +181,21 @@
         currentUser = await AuthenticationStateProviderHelpers.GetUserFromAuth(authProvider, userData);
     }
 
+    private void AddUsersToDictionary(List<UserModel> usersList, Dictionary<String, bool> usersDictionary)
+    {
+        foreach(var user in usersList)
+        {
+            usersDictionary.Add(user.Id, true);
+        }
+    }
+
+    private void resetUsersDictionary(Dictionary<String, bool> usersDictionary)
+    {
+        foreach(var user in usersDictionary)
+        {
+            usersDictionary[user.Key] = !user.Value;
+        }
+    }
 
     async Task getAllUsers()
     {
@@ -198,6 +225,7 @@
     {
         await GetLogin();
         await getAllUsers();
+        AddUsersToDictionary(users, DisplayedUsersDictionary);
         //subordinateUsers = await getDirectSubordinates();
         isLoading = false;
     }
