@@ -1,83 +1,83 @@
 {
   "Files": [
     {
-      "Id": "C:\\Users\\ppriy\\.nuget\\packages\\chartjs.blazor.fork\\2.0.2\\contentFiles\\any\\netstandard2.1\\wwwroot\\ChartJsBlazorInterop.js",
+      "Id": "C:\\Users\\gokamo\\.nuget\\packages\\chartjs.blazor.fork\\2.0.2\\contentFiles\\any\\netstandard2.1\\wwwroot\\ChartJsBlazorInterop.js",
       "PackagePath": "staticwebassets\\ChartJsBlazorInterop.js"
     },
     {
-      "Id": "C:\\Users\\ppriy\\source\\repos\\Space-Force-Evaluation-Project\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\SpaceForceEvaluations.bundle.scp.css",
+      "Id": "D:\\Users\\gokamo\\Documents\\GitHub\\Space-Force-Evaluation-Project\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\SpaceForceEvaluations.bundle.scp.css",
       "PackagePath": "staticwebassets\\SpaceForceEvaluations.bundle.scp.css"
     },
     {
-      "Id": "C:\\Users\\ppriy\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\css\\Helvetica-Neue-Medium.otf",
+      "Id": "D:\\Users\\gokamo\\Documents\\GitHub\\Space-Force-Evaluation-Project\\wwwroot\\css\\Helvetica-Neue-Medium.otf",
       "PackagePath": "staticwebassets\\css\\Helvetica-Neue-Medium.otf"
     },
     {
-      "Id": "C:\\Users\\ppriy\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\css\\Helvetica-Neue-Medium.ttf",
+      "Id": "D:\\Users\\gokamo\\Documents\\GitHub\\Space-Force-Evaluation-Project\\wwwroot\\css\\Helvetica-Neue-Medium.ttf",
       "PackagePath": "staticwebassets\\css\\Helvetica-Neue-Medium.ttf"
     },
     {
-      "Id": "C:\\Users\\ppriy\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\css\\Helvetica-Neue-W01.otf",
+      "Id": "D:\\Users\\gokamo\\Documents\\GitHub\\Space-Force-Evaluation-Project\\wwwroot\\css\\Helvetica-Neue-W01.otf",
       "PackagePath": "staticwebassets\\css\\Helvetica-Neue-W01.otf"
     },
     {
-      "Id": "C:\\Users\\ppriy\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\css\\Helvetica-Neue-W01.ttf",
+      "Id": "D:\\Users\\gokamo\\Documents\\GitHub\\Space-Force-Evaluation-Project\\wwwroot\\css\\Helvetica-Neue-W01.ttf",
       "PackagePath": "staticwebassets\\css\\Helvetica-Neue-W01.ttf"
     },
     {
-      "Id": "C:\\Users\\ppriy\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
+      "Id": "D:\\Users\\gokamo\\Documents\\GitHub\\Space-Force-Evaluation-Project\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
       "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.min.css"
     },
     {
-      "Id": "C:\\Users\\ppriy\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\css\\bootstrap\\bootstrap.min.css.map",
+      "Id": "D:\\Users\\gokamo\\Documents\\GitHub\\Space-Force-Evaluation-Project\\wwwroot\\css\\bootstrap\\bootstrap.min.css.map",
       "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.min.css.map"
     },
     {
-      "Id": "C:\\Users\\ppriy\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\css\\fonts.css",
+      "Id": "D:\\Users\\gokamo\\Documents\\GitHub\\Space-Force-Evaluation-Project\\wwwroot\\css\\fonts.css",
       "PackagePath": "staticwebassets\\css\\fonts.css"
     },
     {
-      "Id": "C:\\Users\\ppriy\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\css\\open-iconic\\FONT-LICENSE",
+      "Id": "D:\\Users\\gokamo\\Documents\\GitHub\\Space-Force-Evaluation-Project\\wwwroot\\css\\open-iconic\\FONT-LICENSE",
       "PackagePath": "staticwebassets\\css\\open-iconic"
     },
     {
-      "Id": "C:\\Users\\ppriy\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\css\\open-iconic\\ICON-LICENSE",
+      "Id": "D:\\Users\\gokamo\\Documents\\GitHub\\Space-Force-Evaluation-Project\\wwwroot\\css\\open-iconic\\ICON-LICENSE",
       "PackagePath": "staticwebassets\\css\\open-iconic"
     },
     {
-      "Id": "C:\\Users\\ppriy\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\css\\open-iconic\\README.md",
+      "Id": "D:\\Users\\gokamo\\Documents\\GitHub\\Space-Force-Evaluation-Project\\wwwroot\\css\\open-iconic\\README.md",
       "PackagePath": "staticwebassets\\css\\open-iconic\\README.md"
     },
     {
-      "Id": "C:\\Users\\ppriy\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\css\\open-iconic\\font\\css\\open-iconic-bootstrap.min.css",
+      "Id": "D:\\Users\\gokamo\\Documents\\GitHub\\Space-Force-Evaluation-Project\\wwwroot\\css\\open-iconic\\font\\css\\open-iconic-bootstrap.min.css",
       "PackagePath": "staticwebassets\\css\\open-iconic\\font\\css\\open-iconic-bootstrap.min.css"
     },
     {
-      "Id": "C:\\Users\\ppriy\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.eot",
+      "Id": "D:\\Users\\gokamo\\Documents\\GitHub\\Space-Force-Evaluation-Project\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.eot",
       "PackagePath": "staticwebassets\\css\\open-iconic\\font\\fonts\\open-iconic.eot"
     },
     {
-      "Id": "C:\\Users\\ppriy\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.otf",
+      "Id": "D:\\Users\\gokamo\\Documents\\GitHub\\Space-Force-Evaluation-Project\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.otf",
       "PackagePath": "staticwebassets\\css\\open-iconic\\font\\fonts\\open-iconic.otf"
     },
     {
-      "Id": "C:\\Users\\ppriy\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.svg",
+      "Id": "D:\\Users\\gokamo\\Documents\\GitHub\\Space-Force-Evaluation-Project\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.svg",
       "PackagePath": "staticwebassets\\css\\open-iconic\\font\\fonts\\open-iconic.svg"
     },
     {
-      "Id": "C:\\Users\\ppriy\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.ttf",
+      "Id": "D:\\Users\\gokamo\\Documents\\GitHub\\Space-Force-Evaluation-Project\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.ttf",
       "PackagePath": "staticwebassets\\css\\open-iconic\\font\\fonts\\open-iconic.ttf"
     },
     {
-      "Id": "C:\\Users\\ppriy\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.woff",
+      "Id": "D:\\Users\\gokamo\\Documents\\GitHub\\Space-Force-Evaluation-Project\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.woff",
       "PackagePath": "staticwebassets\\css\\open-iconic\\font\\fonts\\open-iconic.woff"
     },
     {
-      "Id": "C:\\Users\\ppriy\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\css\\site.css",
+      "Id": "D:\\Users\\gokamo\\Documents\\GitHub\\Space-Force-Evaluation-Project\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
-      "Id": "C:\\Users\\ppriy\\source\\repos\\Space-Force-Evaluation-Project\\wwwroot\\favicon.ico",
+      "Id": "D:\\Users\\gokamo\\Documents\\GitHub\\Space-Force-Evaluation-Project\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {

@@ -86,3 +86,14 @@ C:\Users\ppriy\source\repos\Space-Force-Evaluation-Project\SpaceForceEvaluationA
 C:\Users\ppriy\source\repos\Space-Force-Evaluation-Project\SpaceForceEvaluationAppLibrary\obj\Debug\net6.0\refint\SpaceForceEvaluationAppLibrary.dll
 C:\Users\ppriy\source\repos\Space-Force-Evaluation-Project\SpaceForceEvaluationAppLibrary\obj\Debug\net6.0\SpaceForceEvaluationAppLibrary.pdb
 C:\Users\ppriy\source\repos\Space-Force-Evaluation-Project\SpaceForceEvaluationAppLibrary\obj\Debug\net6.0\ref\SpaceForceEvaluationAppLibrary.dll
+D:\Users\gokamo\Documents\GitHub\Space-Force-Evaluation-Project\SpaceForceEvaluationAppLibrary\bin\Debug\net6.0\NuGet.Config
+D:\Users\gokamo\Documents\GitHub\Space-Force-Evaluation-Project\SpaceForceEvaluationAppLibrary\bin\Debug\net6.0\SpaceForceEvaluationAppLibrary.deps.json
+D:\Users\gokamo\Documents\GitHub\Space-Force-Evaluation-Project\SpaceForceEvaluationAppLibrary\bin\Debug\net6.0\SpaceForceEvaluationAppLibrary.dll
+D:\Users\gokamo\Documents\GitHub\Space-Force-Evaluation-Project\SpaceForceEvaluationAppLibrary\bin\Debug\net6.0\SpaceForceEvaluationAppLibrary.pdb
+D:\Users\gokamo\Documents\GitHub\Space-Force-Evaluation-Project\SpaceForceEvaluationAppLibrary\obj\Debug\net6.0\SpaceForceEvaluationAppLibrary.csproj.AssemblyReference.cache
+D:\Users\gokamo\Documents\GitHub\Space-Force-Evaluation-Project\SpaceForceEvaluationAppLibrary\obj\Debug\net6.0\SpaceForceEvaluationAppLibrary.GeneratedMSBuildEditorConfig.editorconfig
+D:\Users\gokamo\Documents\GitHub\Space-Force-Evaluation-Project\SpaceForceEvaluationAppLibrary\obj\Debug\net6.0\SpaceForceEvaluationAppLibrary.csproj.CoreCompileInputs.cache
+D:\Users\gokamo\Documents\GitHub\Space-Force-Evaluation-Project\SpaceForceEvaluationAppLibrary\obj\Debug\net6.0\SpaceForceEvaluationAppLibrary.dll
+D:\Users\gokamo\Documents\GitHub\Space-Force-Evaluation-Project\SpaceForceEvaluationAppLibrary\obj\Debug\net6.0\refint\SpaceForceEvaluationAppLibrary.dll
+D:\Users\gokamo\Documents\GitHub\Space-Force-Evaluation-Project\SpaceForceEvaluationAppLibrary\obj\Debug\net6.0\SpaceForceEvaluationAppLibrary.pdb
+D:\Users\gokamo\Documents\GitHub\Space-Force-Evaluation-Project\SpaceForceEvaluationAppLibrary\obj\Debug\net6.0\ref\SpaceForceEvaluationAppLibrary.dll
