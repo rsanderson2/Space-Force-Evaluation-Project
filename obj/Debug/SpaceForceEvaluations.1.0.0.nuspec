@@ -35,32 +35,37 @@
     </contentFiles>
   </metadata>
   <files>
-    <file src="C:\Users\Darrell\Documents\GitHub\Space-Force-Evaluation-Project\bin\Debug\net6.0\SpaceForceEvaluations.runtimeconfig.json" target="lib\net6.0\SpaceForceEvaluations.runtimeconfig.json" />
-    <file src="C:\Users\Darrell\Documents\GitHub\Space-Force-Evaluation-Project\bin\Debug\net6.0\SpaceForceEvaluations.dll" target="lib\net6.0\SpaceForceEvaluations.dll" />
-    <file src="C:\Users\Darrell\Documents\GitHub\Space-Force-Evaluation-Project\obj\Debug\net6.0\staticwebassets\msbuild.SpaceForceEvaluations.Microsoft.AspNetCore.StaticWebAssets.props" target="build\Microsoft.AspNetCore.StaticWebAssets.props" />
-    <file src="C:\Users\Darrell\Documents\GitHub\Space-Force-Evaluation-Project\obj\Debug\net6.0\staticwebassets\msbuild.build.SpaceForceEvaluations.props" target="build\SpaceForceEvaluations.props" />
-    <file src="C:\Users\Darrell\Documents\GitHub\Space-Force-Evaluation-Project\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.SpaceForceEvaluations.props" target="buildMultiTargeting\SpaceForceEvaluations.props" />
-    <file src="C:\Users\Darrell\Documents\GitHub\Space-Force-Evaluation-Project\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.SpaceForceEvaluations.props" target="buildTransitive\SpaceForceEvaluations.props" />
-    <file src="C:\Users\Darrell\.nuget\packages\chartjs.blazor.fork\2.0.2\contentFiles\any\netstandard2.1\wwwroot\ChartJsBlazorInterop.js" target="staticwebassets\ChartJsBlazorInterop.js" />
-    <file src="C:\Users\Darrell\Documents\GitHub\Space-Force-Evaluation-Project\wwwroot\css\bootstrap\bootstrap.min.css" target="staticwebassets\css\bootstrap\bootstrap.min.css" />
-    <file src="C:\Users\Darrell\Documents\GitHub\Space-Force-Evaluation-Project\wwwroot\css\bootstrap\bootstrap.min.css.map" target="staticwebassets\css\bootstrap\bootstrap.min.css.map" />
-    <file src="C:\Users\Darrell\Documents\GitHub\Space-Force-Evaluation-Project\wwwroot\css\open-iconic\font\css\open-iconic-bootstrap.min.css" target="staticwebassets\css\open-iconic\font\css\open-iconic-bootstrap.min.css" />
-    <file src="C:\Users\Darrell\Documents\GitHub\Space-Force-Evaluation-Project\wwwroot\css\open-iconic\font\fonts\open-iconic.eot" target="staticwebassets\css\open-iconic\font\fonts\open-iconic.eot" />
-    <file src="C:\Users\Darrell\Documents\GitHub\Space-Force-Evaluation-Project\wwwroot\css\open-iconic\font\fonts\open-iconic.otf" target="staticwebassets\css\open-iconic\font\fonts\open-iconic.otf" />
-    <file src="C:\Users\Darrell\Documents\GitHub\Space-Force-Evaluation-Project\wwwroot\css\open-iconic\font\fonts\open-iconic.svg" target="staticwebassets\css\open-iconic\font\fonts\open-iconic.svg" />
-    <file src="C:\Users\Darrell\Documents\GitHub\Space-Force-Evaluation-Project\wwwroot\css\open-iconic\font\fonts\open-iconic.ttf" target="staticwebassets\css\open-iconic\font\fonts\open-iconic.ttf" />
-    <file src="C:\Users\Darrell\Documents\GitHub\Space-Force-Evaluation-Project\wwwroot\css\open-iconic\font\fonts\open-iconic.woff" target="staticwebassets\css\open-iconic\font\fonts\open-iconic.woff" />
-    <file src="C:\Users\Darrell\Documents\GitHub\Space-Force-Evaluation-Project\wwwroot\css\open-iconic\FONT-LICENSE" target="staticwebassets\css\open-iconic\FONT-LICENSE" />
-    <file src="C:\Users\Darrell\Documents\GitHub\Space-Force-Evaluation-Project\wwwroot\css\open-iconic\ICON-LICENSE" target="staticwebassets\css\open-iconic\ICON-LICENSE" />
-    <file src="C:\Users\Darrell\Documents\GitHub\Space-Force-Evaluation-Project\wwwroot\css\open-iconic\README.md" target="staticwebassets\css\open-iconic\README.md" />
-    <file src="C:\Users\Darrell\Documents\GitHub\Space-Force-Evaluation-Project\wwwroot\css\site.css" target="staticwebassets\css\site.css" />
-    <file src="C:\Users\Darrell\Documents\GitHub\Space-Force-Evaluation-Project\wwwroot\favicon.ico" target="staticwebassets\favicon.ico" />
-    <file src="C:\Users\Darrell\Documents\GitHub\Space-Force-Evaluation-Project\obj\Debug\net6.0\scopedcss\projectbundle\SpaceForceEvaluations.bundle.scp.css" target="staticwebassets\SpaceForceEvaluations.bundle.scp.css" />
-    <file src="C:\Users\Darrell\Documents\GitHub\Space-Force-Evaluation-Project\NuGet.Config" target="content\NuGet.Config" />
-    <file src="C:\Users\Darrell\Documents\GitHub\Space-Force-Evaluation-Project\NuGet.Config" target="contentFiles\any\net6.0\NuGet.Config" />
-    <file src="C:\Users\Darrell\Documents\GitHub\Space-Force-Evaluation-Project\appsettings.Development.json" target="content\appsettings.Development.json" />
-    <file src="C:\Users\Darrell\Documents\GitHub\Space-Force-Evaluation-Project\appsettings.Development.json" target="contentFiles\any\net6.0\appsettings.Development.json" />
-    <file src="C:\Users\Darrell\Documents\GitHub\Space-Force-Evaluation-Project\appsettings.json" target="content\appsettings.json" />
-    <file src="C:\Users\Darrell\Documents\GitHub\Space-Force-Evaluation-Project\appsettings.json" target="contentFiles\any\net6.0\appsettings.json" />
+    <file src="C:\Users\ppriy\source\repos\Space-Force-Evaluation-Project\bin\Debug\net6.0\SpaceForceEvaluations.runtimeconfig.json" target="lib\net6.0\SpaceForceEvaluations.runtimeconfig.json" />
+    <file src="C:\Users\ppriy\source\repos\Space-Force-Evaluation-Project\bin\Debug\net6.0\SpaceForceEvaluations.dll" target="lib\net6.0\SpaceForceEvaluations.dll" />
+    <file src="C:\Users\ppriy\source\repos\Space-Force-Evaluation-Project\NuGet.Config" target="content\NuGet.Config" />
+    <file src="C:\Users\ppriy\source\repos\Space-Force-Evaluation-Project\NuGet.Config" target="contentFiles\any\net6.0\NuGet.Config" />
+    <file src="C:\Users\ppriy\source\repos\Space-Force-Evaluation-Project\appsettings.Development.json" target="content\appsettings.Development.json" />
+    <file src="C:\Users\ppriy\source\repos\Space-Force-Evaluation-Project\appsettings.Development.json" target="contentFiles\any\net6.0\appsettings.Development.json" />
+    <file src="C:\Users\ppriy\source\repos\Space-Force-Evaluation-Project\appsettings.json" target="content\appsettings.json" />
+    <file src="C:\Users\ppriy\source\repos\Space-Force-Evaluation-Project\appsettings.json" target="contentFiles\any\net6.0\appsettings.json" />
+    <file src="C:\Users\ppriy\.nuget\packages\chartjs.blazor.fork\2.0.2\contentFiles\any\netstandard2.1\wwwroot\ChartJsBlazorInterop.js" target="staticwebassets\ChartJsBlazorInterop.js" />
+    <file src="C:\Users\ppriy\source\repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\scopedcss\projectbundle\SpaceForceEvaluations.bundle.scp.css" target="staticwebassets\SpaceForceEvaluations.bundle.scp.css" />
+    <file src="C:\Users\ppriy\source\repos\Space-Force-Evaluation-Project\wwwroot\css\Helvetica-Neue-Medium.otf" target="staticwebassets\css\Helvetica-Neue-Medium.otf" />
+    <file src="C:\Users\ppriy\source\repos\Space-Force-Evaluation-Project\wwwroot\css\Helvetica-Neue-Medium.ttf" target="staticwebassets\css\Helvetica-Neue-Medium.ttf" />
+    <file src="C:\Users\ppriy\source\repos\Space-Force-Evaluation-Project\wwwroot\css\Helvetica-Neue-W01.otf" target="staticwebassets\css\Helvetica-Neue-W01.otf" />
+    <file src="C:\Users\ppriy\source\repos\Space-Force-Evaluation-Project\wwwroot\css\Helvetica-Neue-W01.ttf" target="staticwebassets\css\Helvetica-Neue-W01.ttf" />
+    <file src="C:\Users\ppriy\source\repos\Space-Force-Evaluation-Project\wwwroot\css\bootstrap\bootstrap.min.css" target="staticwebassets\css\bootstrap\bootstrap.min.css" />
+    <file src="C:\Users\ppriy\source\repos\Space-Force-Evaluation-Project\wwwroot\css\bootstrap\bootstrap.min.css.map" target="staticwebassets\css\bootstrap\bootstrap.min.css.map" />
+    <file src="C:\Users\ppriy\source\repos\Space-Force-Evaluation-Project\wwwroot\css\fonts.css" target="staticwebassets\css\fonts.css" />
+    <file src="C:\Users\ppriy\source\repos\Space-Force-Evaluation-Project\wwwroot\css\open-iconic\FONT-LICENSE" target="staticwebassets\css\open-iconic\FONT-LICENSE" />
+    <file src="C:\Users\ppriy\source\repos\Space-Force-Evaluation-Project\wwwroot\css\open-iconic\ICON-LICENSE" target="staticwebassets\css\open-iconic\ICON-LICENSE" />
+    <file src="C:\Users\ppriy\source\repos\Space-Force-Evaluation-Project\wwwroot\css\open-iconic\README.md" target="staticwebassets\css\open-iconic\README.md" />
+    <file src="C:\Users\ppriy\source\repos\Space-Force-Evaluation-Project\wwwroot\css\open-iconic\font\css\open-iconic-bootstrap.min.css" target="staticwebassets\css\open-iconic\font\css\open-iconic-bootstrap.min.css" />
+    <file src="C:\Users\ppriy\source\repos\Space-Force-Evaluation-Project\wwwroot\css\open-iconic\font\fonts\open-iconic.eot" target="staticwebassets\css\open-iconic\font\fonts\open-iconic.eot" />
+    <file src="C:\Users\ppriy\source\repos\Space-Force-Evaluation-Project\wwwroot\css\open-iconic\font\fonts\open-iconic.otf" target="staticwebassets\css\open-iconic\font\fonts\open-iconic.otf" />
+    <file src="C:\Users\ppriy\source\repos\Space-Force-Evaluation-Project\wwwroot\css\open-iconic\font\fonts\open-iconic.svg" target="staticwebassets\css\open-iconic\font\fonts\open-iconic.svg" />
+    <file src="C:\Users\ppriy\source\repos\Space-Force-Evaluation-Project\wwwroot\css\open-iconic\font\fonts\open-iconic.ttf" target="staticwebassets\css\open-iconic\font\fonts\open-iconic.ttf" />
+    <file src="C:\Users\ppriy\source\repos\Space-Force-Evaluation-Project\wwwroot\css\open-iconic\font\fonts\open-iconic.woff" target="staticwebassets\css\open-iconic\font\fonts\open-iconic.woff" />
+    <file src="C:\Users\ppriy\source\repos\Space-Force-Evaluation-Project\wwwroot\css\site.css" target="staticwebassets\css\site.css" />
+    <file src="C:\Users\ppriy\source\repos\Space-Force-Evaluation-Project\wwwroot\favicon.ico" target="staticwebassets\favicon.ico" />
+    <file src="C:\Users\ppriy\source\repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\staticwebassets\msbuild.SpaceForceEvaluations.Microsoft.AspNetCore.StaticWebAssets.props" target="build\Microsoft.AspNetCore.StaticWebAssets.props" />
+    <file src="C:\Users\ppriy\source\repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\staticwebassets\msbuild.build.SpaceForceEvaluations.props" target="build\SpaceForceEvaluations.props" />
+    <file src="C:\Users\ppriy\source\repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.SpaceForceEvaluations.props" target="buildMultiTargeting\SpaceForceEvaluations.props" />
+    <file src="C:\Users\ppriy\source\repos\Space-Force-Evaluation-Project\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.SpaceForceEvaluations.props" target="buildTransitive\SpaceForceEvaluations.props" />
   </files>
 </package>

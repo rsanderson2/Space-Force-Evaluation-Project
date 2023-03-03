@@ -6641,20 +6641,25 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Darrell\\.nuget\\packages\\": {}
+    "C:\\Users\\ppriy\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Darrell\\Documents\\GitHub\\Space-Force-Evaluation-Project\\SpaceForceEvaluationAppLibrary\\SpaceForceEvaluationAppLibrary.csproj",
+      "projectUniqueName": "C:\\Users\\ppriy\\source\\repos\\Space-Force-Evaluation-Project\\SpaceForceEvaluationAppLibrary\\SpaceForceEvaluationAppLibrary.csproj",
       "projectName": "SpaceForceEvaluationAppLibrary",
-      "projectPath": "C:\\Users\\Darrell\\Documents\\GitHub\\Space-Force-Evaluation-Project\\SpaceForceEvaluationAppLibrary\\SpaceForceEvaluationAppLibrary.csproj",
-      "packagesPath": "C:\\Users\\Darrell\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Darrell\\Documents\\GitHub\\Space-Force-Evaluation-Project\\SpaceForceEvaluationAppLibrary\\obj\\",
+      "projectPath": "C:\\Users\\ppriy\\source\\repos\\Space-Force-Evaluation-Project\\SpaceForceEvaluationAppLibrary\\SpaceForceEvaluationAppLibrary.csproj",
+      "packagesPath": "C:\\Users\\ppriy\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\ppriy\\source\\repos\\Space-Force-Evaluation-Project\\SpaceForceEvaluationAppLibrary\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\Darrell\\Documents\\GitHub\\Space-Force-Evaluation-Project\\NuGet.Config",
-        "C:\\Users\\Darrell\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\ppriy\\source\\repos\\Space-Force-Evaluation-Project\\NuGet.Config",
+        "C:\\Users\\ppriy\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -6662,6 +6667,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -6721,7 +6727,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -10,14 +10,18 @@
 
 <PageTitle>Team Management</PageTitle>
 
+<head>
+    <link rel="stylesheet" href="/css/fonts.css" />
+</head>
+
 <div>
     <!-- <MudDataGrid T="Element" MultiSelection="true" Items="@Elements" SortMode="SortMode.Multiple" Filterable="true" QuickFilter="@_quickFilter"
     Hideable="true" RowClick="@RowClicked" SelectedItemsChanged="@SelectedItemsChanged">-->
     <!-- <div class="d-flex flex-wrap mt-4">  -->
 
-    <MudPaper Width="400px" Class="py-3 mb-4" Elevation="1">
+    <MudPaper Width="350px" Class="mt-15 mb-3 pa-2" Elevation="4" Style="border-radius: 15px; background: #E7F1FF">
         <MudNavMenu>
-            <MudNavGroup Title="Additional Filters" @bind-Expanded=_additionalFeaturesIsExpanded>
+            <MudNavGroup Class="mt-auto" Title="Additional Filters" Style="font-family: helveticaNeueBold; font-size: 120%;" @bind-Expanded=_additionalFeaturesIsExpanded>
                 <MudSwitch @bind-Checked="@showUsersWhoHaveADCON" Color="Color.Primary">Guardians who have ADCON over you</MudSwitch>
                 <MudSwitch @bind-Checked="@showUsersWhoYouHaveADCON" Color="Color.Primary">Guardians who you have ADCON over</MudSwitch>
                 <!-- 
@@ -37,9 +41,9 @@
     </MudPaper>
 
    <!-- </div> -->
-    <MudDataGrid Items="@(displayedUsers.Count == 0 || filtersHaveBeenReset ? users : displayedUsers)" MultiSelection="true" Hideable="true" Filterable="true" QuickFilter="@_quickFilter" Loading="@isLoading">
+    <MudDataGrid Items="@(displayedUsers.Count == 0 || filtersHaveBeenReset ? users : displayedUsers)" MultiSelection="true" Hideable="true" Filterable="true" QuickFilter="@_quickFilter" Loading="@isLoading" Elevation="4" Style="border-radius: 15px; background: #E7F1FF" >
         <ToolBarContent>
-            <MudText Typo="Typo.h6">Guardians</MudText>
+            <MudText Typo="Typo.h5">Guardians</MudText>
             <MudSpacer />
             <MudTextField @bind-Value="_searchString" Placeholder="Search" Adornment="Adornment.Start" Immediate="true"
                           AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>

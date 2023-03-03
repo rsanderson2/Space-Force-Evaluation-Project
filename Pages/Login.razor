@@ -7,14 +7,24 @@
 <PageTitle>Login</PageTitle>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<head>
+    <style>
+        .container-grid {
+            margin:auto;
+            padding-top:150px;
+            border-radius: 15px;
+        }
+    </style>
+</head>
+
 <!--Main Body-->
 <body>
 <AuthorizeView>
     <Authorized>
         <!--Container grid for the survey options-->
-        <div class="container grid">
+            <div class="container-grid">
             <div>
-                    <MudSimpleTable Style="overflow-x: auto;" Elevation="0">
+                    <MudSimpleTable Style="overflow-x: auto; background-color: #003B73" Elevation="0">
                         <tbody>
   
                                 <tr>
@@ -73,14 +83,14 @@
                         </tbody>
                     </MudSimpleTable>
 
-        <MudSimpleTable>
+                    <MudSimpleTable Style="background-color: #003B73" Elevation="0">
                         <tbody>
 
             <tr>
                                 <td></td>
                                 <td>
-                    <MudCard width="100%" Elevation="0">
-                        <MudCardContent>
+                    <MudCard width="100%" Elevation="0" Style="background-color: #003B73;">
+                            <MudCardContent>
                                     @if (@lastDaily || @lastWeekly || @lastMonthly)
                                     {
 
