@@ -16,5 +16,7 @@ public class SurveyModel
     public string question { get; set; }
     public int response { get; set; }
     public string freeResponseText { get; set; }
+    public string date_administered { get; set; }
+    public string date_taken { get; set; }
 }
 
