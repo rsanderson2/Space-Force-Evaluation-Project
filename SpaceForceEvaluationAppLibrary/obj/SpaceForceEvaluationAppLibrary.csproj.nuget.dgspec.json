@@ -1,25 +1,21 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Users\\gokamo\\Documents\\GitHub\\Space-Force-Evaluation-Project\\SpaceForceEvaluationAppLibrary\\SpaceForceEvaluationAppLibrary.csproj": {}
+    "C:\\Users\\Darrell\\Documents\\GitHub\\Space-Force-Evaluation-Project\\SpaceForceEvaluationAppLibrary\\SpaceForceEvaluationAppLibrary.csproj": {}
   },
   "projects": {
-    "D:\\Users\\gokamo\\Documents\\GitHub\\Space-Force-Evaluation-Project\\SpaceForceEvaluationAppLibrary\\SpaceForceEvaluationAppLibrary.csproj": {
+    "C:\\Users\\Darrell\\Documents\\GitHub\\Space-Force-Evaluation-Project\\SpaceForceEvaluationAppLibrary\\SpaceForceEvaluationAppLibrary.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Users\\gokamo\\Documents\\GitHub\\Space-Force-Evaluation-Project\\SpaceForceEvaluationAppLibrary\\SpaceForceEvaluationAppLibrary.csproj",
+        "projectUniqueName": "C:\\Users\\Darrell\\Documents\\GitHub\\Space-Force-Evaluation-Project\\SpaceForceEvaluationAppLibrary\\SpaceForceEvaluationAppLibrary.csproj",
         "projectName": "SpaceForceEvaluationAppLibrary",
-        "projectPath": "D:\\Users\\gokamo\\Documents\\GitHub\\Space-Force-Evaluation-Project\\SpaceForceEvaluationAppLibrary\\SpaceForceEvaluationAppLibrary.csproj",
-        "packagesPath": "C:\\Users\\gokamo\\.nuget\\packages\\",
-        "outputPath": "D:\\Users\\gokamo\\Documents\\GitHub\\Space-Force-Evaluation-Project\\SpaceForceEvaluationAppLibrary\\obj\\",
+        "projectPath": "C:\\Users\\Darrell\\Documents\\GitHub\\Space-Force-Evaluation-Project\\SpaceForceEvaluationAppLibrary\\SpaceForceEvaluationAppLibrary.csproj",
+        "packagesPath": "C:\\Users\\Darrell\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Darrell\\Documents\\GitHub\\Space-Force-Evaluation-Project\\SpaceForceEvaluationAppLibrary\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "D:\\Users\\gokamo\\Documents\\GitHub\\Space-Force-Evaluation-Project\\NuGet.Config",
-          "C:\\Users\\gokamo\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\Darrell\\Documents\\GitHub\\Space-Force-Evaluation-Project\\NuGet.Config",
+          "C:\\Users\\Darrell\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -27,7 +23,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -87,7 +82,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.200\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
         }
       }
     }

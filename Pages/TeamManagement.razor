@@ -82,12 +82,14 @@
     List<UserModel> subordinateUsers = new ();
     List<UserModel> displayedUsers = new();
 
+    // TODO: make a 2D array [hasShownUsers, showUsersWhoHaveADCON]
     bool showUsersWhoHaveADCON;
     bool showUsersWhoYouHaveADCON;
     bool showUsersWhoHaveOPCON;
     bool showUsersWhoYouHaveOPCON;
     bool showEvaluators;
     bool showUsersThatYouEvaluate;
+
     bool filtersHaveBeenReset;
     bool _additionalFeaturesIsExpanded;
     bool isLoading = true;
