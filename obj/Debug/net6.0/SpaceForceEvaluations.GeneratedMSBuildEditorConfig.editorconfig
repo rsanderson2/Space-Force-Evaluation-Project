@@ -23,12 +23,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xCYXJHcmFwaC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Darrell/Documents/GitHub/Space-Force-Evaluation-Project/Components/CompletedSurveyContentHolder.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xDb21wbGV0ZWRTdXJ2ZXlDb250ZW50SG9sZGVyLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Darrell/Documents/GitHub/Space-Force-Evaluation-Project/Components/MonthlyQuestionHolder.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xNb250aGx5UXVlc3Rpb25Ib2xkZXIucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Darrell/Documents/GitHub/Space-Force-Evaluation-Project/Components/PieChartHolder.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQaWVDaGFydEhvbGRlci5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Darrell/Documents/GitHub/Space-Force-Evaluation-Project/Components/UncompletedSurveyContentHolder.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xVbmNvbXBsZXRlZFN1cnZleUNvbnRlbnRIb2xkZXIucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Darrell/Documents/GitHub/Space-Force-Evaluation-Project/Components/WeeklyQuestionHolder.razor]

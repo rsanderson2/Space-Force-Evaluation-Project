@@ -2,16 +2,7 @@
 
 <MudDialog>
     <DialogContent>
-        <div>
-            <!-- TODO: show the selectedSurvey's data here' -->
-            <p>TODO: Ask Roger if this is the information he wants to display here</p>
-            <p>Survey question / answers</p>
-
-            <p>TODO: Ask Roger if these are the actions he wants to display/allow here</p>
-            <p>none</p>
-
-            <!-- TODO: conditionally disable buttons when necessary -->
-        </div>
+         <SpaceForceEvaluations.Components.CompletedSurveyContentHolder/>
     </DialogContent>
     <DialogActions>
         <MudButton OnClick="Cancel">Close</MudButton>
@@ -20,6 +11,7 @@
 
 
 @code {
+
 
 
     [CascadingParameter] MudDialogInstance MudDialog { get; set; }
