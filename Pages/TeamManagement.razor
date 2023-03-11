@@ -15,21 +15,17 @@
 </head>
 
 <div>
-    <!-- <MudDataGrid T="Element" MultiSelection="true" Items="@Elements" SortMode="SortMode.Multiple" Filterable="true" QuickFilter="@_quickFilter"
-    Hideable="true" RowClick="@RowClicked" SelectedItemsChanged="@SelectedItemsChanged">-->
-    <!-- <div class="d-flex flex-wrap mt-4">  -->
 
     <MudPaper Width="350px" Class="mt-15 mb-3 pa-2" Elevation="4" Style="border-radius: 15px; background: #E7F1FF">
         <MudNavMenu>
             <MudNavGroup Class="mt-auto" Title="Additional Filters" Style="font-family: helveticaNeueBold; font-size: 120%;" @bind-Expanded=_additionalFeaturesIsExpanded>
-                <MudSwitch @bind-Checked="@showUsersWhoHaveADCON" Color="Color.Primary">Guardians who have ADCON over you</MudSwitch>
-                <MudSwitch @bind-Checked="@showUsersWhoYouHaveADCON" Color="Color.Primary">Guardians who you have ADCON over</MudSwitch>
-                <!-- 
-                    <MudSwitch @bind-Checked="@showUsersWhoHaveOPCON" Color="Color.Primary">Guardians who have OPCON over you</MudSwitch>
-                    <MudSwitch @bind-Checked="@showUsersWhoYouHaveOPCON" Color="Color.Primary">Guardians who you have OPCON over</MudSwitch>
-                -->
-                <MudSwitch @bind-Checked="@showEvaluators" Color="Color.Primary">Guardians who evaluate you</MudSwitch>
-                <MudSwitch @bind-Checked="@showUsersThatYouEvaluate" Color="Color.Primary">Guardians that you evaluate</MudSwitch>
+                @if (filtersStatus != null)
+                {
+                    @foreach(var filterStatus in filtersStatus)
+                    {
+                        <MudSwitch @bind-Checked="@filterStatus.showFilterData" Color="Color.Primary">@filterStatus.name</MudSwitch>
+                    }
+                }
                 <MudButton Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary" OnClick="@(() => onFilterChange())">
                         Update Filters
                 </MudButton>
@@ -40,7 +36,6 @@
         </MudNavMenu>
     </MudPaper>
 
-   <!-- </div> -->
     <MudDataGrid Items="@(displayedUsers.Count == 0 || filtersHaveBeenReset ? users : displayedUsers)" MultiSelection="true" Hideable="true" Filterable="true" QuickFilter="@_quickFilter" Loading="@isLoading" Elevation="4" Style="border-radius: 15px; background: #E7F1FF" >
         <ToolBarContent>
             <MudText Typo="Typo.h5">Guardians</MudText>
@@ -68,11 +63,6 @@
 
 
 
-
-
-
-
-
 @code {
 
     Dictionary<String, bool> DisplayedUsersDictionary = new Dictionary<String, bool>();
@@ -82,13 +72,14 @@
     List<UserModel> subordinateUsers = new ();
     List<UserModel> displayedUsers = new();
 
-    // TODO: make a 2D array [hasShownUsers, showUsersWhoHaveADCON]
-    bool showUsersWhoHaveADCON;
-    bool showUsersWhoYouHaveADCON;
-    bool showUsersWhoHaveOPCON;
-    bool showUsersWhoYouHaveOPCON;
-    bool showEvaluators;
-    bool showUsersThatYouEvaluate;
+    public class FilterStatus
+    {
+        public String name { get; set; }
+        public bool showFilterData { get; set; }
+        public bool hasFetchedFilterData { get; set; }
+    }
+
+    private FilterStatus[] filtersStatus;
 
     bool filtersHaveBeenReset;
     bool _additionalFeaturesIsExpanded;
@@ -96,63 +87,72 @@
 
     async Task onFilterChange()
     {
-        resetUsersDictionary(DisplayedUsersDictionary);
+        displayedUsers.Clear();
+        isLoading = true;
 
-        if (showUsersWhoYouHaveADCON == true)
+        for(int i = 0; i < filtersStatus.GetLength(0); i++)
         {
-            if(subordinateUsers.Count == 0)
+            if (filtersStatus[i].name == "Users who you have ADCON over" && filtersStatus[i].showFilterData)
             {
-                subordinateUsers = await getDirectSubordinates();
-            }
-            foreach (UserModel user in subordinateUsers)
-            {
-                // displayedUsers.Add(user);
-                if(DisplayedUsersDictionary[user.Id] == false)
+                System.Diagnostics.Debug.WriteLine("This will be displayed in output window");
+
+                // TODO: get ADCON over here
+                if (!filtersStatus[i].hasFetchedFilterData)
                 {
-                    displayedUsers.Add(user);
-                    DisplayedUsersDictionary[user.Id] = true;
+                    subordinateUsers = await getDirectSubordinates();
+                    filtersStatus[i].hasFetchedFilterData = true;
+                }
+                // TODO: add users to displayed users map (if not already there)
+                displayedUsers = displayedUsers.Union(subordinateUsers).ToList();
+            }
+            else if (filtersStatus[i].name == "Users who you have ADCON over")
+            {
+                if (!filtersStatus[i].hasFetchedFilterData)
+                {
+
+                }
+                // TODO: get ADCON subordinates here
+                // NOTE: this may be redundent, since we may be showing direct superior on user click
+            }
+            else if (filtersStatus[i].name == "Self assigned evaluators")
+            {
+                // TODO: get self assigned evaluators here
+                if (!filtersStatus[i].hasFetchedFilterData)
+                {
+
                 }
             }
-            filtersHaveBeenReset = false;
-        }
-        else if (showUsersWhoHaveADCON)
-        {
-            // TODO: get direct superior here
-            filtersHaveBeenReset = false;
-        }
-        else if (showUsersWhoHaveOPCON)
-        {
-            // TODO: get users under OPCON
-            filtersHaveBeenReset = false;
-        }
-        else if (showUsersWhoYouHaveOPCON)
-        {
-            // TODO: get all operation leads
-            filtersHaveBeenReset = false;
-        }
-        else if (showEvaluators)
-        {
-            // TODO: show all people that evaluate you
-            filtersHaveBeenReset = false;
-        }
-        else if (showUsersThatYouEvaluate)
-        {
-            // TODO: show all people that you evaluate. 
-            filtersHaveBeenReset = false;
-        }
+            else if (filtersStatus[i].name == "Users who you evaluate")
+            {
+                // TODO: get users who you evaluate
+                if (!filtersStatus[i].hasFetchedFilterData)
+                {
 
+                }
+            }
+            else if (filtersStatus[i].name == "Users who have OPCON over you")
+            {
+                // TODO: get users who have OPCON over you
+            }
+            else if (filtersStatus[i].name == "Users who you have OPCON over")
+            {
+                // TODO: get users that you have OPCON over
+                if (!filtersStatus[i].hasFetchedFilterData)
+                {
 
+                }
+            }
+        }
+        filtersHaveBeenReset = false;
+        isLoading = false;
     }
 
     void onFilterReset()
     {
-        showUsersWhoHaveADCON = false;
-        showUsersWhoYouHaveADCON = false;
-        showUsersWhoHaveOPCON = false;
-        showUsersWhoYouHaveOPCON = false;
-        showEvaluators = false;
-        showUsersThatYouEvaluate = false;
+        for (int i = 0; i < filtersStatus.GetLength(0); i++)
+            filtersStatus[i].showFilterData = false;
         filtersHaveBeenReset = true;
+        // TODO: reset displayed users
     }
 
     private string _searchString;
@@ -180,13 +180,6 @@
         DialogService.Show<TeamManagementUserDialog>("User Data", parameters, options );
     }
 
-
-    // Function to get the current logged in user.
-    private async Task GetLogin()
-    {
-        currentUser = await AuthenticationStateProviderHelpers.GetUserFromAuth(authProvider, userData);
-    }
-
     private void AddUsersToDictionary(List<UserModel> usersList, Dictionary<String, bool> usersDictionary)
     {
         foreach(var user in usersList)
@@ -201,11 +194,6 @@
         {
             usersDictionary[user.Key] = !user.Value;
         }
-    }
-
-    async Task getAllUsers()
-    {
-        users = await userData.getAllUsers();
     }
 
 
@@ -227,12 +215,36 @@
         return subordinateUsers;
     }
 
+
+    private void initializeFiltersStatus()
+    {
+        for (int i = 0; i < filtersStatus.GetLength(0); i++)
+        {
+            String filterName;
+            if (i == 0) filterName = "Users who you have ADCON over";
+            else if (i == 1) filterName = "Users who have ADCON over you";
+            else if (i == 2) filterName = "Self assigned evaluators";
+            else if (i == 3) filterName = "Users who you evaluate";
+            else if (i == 4) filterName = "Users who you have OPCON over";
+            else filterName = "Users who have OPCON over you";
+            filtersStatus[i] = new FilterStatus
+                {
+                    name = filterName,
+                    showFilterData = false,
+                    hasFetchedFilterData = false
+                };
+        }
+    }
+
+
     protected async override Task OnInitializedAsync()
     {
-        await GetLogin();
-        await getAllUsers();
+        currentUser = await AuthenticationStateProviderHelpers.GetUserFromAuth(authProvider, userData);
+        users = await userData.getAllUsers();
         AddUsersToDictionary(users, DisplayedUsersDictionary);
         //subordinateUsers = await getDirectSubordinates();
+        filtersStatus = new FilterStatus[5];
+        initializeFiltersStatus();
         isLoading = false;
     }
   
