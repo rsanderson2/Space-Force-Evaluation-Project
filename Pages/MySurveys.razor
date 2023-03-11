@@ -98,7 +98,9 @@
     private void OpenDialog(UserModel currentUser)
     {
         var parameters = new DialogParameters();
-        var options = new DialogOptions { CloseOnEscapeKey = true };
+        // var options = new DialogOptions { CloseOnEscapeKey = true, FullScreen = true, CloseButton = true };
+        var options = new DialogOptions { CloseOnEscapeKey = true, CloseButton = true, FullWidth = true };
+
 
         parameters.Add("currentUser", currentUser);
 

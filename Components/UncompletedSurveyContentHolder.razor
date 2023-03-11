@@ -1,0 +1,84 @@
+﻿@inject IUserData userData
+@inject ISurveyData surveyData
+
+<div>
+    <!-- <UncompletedSurveyQuestionHolder questionNumber=1 surveyQuestion = "@surveyQuestion1"/> -->
+
+    @for(int i = 0; i < surveyQuestions.Count(); i++)
+    {
+        SurveyModel surveyQuestion = surveyQuestions[i];
+        @if (surveyQuestion.surveyType == "likert")
+        {
+            <div>
+                <h6>Question @(i + 1): @surveyQuestion.question</h6>
+                <div style="padding-left: 5%; padding-bottom: 2%">
+                    <MudGrid Spacing="3" Justify="Justify.Center">
+                        <MudItem xs="2" sm="2" md="2" lg="2" xl="2">
+                            <MudGrid Justify="Justify.FlexStart">
+                                <MudItem xs="12" sm="12" md="12" lg="12" xl="12">
+                                    <MudButton Variant="Variant.Filled">1</MudButton>
+                                </MudItem>
+                                <MudItem xs="12" sm="12" md="12" lg="12" xl="12">
+                                    <p>Disagree</p>
+                                </MudItem>
+                            </MudGrid>
+                        </MudItem>
+                        <MudItem xs="2" sm="2" md="2" lg="2" xl="2">
+                            <MudButton Variant="Variant.Filled">2</MudButton>
+                        </MudItem>
+                        <MudItem xs="2" sm="2" md="2" lg="2" xl="2">
+                            <MudButton Variant="Variant.Filled">3</MudButton>
+                        </MudItem>
+                        <MudItem xs="2" sm="2" md="2" lg="2" xl="2">
+                            <MudButton Variant="Variant.Filled">4</MudButton>
+                        </MudItem>
+                        <MudItem xs="2" sm="2" md="2" lg="2" xl="2">
+                            <MudGrid Justify="Justify.FlexStart">
+                                <MudItem xs="12" sm="12" md="12" lg="12" xl="12">
+                                    <MudButton Variant="Variant.Filled">5</MudButton>
+                                </MudItem>
+                                <MudItem xs="12" sm="12" md="12" lg="12" xl="12">
+                                    <p>Agree</p>
+                                </MudItem>
+                            </MudGrid>
+                        </MudItem>
+                    </MudGrid>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div>
+                <h6>Question @(i + 1) : @surveyQuestion.question</h6>
+                <div style="padding-left: 5%; padding-bottom: 2%">
+                    <MudTextField T="string" Variant="Variant.Outlined" Lines="5" @bind-Value="@surveyQuestion.freeResponseText" />
+                </div>
+            </div>
+        }
+    }
+       
+</div>
+
+@code {
+    SurveyModel surveyQuestion1 = new SurveyModel();
+    SurveyModel surveyQuestion2 = new SurveyModel();
+    List<SurveyModel> surveyQuestions;
+
+    // TODO: write handleSubmit function here
+
+    protected async override Task OnInitializedAsync()
+    {
+        // TODO: replace with actual data. 
+        // TOOD: populate questions here from specific survey. Possibly use surveyType, UID, and current date. 
+        surveyQuestion1.question = "what is your favorite cheese";
+        surveyQuestion1.surveyType = "FR";
+
+        surveyQuestion2.question = "Cheese is the best thing since sliced bread";
+        surveyQuestion2.surveyType = "likert"; // NOTE: I think that survey type should be daily, weekly, monthly 
+
+        surveyQuestions = new List<SurveyModel>();
+        surveyQuestions.Add(surveyQuestion1);
+        surveyQuestions.Add(surveyQuestion2);
+
+    } 
+}
