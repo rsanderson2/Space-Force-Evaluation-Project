@@ -48,21 +48,44 @@ public class MongoUserData : IUserData
         return results.FirstOrDefault();
     }
 
-    public async Task AddUserToSubordinates(UserModel currentUser, string subordinateId)
+    public async Task ADCONTransfer(UserModel currentUser, string subordinateId)
     {
+        // Adds subordinate to currentUser
         if(currentUser.subordinates == null)
         {
             List<string> newSubordinates = new List<string>();
             newSubordinates.Add(subordinateId);
             currentUser.subordinates = newSubordinates;
         }
-        else
+        currentUser.subordinates.Add(subordinateId);
+
+
+        // Updates subordinate user
+        UserModel subordinate = await GetUserFromAuthentication(subordinateId);
+        if(subordinate.superiors == null)
         {
-            currentUser.subordinates.Add(subordinateId);
+            List<string> newSuperiorsList = new List<string>();
+            subordinate.superiors = newSuperiorsList;
+        }
+        subordinate.superiors.Add(currentUser.userID);
+
+        // Removes subordinate to from old superior
+        if (subordinate.superiors != null)
+        {
+            UserModel oldSuperior = await GetUserFromAuthentication(subordinate.superiors[0]);
+            for(int i = 0; i < oldSuperior.subordinates.Count(); i++)
+            {
+                if (oldSuperior.subordinates[i] == subordinateId)
+                {
+                    oldSuperior.subordinates.RemoveAt(i);
+                }
+            }
+            await UpdateUser(oldSuperior);
         }
 
+        // Updates all users effected
         await UpdateUser(currentUser);
-
+        await UpdateUser(subordinate);
     }
     /*
     public async Task<List<UserModel>> GetUsersFromIdList(List<string> userIds) // TODO: test

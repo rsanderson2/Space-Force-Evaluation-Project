@@ -5,37 +5,61 @@
         <div>
             <!-- TODO: show the selectedUser's data here' -->
             <p class="mb-4">@selectedUser.firstName</p>
-                @if (hasADCON && !isSameUser)
-                {
-                    <p>Under your adminstrative control</p>
-                }
-                else if (hasGreatORequalRole && !isSameUser)
-                {
-                    <p>Is not under your administrative control</p>
-                    <MudButton OnClick="() => addUserToSubordinates(selectedUser.userID)">Request ADCON</MudButton>
-                }
-            <p>TODO: Ask Roger if this is the information he wants to display here</p>
-            <p>Reports to?</p>
-            <p>last daily survey taken?</p>
-            <p>last weekly survey taken?</p>
-            <p>last monthly survey taken?</p>
+            <p>Direct superior: @superiorName</p>
+            <p>Rank: @selectedUser.rank</p>
+            <p>Job: @selectedUser.job</p>
+            <p>Role: @selectedUser.role</p>
 
+            @if (currentUser.role == "HQ")
+            {
+                <MudSelect @bind-Value="roleAssignmentValue" Label="Update Role" Placeholder="Select role" AdornmentColor="Color.Primary">
+                    <MudSelectItem Value="@("N/A")" Disabled="true">Roles</MudSelectItem>
+                    <MudSelectItem Value="@("Commander")">Commander</MudSelectItem>
+                    <MudSelectItem Value="@("Supervisor")">Supervisor</MudSelectItem>
+                    <MudSelectItem Value="@("Member")">Member</MudSelectItem>
+                </MudSelect>
+                <MudButton OnClick="() => updateSelectedUserRole(roleAssignmentValue)">Confirm Role @roleAssignmentPrompt</MudButton>
+                <MudButton OnClick="() => addUserToSubordinates(selectedUser.userID)">Take ADCON</MudButton>
+
+                
+            }
+            else if (hasADCON && !isSameUser)
+            {
+                <p>Under your adminstrative control</p>
+                <p>last daily survey taken: TODO</p>
+                <p>last weekly survey taken: TODO</p>
+                <p>last monthly survey taken: TODO</p>
+                <p>Assign evaluator: TODO</p>
+            }
+
+
+            <!--TODO: remove after testing
+            <MudButton OnClick="() => addUserToSubordinates(selectedUser.userID)">Request ADCON</MudButton>
+            -->
+
+            <!--
             <p>TODO: Ask Roger if these are the actions he wants to display/allow here</p>
-            <p>Request ADCON (if the roles are correct)</p>
-            <p>Assign ADCON (if current user is HQ and they do not have anyone who has ADCON over them)</p>
-            <p>Assign role (if current user is HQ)</p>
+            
             <p>Assign as your Evaluator</p>
             <p>Assign to be Evaluator for someone that you have ADCON over </p>
             <p>Assign (user under your ADCON) to operation you lead</p>
             <p>Request (user not under your ADCON) to operation you lead</p>
-            <!-- TODO: conditionally disable buttons when necessary -->
+              -->
         </div>
     </DialogContent>
+
     <DialogActions>
         <MudButton OnClick="Cancel">Cancel</MudButton>
-        <MudButton OnClick="() => Cancel()">Request ADCON</MudButton>
-        <MudButton OnClick="() => Cancel()">Request OPCON</MudButton>
-        <MudButton OnClick="() => Cancel()">Request to be evaulator</MudButton>
+        @if (hasGreatORequalRole && !isSameUser)
+        {
+            @if (isSuperiorToSelectedUser(selectedUser.role))
+            {
+                <MudButton OnClick="() => Cancel()">Request ADCON</MudButton>
+                <MudButton OnClick="() => Cancel()">Request OPCON</MudButton>
+                <MudButton OnClick="() => Cancel()">Request to be evaulator</MudButton>
+            }
+        }
+        
     </DialogActions>
 </MudDialog>
 @code {
@@ -52,13 +76,18 @@
     bool selectedUserHasUnassignedRole;
     bool canCurrentUserAssignRoles = false;
 
+    String roleAssignmentValue = "";
+    String roleAssignmentPrompt = "";
+    String superiorName = "";
+    UserModel superior;
+
     void Submit() => MudDialog.Close(DialogResult.Ok(true));
     void Cancel() => MudDialog.Cancel();
 
 
     async Task addUserToSubordinates(string subordinateId)
     {
-        await userData.AddUserToSubordinates(currentUser, subordinateId);
+        await userData.ADCONTransfer(currentUser, subordinateId);
     }
 
     async Task requestADCONOverUser(string userId)
@@ -98,7 +127,7 @@
         {
             if (currentUser.role == "HQ" || currentUser.role == "Commander" || currentUser.role == "Supervisor" || currentUser.role == "Member")
             {
-                if (roles[selectedUserRole] <= roles[currentUser.role])
+                if (roles[selectedUserRole] >= roles[currentUser.role])
                 {
                     return true;
                 }
@@ -113,6 +142,12 @@
         return selectedUser.role == null;
     }
 
+    async void updateSelectedUserRole(String newRole)
+    {
+        selectedUser.role = newRole;
+        await userData.UpdateUser(selectedUser);
+    }
+
 
     protected async override Task OnInitializedAsync()
     {
@@ -122,5 +157,17 @@
         selectedUserHasUnassignedRole = doesUserHaveUnassignedRole(selectedUser);
         canCurrentUserAssignRoles = (currentUser?.role == "Commander" || currentUser?.role == "HQ");
         isSameUser = selectedUser.userID == currentUser.userID;
+        if (selectedUser.role == null) roleAssignmentPrompt = "Assignment"; else roleAssignmentPrompt = "Change";
+
+        if (selectedUser.superiors == null)
+        {
+            superiorName = "None";
+        }
+        else
+        {
+            superior = await userData.GetUserFromAuthentication(selectedUser?.superiors[0]);
+            superiorName = superior?.firstName;
+        }
+        
     }
 }

@@ -4,6 +4,7 @@
 @inject NavigationManager navManager
 @inject IUserData userData
 @inject ITransferRequests transferRequest
+@inject IDialogService DialogService
 
 
 <PageTitle>Team Management</PageTitle>
@@ -24,7 +25,7 @@
                         <MudTd>@context.old_Superior</MudTd>
                         <MudTd>@context.new_Superior</MudTd>
                         <MudTd>
-                            <MudButton Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary">
+                            <MudButton OnClick="@(() => OpenDialog())" Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary">
                                 View More
                             </MudButton>
                             <MudButton Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary">
@@ -136,7 +137,6 @@
     bool _roleIsExpanded = false;
     bool _evaluationIsExpanded = false;
 
-
     UserModel currentUser;
     List<TransferRequestModel> transferRequests = new List<TransferRequestModel>();
 
@@ -146,6 +146,15 @@
     private async Task GetLogin()
     {
         currentUser = await AuthenticationStateProviderHelpers.GetUserFromAuth(authProvider, userData);
+    }
+
+
+    private void OpenDialog()
+    {
+        var parameters = new DialogParameters();
+        var options = new DialogOptions { CloseOnEscapeKey = true };
+
+        DialogService.Show<RequestDialog>("Request Data", parameters, options);
     }
 
 

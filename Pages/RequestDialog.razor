@@ -1,0 +1,22 @@
+﻿@inject IUserData userData
+
+<MudDialog>
+    <DialogContent>
+        <div>
+            <p>TODO: show request data here</p>
+        </div>
+    </DialogContent>
+    <DialogActions>
+        <MudButton OnClick="Cancel">Cancel</MudButton>
+        <MudButton OnClick="() => Cancel()">Approve</MudButton>
+        <MudButton OnClick="() => Cancel()">Deny</MudButton>
+    </DialogActions>
+</MudDialog>
+@code {
+
+
+    [CascadingParameter] MudDialogInstance MudDialog { get; set; }
+
+    void Cancel() => MudDialog.Cancel();
+
+}

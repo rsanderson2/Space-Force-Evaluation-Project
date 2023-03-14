@@ -94,7 +94,7 @@
         {
             if (filtersStatus[i].name == "Users who you have ADCON over" && filtersStatus[i].showFilterData)
             {
-                System.Diagnostics.Debug.WriteLine("This will be displayed in output window");
+                // System.Diagnostics.Debug.WriteLine("This will be displayed in output window");
 
                 // TODO: get ADCON over here
                 if (!filtersStatus[i].hasFetchedFilterData)
@@ -102,17 +102,7 @@
                     subordinateUsers = await getDirectSubordinates();
                     filtersStatus[i].hasFetchedFilterData = true;
                 }
-                // TODO: add users to displayed users map (if not already there)
                 displayedUsers = displayedUsers.Union(subordinateUsers).ToList();
-            }
-            else if (filtersStatus[i].name == "Users who you have ADCON over")
-            {
-                if (!filtersStatus[i].hasFetchedFilterData)
-                {
-
-                }
-                // TODO: get ADCON subordinates here
-                // NOTE: this may be redundent, since we may be showing direct superior on user click
             }
             else if (filtersStatus[i].name == "Self assigned evaluators")
             {
@@ -222,10 +212,9 @@
         {
             String filterName;
             if (i == 0) filterName = "Users who you have ADCON over";
-            else if (i == 1) filterName = "Users who have ADCON over you";
-            else if (i == 2) filterName = "Self assigned evaluators";
-            else if (i == 3) filterName = "Users who you evaluate";
-            else if (i == 4) filterName = "Users who you have OPCON over";
+            else if (i == 1) filterName = "Self assigned evaluators";
+            else if (i == 2) filterName = "Users who you evaluate";
+            else if (i == 3) filterName = "Users who you have OPCON over";
             else filterName = "Users who have OPCON over you";
             filtersStatus[i] = new FilterStatus
                 {

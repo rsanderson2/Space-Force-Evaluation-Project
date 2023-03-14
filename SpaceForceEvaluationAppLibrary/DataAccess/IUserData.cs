@@ -17,7 +17,7 @@ namespace SpaceForceEvaluationAppLibrary.DataAccess
         Task<UserModel> GetDirectSuperior(string id);
         Task<UserModel> GetClosestCommander(string id);
         */
-        Task AddUserToSubordinates(UserModel currentUser, string subordinateId);
+        Task ADCONTransfer(UserModel currentUser, string subordinateId);
 
         Task<List<UserModel>> GetUsersAsync();
         Task<List<UserModel>> GetUsersFromTeam(string teamId);
