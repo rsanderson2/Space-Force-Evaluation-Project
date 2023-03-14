@@ -742,7 +742,6 @@ C:\Users\Darrell\Documents\GitHub\Space-Force-Evaluation-Project\bin\Debug\net6.
 C:\Users\Darrell\Documents\GitHub\Space-Force-Evaluation-Project\obj\Debug\net6.0\SpaceForceEvaluations.csproj.AssemblyReference.cache
 C:\Users\Darrell\Documents\GitHub\Space-Force-Evaluation-Project\obj\Debug\net6.0\SpaceForceEvaluations.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\Darrell\Documents\GitHub\Space-Force-Evaluation-Project\obj\Debug\net6.0\SpaceForceEvaluations.csproj.CoreCompileInputs.cache
-C:\Users\Darrell\Documents\GitHub\Space-Force-Evaluation-Project\obj\Debug\net6.0\SpaceForceEvaluations.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\Darrell\Documents\GitHub\Space-Force-Evaluation-Project\obj\Debug\net6.0\SpaceForceEvaluations.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\Darrell\Documents\GitHub\Space-Force-Evaluation-Project\obj\Debug\net6.0\SpaceForceEvaluations.RazorAssemblyInfo.cache
 C:\Users\Darrell\Documents\GitHub\Space-Force-Evaluation-Project\obj\Debug\net6.0\SpaceForceEvaluations.RazorAssemblyInfo.cs
@@ -1141,3 +1140,4 @@ D:\Users\gokamo\Documents\GitHub\Space-Force-Evaluation-Project\obj\Debug\net6.0
 D:\Users\gokamo\Documents\GitHub\Space-Force-Evaluation-Project\obj\Debug\net6.0\SpaceForceEvaluations.genruntimeconfig.cache
 D:\Users\gokamo\Documents\GitHub\Space-Force-Evaluation-Project\obj\Debug\net6.0\ref\SpaceForceEvaluations.dll
 C:\Users\Darrell\Documents\GitHub\Space-Force-Evaluation-Project\obj\Debug\net6.0\scopedcss\Pages\MySurveys.razor.rz.scp.css
+C:\Users\Darrell\Documents\GitHub\Space-Force-Evaluation-Project\obj\Debug\net6.0\scopedcss\Pages\RequestDialog.razor.rz.scp.css

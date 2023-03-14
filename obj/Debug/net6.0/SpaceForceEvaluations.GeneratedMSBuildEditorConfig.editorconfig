@@ -47,8 +47,8 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ291bnRlci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Darrell/Documents/GitHub/Space-Force-Evaluation-Project/Pages/RequestDialog.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVxdWVzdERpYWxvZy5yYXpvcg==
+[C:/Users/Darrell/Documents/GitHub/Space-Force-Evaluation-Project/Pages/SendQuestionUserDialog.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2VuZFF1ZXN0aW9uVXNlckRpYWxvZy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Darrell/Documents/GitHub/Space-Force-Evaluation-Project/Pages/SurveyDialog.razor]
@@ -134,6 +134,10 @@ build_metadata.AdditionalFiles.CssScope = b-v2o82lkojk
 [C:/Users/Darrell/Documents/GitHub/Space-Force-Evaluation-Project/Pages/Reports.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVwb3J0cy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = b-o2ye6ss7r8
+
+[C:/Users/Darrell/Documents/GitHub/Space-Force-Evaluation-Project/Pages/RequestDialog.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVxdWVzdERpYWxvZy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-lmqw3j1at7
 
 [C:/Users/Darrell/Documents/GitHub/Space-Force-Evaluation-Project/Pages/Requests.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVxdWVzdHMucmF6b3I=

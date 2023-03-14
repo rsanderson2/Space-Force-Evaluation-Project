@@ -51,6 +51,13 @@
             <Column T="UserModel" Field="job" />
             <Column T="UserModel" Filterable="false" Hideable="false">
                 <CellTemplate>
+                    <MudButton Disabled="@buttonFlag" Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary" OnClick="@(() => OpenSendQuestion(context.Item, currentUser))">
+                        Send Question
+                    </MudButton>
+                </CellTemplate>
+            </Column>
+            <Column T="UserModel" Filterable="false" Hideable="false">
+                <CellTemplate>
                     <MudButton Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary" OnClick="@(() => OpenDialog(context.Item, currentUser))">
                         View More
                     </MudButton>
@@ -84,6 +91,7 @@
     bool filtersHaveBeenReset;
     bool _additionalFeaturesIsExpanded;
     bool isLoading = true;
+    bool buttonFlag = true;
 
     async Task onFilterChange()
     {
@@ -94,6 +102,7 @@
         {
             if (filtersStatus[i].name == "Users who you have ADCON over" && filtersStatus[i].showFilterData)
             {
+                buttonFlag = false;
                 // System.Diagnostics.Debug.WriteLine("This will be displayed in output window");
 
                 // TODO: get ADCON over here
@@ -142,6 +151,7 @@
         for (int i = 0; i < filtersStatus.GetLength(0); i++)
             filtersStatus[i].showFilterData = false;
         filtersHaveBeenReset = true;
+        buttonFlag = true;
         // TODO: reset displayed users
     }
 
@@ -168,6 +178,18 @@
         parameters.Add("currentUser", currentUser);
 
         DialogService.Show<TeamManagementUserDialog>("User Data", parameters, options );
+    }
+
+
+    private void OpenSendQuestion(UserModel selectedUser, UserModel currentUser)
+    {
+        var parameters = new DialogParameters();
+        var options = new DialogOptions { CloseOnEscapeKey = true };
+
+        parameters.Add("selectedUser", selectedUser);
+        parameters.Add("currentUser", currentUser);
+
+        DialogService.Show<SendQuestionUserDialog>("Send Question", parameters, options);
     }
 
     private void AddUsersToDictionary(List<UserModel> usersList, Dictionary<String, bool> usersDictionary)
