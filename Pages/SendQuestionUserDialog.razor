@@ -1,0 +1,81 @@
+﻿@inject IUserData userData
+
+<MudDialog>
+    <DialogContent>
+        <div>
+            <MudSelect T="string" Label="Select a Category..." AnchorOrigin="Origin.BottomCenter">
+                <MudSelectItem Value="@("OCB-O")" />
+                <MudSelectItem Value="@("Job Dedication")" />
+                <MudSelectItem Value="@("Interpersonal Justice")" />
+                <MudSelectItem Value="@("Informational Justice")" />
+                <MudSelectItem Value="@("Innovator")" />
+                <MudSelectItem Value="@("Risk Attitude")" />
+                <MudSelectItem Value="@("Integrity")" />
+                <MudSelectItem Value="@("TP")" />
+                <MudSelectItem Value="@("Trust")" />
+                <MudSelectItem Value="@("Innovation Climate")" />
+                <MudSelectItem Value="@("Authenticity - Authentic Living")" />
+                <MudSelectItem Value="@("Supporting")" />
+                <MudSelectItem Value="@("OCB-I")" />
+                <MudSelectItem Value="@("Help-Seeking")" />
+                <MudSelectItem Value="@("Problem-solving assistance")" />
+                <MudSelectItem Value="@("Supervisor Task Support")" />
+                <MudSelectItem Value="@("Honesty/Candor")" />
+                <MudSelectItem Value="@("Inclusion")" />
+                <MudSelectItem Value="@("Moral strivings")" />
+                <MudSelectItem Value="@("Fairness")" />
+                <MudSelectItem Value="@("Managerial Behavior: Broker")" />
+                <MudSelectItem Value="@("Psychological Saftey")" />
+                <MudSelectItem Value="@("Communication/Cooperation")" />
+                <MudSelectItem Value="@("Information Sharing")" />
+                <MudSelectItem Value="@("Servant Leadership")" />
+                <MudSelectItem Value="@("Resource Availability")" />
+                <MudSelectItem Value="@("Learning goal orientation")" />
+                <MudSelectItem Value="@("Intellectual Stimulation")" />
+                <MudSelectItem Value="@("Feedback from Agents")" />
+                <MudSelectItem Value="@("General Risk Propensity")" />
+                <MudSelectItem Value="@("Feedback Seeking")" />
+                <MudSelectItem Value="@("Accountability")" />
+                <MudSelectItem Value="@("DEI")" />
+                <MudSelectItem Value="@("Moral Courage")" />
+            </MudSelect>
+
+            <MudSelect T="string" Label="Select Survey Type..." AnchorOrigin="Origin.BottomCenter">
+                <MudSelectItem Value="@("Daily")" />
+                <MudSelectItem Value="@("Weekly")" />
+                <MudSelectItem Value="@("Monthly")" />
+            </MudSelect>
+
+        </div>
+    </DialogContent>
+    <DialogActions>
+        <MudButton OnClick="Cancel">Cancel</MudButton>
+        <MudButton OnClick="() => Cancel()">Send</MudButton>
+    </DialogActions>
+</MudDialog>
+@code {
+
+
+    [CascadingParameter] MudDialogInstance MudDialog { get; set; }
+    [Parameter] public UserModel selectedUser { get; set; }
+    [Parameter] public UserModel currentUser { get; set; }
+
+
+    void Submit() => MudDialog.Close(DialogResult.Ok(true));
+    void Cancel() => MudDialog.Cancel();
+
+
+    async Task addUserToSubordinates(string subordinateId)
+    {
+        await userData.AddUserToSubordinates(currentUser, subordinateId);
+    }
+
+ 
+
+
+
+    protected async override Task OnInitializedAsync()
+    {
+        
+    }
+}
