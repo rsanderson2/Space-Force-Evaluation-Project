@@ -3,7 +3,7 @@
 @inject AuthenticationStateProvider authProvider
 @inject NavigationManager navManager
 @inject IUserData userData
-@inject ITransferRequests transferRequest
+@inject IRequestsData requestsData
 @inject IDialogService DialogService
 
 
@@ -120,18 +120,12 @@
             -->
         </MudNavMenu>
     </MudPaper>
-
-    
 </div>
 
 
 
-
-
-
-
-
 @code {
+
     bool _OPCONisExpanded = false;
     bool _ADCONisExpanded = true;
     bool _roleIsExpanded = false;
@@ -169,7 +163,6 @@
         numberPendingTransferRequest = transferRequests.Count;
         transferRequestTitle = "ADCON transfer Requests: " + numberPendingTransferRequest + " Pending";
 
-        //TransferRequestModel test = await transferRequest.GetRequest("asdf");
     }
     
 
