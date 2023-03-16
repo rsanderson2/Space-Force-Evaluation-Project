@@ -13,7 +13,7 @@
             
             <MudGrid>
                 <MudItem xs="12" sm="12" md="12" lg="12" xl="12">
-                    <h3>My Profile</h3>
+                    <h3 class="profile-header" style="text-align: center" >My Profile</h3>
                     <MudGrid>
                         <MudItem xs="12" sm="12" md="12" lg="12" xl="12">
                             <h5 class="infotext">Name: @firstName @lastName</h5>
@@ -42,7 +42,7 @@
         </section>
 
         <section class="card">
-            <h3>Account Options</h3>
+            <h3 class="account-options" style="text-align: center" >Account Options</h3>
             <MudGrid>
                 <MudItem xs="12" sm="12" md="12" lg="12" xl="12">
                     <MudButton Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary" >
@@ -128,7 +128,7 @@
 
         <!--User Survey History-->
         <section class="card">
-            <h2>Survey History</h2>
+            <h2 class="survey-history" style="text-align: center" >Survey History</h2>
             <p>These are the surveys that you have completed.</p>
             <div class="scroll">
                 <table class="table table-bordered">
@@ -155,21 +155,21 @@
 
         <!--User Received Accolades-->
         <section class="card">
-            <h2>Personal Accolades</h2>
+            <h2 class="personal-accolades" style="text-align: center" >Personal Accolades</h2>
 
             <div class="content">
-                <h4>Your accolade rank:</h4>
-                <img class="rank" src="@accoladesRank"/>
-                <div class="hide">@rankName</div>
+                <h4 class="accolade-rank" style="text-align: center" >Your accolade rank:</h4>
+                <img class="rank" style ="display: block; margin: 0 auto;" src="@accoladesRank"/>
+                <div class="hide" style="text-align: center"> <b>@rankName</b> </div>
             </div>
 
 
-            <p>These are accolades that have been awarded anonymously from your team members</p>
+            <p>*These are accolades that have been awarded anonymously from your team members</p>
             <div class="scroll">
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th>Accolade</th>
+                            <th>Accolade:</th>
                         </tr>
                     </thead>
                     <tbody>
