@@ -4,11 +4,11 @@
     <DialogContent>
         <div>
             <!-- TODO: show the selectedUser's data here' -->
-            <p class="mb-4">@selectedUser.firstName</p>
-            <p>Direct superior: @superiorName</p>
-            <p>Rank: @selectedUser.rank</p>
-            <p>Job: @selectedUser.job</p>
-            <p>Role: @selectedUser.role</p>
+            <p class="mb-4"><b>User</b>: @selectedUser.firstName</p>
+            <p><b>Direct Superior</b>: @superiorName</p>
+            <p><b>Rank:</b> @selectedUser.rank</p>
+            <p><b>Job:</b> @selectedUser.job</p>
+            <p><b>Role:</b> @selectedUser.role</p>
 
             @if (currentUser.role == "HQ")
             {
