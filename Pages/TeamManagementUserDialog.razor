@@ -54,9 +54,11 @@
         {
             @if (isSuperiorToSelectedUser(selectedUser.role))
             {
-                <MudButton OnClick="() => Cancel()">Request ADCON</MudButton>
-                <MudButton OnClick="() => Cancel()">Request OPCON</MudButton>
-                <MudButton OnClick="() => Cancel()">Request to be evaulator</MudButton>
+                <MudMenu Label="Request: ">
+                    <MudMenuItem OnClick="() => Cancel()">Request ADCON</MudMenuItem>
+                    <MudMenuItem OnClick="() => Cancel()">Request OPCON</MudMenuItem>
+                    <MudMenuItem OnClick="() => Cancel()">Request to be evaulator</MudMenuItem>
+                </MudMenu>
             }
         }
         
