@@ -11,4 +11,5 @@ public class RequestsModel
     public string value { get; set; }
     public string status { get; set; }
     public string ObjectID { get; set; }
+    public string requestTarget { get; set; }
 }

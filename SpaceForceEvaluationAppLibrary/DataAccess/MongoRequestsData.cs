@@ -36,7 +36,7 @@ public class MongoRequestsData : IRequestsData
 
     public async Task<RequestsModel> GetSentRequests(string userID)
     {
-        var results = await _requests.FindAsync(u => u.requestTarget1 == userID);
+        var results = await _requests.FindAsync(u => u.requestTarget == userID);
         return results.FirstOrDefault();
     }
 
