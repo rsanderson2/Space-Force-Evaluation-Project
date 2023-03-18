@@ -26,4 +26,6 @@ public class UserModel
     public List<String> flags { get; set; }
     public List<String> subordinates { get; set; }
     public List<String> superiors { get; set; }
+    public List<String> selfAssignedEvaluators { get; set; }
+    public List<String> superiorAssignedEvaluators { get; set; }
 }
