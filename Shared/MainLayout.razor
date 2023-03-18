@@ -79,6 +79,10 @@
             color: #FFFFFF;
         }
 
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
     </style>
 </head>
 
@@ -128,15 +132,15 @@
                         <ul class="navbar-nav">
                             <li class="nav-item active"> <a class="nav-link" href="/">Home</a></li>
                             <li class="nav-item"><a class="nav-link" href="/Profile">Profile</a></li>
-                            <li>
-                                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="" role="button" aria-expanded="false">Reports</a>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Reports</a>
                                 <ul class="dropdown-menu">
                                     <li class="dropdown-item"><a class="nav-link" href="/Reports">Team Reports</a></li>
                                     <li class="dropdown-item"><a class="nav-link" href="/mysurveys">My Surveys</a></li>
                                 </ul>
                             </li>
-                            <li>
-                                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="" role="button" aria-expanded="false">Management</a>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Management</a>
                                 <ul class="dropdown-menu">
                                     <li class="dropdown-item"><a class="nav-link" href="/Teammanagement">Team Management</a></li>
                                     <li class="dropdown-item">
