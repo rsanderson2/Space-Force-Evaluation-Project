@@ -3,9 +3,9 @@
 @inject IUserData userData
 
 
-<MudThemeProvider/>
-<MudDialogProvider/>
-<MudSnackbarProvider/>
+<MudThemeProvider />
+<MudDialogProvider />
+<MudSnackbarProvider />
 
 <PageTitle>SpaceForceEvaluations</PageTitle>
 <head>
@@ -82,45 +82,15 @@
         .dropdown:hover .dropdown-menu {
             display: block;
         }
-
     </style>
 </head>
-
-
-<!-- 
-<head>
-    <style>
-        ul {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            background-color: #E7F1FF;
-        }
-
-        li {
-            float: left;
-        }
-
-            li a {
-                display: block;
-                color: white;
-                text-align: center;
-                padding: 14px 16px;
-                text-decoration: none;
-            }
-
-                li a:hover {
-                    background-color: #111;
-                }
-    </style>
-</head>
--->
 
 <body>
     <!--Navigation Links-->
     <AuthorizeView>
         <Authorized>
+
+            <!-- Bootstrap Navbar-->
 
             <nav class="navbar navbar-expand-lg navbar-light">
                 <div class="container-flex">
@@ -160,18 +130,6 @@
                 </div>
             </nav>
 
-            <!--
-            <nav>
-                <ul>
-                    <li>GAEA</li>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/Profile">Profile</a></li>
-                    <li><a href="/Reports">Reports</a></li>
-                    <li><a href="/Teammanagement">Team Management</a></li>
-                    <li><a href="/MicrosoftIdentity/Account/SignOut">Log out</a></li>
-                </ul>
-            </nav>
-            -->
         </Authorized>
     </AuthorizeView>
 
