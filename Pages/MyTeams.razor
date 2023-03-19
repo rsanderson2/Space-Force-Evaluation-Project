@@ -17,8 +17,7 @@
 <div>
 
     <MudPaper Class="mt-15 mb-3 pa-2" Elevation="4" Style="border-radius: 15px; background: #E7F1FF">
-
-        <!-- TODO: fix this by using the TeamView list 
+        <!-- 
         <MudDataGrid Items="@teams" MultiSelection="true" Hideable="true" Loading="@isLoading" Elevation="4" Style="border-radius: 15px; background: #E7F1FF">
         <ToolBarContent>
             <MudText Typo="Typo.h5">Teams</MudText>
@@ -29,7 +28,7 @@
             }
         </ToolBarContent>
         <Columns >
-            <Column T="TeamsModel" Field="firstName" Title="Operation Name"/>
+            <Column T="TeamsModel" Field="" Title="Operation Name" />
             <Column T="TeamsModel" Field="lastName" Title="Operation leader" />
             <Column T="TeamsModel" Filterable="false" Hideable="false">
                 <CellTemplate>
@@ -41,8 +40,30 @@
         </Columns>
     </MudDataGrid>
         -->
-    
+
+
+        <MudNavGroup Title="My Teams" @bind-Expanded=_myteamsExpanded>
+            <MudTable Items="@teams" Hover="true" Loading="@isLoading">
+                <HeaderContent>
+                    <MudTh>Name</MudTh>
+                    <MudTh>Leader</MudTh>
+                </HeaderContent>
+                <RowTemplate>
+                    <MudTd>@context.teamName</MudTd>
+                    <MudTd>@context.teamLeader.firstName</MudTd>
+                    <MudTd>
+                        <MudButton OnClick="@(() => OpenCreateTeamDialog())" Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary">
+                            View More
+                        </MudButton>
+                    </MudTd>
+                </RowTemplate>
+            </MudTable>
+        </MudNavGroup>
     </MudPaper>
+
+
+
+
 
 </div>
 
@@ -63,6 +84,7 @@
     List<TeamsModel> teamsCurrentUserIsMember = new();
 
     bool isLoading = true;
+    bool _myteamsExpanded = true;
 
     private void OpenCreateTeamDialog()
     {
@@ -86,6 +108,18 @@
         foreach (var team in teamsCurrentUserLeads)
         {
             // TODO: finish. Add each team to the teamsView list so it can properly be displayed to the user. 
+            TeamView tempTeam = new TeamView();
+
+            tempTeam.teamLeader = await userData.GetUser(team.leader);
+            tempTeam.teamName = team.name;
+            tempTeam.teamMembers = new List<UserModel>();
+
+            foreach(var member in team.members)
+            {
+                tempTeam.teamMembers.Add(await userData.GetUser(member));
+            }
+
+            teams.Add(tempTeam);
         }
 
         //teams = teams.Union(teamsCurrentUserLeads).ToList();
