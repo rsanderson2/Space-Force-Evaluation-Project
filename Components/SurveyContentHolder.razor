@@ -78,21 +78,40 @@
     {
         UserModel currentUser = await AuthenticationStateProviderHelpers.GetUserFromAuth(authProvider, userData);
         List<GeneratedSurveyModel> generatedSurveyList = await generatedSurveyData.GetGeneratedSurveysbyUser(currentUser.userID);
+        TimeZoneInfo Eastern_Standard_Time = TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time");
+        DateTime dateTime_Eastern = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, Eastern_Standard_Time);
+
         foreach (GeneratedSurveyModel survey in generatedSurveyList)
         {
             if (survey.surveyType == "Daily" && typeParameter == 1)
             {
+                DateTime today = DateTime.Now;
+                today = today.Date.AddHours(0).AddMinutes(0).AddSeconds(0);
+
                 survey.injectedQuestions = new List<string>();
+                survey.date_taken = dateTime_Eastern;
+                survey.date_administered = today;
+                Console.WriteLine("Taken: " + survey.date_taken.ToString() + " Administered: " + survey.date_administered.ToString());
                 await generatedSurveyData.UpdateGeneratedSurvey(survey);
             }
             if (survey.surveyType == "Weekly" && typeParameter == 2)
             {
+                DateTime today = DateTime.Now;
+                today = today.Date.AddHours(0).AddMinutes(0).AddSeconds(0);
+
                 survey.injectedQuestions = new List<string>();
+                survey.date_taken = dateTime_Eastern;
+                survey.date_administered = today;
                 await generatedSurveyData.UpdateGeneratedSurvey(survey);
             }
             if (survey.surveyType == "Monthly" && typeParameter == 3)
             {
+                DateTime today = DateTime.Now;
+                today = today.Date.AddHours(0).AddMinutes(0).AddSeconds(0);
+
                 survey.injectedQuestions = new List<string>();
+                survey.date_taken = dateTime_Eastern;
+                survey.date_administered = today;
                 await generatedSurveyData.UpdateGeneratedSurvey(survey);
             }
         }
