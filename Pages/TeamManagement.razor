@@ -47,8 +47,8 @@
             <Column T="UserModel" Field="firstName" Title="First Name"/>
             <Column T="UserModel" Field="lastName" Title="Last Name" />
             <Column T="UserModel" Field="email" Title="Contact" />
-            <Column T="UserModel" Field="rank" />
-            <Column T="UserModel" Field="job" />
+            <Column T="UserModel" Field="rank" Title="Rank"/>
+            <Column T="UserModel" Field="job" Title="Job"/>
             <Column T="UserModel" Filterable="false" Hideable="false">
                 <CellTemplate>
                     <MudButton Disabled="@buttonFlag" Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary" OnClick="@(() => OpenSendQuestion(context.Item, currentUser))">
