@@ -1,0 +1,95 @@
+﻿@page "/my-teams"
+@attribute [Authorize]
+@inject AuthenticationStateProvider authProvider
+@inject NavigationManager navManager
+@inject IUserData userData
+@inject ITeamsData teamsData
+@inject IJSRuntime JsRuntime 
+@inject IDialogService DialogService
+
+
+<PageTitle>Team Management</PageTitle>
+
+<head>
+    <link rel="stylesheet" href="/css/fonts.css" />
+</head>
+
+<div>
+
+    <MudPaper Class="mt-15 mb-3 pa-2" Elevation="4" Style="border-radius: 15px; background: #E7F1FF">
+
+        <!-- TODO: fix this by using the TeamView list 
+        <MudDataGrid Items="@teams" MultiSelection="true" Hideable="true" Loading="@isLoading" Elevation="4" Style="border-radius: 15px; background: #E7F1FF">
+        <ToolBarContent>
+            <MudText Typo="Typo.h5">Teams</MudText>
+            <MudSpacer />
+            @if(currentUser != null && (currentUser.role == "Commander" || currentUser.role == "HQ"))
+            {
+                    <MudButton Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary" OnClick="@(() => OpenCreateTeamDialog())">Create Team</MudButton>
+            }
+        </ToolBarContent>
+        <Columns >
+            <Column T="TeamsModel" Field="firstName" Title="Operation Name"/>
+            <Column T="TeamsModel" Field="lastName" Title="Operation leader" />
+            <Column T="TeamsModel" Filterable="false" Hideable="false">
+                <CellTemplate>
+                    <MudButton Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary" OnClick="@(() => OpenCreateTeamDialog())">
+                        View More
+                    </MudButton>
+                </CellTemplate>
+            </Column>
+        </Columns>
+    </MudDataGrid>
+        -->
+    
+    </MudPaper>
+
+</div>
+
+
+
+@code {
+
+    public class TeamView
+    {
+        public UserModel teamLeader;
+        public List<UserModel> teamMembers;
+        public string teamName;
+    }
+
+    UserModel currentUser;
+    List<TeamView> teams = new ();
+    List<TeamsModel> teamsCurrentUserLeads = new();
+    List<TeamsModel> teamsCurrentUserIsMember = new();
+
+    bool isLoading = true;
+
+    private void OpenCreateTeamDialog()
+    {
+        var parameters = new DialogParameters();
+        var options = new DialogOptions { CloseOnEscapeKey = true };
+
+        parameters.Add("currentUser", currentUser);
+
+        DialogService.Show<CreateTeamDialog>("Team Creation", parameters, options );
+    }
+
+
+    protected async override Task OnInitializedAsync()
+    {
+        currentUser = await AuthenticationStateProviderHelpers.GetUserFromAuth(authProvider, userData);
+        isLoading = false;
+
+        teamsCurrentUserLeads = await teamsData.GetTeamsByLeader(currentUser.userID);
+        teamsCurrentUserIsMember = await teamsData.GetTeamsByMember(currentUser.userID);
+
+        foreach (var team in teamsCurrentUserLeads)
+        {
+            // TODO: finish. Add each team to the teamsView list so it can properly be displayed to the user. 
+        }
+
+        //teams = teams.Union(teamsCurrentUserLeads).ToList();
+        //teams = teams.Union(teamsCurrentUserIsMember).ToList();
+    }
+  
+}

@@ -40,5 +40,9 @@ public static class RegisterServices
         builder.Services.AddSingleton<IMonthlyQuestionsData, MongoMonthlyQuestionsData>();
         builder.Services.AddSingleton<ITransferRequests, MongoTransferRequest>();
         builder.Services.AddSingleton<IRequestsData, MongoRequestsData>();
+        builder.Services.AddSingleton<ITeamsData, MongoTeamsData>();
+        builder.Services.AddSingleton<IGeneratedSurveyData, MongoGeneratedSurvey>();
+
+
     }
 }

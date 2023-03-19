@@ -48,45 +48,124 @@ public class MongoUserData : IUserData
         return results.FirstOrDefault();
     }
 
-    public async Task ADCONTransfer(UserModel currentUser, string subordinateId)
+    public async Task<List<UserModel>> GetDirectSubordinates(UserModel user)
     {
-        // Adds subordinate to currentUser
-        if(currentUser.subordinates == null)
+        var subordinates = new List<UserModel>();
+        if (user.subordinates != null)
         {
-            List<string> newSubordinates = new List<string>();
-            newSubordinates.Add(subordinateId);
-            currentUser.subordinates = newSubordinates;
-        }
-        currentUser.subordinates.Add(subordinateId);
-
-
-        // Updates subordinate user
-        UserModel subordinate = await GetUserFromAuthentication(subordinateId);
-        if(subordinate.superiors == null)
-        {
-            List<string> newSuperiorsList = new List<string>();
-            subordinate.superiors = newSuperiorsList;
-        }
-        subordinate.superiors.Add(currentUser.userID);
-
-        // Removes subordinate to from old superior
-        if (subordinate.superiors != null)
-        {
-            UserModel oldSuperior = await GetUserFromAuthentication(subordinate.superiors[0]);
-            for(int i = 0; i < oldSuperior.subordinates.Count(); i++)
+            System.Diagnostics.Debug.WriteLine("Number of subordinates = " + user.subordinates.Count);
+            for (int i = 0; i < user.subordinates.Count; i++)
             {
-                if (oldSuperior.subordinates[i] == subordinateId)
+                var subordinateId = user.subordinates[i];
+                var subordinate = await GetUser(subordinateId);
+                if (subordinate != null)
                 {
-                    oldSuperior.subordinates.RemoveAt(i);
+                    System.Diagnostics.Debug.WriteLine("Adding user to subordinates list");
+                    System.Diagnostics.Debug.WriteLine(subordinate.firstName);
+                    subordinates.Add(subordinate);
                 }
             }
-            await UpdateUser(oldSuperior);
+        }
+        return subordinates;
+    }
+
+
+
+    public async Task<bool> ADCONTransfer(String currentUserID, String subordinateID)
+    {
+        UserModel currentUser = await GetUser(currentUserID);
+        UserModel subordinate = await GetUser(subordinateID);
+
+        //// 1. check if the subordinate is already a direct subordinate of the currentUser
+        if (currentUser.subordinates != null && currentUser.subordinates.Contains(subordinate.userID))
+            return false;
+
+        if (currentUser.superiors != null && subordinate.superiors.Count > 0 && subordinate.superiors[0] == currentUser.userID)
+            return false;
+
+        // 2. remove subordinate from its old superior
+        if (subordinate.superiors != null && subordinate.superiors.Count > 0)
+        {
+            var oldSuperiorId = subordinate.superiors[0];
+            var oldSuperior = await GetUser(oldSuperiorId);
+            if (oldSuperior.subordinates != null)
+            {
+                oldSuperior.subordinates.Remove(subordinate.userID);
+                await UpdateUser(oldSuperior);
+            }
         }
 
-        // Updates all users effected
+        // 3. add subordinate to currentUser
+        if (currentUser.subordinates == null)
+        {
+            currentUser.subordinates = new List<string>();
+        }
+
+        currentUser.subordinates.Add(new String(subordinate.userID));
+
+        // 4. update subordinate's superior
+        subordinate.superiors = new List<string> { currentUser.userID };
+
+        // 5. update the users
         await UpdateUser(currentUser);
         await UpdateUser(subordinate);
+
+        return true;
     }
+
+
+
+
+    public async Task<UserModel> GetClosestCommander(string userID) // TODO: test
+    {
+        UserModel currentUser = await GetUser(userID);
+
+        if (currentUser.role == "Commander" || currentUser.role == "HQ")
+        {
+            return currentUser;
+        }
+        else
+        {
+            return await GetClosestCommander(currentUser.superiors[0]);
+        }
+    }
+
+
+
+    public async Task<bool> addUserToSelfAssignedEvaluators(String currentUserID, String newEvaluatorID)
+    {
+        UserModel currentUser = await GetUser(currentUserID);
+        // Three is the current limit for self assigned evaluators. 
+        if(currentUser.selfAssignedEvaluators.Count < 3)
+        {
+            // newEvaluators is already an evaluator for this user
+            bool isSuperiorAssignedEvaluator = currentUser.superiorAssignedEvaluators.Contains(newEvaluatorID); ;
+            bool isSelfAssignedEvaluator = currentUser.selfAssignedEvaluators.Contains(newEvaluatorID);
+
+            if(isSuperiorAssignedEvaluator || isSelfAssignedEvaluator)
+            {
+                return false;
+            }
+
+            currentUser.selfAssignedEvaluators.Add(newEvaluatorID);
+            await UpdateUser(currentUser);
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public async Task removeSelfAssignedEvaluatorFromUser(String evaluatorID, String userID)
+    {
+        UserModel user = await GetUser(userID);
+
+        user.selfAssignedEvaluators.Remove(evaluatorID);
+        await UpdateUser(user);
+        return;
+    }
+
     /*
     public async Task<List<UserModel>> GetUsersFromIdList(List<string> userIds) // TODO: test
     {
@@ -145,5 +224,25 @@ public class MongoUserData : IUserData
     {
         var filter = Builders<UserModel>.Filter.Eq("userID", user.userID);
         return _users.ReplaceOneAsync(filter, user, new ReplaceOptions { IsUpsert = true });
+    }
+
+    public async Task EmptyAllSupordinatesAndSuperiorsList()
+    {
+        var users = await GetUsersAsync();
+
+        foreach (var user in users)
+        {
+            if (user.superiors != null)
+            {
+                user.superiors.Clear();
+            }
+
+            if (user.subordinates != null)
+            {
+                user.subordinates.Clear();
+            }
+
+            await UpdateUser(user);
+        }
     }
 }

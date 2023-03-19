@@ -8,7 +8,14 @@ namespace SpaceForceEvaluationAppLibrary.DataAccess
     {
         Task CreateRequests(RequestsModel requests);
         Task<RequestsModel> GetRequests(string id);
-        Task<RequestsModel> GetRecievedRequests(string userID);
-        Task<RequestsModel> GetSentRequests(string userID);
+        Task<List<RequestsModel>> GetRecievedRequests(string userID);
+        Task<List<RequestsModel>> GetSentRequests(string userID);
+        Task UpdateRequest(RequestsModel requests);
+        Task<List<RequestsModel>> GetAllRequests();
+
+        Task RemoveRequest(string ObjectID);
+
+        Task RemoveAllRequests();
+        Task<bool> CheckIfRequestExist(RequestsModel request);
     }
 }

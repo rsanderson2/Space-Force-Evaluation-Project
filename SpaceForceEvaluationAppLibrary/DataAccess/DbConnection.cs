@@ -30,6 +30,11 @@ public class DbConnection : IDbConnection
 
     public string RequestsCollectionName { get; private set; } = "Requests";
 
+    public string GeneratedSurveyCollectionName { get; private set; } = "GeneratedSurvey";
+
+    public string TeamsCollectionName { get; private set; } = "Teams";
+
+
     // here each of the collections is intialized as a type referencing their respective models
     // located in SpaceForceEvaluationAppLibrary/Models.
     public MongoClient Client { get; private set; }
@@ -48,6 +53,11 @@ public class DbConnection : IDbConnection
     public IMongoCollection<TransferRequestModel> TransferRequest { get; }
 
     public IMongoCollection<RequestsModel> RequestsCollection { get; private set; }
+
+    public IMongoCollection<GeneratedSurveyModel> GeneratedSurvey { get; private set; }
+
+    public IMongoCollection<TeamsModel> TeamsCollection { get; private set; }
+
 
     // here is the constructor for the database connection. The database connection is made first, then
     // each of the collections are connected.
@@ -68,5 +78,8 @@ public class DbConnection : IDbConnection
         MonthlyQuestionsCollection = _db.GetCollection<MonthlyQuestionsModel>(MonthlyQuestionsCollectionName);
         TransferRequestCollection = _db.GetCollection<TransferRequestModel>(TransferRequestCollectionName);
         RequestsCollection = _db.GetCollection<RequestsModel>(RequestsCollectionName);
+        GeneratedSurvey = _db.GetCollection<GeneratedSurveyModel>(GeneratedSurveyCollectionName);
+        TeamsCollection = _db.GetCollection<TeamsModel>(TeamsCollectionName);
+
     }
 }

@@ -102,16 +102,16 @@
         {
             if (filtersStatus[i].name == "Users who you have ADCON over" && filtersStatus[i].showFilterData)
             {
-                buttonFlag = false;
                 // System.Diagnostics.Debug.WriteLine("This will be displayed in output window");
 
                 // TODO: get ADCON over here
                 if (!filtersStatus[i].hasFetchedFilterData)
                 {
-                    subordinateUsers = await getDirectSubordinates();
+                    subordinateUsers = await userData.GetDirectSubordinates(currentUser);
                     filtersStatus[i].hasFetchedFilterData = true;
                 }
                 displayedUsers = displayedUsers.Union(subordinateUsers).ToList();
+                buttonFlag = false;
             }
             else if (filtersStatus[i].name == "Self assigned evaluators")
             {
@@ -206,25 +206,6 @@
         {
             usersDictionary[user.Key] = !user.Value;
         }
-    }
-
-
-    async Task<List<UserModel>> getDirectSubordinates()
-    {
-        List<UserModel> subordinateUsers = new List<UserModel>();
-        if (currentUser?.subordinates == null)
-        {
-            return subordinateUsers;
-        }
-        List<String> subordinateIds = currentUser.subordinates;
-
-        foreach (String us in subordinateIds)
-        {
-            UserModel tmp = await userData.GetUserFromAuthentication(us);
-            subordinateUsers.Add(tmp);
-        }
-        // displayedUsers = subordinateUsers;
-        return subordinateUsers;
     }
 
 

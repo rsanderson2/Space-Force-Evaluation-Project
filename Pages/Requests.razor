@@ -5,6 +5,7 @@
 @inject IUserData userData
 @inject IRequestsData requestsData
 @inject IDialogService DialogService
+@inject ISnackbar Snackbar
 
 
 <PageTitle>Team Management</PageTitle>
@@ -12,113 +13,53 @@
 <div>
 
     <MudPaper Width="100%" Class="mt-15 mb-3 pa-2" Elevation="1">
-        <MudNavMenu>
-            <MudNavGroup Title="@transferRequestTitle" @bind-Expanded=_ADCONisExpanded>
-                <MudTable Items="@transferRequests">
+
+        <MudNavGroup Title="Recieved ADCON Transfer Requests" @bind-Expanded=_recievedADCONisExpanded>
+                <MudTable Items="@recievedADCONRequests" Hover="true" Loading="@_loadingRecievedRequests">
                     <HeaderContent>
                         <MudTh>User</MudTh>
                         <MudTh>Current Superior</MudTh>
                         <MudTh>New Superior</MudTh>
+                    <MudTh><MudTableSortLabel InitialDirection="SortDirection.Ascending" SortBy="new Func<ADCONTransferRequests, object>(x=>x.status)">Status</MudTableSortLabel></MudTh>
                     </HeaderContent>
                     <RowTemplate>
-                        <MudTd>@context.userID</MudTd>
-                        <MudTd>@context.old_Superior</MudTd>
-                        <MudTd>@context.new_Superior</MudTd>
+                        <MudTd>@context.user.firstName</MudTd>
+                        <MudTd>@context.currentSuperior.firstName</MudTd>
+                        <MudTd>@context.newSuperior.firstName</MudTd>
+                        <MudTd>@context.status</MudTd>
                         <MudTd>
-                            <MudButton OnClick="@(() => OpenDialog())" Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary">
+                            <MudButton OnClick="@(() => OpenDialog(context))" Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary">
                                 View More
-                            </MudButton>
-                            <MudButton Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary">
-                                Approve
-                            </MudButton>
-                            <MudButton Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary">
-                                Deny
                             </MudButton>
                         </MudTd>
                     </RowTemplate>
                 </MudTable>
             </MudNavGroup>
+
             
-            <MudNavGroup Title="OPCON Outsource Requests" @bind-Expanded=_OPCONisExpanded>
-                <MudTable Items="@transferRequests">
+        <MudNavGroup Title="Sent ADCON Transfer Requests" @bind-Expanded=_sentADCONisExpanded>
+                <MudTable Items="@sentADCONRequests" Hover="true" Loading="@_loadingSentRequests">
                     <HeaderContent>
                         <MudTh>User</MudTh>
                         <MudTh>Current Superior</MudTh>
                         <MudTh>New Superior</MudTh>
+                    <MudTh><MudTableSortLabel InitialDirection="SortDirection.Ascending" SortBy="new Func<ADCONTransferRequests, object>(x=>x.status)">Status</MudTableSortLabel></MudTh>
                     </HeaderContent>
                     <RowTemplate>
-                        <MudTd>@context.userID</MudTd>
-                        <MudTd>@context.old_Superior</MudTd>
-                        <MudTd>@context.new_Superior</MudTd>
+                        <MudTd>@context.user.firstName</MudTd>
+                        <MudTd>@context.currentSuperior.firstName</MudTd>
+                        <MudTd>@context.newSuperior.firstName</MudTd>
+                        <MudTd>@context.status</MudTd>
                         <MudTd>
-                            <MudButton Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary">
+                            <MudButton OnClick="@(() => OpenDialog(context))" Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary">
                                 View More
-                            </MudButton>
-                            <MudButton Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary">
-                                Approve
-                            </MudButton>
-                            <MudButton Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary">
-                                Deny
                             </MudButton>
                         </MudTd>
                     </RowTemplate>
                 </MudTable>
             </MudNavGroup>
+        
 
-            <MudNavGroup Title="Evauation Assignemnt Requests" @bind-Expanded=_evaluationIsExpanded>
-                <MudTable Items="@transferRequests">
-                    <HeaderContent>
-                        <MudTh>User</MudTh>
-                        <MudTh>Current Superior</MudTh>
-                        <MudTh>New Superior</MudTh>
-                    </HeaderContent>
-                    <RowTemplate>
-                        <MudTd>@context.userID</MudTd>
-                        <MudTd>@context.old_Superior</MudTd>
-                        <MudTd>@context.new_Superior</MudTd>
-                        <MudTd>
-                            <MudButton Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary">
-                                View More
-                            </MudButton>
-                            <MudButton Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary">
-                                Approve
-                            </MudButton>
-                            <MudButton Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary">
-                                Deny
-                            </MudButton>
-                        </MudTd>
-                    </RowTemplate>
-                </MudTable>
-            </MudNavGroup>
-
-            <!-- 
-                <MudNavGroup Title="Role Assignment Requests" @bind-Expanded=_roleIsExpanded>
-                    <MudTable Items="@transferRequests">
-                        <HeaderContent>
-                            <MudTh>User</MudTh>
-                            <MudTh>Current Superior</MudTh>
-                            <MudTh>New Superior</MudTh>
-                        </HeaderContent>
-                        <RowTemplate>
-                            <MudTd>@context.userID</MudTd>
-                            <MudTd>@context.old_Superior</MudTd>
-                            <MudTd>@context.new_Superior</MudTd>
-                            <MudTd>
-                                <MudButton Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary">
-                                    View More
-                                </MudButton>
-                                <MudButton Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary">
-                                    Approve
-                                </MudButton>
-                                <MudButton Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary">
-                                    Deny
-                                </MudButton>
-                            </MudTd>
-                        </RowTemplate>
-                    </MudTable>
-                </MudNavGroup>
-            -->
-        </MudNavMenu>
     </MudPaper>
 </div>
 
@@ -126,16 +67,35 @@
 
 @code {
 
-    bool _OPCONisExpanded = false;
-    bool _ADCONisExpanded = true;
-    bool _roleIsExpanded = false;
-    bool _evaluationIsExpanded = false;
+    public class ADCONTransferRequests {
+        public UserModel user; 
+        public UserModel currentSuperior; 
+        public UserModel newSuperior; 
+        public RequestsModel request;
+        public String status;
+    }
+
+    List<ADCONTransferRequests> recievedADCONRequests = new List<ADCONTransferRequests>();
+    List<ADCONTransferRequests> sentADCONRequests = new List<ADCONTransferRequests>();
+    int numberPendingADCONTransferRequest;
+
+
+    bool _sentADCONisExpanded = true;
+    bool _recievedADCONisExpanded = true;
+
+
+    bool isChangingRequestStatus = false;
+    bool _loadingRecievedRequests;
+    bool _loadingSentRequests;
+
+
 
     UserModel currentUser;
-    List<TransferRequestModel> transferRequests = new List<TransferRequestModel>();
+    List<RequestsModel> sentRequests = new List<RequestsModel>();
+    List<RequestsModel> recievedRequests = new List<RequestsModel>();
 
-    int numberPendingTransferRequest;
-    string transferRequestTitle;
+
+
     // Function to get the current logged in user.
     private async Task GetLogin()
     {
@@ -143,10 +103,40 @@
     }
 
 
-    private void OpenDialog()
+    public async void _UpdateADCONTransferRequestsStatus(String newStatus, ADCONTransferRequests context)
+    {
+        context.status = newStatus;
+        context.request.status = newStatus;
+
+        if (newStatus == "Awaiting second response")
+        {
+            if(context.request.requestTarget1 == currentUser.userID)
+            {
+                context.request.requestTarget1 = context.request.requestTarget2;
+            }
+            context.request.requestTarget2 = null;
+        }
+        await requestsData.UpdateRequest(context.request);
+        StateHasChanged();
+    }
+
+    private void OpenDialog(ADCONTransferRequests context)
     {
         var parameters = new DialogParameters();
         var options = new DialogOptions { CloseOnEscapeKey = true };
+
+        void UpdateADCONTransferRequestsStatus(String newStatus)
+        {
+            _UpdateADCONTransferRequestsStatus(newStatus, context);
+        }
+
+        parameters.Add("newSubordinate", context.user);
+        parameters.Add("newSuperior", context.newSuperior);
+        parameters.Add("UpdateStatus", UpdateADCONTransferRequestsStatus);
+        parameters.Add("CurrentStatus", context.request.status);
+        parameters.Add("canApproveOrDeny", (currentUser.userID == context.request.requestTarget1
+                                            || currentUser.userID == context.request.requestTarget2));
+        parameters.Add("requiresMultipleApprovals", (context.request.requestTarget2 != null));
 
         DialogService.Show<RequestDialog>("Request Data", parameters, options);
     }
@@ -154,15 +144,44 @@
 
     protected async override Task OnInitializedAsync()
     {
-        TransferRequestModel request1 = new TransferRequestModel();
-        request1.Id = "abc";
-        request1.userID = "Darrell";
-        request1.old_Superior = "Kyle";
-        request1.new_Superior = "Ethan";
-        transferRequests.Add(request1);
-        numberPendingTransferRequest = transferRequests.Count;
-        transferRequestTitle = "ADCON transfer Requests: " + numberPendingTransferRequest + " Pending";
+        _loadingRecievedRequests = true;
+        await GetLogin();
 
+        
+        recievedRequests = await requestsData.GetRecievedRequests(currentUser.userID);
+        for(int i = 0; i < recievedRequests.Count; i++)
+        {
+            RequestsModel request = recievedRequests[i];
+            if (request.type == "ADCON transfer request")
+            {
+                ADCONTransferRequests newRequest = new ADCONTransferRequests();
+                newRequest.newSuperior = (await userData.GetUser(request.requestInitiator));
+                newRequest.user = (await userData.GetUser(request.value));
+                newRequest.currentSuperior = (await userData.GetUser(newRequest.user.superiors[0]));
+                newRequest.request = request;
+                newRequest.status = request.status;
+
+                recievedADCONRequests.Add(newRequest);
+            }
+        }
+        _loadingRecievedRequests = false;
+
+
+        _loadingSentRequests = true;
+        sentRequests = await requestsData.GetSentRequests(currentUser.userID);
+        for (int i = 0; i < sentRequests.Count; i++)
+        {
+            RequestsModel request = sentRequests[i];
+            ADCONTransferRequests newRequest = new ADCONTransferRequests();
+            newRequest.newSuperior = (await userData.GetUser(request.requestInitiator));
+            newRequest.user = (await userData.GetUser(request.value));
+            newRequest.currentSuperior = (await userData.GetUser(newRequest.user.superiors[0]));
+            newRequest.request = request;
+            newRequest.status = request.status;
+
+            sentADCONRequests.Add(newRequest);
+        }
+        _loadingSentRequests = false;
     }
     
 

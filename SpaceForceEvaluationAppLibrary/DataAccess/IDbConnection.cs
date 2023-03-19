@@ -32,5 +32,13 @@ namespace SpaceForceEvaluationAppLibrary.DataAccess
 
         IMongoCollection<TransferRequestModel> TransferRequest { get; }
         string TransferRequestCollectionName { get; }
+
+        IMongoCollection<GeneratedSurveyModel> GeneratedSurvey { get; }
+        string GeneratedSurveyCollectionName { get; }
+
+        IMongoCollection<TeamsModel> TeamsCollection { get; }
+        string TeamsCollectionName { get; }
+
+
     }
 }

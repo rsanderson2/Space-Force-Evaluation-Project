@@ -1,4 +1,6 @@
 ﻿@inject IUserData userData
+@inject IRequestsData requestsData
+@inject ISnackbar Snackbar
 
 <MudDialog>
     <DialogContent>
@@ -10,7 +12,7 @@
             <p>Job: @selectedUser.job</p>
             <p>Role: @selectedUser.role</p>
 
-            @if (currentUser.role == "HQ")
+            @if (currentUser.role == "HQ" && selectedUser.userID != currentUser.userID)
             {
                 <MudSelect @bind-Value="roleAssignmentValue" Label="Update Role" Placeholder="Select role" AdornmentColor="Color.Primary">
                     <MudSelectItem Value="@("N/A")" Disabled="true">Roles</MudSelectItem>
@@ -18,33 +20,28 @@
                     <MudSelectItem Value="@("Supervisor")">Supervisor</MudSelectItem>
                     <MudSelectItem Value="@("Member")">Member</MudSelectItem>
                 </MudSelect>
-                <MudButton OnClick="() => updateSelectedUserRole(roleAssignmentValue)">Confirm Role @roleAssignmentPrompt</MudButton>
-                <MudButton OnClick="() => addUserToSubordinates(selectedUser.userID)">Take ADCON</MudButton>
 
-                
+                <MudButton 
+                    OnClick="() => updateSelectedUserRole(roleAssignmentValue)"
+                >Confirm Role @roleAssignmentPrompt</MudButton>
+
+                <MudButton 
+                    Disabled="@(superior?.userID == currentUser.userID 
+                                || processingADCONRequest)" 
+                    OnClick="() => takeADCON(selectedUser)"
+                >Take ADCON</MudButton>
             }
-            else if (hasADCON && !isSameUser)
+            else if ((hasDirectADCON || hasIndirectADCON) && !isSameUser)
             {
-                <p>Under your adminstrative control</p>
+                if(hasIndirectADCON)
+                {
+                    <MudButton Disabled="@(superior?.userID == currentUser.userID || processingADCONRequest)" OnClick="() => takeADCON(selectedUser)">Take ADCON</MudButton>
+                }
                 <p>last daily survey taken: TODO</p>
                 <p>last weekly survey taken: TODO</p>
                 <p>last monthly survey taken: TODO</p>
                 <p>Assign evaluator: TODO</p>
             }
-
-
-            <!--TODO: remove after testing
-            <MudButton OnClick="() => addUserToSubordinates(selectedUser.userID)">Request ADCON</MudButton>
-            -->
-
-            <!--
-            <p>TODO: Ask Roger if these are the actions he wants to display/allow here</p>
-            
-            <p>Assign as your Evaluator</p>
-            <p>Assign to be Evaluator for someone that you have ADCON over </p>
-            <p>Assign (user under your ADCON) to operation you lead</p>
-            <p>Request (user not under your ADCON) to operation you lead</p>
-              -->
         </div>
     </DialogContent>
 
@@ -54,11 +51,24 @@
         {
             @if (isSuperiorToSelectedUser(selectedUser.role))
             {
-                <MudButton OnClick="() => Cancel()">Request ADCON</MudButton>
-                <MudButton OnClick="() => Cancel()">Request OPCON</MudButton>
-                <MudButton OnClick="() => Cancel()">Request to be evaulator</MudButton>
+                <MudButton Disabled="@(hasDirectADCON || superior == null || processingADCONRequest || hasIndirectADCON)" OnClick="() => requestADCONOverUser()">Request ADCON</MudButton>
+                <MudButton Disabled="@(hasOPCON || processingOPCONRequest)" OnClick="() => Cancel()">Request OPCON</MudButton>
             }
         }
+
+        @if(!isSameUser && currentUser.role != "HQ" && !selectedIsEvaluatorOfCurrent)
+        {
+            <MudButton Disabled="@(selectedIsEvaluatorOfCurrent || processingEvaluatorRequest)"
+                   OnClick="() => makeSelfAssignedEvaluatorRequest()">Request to be your evaluator</MudButton>
+        }
+
+        @if(selectedIsSelfAssignedEvaluator)
+        {
+            <MudButton Disabled="@(processingEvaluatorRequest)"
+                   OnClick="() =>
+                    removeSelfAssignedEvaluator()">Remove from your evaluators</MudButton>
+        }
+
         
     </DialogActions>
 </MudDialog>
@@ -69,12 +79,20 @@
     [Parameter] public UserModel selectedUser { get; set; }
     [Parameter] public UserModel currentUser { get; set; }
 
-    bool hasADCON = false;
+
+    bool hasDirectADCON = false;
+    bool hasIndirectADCON = false;
     bool hasOPCON = false;
     bool hasGreatORequalRole = false;
     bool isSameUser = false;
+    bool selectedIsEvaluatorOfCurrent = false;
+    bool selectedIsSelfAssignedEvaluator = false;
+    bool selectedIsSuperiorAssignedEvaluator = false;
     bool selectedUserHasUnassignedRole;
-    bool canCurrentUserAssignRoles = false;
+
+    bool processingADCONRequest = false;
+    bool processingOPCONRequest = false;
+    bool processingEvaluatorRequest = false;
 
     String roleAssignmentValue = "";
     String roleAssignmentPrompt = "";
@@ -84,33 +102,185 @@
     void Submit() => MudDialog.Close(DialogResult.Ok(true));
     void Cancel() => MudDialog.Cancel();
 
-
-    async Task addUserToSubordinates(string subordinateId)
+    async Task takeADCON(UserModel subordinate)
     {
-        await userData.ADCONTransfer(currentUser, subordinateId);
+        processingADCONRequest = true;
+        foreach(var currentUsersSubordinate in currentUser?.subordinates)
+        {
+            if (currentUsersSubordinate == subordinate.userID)
+            {
+                Snackbar.Add("ERROR: user already has direct ADCON", Severity.Error);
+                return;
+            }
+
+        }
+        bool result = await userData.ADCONTransfer(currentUser.userID, subordinate.userID);
+
+        if(result)
+        {
+            Snackbar.Add("Successfully took ADCON. Changes will show after you close the dialog.", Severity.Success);
+        }
+        else
+        {
+            Snackbar.Add("ERROR: user already has direct ADCON", Severity.Error);
+        }
+        processingADCONRequest = true;
     }
 
-    async Task requestADCONOverUser(string userId)
+
+    async Task requestADCONOverUser()
     {
-        // TODO: send request to appropriate commanders if necessary.
+        processingADCONRequest = true;
+        RequestsModel newADCONTransferRequest = new RequestsModel();
+        newADCONTransferRequest.requestInitiator = currentUser.userID;
+
+        UserModel firstUserForHandshake = (await userData.GetClosestCommander(selectedUser.superiors[0]));
+        UserModel secondUserForHandshake = (await userData.GetClosestCommander(currentUser.userID));
+
+        if(firstUserForHandshake.userID == secondUserForHandshake.superiors[0])
+        {
+            // if the current user is trying to ask for ADCON of a peer,then only need their direct superior.
+            newADCONTransferRequest.requestTarget1 = firstUserForHandshake.userID;
+        }
+        else if(hasDirectADCONOverUser(secondUserForHandshake, firstUserForHandshake))
+        {
+            // only need second user
+            newADCONTransferRequest.requestTarget1 = secondUserForHandshake.userID;
+        }
+        else if(hasDirectADCONOverUser(firstUserForHandshake, secondUserForHandshake))
+        {
+            // only need first user
+            newADCONTransferRequest.requestTarget1 = firstUserForHandshake.userID;
+        }
+        else if( await hasIndirectADCONOverUser(secondUserForHandshake, firstUserForHandshake))
+        {
+            // only need second user
+            newADCONTransferRequest.requestTarget1 = secondUserForHandshake.userID;
+        }
+        else if(await hasIndirectADCONOverUser(firstUserForHandshake, secondUserForHandshake))
+        {
+            // only need first user
+            newADCONTransferRequest.requestTarget1 = firstUserForHandshake.userID;
+        }
+        else if (secondUserForHandshake.userID == newADCONTransferRequest.requestInitiator)
+        {
+            // no need second user for handshake is also sender, so only need permission from second user
+            newADCONTransferRequest.requestTarget1 = firstUserForHandshake.userID;
+        }
+        else 
+        {
+            // need both users
+            newADCONTransferRequest.requestTarget1 = firstUserForHandshake.userID;
+            newADCONTransferRequest.requestTarget2 = secondUserForHandshake.userID;
+        }
+
+        newADCONTransferRequest.value = selectedUser.userID;
+        newADCONTransferRequest.type = "ADCON transfer request";
+        newADCONTransferRequest.status = "Pending";
+
+        if (await requestsData.CheckIfRequestExist(newADCONTransferRequest))
+        {
+            Snackbar.Add("ERROR: request alread exist", Severity.Error);
+        }
+        else
+        {
+            Snackbar.Add("Request sent", Severity.Success);
+            await requestsData.CreateRequests(newADCONTransferRequest);
+        }
+        processingADCONRequest = false;
+
     }
 
 
-
-    bool hasADCONOverUser(string userId)
+    // TODO: move this into the dataLayer
+    bool hasDirectADCONOverUser(UserModel potentialSubordinate, UserModel potentialSuperior)
     {
-        if (currentUser.subordinates == null)
+        if (potentialSuperior.subordinates == null)
         {
             return false;
         }
-        for (var i = 0; i < currentUser.subordinates.Count; i++)
+        if(potentialSubordinate.superiors != null && potentialSubordinate.superiors.Count > 0 && potentialSubordinate.superiors[0] == currentUser.userID)
         {
-            if (currentUser.subordinates[i] == userId)
+            return true;
+        }
+        return false;
+    }
+
+    // TODO: move this into the dataLayer
+    async Task<bool> hasIndirectADCONOverUser(UserModel potentialSubordinate, UserModel potentialSuperior)
+    {
+        if(potentialSubordinate == null)
+        {
+            return false;
+        }
+
+        if (potentialSubordinate.superiors != null && potentialSubordinate.superiors.Count > 0)
+        {
+            if (potentialSubordinate.superiors[0] == potentialSuperior.userID)
             {
                 return true;
             }
+
+            UserModel nextUser = await userData.GetUser(potentialSubordinate.superiors[0]);
+
+            return await hasIndirectADCONOverUser(nextUser, potentialSuperior);
         }
+
+
         return false;
+    }
+
+
+    async Task<bool> isUserSelfAssignedEvaluator(UserModel user, UserModel potentialEvaluator)
+    {
+        if(user.selfAssignedEvaluators == null)
+        {
+            return false;
+        }
+
+        return user.selfAssignedEvaluators.Contains(potentialEvaluator.userID);
+    }
+
+
+    async Task<bool> isUserSuperiorAssignedEvaluator(UserModel user, UserModel potentialEvaluator)
+    {
+        if (user.superiorAssignedEvaluators == null)
+        {
+            return false;
+        }
+
+        return user.superiorAssignedEvaluators.Contains(potentialEvaluator.userID);
+    }
+
+
+    async Task makeSelfAssignedEvaluatorRequest()
+    {
+        processingEvaluatorRequest = true;
+        RequestsModel newEvaluationAssignmentRequest = new RequestsModel();
+        newEvaluationAssignmentRequest.requestInitiator = currentUser.userID;
+        newEvaluationAssignmentRequest.requestTarget1 = selectedUser.userID;
+        newEvaluationAssignmentRequest.requestTarget2 = currentUser.superiors[0];
+        newEvaluationAssignmentRequest.value = currentUser.userID;
+        newEvaluationAssignmentRequest.type = "EvaluationAssignmentRequest";
+        newEvaluationAssignmentRequest.status = "Pending";
+
+        if (await requestsData.CheckIfRequestExist(newEvaluationAssignmentRequest))
+        {
+            Snackbar.Add("ERROR: request alread exist", Severity.Error);
+        }
+        else
+        {
+            Snackbar.Add("Request sent", Severity.Success);
+            await requestsData.CreateRequests(newEvaluationAssignmentRequest);
+        }
+        processingEvaluatorRequest = false;
+    }
+
+    async Task removeSelfAssignedEvaluator()
+    {
+        await userData.removeSelfAssignedEvaluatorFromUser(selectedUser.userID, currentUser.userID);
+        Snackbar.Add("Removed as evaluator. Refresh to see changes", Severity.Success);
+        processingEvaluatorRequest = true;
     }
 
     IDictionary<string, int> roles = new Dictionary<string, int>() {
@@ -120,14 +290,14 @@
         { "Member", 4 },
     };
 
-
+    // TODO: move this to data layer and rename to compareRoles
     bool isSuperiorToSelectedUser(string selectedUserRole)
     {
         if (selectedUserRole == "HQ" || selectedUserRole == "Commander" || selectedUserRole == "Supervisor" || selectedUserRole == "Member")
         {
             if (currentUser.role == "HQ" || currentUser.role == "Commander" || currentUser.role == "Supervisor" || currentUser.role == "Member")
             {
-                if (roles[selectedUserRole] >= roles[currentUser.role])
+                if (roles[selectedUserRole] >= roles[currentUser.role] && currentUser.role != "Member")
                 {
                     return true;
                 }
@@ -137,12 +307,14 @@
         return false;
     }
 
+    // TODO: move this to data layer
     bool doesUserHaveUnassignedRole(UserModel selectedUser)
     {
         return selectedUser.role == null;
     }
 
-    async void updateSelectedUserRole(String newRole)
+    // TODO: move this to data layer
+    async Task updateSelectedUserRole(String newRole)
     {
         selectedUser.role = newRole;
         await userData.UpdateUser(selectedUser);
@@ -151,13 +323,26 @@
 
     protected async override Task OnInitializedAsync()
     {
-        hasADCON = hasADCONOverUser(selectedUser.userID);
-        hasOPCON = false;
+        hasIndirectADCON = await hasIndirectADCONOverUser(selectedUser, currentUser);
+        hasDirectADCON = hasDirectADCONOverUser(selectedUser, currentUser);
+        hasOPCON = false; // TODO: update to see if they have OPCON over the selected user
+        
+        selectedIsSelfAssignedEvaluator = currentUser.selfAssignedEvaluators.Contains(selectedUser.userID);
+        selectedIsSuperiorAssignedEvaluator = currentUser.superiorAssignedEvaluators.Contains(selectedUser.userID);
+        selectedIsEvaluatorOfCurrent = selectedIsSelfAssignedEvaluator || selectedIsSuperiorAssignedEvaluator;
+
         hasGreatORequalRole = isSuperiorToSelectedUser(selectedUser.role);
         selectedUserHasUnassignedRole = doesUserHaveUnassignedRole(selectedUser);
-        canCurrentUserAssignRoles = (currentUser?.role == "Commander" || currentUser?.role == "HQ");
         isSameUser = selectedUser.userID == currentUser.userID;
-        if (selectedUser.role == null) roleAssignmentPrompt = "Assignment"; else roleAssignmentPrompt = "Change";
+
+        if (selectedUser.role == null)
+        {
+            roleAssignmentPrompt = "Assignment";
+        }
+        else
+        {
+            roleAssignmentPrompt = "Change";
+        }
 
         if (selectedUser.superiors == null)
         {
@@ -165,9 +350,22 @@
         }
         else
         {
-            superior = await userData.GetUserFromAuthentication(selectedUser?.superiors[0]);
-            superiorName = superior?.firstName;
+            if(selectedUser.superiors.Count > 0)
+            {
+                superior = await userData.GetUser(selectedUser?.superiors[0]);
+                superiorName = superior?.firstName;
+            }
+            else
+            {
+                superiorName = "None";
+            }
+
         }
-        
+
+        //await userData.EmptyAllSupordinatesAndSuperiorsList();
+        // await requestsData.RemoveAllRequests();
+
+        //currentUser.subordinates.Remove(selectedUser.userID);
+        //await userData.UpdateUser(currentUser);
     }
 }

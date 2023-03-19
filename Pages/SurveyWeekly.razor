@@ -1,0 +1,29 @@
+﻿@page "/SurveyWeekly"
+@attribute [Authorize]
+@inject IDailyQuestionsData questionData
+@inject AuthenticationStateProvider authProvider
+@inject IUserData userData
+@inject NavigationManager navManager
+
+<PageTitle>Weekly Survey</PageTitle>
+
+<div class="mainDiv">
+    <div style = "text-align: center;"> 
+    <font COLOR="#ffffff">
+    <!--Survey questions hidden by default-->
+        <div style="padding-top: 100px">
+            <h5>Please answer the following questions to the best of your ability</h5>
+                <MudPaper>
+                    <SpaceForceEvaluations.Components.SurveyContentHolder typeParameter="2"></SpaceForceEvaluations.Components.SurveyContentHolder>
+                </MudPaper>
+        </div>
+        </font>
+    </div>
+</div>
+
+
+
+@code {
+
+}
+

@@ -1,0 +1,46 @@
+﻿@inject IUserData userData
+@inject ITeamsData teamsData
+@inject ISnackbar Snackbar
+
+<MudDialog>
+    <DialogContent>
+        <div>
+            <MudInput T="string" Placeholder="Team Name" bind-Value="@teamName" />
+        </div>
+    </DialogContent>
+
+    <DialogActions>
+        <MudButton Disabled="@isProcessingTeamCreation" OnClick="createTeam">Create</MudButton>
+        <MudButton OnClick="Cancel">Close</MudButton>
+    </DialogActions>
+</MudDialog>
+
+
+
+@code {
+    [CascadingParameter] MudDialogInstance MudDialog { get; set; }
+    [Parameter] public UserModel currentUser { get; set; }
+
+    void Submit() => MudDialog.Close(DialogResult.Ok(true));
+    void Cancel() => MudDialog.Cancel();
+
+    bool isProcessingTeamCreation = false;
+    string teamName;
+
+    public async Task createTeam()
+    {
+        isProcessingTeamCreation = true;
+        TeamsModel newTeam = new TeamsModel();
+        newTeam.leader = currentUser.userID;
+        newTeam.members = new List<string>();
+        newTeam.name = teamName;
+
+        await teamsData.CreateTeam(newTeam);
+        isProcessingTeamCreation = false;
+        StateHasChanged();
+    }
+
+    protected async override Task OnInitializedAsync()
+    {
+    }
+}
