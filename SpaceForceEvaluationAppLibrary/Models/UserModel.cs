@@ -13,6 +13,7 @@ public class UserModel
     public string password { get; set; }
     public string rank { get; set; }
     public string teamID { get; set; }
+    public List<string> teamIDs { get; set; }
     public string job { get; set; }
     public string role { get; set; }
     public DateTime dailyDate { get; set; }
