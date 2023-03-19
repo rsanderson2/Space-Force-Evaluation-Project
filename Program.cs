@@ -4,7 +4,6 @@ using SpaceForceEvaluations;
 using Microsoft.AspNetCore.Rewrite;
 
 var builder = WebApplication.CreateBuilder(args);
-
 // Add services to the container.
 builder.ConfigureServices();
 

@@ -5,6 +5,7 @@
 // ================================================================================================
 using Microsoft.Extensions.Configuration;
 using MongoDB.Driver;
+using SpaceForceEvaluationAppLibrary.Models;
 
 namespace SpaceForceEvaluationAppLibrary.DataAccess;
 public class DbConnection : IDbConnection
@@ -17,10 +18,22 @@ public class DbConnection : IDbConnection
     // the name of the collections in the database.
     public string UserCollectionName { get; private set; } = "Users";
     public string SurveyCollectionName { get; private set; } = "Surveys";
-    public string DailyQuestionsCollectionName { get; private set; } = "dailyQuestions";
+    public string DailyQuestionsCollectionName { get; private set; } = "DailyQuestions";
     public string ClimateQuestionsCollectionName { get; private set; } = "climateQuestions";
     public string FeedbackCollectionName { get; private set; } = "Feedback";
     public string AccoladesCollectionName { get; private set; } = "Accolades";
+    public string WeeklyQuestionsCollectionName { get; private set; } = "WeeklyQuestions";
+
+    public string MonthlyQuestionsCollectionName { get; private set; } = "MonthlyQuestions";
+
+    public string TransferRequestCollectionName { get; private set; } = "transfer_Requests";
+
+    public string RequestsCollectionName { get; private set; } = "Requests";
+
+    public string GeneratedSurveyCollectionName { get; private set; } = "GeneratedSurvey";
+
+    public string TeamsCollectionName { get; private set; } = "Teams";
+
 
     // here each of the collections is intialized as a type referencing their respective models
     // located in SpaceForceEvaluationAppLibrary/Models.
@@ -31,6 +44,20 @@ public class DbConnection : IDbConnection
     public IMongoCollection<ClimateQuestionsModel> ClimateQuestionsCollection { get; private set; }
     public IMongoCollection<FeedbackModel> FeedbackCollection { get; private set; }
     public IMongoCollection<AccoladeModel> AccoladesCollection { get; private set; }
+
+    public IMongoCollection<MonthlyQuestionsModel> MonthlyQuestionsCollection { get; private set; }
+
+    public IMongoCollection<TransferRequestModel> TransferRequestCollection { get; private set; }
+
+    public IMongoCollection<WeeklyQuestionsModel> WeeklyQuestionsCollection { get; private set; }
+    public IMongoCollection<TransferRequestModel> TransferRequest { get; }
+
+    public IMongoCollection<RequestsModel> RequestsCollection { get; private set; }
+
+    public IMongoCollection<GeneratedSurveyModel> GeneratedSurvey { get; private set; }
+
+    public IMongoCollection<TeamsModel> TeamsCollection { get; private set; }
+
 
     // here is the constructor for the database connection. The database connection is made first, then
     // each of the collections are connected.
@@ -47,5 +74,12 @@ public class DbConnection : IDbConnection
         ClimateQuestionsCollection = _db.GetCollection<ClimateQuestionsModel>(ClimateQuestionsCollectionName);
         FeedbackCollection = _db.GetCollection<FeedbackModel>(FeedbackCollectionName);
         AccoladesCollection = _db.GetCollection<AccoladeModel>(AccoladesCollectionName);
+        WeeklyQuestionsCollection = _db.GetCollection<WeeklyQuestionsModel>(WeeklyQuestionsCollectionName);
+        MonthlyQuestionsCollection = _db.GetCollection<MonthlyQuestionsModel>(MonthlyQuestionsCollectionName);
+        TransferRequestCollection = _db.GetCollection<TransferRequestModel>(TransferRequestCollectionName);
+        RequestsCollection = _db.GetCollection<RequestsModel>(RequestsCollectionName);
+        GeneratedSurvey = _db.GetCollection<GeneratedSurveyModel>(GeneratedSurveyCollectionName);
+        TeamsCollection = _db.GetCollection<TeamsModel>(TeamsCollectionName);
+
     }
 }

@@ -1,5 +1,5 @@
 ﻿@inject IClimateQuestionsData questionData
-@inject IDailyQuestionsData dailyQuestionData
+@inject IDailyQuestionsData DailyQuestionData
 @inject IUserData userData
 @inject ISurveyData surveyData
 @inject NavigationManager navManager
@@ -38,6 +38,10 @@
             <button type="submit">Submit</button>
         </div>
     </EditForm>
+    <MudPaper>
+        <SpaceForceEvaluations.Components.UncompletedSurveyContentHolder />
+    </MudPaper>
+    
 
 </div>
 
@@ -68,6 +72,7 @@
 
 
     // Function for handling when a response is submitted.
+    // needs to be fixed to properly save questions
     private async Task HandleSubmit()
     {
         questionResponse = surveyModel.response;
@@ -110,24 +115,202 @@
     // Current number of climate questions, this will need to be non-static at some point
     private int getMaxClimate()
     {
-        return 166;
+        return 3;
+        //166;
     }
     // Current number of personelle questions, this will need to be non-static at some point
     private int getMaxDaily()
     {
-        return 236;
+        return 2;
+        //236;
     }
     // Function to get a random number to pull a question from the list
     private int GetDailyQuestionNumber()
     {
-        return rnd.Next(167,getMaxDaily());
+        return rnd.Next(1,2/*getMaxDaily()*/);
     }
     // Function to get a random number to pull a question from the climate list
     private int GetClimateQuestionNumber()
     {
-        return rnd.Next(1,getMaxClimate());
+        return rnd.Next(1,3/*getMaxClimate()*/);
+    }
+    private int addWeightCategoryId(string category)
+    {
+        //inverse the switch statement in the function GetCategory
+        switch (category)
+        {
+            case "Job Dedication":
+                return 1;
+            case "Interpersonal Justice":
+                return 2;
+            case "Informational Justice":
+                return 3;
+            case "Innovator":
+                return 4;
+            case "Risk Attitude":
+                return 5;
+            case "Integrity":
+                return 6;
+            case "TP":
+                return 7;
+            case "Trust":
+                return 8;
+            case "Innovation Climate":
+                return 9;
+            case "Authenticity - Authentic Living":
+                return 10;
+            case "Supporting":
+                return 11;
+            case "OCB-I":
+                return 12;
+            case "Help-Seeking":
+                return 13;
+            case "Problem-solving assistance":
+                return 14;
+            case "Supervisor Task Support":
+                return 15;
+            case "Honesty/Candor":
+                return 16;
+            case "Inclusion":
+                return 17;
+            case "Moral strivings":
+                return 18;
+            case "Fairness":
+                return 19;
+            case "Managerial Behavior: Broker":
+                return 20;
+            case "Psychological Saftey":
+                return 21;
+            case "Communication/Cooperation":
+                return 22;
+            case "Information Sharing":
+                return 23;
+            case "Servant Leadership":
+                return 24;
+            case "Resource Availability":
+                return 25;
+            case "Learning goal orientation":
+                return 26;
+            case "Intellectual Stimulation":
+                return 27;
+            case "Feedback from Agents":
+                return 28;
+            case "General Risk Propensity":
+                return 29;
+            case "Feedback Seeking":
+                return 30;
+            case "Accountability":
+                return 31;
+            case "DEI":
+                return 32;
+            case "Moral Courage":
+                return 33;
+            case "OCB - O":
+                return 0;
+            default:
+                return 1;
+        }
+        return 2;
     }
 
+    private int GenerateCategory(int catagoryId, int weight)
+    {
+        // return a random number 1-32 each with a 1/32 chance of being chosen
+        // based on what the categoryNumber is, that number is more likely to be chosen randomly
+        int numCategories = 32;
+        
+        // array of numbers 1-32
+        int[] numbers = new int[numCategories];
+        for (int i = 0; i < numCategories; i++)
+        {
+            numbers[i] = i + 1;
+        }
+        // insert the category number into the array weight number of times
+        for (int i = numCategories - 1; i < weight; i++)
+        {
+            numbers[i] = catagoryId;
+        }
+        // return a random number from the array from 1- the size of teh array
+        return numbers[rnd.Next(1, numbers.Length)];
+
+    }
+
+    private string GetCategory(int categoryNumber)
+    {
+        switch (categoryNumber)
+        {
+            case 1:
+                return "Job Dedication";
+            case 2:
+                return "Interpersonal Justice";
+            case 3:
+                return "Informational Justice";
+            case 4:
+                return "Innovator";
+            case 5:
+                return "Risk Attitude";
+            case 6:
+                return "Integrity";
+            case 7:
+                return "TP";
+            case 8:
+                return "Trust";
+            case 9:
+                return "Innovation Climate";
+            case 10:
+                return "Authenticity - Authentic Living";
+            case 11:
+                return "Supporting";
+            case 12:
+                return "OCB-I";
+            case 13:
+                return "Help-Seeking";
+            case 14:
+                return "Problem-solving assistance";
+            case 15:
+                return "Supervisor Task Support";
+            case 16:
+                return "Honesty/Candor";
+            case 17:
+                return "Inclusion";
+            case 18:
+                return "Moral strivings";
+            case 19:
+                return "Fairness";
+            case 20:
+                return "Managerial Behavior: Broker";
+            case 21:
+                return "Psychological Saftey";
+            case 22:
+                return "Communication/Cooperation";
+            case 23:
+                return "Information Sharing";
+            case 24:
+                return "Servant Leadership";
+            case 25:
+                return "Resource Availability";
+            case 26:
+                return "Learning goal orientation";
+            case 27:
+                return "Intellectual Stimulation";
+            case 28:
+                return "Feedback from Agents";
+            case 29:
+                return "General Risk Propensity";
+            case 30:
+                return "Feedback Seeking";
+            case 31:
+                return "Accountability";
+            case 32:
+                return "DEI";
+            case 33:
+                return "Moral Courage";
+            case 34:
+                return "OCB-O";
+            default:
+                return "General Risk Propensity";
+        }
+    }
     public async Task GenerateQuestion()
     {
         // Find out which type of question is going to be displayed
@@ -136,10 +319,10 @@
         var user = await AuthenticationStateProviderHelpers.GetUserFromAuth(authProvider, userData);
         if (SurveyQuestionType == 1)
         {
-            ClimateQuestionsModel climateQuestionModel = await questionData.GetClimateQuestion(GetClimateQuestionNumber());
-            TestQuestion = climateQuestionModel.text;
-            questionNumber = climateQuestionModel.QuestionID;
-            questionCategory = climateQuestionModel.category;
+            DailyQuestionsModel dailyQuestionModel = await DailyQuestionData.GetDailyQuestionsByCategory(GetCategory(GenerateCategory(32,4)));
+            TestQuestion = dailyQuestionModel.text;
+            questionNumber = dailyQuestionModel.QuestionID;
+            questionCategory = dailyQuestionModel.category;
             surveyTaker = user.userID;
         }
         // Else, Question will be Personnel
@@ -157,7 +340,7 @@
             {
                 UserModel subject = await userData.GetUser(subjectID);
                 teammate = subject.firstName + " " + subject.lastName;
-                DailyQuestionsModel dailyQuestionModel = await dailyQuestionData.GetDailyQuestion(GetDailyQuestionNumber());
+                DailyQuestionsModel dailyQuestionModel = await DailyQuestionData.GetDailyQuestion(GetDailyQuestionNumber());
                 TestQuestion = dailyQuestionModel.text;
                 questionNumber = dailyQuestionModel.QuestionID;
                 questionCategory = dailyQuestionModel.category;
@@ -176,16 +359,19 @@
     {
         var results = await userData.GetUsersFromTeam(teamId);
         results.ToList();
-        int questionSubject = rnd.Next(1, results.Count);
+        int questionSubject = 0;
+        //rnd.Next(1, results.Count);
         // Get the user associated with int questionSubject
-        return results[questionSubject].userID;
+        System.Console.WriteLine(results.Count);
+        return results[0/*questionSubject*/].userID;
     }
 
 
     // Function to choose the type of question
     private int GetQuestionType()
     {
-        return SurveyQuestionType = rnd.Next(1, 3);
+        return SurveyQuestionType = 1;
+        //rnd.Next(1, 3);
     }
     protected override async Task OnInitializedAsync()
     {

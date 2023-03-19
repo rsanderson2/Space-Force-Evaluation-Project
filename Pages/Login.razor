@@ -3,92 +3,160 @@
 @inject AuthenticationStateProvider authProvider
 @inject IUserData userData
 @inject NavigationManager navManager
+@inject IGeneratedSurveyData generatedSurveyData
 @inherits LayoutComponentBase
+
+
 <PageTitle>Login</PageTitle>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<head>
+    <style>
+        .container-grid {
+            margin: auto;
+            padding-top: 150px;
+            border-radius: 15px;
+        }
+    </style>
+</head>
+
 <!--Main Body-->
 <body>
-<AuthorizeView>
-    <Authorized>
-        <!--Container grid for the survey options-->
-        <div class="container grid">
-            <div>
-                <article class = "col-2 @(lastDaily ? "taken" : "notTaken")">
-                    <h2>Take <strong>Daily</strong> Survey</h2>
-                    <input type = "button" class = "btn btn-primary" value ="Begin" onclick="location.href='/Survey'" style="visibility:@showDailyButton"/>
-                </article>
-                @if (@lastDaily)
-                {
-                    <h4>Daily Survey is Completed</h4>
-                }
+    <AuthorizeView>
+        <Authorized>
+            <!--Container grid for the survey options-->
+            <div class="container-grid">
+                <div>
+                    <MudSimpleTable Style="overflow-x: auto; background-color: #003B73" Elevation="0">
+                        <tbody>
+
+                            <tr>
+                                <td>
+                                    <MudCard width="100%" height="150px">
+                                        <MudCardContent>
+                                            <h2>Daily Survey</h2>
+                                            @if (lastDaily)
+                                            {
+                                                <p>Survey Complete</p>
+                                            }
+                                        </MudCardContent>
+                                        @if (!@lastDaily)
+                                        {
+                                            <MudCardActions>
+                                                <MudButton OnClick="() => navigateToSurvey(1)" Variant="Variant.Text" Color="Color.Primary">Begin</MudButton>
+                                            </MudCardActions>
+                                        }
+                                    </MudCard>
+                                </td>
+                                <td>
+                                    <MudCard width="100%" height="150px">
+                                        <MudCardContent>
+                                            <h2>Weekly Survey</h2>
+                                            @if (lastWeekly)
+                                            {
+                                                <p>Survey Complete</p>
+                                            }
+                                        </MudCardContent>
+                                        @if (!@lastWeekly)
+                                        {
+                                            <MudCardActions>
+                                                <MudButton OnClick="() => navigateToSurvey(2)" Variant="Variant.Text" Color="Color.Secondary" Style="background-color: #003B73">Begin</MudButton>
+                                            </MudCardActions>
+                                        }
+                                    </MudCard>
+                                </td>
+                                <td>
+                                    <MudCard width="100%" height="150px">
+                                        <MudCardContent>
+                                            <h2>Monthly Survey</h2>
+                                            @if (lastMonthly)
+                                            {
+                                                <p>Survey Complete</p>
+                                            }
+                                        </MudCardContent>
+                                        @if (!@lastMonthly)
+                                        {
+                                            <MudCardActions>
+                                                <MudButton OnClick="() => navigateToSurvey(3)" Variant="Variant.Text" Color="Color.Primary">Begin</MudButton>
+                                            </MudCardActions>
+                                        }
+                                    </MudCard>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </MudSimpleTable>
+
+                    <MudSimpleTable Style="background-color: #003B73" Elevation="0">
+                        <tbody>
+
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <MudCard width="100%" Elevation="0" Style="background-color: #003B73;">
+                                        <MudCardContent>
+                                            @if (@lastDaily || @lastWeekly || @lastMonthly)
+                                            {
+
+                                                <h3>Thank you, your response has been noted.</h3>
+                                                <div class="flex">
+                                                    <article class="col-2">
+                                                        <input type="button" class="btn btn-primary" value="Log Out" onclick="location.href='MicrosoftIdentity/Account/SignOut'" />
+                                                    </article>
+
+                                                    <article class="col-2">
+                                                        <input type="button" class="btn btn-primary" value="Provide feedback on Teams" onclick="window.open('https://dod.teams.microsoft.us/l/team/19%3adod%3a2bf5dee9da7546c494c8d3b5f52f5878%40thread.tacv2/conversations?groupId=cebcc84c-7f65-4e78-9bf8-da0af1e01ded&tenantId=8331b18d-2d87-48ef-a35f-ac8818ebf9b4')" />
+                                                    </article>
+
+                                                    <article class="col-2">
+                                                        <input type="button" class="btn btn-primary" value="Offer additional accolades" onclick="location.href='/Accolades'" />
+                                                    </article>
+                                                </div>
+                                            }
+                                        </MudCardContent>
+                                    </MudCard>
+
+                                </td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </MudSimpleTable>
+                </div>
             </div>
-
-            <div>
-                <article class = "col-2 @(lastWeekly ? "taken" : "notTaken")">
-                    <h2>Take <strong>Weekly</strong> Survey</h2>
-                    <input type = "button" class = "btn btn-primary" value ="Begin" onclick="location.href='/Weekly'" style="visibility:@showWeeklyButton"/>
-                </article>
-                @if (@lastWeekly)
+        </Authorized>
+        <NotAuthorized>
+            <!--Container to login if the user is not authorized-->
+            @{
+                try
                 {
-                    <h4>Weekly Survey is Completed</h4>
+                    var hasJSRuntime = navManager != null && (navManager.GetType()?.GetProperty("HasAttachedJSRuntime") != null ?
+                    (bool)navManager.GetType().GetProperty("HasAttachedJSRuntime").GetValue(navManager) : true);
+
+                    if (hasJSRuntime)
+                    {
+                        navManager.NavigateTo("MicrosoftIdentity/Account/SignIn", true);
+                    }
+
                 }
-
-            </div>
-
-            <div>
-                <article class = "col-2 @(lastMonthly ? "taken" : "notTaken")">
-                    <h2>Take <strong>Monthly</strong> Survey</h2>
-                    <input type = "button" class = "btn btn-primary" value ="Begin" onclick="location.href='/Monthly'" style="visibility:@showMonthlyButton"/>
-                </article>
-                @if (@lastMonthly)
+                catch
                 {
-                    <h4>Monthly Survey is Completed</h4>
+                    <div class="container">
+                        <div class="col-2">
+                            <input type="button" class="btn btn-primary" value="Login" onclick="location.href='MicrosoftIdentity/Account/SignIn'" />
+                        </div>
+                    </div>
                 }
-            </div>
-        </div>
-
-        <!--Container for user information-->
-        <div class="container">
-       
-
-            @if (@lastDaily || @lastWeekly || @lastMonthly)
-            {
-
-                <h3>Thank you, your response has been noted.</h3>
-                <div class="flex">
-                    <article class = "col-2">
-                        <input type = "button" class = "btn btn-primary" value ="Log Out" onclick="location.href='MicrosoftIdentity/Account/SignOut'"/>
-                    </article>
-                    
-                    <article class = "col-2">
-                        <input type = "button" class = "btn btn-primary" value ="Provide feedback on Teams" onclick="window.open('https://dod.teams.microsoft.us/l/team/19%3adod%3a2bf5dee9da7546c494c8d3b5f52f5878%40thread.tacv2/conversations?groupId=cebcc84c-7f65-4e78-9bf8-da0af1e01ded&tenantId=8331b18d-2d87-48ef-a35f-ac8818ebf9b4')"/>
-                    </article>
-
-                    <article class = "col-2">
-                        <input type = "button" class = "btn btn-primary" value ="Offer additional accolades" onclick="location.href='/Accolades'"/>
-                    </article>
-                </div>                    
             }
-        </div>
-    </Authorized>
-    <NotAuthorized>
-        <!--Container to login if the user is not authorized-->
-        <div class="container">
-            <div class = "col-2">
-                <input type = "button" class = "btn btn-primary" value ="Login" onclick="location.href='MicrosoftIdentity/Account/SignIn'"/>
-            </div>
-        </div>
-    </NotAuthorized>
-</AuthorizeView>
+
+        </NotAuthorized>
+    </AuthorizeView>
 
 </body>
 @code
 {
-        DateTime today;
-        DateTime lastSurvey;
-        DateTime lastSurveyWeekly;
-        DateTime lastSurveyMonthly;
+    DateTime today;
+    DateTime lastSurvey;
+    DateTime lastSurveyWeekly;
+    DateTime lastSurveyMonthly;
     public bool lastDaily = false;
     public bool lastWeekly = false;
     public bool lastMonthly = false;
@@ -101,8 +169,277 @@
     public string userLastName;
     public string userFirstName;
 
+    public string questionType { get; set; }
+
+    DateTime surveyDate;
+    public string teammate;
+    public string questionSubjectID;
+    public int SurveyQuestionType;
+    public int questionSubject;
+    public int questionResponse;
+    public int questionNumber;
+    public string questionCategory;
+    public string surveyTaker;
+    public string surveySubject;
+    public string takerTeamID;
+    public string takerName;
+    private SurveyModel surveyModel = new SurveyModel();
+    public int dailyQuestionNum = 1;
+    public int weeklyQuestionNum = 3;
+    public int monthlyQuestionNum = 5;
+    public string TestQuestion = "";
+    public string showQuestion = "";
+    private Random rnd = new Random();
+
     private UserModel loggedInUser = new UserModel();
 
+    // Current number of climate questions, this will need to be non-static at some point
+    private int getMaxClimate()
+    {
+        return 3;
+        //166;
+    }
+    // Current number of personelle questions, this will need to be non-static at some point
+    private int getMaxDaily()
+    {
+        return 2;
+        //236;
+    }
+    // Function to get a random number to pull a question from the list
+    private int GetDailyQuestionNumber()
+    {
+        return rnd.Next(1, 2/*getMaxDaily()*/);
+    }
+    // Function to get a random number to pull a question from the climate list
+    private int GetClimateQuestionNumber()
+    {
+        return rnd.Next(1, 3/*getMaxClimate()*/);
+    }
+    private int addWeightCategoryId(string category)
+    {
+        //inverse the switch statement in the function GetCategory
+        switch (category)
+        {
+            case "Job Dedication":
+                return 1;
+            case "Interpersonal Justice":
+                return 2;
+            case "Informational Justice":
+                return 3;
+            case "Innovator":
+                return 4;
+            case "Risk Attitude":
+                return 5;
+            case "Integrity":
+                return 6;
+            case "TP":
+                return 7;
+            case "Trust":
+                return 8;
+            case "Innovation Climate":
+                return 9;
+            case "Authenticity - Authentic Living":
+                return 10;
+            case "Supporting":
+                return 11;
+            case "OCB-I":
+                return 12;
+            case "Help-Seeking":
+                return 13;
+            case "Problem-solving assistance":
+                return 14;
+            case "Supervisor Task Support":
+                return 15;
+            case "Honesty/Candor":
+                return 16;
+            case "Inclusion":
+                return 17;
+            case "Moral strivings":
+                return 18;
+            case "Fairness":
+                return 19;
+            case "Managerial Behavior: Broker":
+                return 20;
+            case "Psychological Saftey":
+                return 21;
+            case "Communication/Cooperation":
+                return 22;
+            case "Information Sharing":
+                return 23;
+            case "Servant Leadership":
+                return 24;
+            case "Resource Availability":
+                return 25;
+            case "Learning goal orientation":
+                return 26;
+            case "Intellectual Stimulation":
+                return 27;
+            case "Feedback from Agents":
+                return 28;
+            case "General Risk Propensity":
+                return 29;
+            case "Feedback Seeking":
+                return 30;
+            case "Accountability":
+                return 31;
+            case "DEI":
+                return 32;
+            case "Moral Courage":
+                return 33;
+            case "OCB - O":
+                return 0;
+            default:
+                return 1;
+        }
+        return 2;
+    }
+
+    private int GenerateCategory()
+    {
+        // return a random number 1-32 each with a 1/32 chance of being chosen
+        // based on what the categoryNumber is, that number is more likely to be chosen randomly
+        int numCategories = 32;
+
+        // array of numbers 1-32
+        int[] numbers = new int[numCategories];
+        for (int i = 0; i < numCategories; i++)
+        {
+            numbers[i] = i + 1;
+        }
+        // return a random number from the array from 1- the size of teh array
+        return numbers[rnd.Next(1, numbers.Length)];
+
+    }
+
+    private string GetCategory(int categoryNumber)
+    {
+        switch (categoryNumber)
+        {
+            case 1:
+                return "Job Dedication";
+            case 2:
+                return "Interpersonal Justice";
+            case 3:
+                return "Informational Justice";
+            case 4:
+                return "Innovator";
+            case 5:
+                return "Risk Attitude";
+            case 6:
+                return "Integrity";
+            case 7:
+                return "TP";
+            case 8:
+                return "Trust";
+            case 9:
+                return "Innovation Climate";
+            case 10:
+                return "Authenticity - Authentic Living";
+            case 11:
+                return "Supporting";
+            case 12:
+                return "OCB-I";
+            case 13:
+                return "Help-Seeking";
+            case 14:
+                return "Problem-solving assistance";
+            case 15:
+                return "Supervisor Task Support";
+            case 16:
+                return "Honesty/Candor";
+            case 17:
+                return "Inclusion";
+            case 18:
+                return "Moral strivings";
+            case 19:
+                return "Fairness";
+            case 20:
+                return "Managerial Behavior: Broker";
+            case 21:
+                return "Psychological Saftey";
+            case 22:
+                return "Communication/Cooperation";
+            case 23:
+                return "Information Sharing";
+            case 24:
+                return "Servant Leadership";
+            case 25:
+                return "Resource Availability";
+            case 26:
+                return "Learning goal orientation";
+            case 27:
+                return "Intellectual Stimulation";
+            case 28:
+                return "Feedback from Agents";
+            case 29:
+                return "General Risk Propensity";
+            case 30:
+                return "Feedback Seeking";
+            case 31:
+                return "Accountability";
+            case 32:
+                return "DEI";
+            case 33:
+                return "Moral Courage";
+            case 34:
+                return "OCB-O";
+            default:
+                return "General Risk Propensity";
+        }
+    }
+
+
+
+    async Task navigateToSurvey(int type)
+    {
+        UserModel currentUser = await AuthenticationStateProviderHelpers.GetUserFromAuth(authProvider, userData);
+        List<GeneratedSurveyModel> generatedSurveyList = await generatedSurveyData.GetGeneratedSurveysbyUser(currentUser.userID);
+
+        foreach (GeneratedSurveyModel survey in generatedSurveyList)
+        {
+            string cat = GenerateCategory().ToString();
+            List<string> tmpQuestions = new List<string>();
+            if (survey.surveyType == "Daily" && type == 1)
+            {
+                for (int i = 0; i < dailyQuestionNum; i++)
+                {
+                    cat = GenerateCategory().ToString();
+                    while (survey.injectedQuestions.Contains(cat) || tmpQuestions.Contains(cat)) cat = GenerateCategory().ToString();
+                    tmpQuestions.Add(cat);
+                }
+            }
+            if (survey.surveyType == "Weekly" && type == 2)
+            {
+                for (int i = 0; i < weeklyQuestionNum; i++)
+                {
+                    cat = GenerateCategory().ToString();
+                    while (survey.injectedQuestions.Contains(cat) || tmpQuestions.Contains(cat)) cat = GenerateCategory().ToString();
+                    tmpQuestions.Add(cat);
+                }
+            }
+            if (survey.surveyType == "Monthly" && type == 3)
+            {
+                for (int i = 0; i < monthlyQuestionNum; i++)
+                {
+                    cat = GenerateCategory().ToString();
+                    while (survey.injectedQuestions.Contains(cat) || tmpQuestions.Contains(cat))
+                    {
+                        Console.WriteLine("TETSTSTSTS");
+                        cat = GenerateCategory().ToString();
+                    }
+                    tmpQuestions.Add(cat);
+                }
+            }
+            survey.generatedQuestions = tmpQuestions;
+
+            //Console.WriteLine(cat);
+            //Console.WriteLine(survey.generatedQuestions.ElementAt(0));
+            await generatedSurveyData.UpdateGeneratedSurvey(survey);
+        }
+        if (type == 1) navManager.NavigateTo("/SurveyDaily");
+        if (type == 2) navManager.NavigateTo("/SurveyWeekly");
+        if (type == 3) navManager.NavigateTo("/SurveyMonthly");
+    }
     // Function to check that the user is logged in, and get the information from their b2c profile
     private async Task LoadAndVerifyUser()
     {
@@ -114,7 +451,7 @@
         string firstName = authState.User.Claims.FirstOrDefault(c => c.Type.Contains("givenname"))?.Value;
 
         // If the user is logged in, and they have an account
-        if(string.IsNullOrWhiteSpace(objectID) == false)
+        if (string.IsNullOrWhiteSpace(objectID) == false)
         {
 
             // set local variables to the logged in session so that they can be used
@@ -134,11 +471,7 @@
             var checkUser = await userData.GetUser(userObjectID);
             if (checkUser == null)
             {
-                await userData.CreateUser(loggedInUser);                  
-            }
-            else if (checkUser.teamID == null)
-            {
-                navManager.NavigateTo("/Account");
+                await userData.CreateUser(loggedInUser);
             }
         }
 
@@ -184,7 +517,7 @@
     }
     private void checkMonthlySurveyEligible(UserModel currentUser)
     {
-        // Set the total days back to 30 when feedback is finished being collected. 
+        // Set the total days back to 30 when feedback is finished being collected.
         lastSurveyMonthly = currentUser.monthlyDate;
         if ((today - lastSurveyMonthly).TotalDays > 30)
         {

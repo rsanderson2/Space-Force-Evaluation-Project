@@ -1,0 +1,121 @@
+﻿@attribute [Authorize]
+@inject AuthenticationStateProvider authProvider
+@inject IUserData userData
+@inject ISurveyData surveyData
+@inject IGeneratedSurveyData generatedSurveyData
+
+<MudDialog>
+    <DialogContent>
+        <div>
+            <MudSelect @bind-Value="categoryValue" T="string" Label="Select a Category..." AnchorOrigin="Origin.BottomCenter">
+                <MudSelectItem Value="@("1")">OCB-O</MudSelectItem>
+                <MudSelectItem Value="@("2")">Job Dedication</MudSelectItem>
+                <MudSelectItem Value="@("3")">Interpersonal Justice</MudSelectItem>
+                <MudSelectItem Value="@("4")">Informational Justice</MudSelectItem>
+                <MudSelectItem Value="@("5")">Innovator</MudSelectItem>
+                <MudSelectItem Value="@("6")">Risk Attitude</MudSelectItem>
+                <MudSelectItem Value="@("7")">Integrity</MudSelectItem>
+                <MudSelectItem Value="@("8")">TP</MudSelectItem>
+                <MudSelectItem Value="@("9")">Trust</MudSelectItem>
+                <MudSelectItem Value="@("10")">Innovation Climate</MudSelectItem>
+                <MudSelectItem Value="@("11")">Authenticity - Authentic Living</MudSelectItem>
+                <MudSelectItem Value="@("12")">Supporting</MudSelectItem>
+                <MudSelectItem Value="@("13")">OCB-I</MudSelectItem>
+                <MudSelectItem Value="@("14")">Help-Seeking</MudSelectItem>
+                <MudSelectItem Value="@("15")">Problem-solving Assistance</MudSelectItem>
+                <MudSelectItem Value="@("16")">Supervisor Task Support</MudSelectItem>
+                <MudSelectItem Value="@("17")">Honesty/Candor</MudSelectItem>
+                <MudSelectItem Value="@("18")">Inclusion</MudSelectItem>
+                <MudSelectItem Value="@("19")">Moral strivings</MudSelectItem>
+                <MudSelectItem Value="@("20")">Fairness</MudSelectItem>
+                <MudSelectItem Value="@("21")">Managerial Behavior: Broker</MudSelectItem>
+                <MudSelectItem Value="@("22")">Psychological Saftey</MudSelectItem>
+                <MudSelectItem Value="@("23")">Communication/Cooperation</MudSelectItem>
+                <MudSelectItem Value="@("24")">Information Sharing</MudSelectItem>
+                <MudSelectItem Value="@("25")">Servant Leadership</MudSelectItem>
+                <MudSelectItem Value="@("26")">Resource Availability</MudSelectItem>
+                <MudSelectItem Value="@("27")">Learning Goal Orientation</MudSelectItem>
+                <MudSelectItem Value="@("28")">Intellectual Stimulation</MudSelectItem>
+                <MudSelectItem Value="@("29")">Feedback from Agents</MudSelectItem>
+                <MudSelectItem Value="@("30")">General Risk Propensity</MudSelectItem>
+                <MudSelectItem Value="@("31")">Feedback Seeking</MudSelectItem>
+                <MudSelectItem Value="@("32")">Accountability</MudSelectItem>
+                <MudSelectItem Value="@("33")">DEI</MudSelectItem>
+                <MudSelectItem Value="@("34")">Moral Courage</MudSelectItem>
+
+            </MudSelect>
+
+            <MudSelect @bind-Value="surveyValue" T=" string" Label="Select Survey Type..." AnchorOrigin="Origin.BottomCenter">
+                <MudSelectItem Value="@("Daily")" />
+                <MudSelectItem Value="@("Weekly")" />
+                <MudSelectItem Value="@("Monthly")" />
+            </MudSelect>
+
+        </div>
+    </DialogContent>
+    <DialogActions>
+        <MudButton OnClick="Cancel">Cancel</MudButton>
+        <MudButton Disabled="@onSelect()" Variant="Variant.Filled" EndIcon="@Icons.Material.Filled.Send" Color="Color.Info" OnClick="() => Submit()">Send</MudButton>
+    </DialogActions>
+</MudDialog>
+@code {
+
+
+    [CascadingParameter] MudDialogInstance MudDialog { get; set; }
+    [Parameter] public UserModel selectedUser { get; set; }
+    [Parameter] public UserModel currentUser { get; set; }
+    private string categoryValue { get; set; }
+    private string surveyValue { get; set; }
+    string surveyId = "a";
+    bool allowSubmit = true;
+
+
+    //void Submit() => MudDialog.Close(DialogResult.Ok(true));
+    void Cancel() => MudDialog.Cancel();
+
+    async Task Submit()
+    {
+        await fillInjectedQuestions();
+        MudDialog.Close(DialogResult.Ok(true));
+    }
+
+    bool onSelect()
+    {
+        if (categoryValue != null && surveyValue != null)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+
+
+    async Task fillInjectedQuestions()
+    {
+        List<GeneratedSurveyModel> surveyList = await generatedSurveyData.GetGeneratedSurveysbyUser(selectedUser.userID);
+
+        foreach (GeneratedSurveyModel s in surveyList)
+        {
+            if (s.surveyType == surveyValue)
+            {
+                //surveyId = s.surveyID;
+                //List<string> tmp = new List<string>();
+                //tmp.Add("aaaaa");
+                //s.injectedQuestions = tmp;
+                //surveyId = s.injectedQuestions.ElementAt(1);
+                s.injectedQuestions.Add(categoryValue);
+                await generatedSurveyData.UpdateGeneratedSurvey(s);
+            }
+        }
+    }
+
+
+    protected async override Task OnInitializedAsync()
+    {
+
+        //List<GeneratedSurveyModel> surveyList = await generatedSurveyData.GetGeneratedSurveysbyUser(selectedUser.userID);
+        //surveyId = surveyList.ElementAt(0).injectedQuestions.ElementAt(2);
+    }
+}

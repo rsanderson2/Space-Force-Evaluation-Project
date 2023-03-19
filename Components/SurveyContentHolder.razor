@@ -1,0 +1,183 @@
+﻿@attribute [Authorize]
+@inject AuthenticationStateProvider authProvider
+@inject IUserData userData
+@inject ISurveyData surveyData
+@inject IGeneratedSurveyData generatedSurveyData
+@inject NavigationManager navManager
+
+<div>
+    @for (int i = 0; i < surveyQuestions.Count(); i++)
+    {
+        SurveyModel surveyQuestion = surveyQuestions[i];
+        @if (surveyQuestion.surveyType == "mult")
+        {
+            <div>
+                <h6>Question @(i + 1): @surveyQuestion.question</h6>
+                <div style="padding-left: 5%; padding-bottom: 2%">
+                    <MudGrid Spacing="3" Justify="Justify.Center">
+                        <MudItem xs="2" sm="2" md="2" lg="2" xl="2">
+                            <MudGrid Justify="Justify.FlexStart">
+                                <MudItem xs="12" sm="12" md="12" lg="12" xl="12">
+                                    <MudButton Variant="Variant.Filled">1</MudButton>
+                                </MudItem>
+                                <MudItem xs="12" sm="12" md="12" lg="12" xl="12">
+                                    <p>Disagree</p>
+                                </MudItem>
+                            </MudGrid>
+                        </MudItem>
+                        <MudItem xs="2" sm="2" md="2" lg="2" xl="2">
+                            <MudButton Variant="Variant.Filled">2</MudButton>
+                        </MudItem>
+                        <MudItem xs="2" sm="2" md="2" lg="2" xl="2">
+                            <MudButton Variant="Variant.Filled">3</MudButton>
+                        </MudItem>
+                        <MudItem xs="2" sm="2" md="2" lg="2" xl="2">
+                            <MudButton Variant="Variant.Filled">4</MudButton>
+                        </MudItem>
+                        <MudItem xs="2" sm="2" md="2" lg="2" xl="2">
+                            <MudGrid Justify="Justify.FlexStart">
+                                <MudItem xs="12" sm="12" md="12" lg="12" xl="12">
+                                    <MudButton Variant="Variant.Filled">5</MudButton>
+                                </MudItem>
+                                <MudItem xs="12" sm="12" md="12" lg="12" xl="12">
+                                    <p>Agree</p>
+                                </MudItem>
+                            </MudGrid>
+                        </MudItem>
+                    </MudGrid>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div>
+                <h6>Question @(i + 1) : @surveyQuestion.question</h6>
+                <div style="padding-left: 5%; padding-bottom: 2%">
+                    <MudTextField T="string" Variant="Variant.Outlined" Lines="5" @bind-Value="@surveyQuestion.freeResponseText" />
+                </div>
+            </div>
+        }
+    }
+
+    <div>
+        <MudButton Variant="Variant.Filled" Size="Size.Large" Color="Color.Primary" OnClick="() => Submit()">Complete Survey</MudButton>
+    </div>
+
+</div>
+
+@code {
+    [Parameter]
+    public int typeParameter { get; set; }
+
+    SurveyModel surveyQuestion = new SurveyModel();
+    List<SurveyModel> surveyQuestions;
+
+    // TODO: write handleSubmit function here
+
+    async Task Submit()
+    {
+        UserModel currentUser = await AuthenticationStateProviderHelpers.GetUserFromAuth(authProvider, userData);
+        List<GeneratedSurveyModel> generatedSurveyList = await generatedSurveyData.GetGeneratedSurveysbyUser(currentUser.userID);
+        TimeZoneInfo Eastern_Standard_Time = TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time");
+        DateTime dateTime_Eastern = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, Eastern_Standard_Time);
+
+        foreach (GeneratedSurveyModel survey in generatedSurveyList)
+        {
+            if (survey.surveyType == "Daily" && typeParameter == 1)
+            {
+                DateTime today = DateTime.Now;
+                today = today.Date.AddHours(0).AddMinutes(0).AddSeconds(0);
+
+                survey.injectedQuestions = new List<string>();
+                survey.date_taken = dateTime_Eastern;
+                survey.date_administered = today;
+                Console.WriteLine("Taken: " + survey.date_taken.ToString() + " Administered: " + survey.date_administered.ToString());
+                await generatedSurveyData.UpdateGeneratedSurvey(survey);
+            }
+            if (survey.surveyType == "Weekly" && typeParameter == 2)
+            {
+                DateTime today = DateTime.Now;
+                today = today.Date.AddHours(0).AddMinutes(0).AddSeconds(0);
+
+                survey.injectedQuestions = new List<string>();
+                survey.date_taken = dateTime_Eastern;
+                survey.date_administered = today;
+                await generatedSurveyData.UpdateGeneratedSurvey(survey);
+            }
+            if (survey.surveyType == "Monthly" && typeParameter == 3)
+            {
+                DateTime today = DateTime.Now;
+                today = today.Date.AddHours(0).AddMinutes(0).AddSeconds(0);
+
+                survey.injectedQuestions = new List<string>();
+                survey.date_taken = dateTime_Eastern;
+                survey.date_administered = today;
+                await generatedSurveyData.UpdateGeneratedSurvey(survey);
+            }
+        }
+        navManager.NavigateTo("/");
+    }
+
+    protected async override Task OnInitializedAsync()
+    {
+        Random rnd = new Random();
+        int randNum = rnd.Next(1, 3);
+        surveyQuestions = new List<SurveyModel>();
+        UserModel currentUser = await AuthenticationStateProviderHelpers.GetUserFromAuth(authProvider, userData);
+        List<GeneratedSurveyModel> generatedSurveyList = await generatedSurveyData.GetGeneratedSurveysbyUser(currentUser.userID);
+
+        foreach (GeneratedSurveyModel survey in generatedSurveyList)
+        {
+            foreach (string genQuestion in survey.generatedQuestions)
+            {
+                randNum = rnd.Next(1, 3);
+                surveyQuestion.question = "This is a " + survey.surveyType + " question of category " + genQuestion;
+                if (randNum == 1) surveyQuestion.surveyType = "FR";
+                else surveyQuestion.surveyType = "mult";
+
+                //Console.WriteLine(genQuestion);
+                surveyQuestions.Add(surveyQuestion);
+                surveyQuestion = new SurveyModel();
+            }
+
+
+            foreach (string injectedQuestion in survey.injectedQuestions)
+            {
+                //Console.WriteLine(survey.surveyType);
+                if (survey.surveyType == "Daily" && typeParameter == 1)
+                {
+                    randNum = rnd.Next(1, 3);
+                    surveyQuestion.question = "This is an injected " + survey.surveyType + " question of category " + injectedQuestion;
+                    if (randNum == 1) surveyQuestion.surveyType = "FR";
+                    else surveyQuestion.surveyType = "mult";
+
+                    //Console.WriteLine(injectedQuestion);
+                    surveyQuestions.Add(surveyQuestion);
+                    surveyQuestion = new SurveyModel();
+                }
+                if (survey.surveyType == "Weekly" && typeParameter == 2)
+                {
+                    randNum = rnd.Next(1, 3);
+                    surveyQuestion.question = "This is an injected " + survey.surveyType + " question of category " + injectedQuestion;
+                    if (randNum == 1) surveyQuestion.surveyType = "FR";
+                    else surveyQuestion.surveyType = "mult";
+
+                    //Console.WriteLine(injectedQuestion);
+                    surveyQuestions.Add(surveyQuestion);
+                    surveyQuestion = new SurveyModel();
+                }
+                if (survey.surveyType == "Monthly" && typeParameter == 3)
+                {
+                    randNum = rnd.Next(1, 3);
+                    surveyQuestion.question = "This is an injected " + survey.surveyType + " question of category " + injectedQuestion;
+                    if (randNum == 1) surveyQuestion.surveyType = "FR";
+                    else surveyQuestion.surveyType = "mult";
+
+                    //Console.WriteLine(injectedQuestion);
+                    surveyQuestions.Add(surveyQuestion);
+                    surveyQuestion = new SurveyModel();
+                }
+            }
+        }
+    }
+}

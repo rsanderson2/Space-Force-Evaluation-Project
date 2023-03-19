@@ -6,76 +6,69 @@
 @inject AuthenticationStateProvider authProvider
 @inject IAccoladeData accoladeData
 
-<div class="mainDiv">
+<div class="mainDiv" style = "padding-top: 100px;">
     <div class="container grid"> 
         <!--User Profile Information-->
         <section class="card">
-            <h2>My Profile</h2>
+            
+            <MudGrid>
+                <MudItem xs="12" sm="12" md="12" lg="12" xl="12">
+                    <h3 class="profile-header" style="text-align: center" >My Profile</h3>
+                    <MudGrid>
+                        <MudItem xs="12" sm="12" md="12" lg="12" xl="12">
+                            <h5 class="infotext">Name: @firstName @lastName</h5>
+                        </MudItem>
+                        <MudItem xs="12" sm="12" md="12" lg="12" xl="12">
+                            <h5 class="infotext">Email: @emailAddress</h5>
+                        </MudItem>
+                    </MudGrid>
+                </MudItem>
 
-            <div class="profileinfo">
-                <div class="leftalign">
-                    <h3>Basic info</h3>
-                </div>
-
-                <div class="profilegrid">
-                    <div class="leftalign">
-                        <h4 class="infotext">Name</h4>
-                    </div>
-                    <div class="leftalign">
-                        <h4>@firstName @lastName</h4>
-                    </div>
-                </div>
-
-                <div class="profilegrid">
-                    <div class="leftalign">
-                        <h4 class="infotext">Email</h4>
-                    </div>
-                    <div class="leftalign">
-                        <h4>@emailAddress</h4>
-                    </div>
-                </div>
-
-                <div class="leftalign">
-                    <h3>Space Force info</h3>
-                </div>
-
-                <div class="profilegrid">
-                    <div class="leftalign">
-                        <h4 class="infotext">Rank</h4>
-                    </div>
-                    <div class="leftalign">
-                        <h4>@rank</h4>
-                    </div>
-                </div>
-
-                <div class="profilegrid">
-                    <div class="leftalign">
-                        <h4 class="infotext">Job</h4>
-                    </div>
-                    <div class="leftalign">
-                        <h4>@job</h4>
-                    </div>
-                </div>
-
-                <div class="profilegrid">
-                    <div class="leftalign">
-                        <h4 class="infotext">Team</h4>
-                    </div>
-                    <div class="leftalign">
-                        <h4>@team</h4>
-                    </div>
-                </div>
-
-            </div>
+                <MudItem xs="12" sm="12" md="12" lg="12" xl="12">
+                    <MudGrid>
+                        <MudItem xs="12" sm="12" md="12" lg="12" xl="12">
+                            <h5 class="infotext">Rank: @rank</h5>
+                        </MudItem>
+                        <MudItem xs="12" sm="12" md="12" lg="12" xl="12">
+                            <h5 class="infotext">Job: @job</h5>
+                        </MudItem>
+                        <MudItem xs="12" sm="12" md="12" lg="12" xl="12">
+                            <h5 class="infotext">Team: @team</h5>
+                        </MudItem>
+                    </MudGrid>
+                </MudItem>
+            </MudGrid>
+           
         </section>
 
         <section class="card">
-            <h2>My Account</h2>
+            <h3 class="account-options" style="text-align: center" >Account Options</h3>
+            <MudGrid>
+                <MudItem xs="12" sm="12" md="12" lg="12" xl="12">
+                    <MudButton Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary" >
+                        Update First/Last Name
+                    </MudButton>
+                </MudItem>
+                <MudItem xs="12" sm="12" md="12" lg="12" xl="12">
+                    <MudButton Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary" >
+                        Update Rank
+                    </MudButton>
+                </MudItem>
+                <MudItem xs="12" sm="12" md="12" lg="12" xl="12">
+                    <MudButton Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary" >
+                        Update Job
+                    </MudButton>
+                </MudItem>
+                <MudItem xs="12" sm="12" md="12" lg="12" xl="12">
+                    <MudButton Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary" >
+                        Update Team
+                    </MudButton>
+                </MudItem>
+            </MudGrid>
             <div class="flexbox">
-                <button class="btn-primary" @onclick=UpdateB2CInfo>Update First/Last Name</button>
-                <button class="btn-primary" @onclick=ShowUpdateRank>Update Rank</button>
-                <button class="btn-primary" @onclick=ShowUpdateJob>Update Job</button>
-                <button class="btn-primary" @onclick=ShowUpdateTeam>Update Team</button>
+                
+                
+                
             </div>
 
             <div class="accountupdate">
@@ -135,7 +128,7 @@
 
         <!--User Survey History-->
         <section class="card">
-            <h2>Survey History</h2>
+            <h2 class="survey-history" style="text-align: center" >Survey History</h2>
             <p>These are the surveys that you have completed.</p>
             <div class="scroll">
                 <table class="table table-bordered">
@@ -162,21 +155,21 @@
 
         <!--User Received Accolades-->
         <section class="card">
-            <h2>Personal Accolades</h2>
+            <h2 class="personal-accolades" style="text-align: center" >Personal Accolades</h2>
 
             <div class="content">
-                <h4>Your accolade rank:</h4>
-                <img class="rank" src="@accoladesRank"/>
-                <div class="hide">@rankName</div>
+                <h4 class="accolade-rank" style="text-align: center" >Your accolade rank:</h4>
+                <img class="rank" style ="display: block; margin: 0 auto;" src="@accoladesRank"/>
+                <div class="hide" style="text-align: center"> <b>@rankName</b> </div>
             </div>
 
 
-            <p>These are accolades that have been awarded anonymously from your team members</p>
+            <p>*These are accolades that have been awarded anonymously from your team members</p>
             <div class="scroll">
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th>Accolade</th>
+                            <th>Accolade:</th>
                         </tr>
                     </thead>
                     <tbody>

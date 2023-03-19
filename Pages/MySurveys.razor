@@ -1,0 +1,156 @@
+﻿@page "/mysurveys"
+@attribute [Authorize]
+@inject AuthenticationStateProvider authProvider
+@inject NavigationManager navManager
+@inject IUserData userData
+@inject IAccoladeData accoladeData
+@inject IJSRuntime JsRuntime 
+@inject IDialogService DialogService
+
+
+<PageTitle>My Surveys</PageTitle>
+
+<head>
+    <link rel="stylesheet" href="/css/fonts.css" />
+</head>
+
+<div>
+
+   <!-- 
+    <MudTable Class="mt-15 mb-3 pa-2" Items="@Surveys" Hover="true" Breakpoint="Breakpoint.Sm" Loading="@isLoading" LoadingProgressColor="Color.Info">
+        <HeaderContent>
+                <MudTh>Date Administered</MudTh>
+                <MudTh>Date Taken</MudTh>
+                <MudTh>Type</MudTh>
+                <MudTh></MudTh>
+        </HeaderContent>
+        <RowTemplate>
+            <MudTd DataLabel="dateAdministered">@context.dateAdministered</MudTd>
+            <MudTd DataLabel="dateTaken">@context.dateTaken</MudTd>
+            <MudTd DataLabel="type">@context.type</MudTd>
+            <MudTd>
+                    <MudButton Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary">
+                        View More
+                    </MudButton>
+            </MudTd>
+            
+        </RowTemplate>
+    </MudTable>
+     -->
+
+
+    <MudDataGrid Class="mt-15 mb-3 pa-2" Items="@Surveys" MultiSelection="true" Hideable="true" Filterable="true" QuickFilter="@_quickFilter" Loading="@isLoading" Elevation="4" Style="border-radius: 15px; background: #E7F1FF" >
+        <ToolBarContent>
+            <MudText Typo="Typo.h5">My Surveys</MudText>
+            <MudSpacer />
+            <MudTextField @bind-Value="_searchString" Placeholder="Search" Adornment="Adornment.Start" Immediate="true"
+                          AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
+        </ToolBarContent>
+        <Columns >
+            <Column T="SurveyDataModel" Field="dateAdministered" Title="Date Administered" />
+            <Column T="SurveyDataModel" Field="dateTaken" Title="Date Taken" />
+            <Column T="SurveyDataModel" Field="type" Title="Type" />
+            <Column T="SurveyDataModel" Filterable="false" Hideable="false">
+                <CellTemplate>
+                    <MudButton Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary" OnClick="@(() => OpenDialog(currentUser))">
+                        View More
+                    </MudButton>
+                </CellTemplate>
+            </Column>
+        </Columns>
+    </MudDataGrid>
+
+
+</div>
+
+
+
+
+
+
+
+
+@code {
+
+    bool isLoading;
+    UserModel currentUser;
+
+    private string _searchString;
+
+    private Func<SurveyDataModel, bool> _quickFilter => x =>
+    {
+        if (string.IsNullOrWhiteSpace(_searchString))
+            return true;
+
+        if (x.dateAdministered.Contains(_searchString, StringComparison.OrdinalIgnoreCase))
+            return true;
+
+        return false;
+    };
+
+    // Function to get the current logged in user.
+    private async Task GetLogin()
+    {
+        currentUser = await AuthenticationStateProviderHelpers.GetUserFromAuth(authProvider, userData);
+    }
+
+
+    private void OpenDialog(UserModel currentUser)
+    {
+        var parameters = new DialogParameters();
+        // var options = new DialogOptions { CloseOnEscapeKey = true, FullScreen = true, CloseButton = true };
+        var options = new DialogOptions { CloseOnEscapeKey = true, CloseButton = true, FullWidth = true };
+
+
+        parameters.Add("currentUser", currentUser);
+
+        DialogService.Show<SurveyDialog>("Survey Data", parameters, options);
+    }
+
+
+    protected async override Task OnInitializedAsync()
+    {
+        // await GetLogin();
+        isLoading = false;
+        Surveys = new List<SurveyDataModel>() {
+            new SurveyDataModel {
+                dateTaken = "1/5/2023",
+                dateAdministered = "1/5/2023",
+                type = "daily"
+            },
+            new SurveyDataModel {
+                dateTaken = "1/6/2023",
+                dateAdministered = "1/1/2023",
+                type = "weekly"
+            },
+            new SurveyDataModel {
+                dateTaken = "1/29/2023",
+                dateAdministered = "1/1/2023",
+                type = "monthly"
+            },
+        };
+    }
+
+
+    List<SurveyDataModel> Surveys;
+
+  
+    public class SurveyDataModel
+    {
+        public string dateTaken
+        {
+            get;
+            set;
+        }
+        public string dateAdministered
+        {
+            get;
+            set;
+        }
+        public string type
+        {
+            get;
+            set;
+        }
+    }
+}

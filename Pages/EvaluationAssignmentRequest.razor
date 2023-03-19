@@ -1,0 +1,188 @@
+﻿@page "/Teammanagement/evaluation-assignment-requests"
+@attribute [Authorize]
+@inject AuthenticationStateProvider authProvider
+@inject NavigationManager navManager
+@inject IUserData userData
+@inject IRequestsData requestsData
+@inject IDialogService DialogService
+@inject ISnackbar Snackbar
+
+
+<PageTitle>Team Management</PageTitle>
+
+<div>
+
+    <MudPaper Width="100%" Class="mt-15 mb-3 pa-2" Elevation="1">
+
+        <MudNavGroup Title="Recieved Evaluation Requests" @bind-Expanded=_recievedEvaluationisExpanded>
+            <MudTable Items="@recievedEvaluationRequests" Hover="true" Loading="@_loadingRecievedRequests">
+                <HeaderContent>
+                    <MudTh>User</MudTh>
+                    <MudTh>New Evaluator</MudTh>
+                    <MudTh>Status</MudTh>
+                    <MudTh><MudTableSortLabel InitialDirection="SortDirection.Ascending" SortBy="new Func<EvaluationAssignmentRequests, object>(x=>x.status)">Status</MudTableSortLabel></MudTh>
+                </HeaderContent>
+                <RowTemplate>
+                    <MudTd>@context.user.firstName</MudTd>
+                    <MudTd>@context.newEvaluator.firstName</MudTd>
+                    <MudTd>@context.status</MudTd>
+                    <MudTd>
+                        <MudButton OnClick="@(() => OpenDialog(context))" Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary">
+                            View More
+                        </MudButton>
+                    </MudTd>
+                </RowTemplate>
+            </MudTable>
+        </MudNavGroup>
+
+            
+        <MudNavGroup Title="Sent Evaluation Requests" @bind-Expanded=_sentEvaluationisExpanded>
+            <MudTable Items="@sentEvaluationRequests" Hover="true" Loading="@_loadingSentRequests">
+                <HeaderContent>
+                    <MudTh>User</MudTh>
+                    <MudTh>New Evaluator</MudTh>
+                    <MudTh>Status</MudTh>
+                    <MudTh><MudTableSortLabel InitialDirection="SortDirection.Ascending" SortBy="new Func<EvaluationAssignmentRequests, object>(x=>x.status)">Status</MudTableSortLabel></MudTh>
+                </HeaderContent>
+                <RowTemplate>
+                    <MudTd>@context.user.firstName</MudTd>
+                    <MudTd>@context.newEvaluator.firstName</MudTd>
+                    <MudTd>@context.status</MudTd>
+                    <MudTd>
+                        <MudButton OnClick="@(() => OpenDialog(context))" Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary">
+                            View More
+                        </MudButton>
+                    </MudTd>
+                </RowTemplate>
+            </MudTable>
+        </MudNavGroup>
+        
+
+    </MudPaper>
+</div>
+
+
+
+@code {
+
+    public class EvaluationAssignmentRequests
+    {
+        public UserModel user;
+        public UserModel superiorOfUser;
+        public UserModel newEvaluator; 
+        public RequestsModel request;
+        public String status;
+    }
+
+    List<EvaluationAssignmentRequests> recievedEvaluationRequests = new List<EvaluationAssignmentRequests>();
+    List<EvaluationAssignmentRequests> sentEvaluationRequests = new List<EvaluationAssignmentRequests>();
+
+    bool _sentEvaluationisExpanded = true;
+    bool _recievedEvaluationisExpanded = true;
+    bool isChangingEvaluationStatus = false;
+    bool _loadingRecievedRequests;
+    bool _loadingSentRequests;
+
+    UserModel currentUser;
+    List<RequestsModel> sentRequests = new List<RequestsModel>();
+    List<RequestsModel> recievedRequests = new List<RequestsModel>();
+
+    // Function to get the current logged in user.
+    private async Task GetLogin()
+    {
+        currentUser = await AuthenticationStateProviderHelpers.GetUserFromAuth(authProvider, userData);
+    }
+
+
+    public async void _UpdateEvaluationTransferRequestsStatus(String newStatus, EvaluationAssignmentRequests context)
+    {
+        context.status = newStatus;
+        context.request.status = newStatus;
+
+        if (newStatus == "Awaiting second response")
+        {
+            if(context.request.requestTarget1 == currentUser.userID)
+            {
+                context.request.requestTarget1 = context.request.requestTarget2;
+            }
+            context.request.requestTarget2 = null;
+        }
+        await requestsData.UpdateRequest(context.request);
+        StateHasChanged();
+    }
+
+    private void OpenDialog(EvaluationAssignmentRequests context)
+    {
+        var parameters = new DialogParameters();
+        var options = new DialogOptions { CloseOnEscapeKey = true };
+
+        void UpdateEvaluationTransferRequestsStatus(String newStatus)
+        {
+            _UpdateEvaluationTransferRequestsStatus(newStatus, context);
+        }
+
+        //[Parameter] public UserModel user { get; set; }
+
+        parameters.Add("UpdateStatus", UpdateEvaluationTransferRequestsStatus);
+        parameters.Add("CurrentStatus", context.request.status);
+        parameters.Add("canApproveOrDeny", (currentUser.userID == context.request.requestTarget1
+                                            || currentUser.userID == context.request.requestTarget2));
+        parameters.Add("requiresMultipleApprovals", (context.request.requestTarget2 != null));
+        parameters.Add("newEvaluator", (context.newEvaluator));
+        parameters.Add("user", context.user);
+        DialogService.Show<SelfAssignedEvaluatorRequestDialog>("Request Data", parameters, options);
+    }
+
+
+    protected async override Task OnInitializedAsync()
+    {
+        _loadingRecievedRequests = true;
+        await GetLogin();
+
+        recievedRequests = await requestsData.GetRecievedRequests(currentUser.userID);
+        for (int i = 0; i < recievedRequests.Count; i++)
+        {
+            RequestsModel request = recievedRequests[i];
+
+            if (request.type == "EvaluationAssignmentRequest")
+            {
+                EvaluationAssignmentRequests newRequest = new EvaluationAssignmentRequests();
+
+                newRequest.newEvaluator = (await userData.GetUser(request.requestTarget1));
+                newRequest.superiorOfUser = (await userData.GetUser(request.requestTarget2));
+                newRequest.user = (await userData.GetUser(request.value));
+                newRequest.request = request;
+                newRequest.status = request.status;
+
+                recievedEvaluationRequests.Add(newRequest);
+            }
+        }
+        _loadingRecievedRequests = false;
+
+
+        _loadingSentRequests = true;
+        sentRequests = await requestsData.GetSentRequests(currentUser.userID);
+        for (int i = 0; i < sentRequests.Count; i++)
+        {
+            RequestsModel request = sentRequests[i];
+
+            if (request.type == "EvaluationAssignmentRequest")
+            {
+                EvaluationAssignmentRequests newRequest = new EvaluationAssignmentRequests();
+
+                newRequest.newEvaluator = (await userData.GetUser(request.requestTarget1));
+                newRequest.superiorOfUser = (await userData.GetUser(request.requestTarget2));
+                newRequest.user = (await userData.GetUser(request.value));
+                newRequest.request = request;
+                newRequest.status = request.status;
+
+                sentEvaluationRequests.Add(newRequest);
+            }
+        }
+        _loadingSentRequests = false;
+
+    }
+    
+
+  
+}

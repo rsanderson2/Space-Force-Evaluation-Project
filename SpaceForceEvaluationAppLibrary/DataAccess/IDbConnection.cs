@@ -21,5 +21,24 @@ namespace SpaceForceEvaluationAppLibrary.DataAccess
         string UserCollectionName { get; }
         IMongoCollection<AccoladeModel> AccoladesCollection { get; }
         string AccoladesCollectionName { get; }
+        IMongoCollection<WeeklyQuestionsModel> WeeklyQuestionsCollection { get; }
+        string WeeklyQuestionsCollectionName { get; }
+
+        IMongoCollection<MonthlyQuestionsModel> MonthlyQuestionsCollection { get; }
+        string MonthlyQuestionsCollectionName { get; }
+
+        IMongoCollection<RequestsModel> RequestsCollection { get; }
+        string RequestsCollectionName { get; }
+
+        IMongoCollection<TransferRequestModel> TransferRequest { get; }
+        string TransferRequestCollectionName { get; }
+
+        IMongoCollection<GeneratedSurveyModel> GeneratedSurvey { get; }
+        string GeneratedSurveyCollectionName { get; }
+
+        IMongoCollection<TeamsModel> TeamsCollection { get; }
+        string TeamsCollectionName { get; }
+
+
     }
 }

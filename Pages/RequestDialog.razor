@@ -1,0 +1,145 @@
+﻿@inject IUserData userData
+@inject IRequestsData requestsData
+@inject ISnackbar Snackbar
+
+<MudDialog>
+    <DialogContent>
+        <div>
+               <p>TODO: add summary information here</p>
+        </div>
+    </DialogContent>
+
+    <DialogActions>
+        <MudButton OnClick="Cancel">Cancel</MudButton>
+
+        @if (canApproveOrDeny)
+        {
+            <MudButton 
+                Disabled="@(processingADCONRequest || hasADCON || (currentStatus != "Pending" && currentStatus != "Awaiting second response"))"
+                OnClick="() => onApproval()">Approve</MudButton>
+
+            <MudButton 
+                Disabled="@(processingADCONRequest || hasADCON ||  (currentStatus != "Pending" && currentStatus != "Awaiting second response"))"
+                OnClick="() => denyADCON()"
+            >Deny</MudButton>
+        }
+    </DialogActions>
+    
+
+</MudDialog>
+
+
+
+@code {
+    public class ADCONTransferRequests
+    {
+        public UserModel user;
+        public UserModel currentSuperior;
+        public UserModel newSuperior;
+        public RequestsModel request;
+        public String status;
+    }
+
+    [CascadingParameter] MudDialogInstance MudDialog { get; set; }
+    [Parameter] public UserModel newSuperior { get; set; }
+    [Parameter] public UserModel newSubordinate { get; set; }
+    [Parameter] public String currentStatus { get; set; }
+    [Parameter] public Action<string> UpdateStatus { get; set; }
+    [Parameter] public bool canApproveOrDeny { get; set; }
+    [Parameter] public bool requiresMultipleApprovals { get; set; }
+
+    bool hasADCON = false;
+    bool processingADCONRequest = false;
+
+    String roleAssignmentValue = "";
+    String roleAssignmentPrompt = "";
+    String superiorName = "";
+    UserModel superior;
+
+    void Submit() => MudDialog.Close(DialogResult.Ok(true));
+    void Cancel() => MudDialog.Cancel();
+
+
+    async Task takeADCON(UserModel newSuperior ,UserModel newSubordinate)
+    {
+        processingADCONRequest = true;
+
+        if(newSuperior.subordinates != null)
+        {
+            foreach (var newSuperiorSubordinate in newSuperior?.subordinates)
+            {
+                if (newSuperiorSubordinate == newSubordinate.userID)
+                {
+                    UpdateStatus("ERROR");
+                    Snackbar.Add("ERROR: user already has direct ADCON", Severity.Error);
+                    StateHasChanged();
+                    return;
+                }
+
+            }
+        }
+
+        bool result = await userData.ADCONTransfer(newSuperior.userID, newSubordinate.userID);
+
+        if (result)
+        {
+            UpdateStatus("Approved");
+            Snackbar.Add("Successfully took ADCON. Changes will show after you close the dialog.", Severity.Success);
+            StateHasChanged();
+        }
+        else
+        {
+            UpdateStatus("ERROR");
+            Snackbar.Add("ERROR: user already has direct ADCON", Severity.Error);
+            StateHasChanged();
+        }
+    }
+
+
+    async Task onApproval()
+    {
+        if (currentStatus == "Pending")
+        {
+            if (requiresMultipleApprovals)
+            {
+                UpdateStatus("Awaiting second response");
+            }
+            else
+            {
+                await takeADCON(newSuperior, newSubordinate);
+            }
+        }
+        else if (currentStatus == "Awaiting second response")
+        {
+            await takeADCON(newSuperior, newSubordinate);
+        }
+    }
+
+
+    async Task denyADCON()
+    {
+        UpdateStatus("Denied");
+        Snackbar.Add("Successfully denied ADCON. Changes will show after you close the dialog.", Severity.Success);
+        StateHasChanged();
+    }
+
+
+    bool hasADCONOverUser()
+    {
+        if (newSuperior.subordinates == null)
+        {
+            return false;
+        }
+        if (newSubordinate.superiors != null && newSubordinate.superiors.Count > 0 && newSubordinate.superiors[0] == newSuperior.userID)
+        {
+            return true;
+        }
+        return false;
+    }
+
+
+    protected async override Task OnInitializedAsync()
+    {
+        hasADCON = hasADCONOverUser();
+    }
+}

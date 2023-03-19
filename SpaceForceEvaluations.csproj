@@ -24,6 +24,18 @@
     <EmbeddedResource Remove="SpaceForceEvaluationAppLibrary\**" />
     <None Remove="SpaceForceEvaluationAppLibrary\**" />
   </ItemGroup>
+	
+
+  <ItemGroup>
+    <Compile Remove="Components\CodeFile.cs" />
+  </ItemGroup>
+	
+
+  <ItemGroup>
+    <Content Remove="wwwroot\css\open-iconic\font\css\Fonts.css" />
+    <Content Remove="wwwroot\css\open-iconic\font\fonts\Helvetica-Neue-Bold.ttf" />
+    <Content Remove="wwwroot\css\open-iconic\font\fonts\Helvetica-Neue-Medium-Extended.ttf" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="bunit.core" Version="1.9.8" />
@@ -34,7 +46,9 @@
     <PackageReference Include="Microsoft.Identity.Web" Version="1.24.1" />
     <PackageReference Include="Microsoft.Identity.Web.UI" Version="1.24.1" />
     <PackageReference Include="Moq" Version="4.18.1" />
+    <PackageReference Include="MudBlazor" Version="6.1.9" />
     <PackageReference Include="NUnit" Version="3.13.3" />
+    <PackageReference Include="Radzen.Blazor" Version="4.7.2" />
   </ItemGroup>
 
   <ItemGroup>
