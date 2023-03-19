@@ -3,7 +3,7 @@
 @inject IUserData userData
 
 
-<MudThemeProvider />
+<MudThemeProvider Theme="myTheme" />
 <MudDialogProvider />
 <MudSnackbarProvider />
 
@@ -158,4 +158,13 @@
             userFirstName = currentUser.firstName;
         }
     }
+
+    private MudTheme myTheme = new()
+        {
+            Palette = new Palette
+            {
+                Primary = "#003B73",
+                Secondary = "#FFFFFF",
+            }
+        };
 }
