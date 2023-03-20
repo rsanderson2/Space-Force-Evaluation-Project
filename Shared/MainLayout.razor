@@ -71,17 +71,28 @@
             color: #FFFFFF;
             font-family: 'HelveticaNeueMedium';
             font-style: normal;
-            font-weight: 1000;
+            font-weight: 900;
             font-size: 100%;
         }
 
         .btn {
             color: #FFFFFF;
+            font-weight: 900;
         }
 
         .dropdown:hover .dropdown-menu {
             display: block;
+            background-color: #E7F1FF;
         }
+
+        .dropdown-menu .dropdown-item{
+            font-family: 'HelveticaNeueMedium';
+            font-style: normal;
+            font-weight: 900;
+            font-size: 80%;
+            background-color: #E7F1FF;
+        }
+
     </style>
 </head>
 
@@ -105,17 +116,23 @@
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Reports</a>
                                 <ul class="dropdown-menu">
-                                    <li class="dropdown-item"><a class="nav-link" href="/Reports">Team Reports</a></li>
+                                    <!--<li class="dropdown-item"><a class="nav-link" href="/Reports">Team Reports</a></li>-->
                                     <li class="dropdown-item"><a class="nav-link" href="/mysurveys">My Surveys</a></li>
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Management</a>
                                 <ul class="dropdown-menu">
-                                    <li class="dropdown-item"><a class="nav-link" href="/Teammanagement">Team Management</a></li>
-                                    <li class="dropdown-item">
-                                        <a class="nav-link" href="/Teammanagement/Requests">Requests</a>
-                                    </li>
+                                    <li class="dropdown-item"><a class="nav-link" href="/Teammanagement">Manage Teams</a></li>
+                                    <li class="dropdown-item"><a class="nav-link" href="/my-teams">My Team</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Requests</a>
+                                <ul class="dropdown-menu">
+                                    <li class="dropdown-item"><a class="nav-link" href="/Teammanagement/Requests">ADCON</a></li>
+                                    <li class="dropdown-item"><a class="nav-link" href="#">OPCON</a></li>
+                                    <li class="dropdown-item"><a class="nav-link" href="/Teammanagement/evaluation-assignment-requests">Evaluator</a></li>
                                 </ul>
                             </li>
                         </ul>
