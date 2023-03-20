@@ -166,6 +166,42 @@ public class MongoUserData : IUserData
         return;
     }
 
+
+    public bool hasDirectADCONOverUser(UserModel potentialSubordinate, UserModel potentialSuperior)
+    {
+        if (potentialSuperior.subordinates == null)
+        {
+            return false;
+        }
+        if (potentialSubordinate.superiors != null && potentialSubordinate.superiors.Count > 0 && potentialSubordinate.superiors[0] == potentialSuperior.userID)
+        {
+            return true;
+        }
+        return false;
+    }
+
+
+    public async Task<bool> hasIndirectADCONOverUser(UserModel potentialSubordinate, UserModel potentialSuperior)
+    {
+        if (potentialSubordinate == null)
+        {
+            return false;
+        }
+
+        if (potentialSubordinate.superiors != null && potentialSubordinate.superiors.Count > 0)
+        {
+            if (potentialSubordinate.superiors[0] == potentialSuperior.userID)
+            {
+                return true;
+            }
+
+            UserModel nextUser = await GetUser(potentialSubordinate.superiors[0]);
+
+            return await hasIndirectADCONOverUser(nextUser, potentialSuperior);
+        }
+        return false;
+    }
+
     /*
     public async Task<List<UserModel>> GetUsersFromIdList(List<string> userIds) // TODO: test
     {
@@ -240,6 +276,22 @@ public class MongoUserData : IUserData
             if (user.subordinates != null)
             {
                 user.subordinates.Clear();
+            }
+
+            await UpdateUser(user);
+        }
+    }
+
+
+    public async Task EmptyAllTeamIDs()
+    {
+        var users = await GetUsersAsync();
+
+        foreach (var user in users)
+        {
+            if (user.teamIDs != null)
+            {
+                user.teamIDs.Clear();
             }
 
             await UpdateUser(user);

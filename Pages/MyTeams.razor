@@ -43,6 +43,10 @@
 
 
         <MudNavGroup Title="My Teams" @bind-Expanded=_myteamsExpanded>
+            @if (currentUser != null && (currentUser.role == "Commander" || currentUser.role == "HQ"))
+            {
+                <MudButton Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary" OnClick="@(() => OpenCreateTeamDialog())">Create Team</MudButton>
+            }
             <MudTable Items="@teams" Hover="true" Loading="@isLoading">
                 <HeaderContent>
                     <MudTh>Name</MudTh>
@@ -51,8 +55,9 @@
                 <RowTemplate>
                     <MudTd>@context.teamName</MudTd>
                     <MudTd>@context.teamLeader.firstName</MudTd>
+
                     <MudTd>
-                        <MudButton OnClick="@(() => OpenCreateTeamDialog())" Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary">
+                        <MudButton OnClick="@(() => OpenViewTeamDialog(context))" Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary">
                             View More
                         </MudButton>
                     </MudTd>
@@ -60,11 +65,6 @@
             </MudTable>
         </MudNavGroup>
     </MudPaper>
-
-
-
-
-
 </div>
 
 
@@ -76,6 +76,7 @@
         public UserModel teamLeader;
         public List<UserModel> teamMembers;
         public string teamName;
+        public TeamsModel team;
     }
 
     UserModel currentUser;
@@ -97,22 +98,34 @@
     }
 
 
+    private void OpenViewTeamDialog(TeamView context)
+    {
+        var parameters = new DialogParameters();
+        var options = new DialogOptions { CloseOnEscapeKey = true };
+
+        parameters.Add("currentUser", currentUser);
+        parameters.Add("team", context.team);
+
+        DialogService.Show<ViewTeamDialog>("Team", parameters, options);
+    }
+
+
     protected async override Task OnInitializedAsync()
     {
         currentUser = await AuthenticationStateProviderHelpers.GetUserFromAuth(authProvider, userData);
-        isLoading = false;
+        isLoading = true;
 
         teamsCurrentUserLeads = await teamsData.GetTeamsByLeader(currentUser.userID);
         teamsCurrentUserIsMember = await teamsData.GetTeamsByMember(currentUser.userID);
 
         foreach (var team in teamsCurrentUserLeads)
         {
-            // TODO: finish. Add each team to the teamsView list so it can properly be displayed to the user. 
             TeamView tempTeam = new TeamView();
 
             tempTeam.teamLeader = await userData.GetUser(team.leader);
             tempTeam.teamName = team.name;
             tempTeam.teamMembers = new List<UserModel>();
+            tempTeam.team = team;
 
             foreach(var member in team.members)
             {
@@ -122,8 +135,25 @@
             teams.Add(tempTeam);
         }
 
-        //teams = teams.Union(teamsCurrentUserLeads).ToList();
-        //teams = teams.Union(teamsCurrentUserIsMember).ToList();
+
+        foreach (var team in teamsCurrentUserIsMember)
+        {
+            TeamView tempTeam = new TeamView();
+
+            tempTeam.teamLeader = await userData.GetUser(team.leader);
+            tempTeam.teamName = team.name;
+            tempTeam.teamMembers = new List<UserModel>();
+            tempTeam.team = team;
+
+            foreach (var member in team.members)
+            {
+                tempTeam.teamMembers.Add(await userData.GetUser(member));
+            }
+
+            teams.Add(tempTeam);
+        }
+
+        isLoading = false;
     }
   
 }

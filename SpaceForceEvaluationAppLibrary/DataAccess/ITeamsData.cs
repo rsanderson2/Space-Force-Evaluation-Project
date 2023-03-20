@@ -18,5 +18,10 @@ namespace SpaceForceEvaluationAppLibrary.DataAccess
 
         Task<List<TeamsModel>> GetTeamsByMember(string memberID);
 
+
+        Task<List<TeamsModel>> GetTeamsByName(string name);
+
+        Task RemoveAllTeams();
+
     }
 }

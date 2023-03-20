@@ -1,81 +1,120 @@
 ﻿@inject IUserData userData
 @inject IRequestsData requestsData
 @inject ISnackbar Snackbar
+@inject ITeamsData teamsData
 
 <MudDialog>
     <DialogContent>
         <div>
-            <!-- TODO: show the selectedUser's data here' -->
+
             <p class="mb-4"><b>User</b>: @selectedUser.firstName</p>
             <p><b>Direct Superior</b>: @superiorName</p>
             <p><b>Rank:</b> @selectedUser.rank</p>
             <p><b>Job:</b> @selectedUser.job</p>
             <p><b>Role:</b> @selectedUser.role</p>
-
-            @if (currentUser.role == "HQ" && selectedUser.userID != currentUser.userID)
+             
+            @if ((hasDirectADCON || hasIndirectADCON) && !isSameUser)
             {
-                <MudSelect @bind-Value="roleAssignmentValue" Label="Update Role" Placeholder="Select role" AdornmentColor="Color.Primary">
-                    <MudSelectItem Value="@("N/A")" Disabled="true">Roles</MudSelectItem>
-                    <MudSelectItem Value="@("Commander")">Commander</MudSelectItem>
-                    <MudSelectItem Value="@("Supervisor")">Supervisor</MudSelectItem>
-                    <MudSelectItem Value="@("Member")">Member</MudSelectItem>
-                </MudSelect>
-
-                <MudButton 
-                    OnClick="() => updateSelectedUserRole(roleAssignmentValue)"
-                >Confirm Role @roleAssignmentPrompt</MudButton>
-
-                <MudButton 
-                    Disabled="@(superior?.userID == currentUser.userID 
-                                || processingADCONRequest)" 
-                    OnClick="() => takeADCON(selectedUser)"
-                >Take ADCON</MudButton>
-            }
-            else if ((hasDirectADCON || hasIndirectADCON) && !isSameUser)
-            {
-                if(hasIndirectADCON)
-                {
-                    <MudButton Disabled="@(superior?.userID == currentUser.userID || processingADCONRequest)" OnClick="() => takeADCON(selectedUser)">Take ADCON</MudButton>
-                }
                 <p>last daily survey taken: TODO</p>
                 <p>last weekly survey taken: TODO</p>
                 <p>last monthly survey taken: TODO</p>
                 <p>Assign evaluator: TODO</p>
             }
         </div>
+
+        <div>
+
+                    @if (!isSameUser)
+                    {
+                        @if (hasGreatORequalRole && !hasDirectADCON && !hasIndirectADCON)
+                        {
+                            <MudButton Disabled="@(superior == null || processingADCONRequest)" OnClick="() => requestADCONOverUser()">Request ADCON</MudButton>
+                            <MudButton Disabled="@(hasOPCON || processingOPCONRequest)" OnClick="() => Cancel()">Request OPCON</MudButton>
+                        }
+
+                        @if ((!hasDirectADCON && hasIndirectADCON) || (currentUser.role == "HQ" && !hasDirectADCON))
+                        {
+                            <MudButton Disabled="@(processingADCONRequest)" OnClick="() => takeADCON(selectedUser)">Take ADCON</MudButton>
+                        }
+
+                        @if (currentUser.role != "HQ" && !selectedIsEvaluatorOfCurrent)
+                        {
+                            <MudButton Disabled="@(selectedIsEvaluatorOfCurrent || processingEvaluatorRequest)"
+                               OnClick="() => makeSelfAssignedEvaluatorRequest()">Request to be your evaluator</MudButton>
+                        }
+
+                        @if (selectedIsSelfAssignedEvaluator)
+                        {
+                            <MudButton Disabled="@(processingEvaluatorRequest)"
+                               OnClick="() =>
+                    removeSelfAssignedEvaluator()">Remove from your evaluators</MudButton>
+                        }
+
+
+                        
+
+                        @if (hasDirectADCON || hasIndirectADCON)
+                        {
+                            <MudSelect @bind-Value="selectedTeam" Label="Assign To Team" Placeholder="Select team" AdornmentColor="Color.Primary">
+                                <MudSelectItem T="@TeamsModel" Value="@null" Disabled="true">Your Teams</MudSelectItem>
+               
+                                @if(currentUserTeams != null)
+                                {
+                                    @foreach(var team in currentUserTeams)
+                                    {
+                                        <MudSelectItem Disabled="@processingOPCONRequest" T="@TeamsModel" Value="@team">@team.name</MudSelectItem>
+                                    }
+                                }
+                                
+                            </MudSelect>
+
+                            <MudButton OnClick="() => onOPCONAssignment(selectedUser.userID, selectedTeam.ObjectId)">Confirm Team Assignment</MudButton>
+                        }
+                        <!-- TODO: ask if we need to send request even when there is indirect ADCON
+                        else if(hasIndirectADCON)
+                        {
+                            OPCON Request here
+                        }-->
+                        else if (hasGreatORequalRole)
+                        {
+                            <MudSelect @bind-Value="selectedTeam" Label="Request Team Outsource" Placeholder="Select team" AdornmentColor="Color.Primary">
+                                <MudSelectItem T="@TeamsModel" Value="@null" Disabled="true">Your Teams</MudSelectItem>
+
+                                @if (currentUserTeams != null)
+                                {
+                                    @foreach (var team in currentUserTeams)
+                                    {
+                                        <MudSelectItem T="@TeamsModel" Value="@team">@team.name</MudSelectItem>
+
+                                    }
+                                }
+
+                            </MudSelect>
+
+                            <MudButton>Request Team Outsource</MudButton>
+                        }
+                    }
+
+                    @if (currentUser.role == "HQ" && !isSameUser)
+                    {
+                        <MudSelect @bind-Value="roleAssignmentValue" Label="Update Role" Placeholder="Select role" AdornmentColor="Color.Primary">
+                            <MudSelectItem Value="@("N/A")" Disabled="true">Roles</MudSelectItem>
+                            <MudSelectItem Value="@("Commander")">Commander</MudSelectItem>
+                            <MudSelectItem Value="@("Supervisor")">Supervisor</MudSelectItem>
+                            <MudSelectItem Value="@("Member")">Member</MudSelectItem>
+                        </MudSelect>
+
+                        <MudButton 
+                            OnClick="() => updateSelectedUserRole(roleAssignmentValue)">Confirm Role @roleAssignmentPrompt</MudButton>
+                    }
+
+            
+        </div>
+        
     </DialogContent>
 
     <DialogActions>
-        <MudButton OnClick="Cancel">Cancel</MudButton>
-        @if (hasGreatORequalRole && !isSameUser)
-        {
-            @if (isSuperiorToSelectedUser(selectedUser.role))
-            {
-                <!-- TODO: fix dis --> 
-                <MudButton Disabled="@(hasDirectADCON || superior == null || processingADCONRequest || hasIndirectADCON)" OnClick="() => requestADCONOverUser()">Request ADCON</MudButton>
-                <MudButton Disabled="@(hasOPCON || processingOPCONRequest)" OnClick="() => Cancel()">Request OPCON</MudButton>
-                <MudMenu Label="Request: ">
-                    <MudMenuItem OnClick="() => Cancel()">Request ADCON</MudMenuItem>
-                    <MudMenuItem OnClick="() => Cancel()">Request OPCON</MudMenuItem>
-                    <MudMenuItem OnClick="() => Cancel()">Request to be evaulator</MudMenuItem>
-                </MudMenu>
-            }
-        }
-
-        @if(!isSameUser && currentUser.role != "HQ" && !selectedIsEvaluatorOfCurrent)
-        {
-            <MudButton Disabled="@(selectedIsEvaluatorOfCurrent || processingEvaluatorRequest)"
-                   OnClick="() => makeSelfAssignedEvaluatorRequest()">Request to be your evaluator</MudButton>
-        }
-
-        @if(selectedIsSelfAssignedEvaluator)
-        {
-            <MudButton Disabled="@(processingEvaluatorRequest)"
-                   OnClick="() =>
-                    removeSelfAssignedEvaluator()">Remove from your evaluators</MudButton>
-        }
-
-        
+        <MudButton OnClick="Cancel">Close</MudButton> 
     </DialogActions>
 </MudDialog>
 @code {
@@ -84,7 +123,9 @@
     [CascadingParameter] MudDialogInstance MudDialog { get; set; }
     [Parameter] public UserModel selectedUser { get; set; }
     [Parameter] public UserModel currentUser { get; set; }
+    [Parameter] public List<TeamsModel> currentUserTeams { get; set; }
 
+    TeamsModel selectedTeam;
 
     bool hasDirectADCON = false;
     bool hasIndirectADCON = false;
@@ -148,22 +189,22 @@
             // if the current user is trying to ask for ADCON of a peer,then only need their direct superior.
             newADCONTransferRequest.requestTarget1 = firstUserForHandshake.userID;
         }
-        else if(hasDirectADCONOverUser(secondUserForHandshake, firstUserForHandshake))
+        else if(userData.hasDirectADCONOverUser(secondUserForHandshake, firstUserForHandshake))
         {
             // only need second user
             newADCONTransferRequest.requestTarget1 = secondUserForHandshake.userID;
         }
-        else if(hasDirectADCONOverUser(firstUserForHandshake, secondUserForHandshake))
+        else if(userData.hasDirectADCONOverUser(firstUserForHandshake, secondUserForHandshake))
         {
             // only need first user
             newADCONTransferRequest.requestTarget1 = firstUserForHandshake.userID;
         }
-        else if( await hasIndirectADCONOverUser(secondUserForHandshake, firstUserForHandshake))
+        else if( await userData.hasIndirectADCONOverUser(secondUserForHandshake, firstUserForHandshake))
         {
             // only need second user
             newADCONTransferRequest.requestTarget1 = secondUserForHandshake.userID;
         }
-        else if(await hasIndirectADCONOverUser(firstUserForHandshake, secondUserForHandshake))
+        else if(await userData.hasIndirectADCONOverUser(firstUserForHandshake, secondUserForHandshake))
         {
             // only need first user
             newADCONTransferRequest.requestTarget1 = firstUserForHandshake.userID;
@@ -195,45 +236,6 @@
         }
         processingADCONRequest = false;
 
-    }
-
-
-    // TODO: move this into the dataLayer
-    bool hasDirectADCONOverUser(UserModel potentialSubordinate, UserModel potentialSuperior)
-    {
-        if (potentialSuperior.subordinates == null)
-        {
-            return false;
-        }
-        if(potentialSubordinate.superiors != null && potentialSubordinate.superiors.Count > 0 && potentialSubordinate.superiors[0] == currentUser.userID)
-        {
-            return true;
-        }
-        return false;
-    }
-
-    // TODO: move this into the dataLayer
-    async Task<bool> hasIndirectADCONOverUser(UserModel potentialSubordinate, UserModel potentialSuperior)
-    {
-        if(potentialSubordinate == null)
-        {
-            return false;
-        }
-
-        if (potentialSubordinate.superiors != null && potentialSubordinate.superiors.Count > 0)
-        {
-            if (potentialSubordinate.superiors[0] == potentialSuperior.userID)
-            {
-                return true;
-            }
-
-            UserModel nextUser = await userData.GetUser(potentialSubordinate.superiors[0]);
-
-            return await hasIndirectADCONOverUser(nextUser, potentialSuperior);
-        }
-
-
-        return false;
     }
 
 
@@ -327,14 +329,54 @@
     }
 
 
+    async Task<bool> assignOPCON(string userID, string teamID)
+    {
+        TeamsModel team = await teamsData.GetTeam(teamID);
+
+        if(team.members == null) team.members = new List<string>();
+
+        if (team.members.Contains(userID) == false)
+        {
+            UserModel user = await userData.GetUser(userID);
+
+            if(user.teamIDs.Contains(team.ObjectId) == true)
+            {
+                return false;
+            }
+
+            team.members.Add(userID);
+            user.teamIDs.Add(team.ObjectId);
+            await userData.UpdateUser(user);
+            await teamsData.UpdateTeam(team);
+            return true;
+        }
+        return false;
+    }
+
+    async Task onOPCONAssignment(string userID, string teamID)
+    {
+
+        bool result = await assignOPCON(userID, teamID);
+
+        if(result)
+        {
+            Snackbar.Add("Sucecssfully assigned OPCON", Severity.Success);
+        }
+        else
+        {
+            Snackbar.Add("ERROR: unable to assign OPCON", Severity.Error);
+        }
+    }
+
+
     protected async override Task OnInitializedAsync()
     {
-        hasIndirectADCON = await hasIndirectADCONOverUser(selectedUser, currentUser);
-        hasDirectADCON = hasDirectADCONOverUser(selectedUser, currentUser);
+        hasIndirectADCON = await userData.hasIndirectADCONOverUser(selectedUser, currentUser);
+        hasDirectADCON = userData.hasDirectADCONOverUser(selectedUser, currentUser);
         hasOPCON = false; // TODO: update to see if they have OPCON over the selected user
-        
-        selectedIsSelfAssignedEvaluator = currentUser.selfAssignedEvaluators.Contains(selectedUser.userID);
-        selectedIsSuperiorAssignedEvaluator = currentUser.superiorAssignedEvaluators.Contains(selectedUser.userID);
+
+        selectedIsSelfAssignedEvaluator = currentUser.selfAssignedEvaluators != null ? currentUser.selfAssignedEvaluators.Contains(selectedUser.userID) : false;
+        selectedIsSuperiorAssignedEvaluator = currentUser.superiorAssignedEvaluators != null ? currentUser.superiorAssignedEvaluators.Contains(selectedUser.userID) : false;
         selectedIsEvaluatorOfCurrent = selectedIsSelfAssignedEvaluator || selectedIsSuperiorAssignedEvaluator;
 
         hasGreatORequalRole = isSuperiorToSelectedUser(selectedUser.role);
@@ -373,5 +415,8 @@
 
         //currentUser.subordinates.Remove(selectedUser.userID);
         //await userData.UpdateUser(currentUser);
+
+        //await userData.EmptyAllTeamIDs();
+        //await teamsData.RemoveAllTeams();
     }
 }

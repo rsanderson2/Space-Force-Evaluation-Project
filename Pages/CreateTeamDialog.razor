@@ -5,7 +5,7 @@
 <MudDialog>
     <DialogContent>
         <div>
-            <MudInput T="string" Placeholder="Team Name" bind-Value="@teamName" />
+            <MudInput T="string" Placeholder="Team Name" @bind-Value="teamName" />
         </div>
     </DialogContent>
 
@@ -35,9 +35,24 @@
         newTeam.members = new List<string>();
         newTeam.name = teamName;
 
+        List<TeamsModel> teamsUserLeads = await teamsData.GetTeamsByLeader(currentUser.userID);
+        foreach(var team in teamsUserLeads)
+        {
+            if(team.name == newTeam.name)
+            {
+                // cannot add team since one already exist with same lead/name
+                Snackbar.Add("ERROR: team with specified name already exist", Severity.Error);
+                isProcessingTeamCreation = false;
+                return;
+            }
+        }
         await teamsData.CreateTeam(newTeam);
+        if (currentUser.teamIDs == null) currentUser.teamIDs = new List<String>();
+        currentUser.teamIDs.Add(newTeam.ObjectId);
+        await userData.UpdateUser(currentUser);
+        Snackbar.Add("Successfully created new team. Refresh to see changes.", Severity.Success);
+
         isProcessingTeamCreation = false;
-        StateHasChanged();
     }
 
     protected async override Task OnInitializedAsync()

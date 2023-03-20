@@ -4,7 +4,7 @@ public class TeamsModel
 {
     [BsonId]
     [BsonRepresentation(BsonType.ObjectId)]
-    public string ObjectID { get; set; }
+    public string ObjectId { get; set; }
 
     public String leader { get; set; }
 

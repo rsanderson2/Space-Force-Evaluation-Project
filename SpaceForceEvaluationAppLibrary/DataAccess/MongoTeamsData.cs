@@ -24,8 +24,14 @@ public class MongoTeamsData : ITeamsData
 
     public async Task<TeamsModel> GetTeam(string ObjectID)
     {
-        var results = await _teams.FindAsync(u => u.ObjectID == ObjectID);
+        var results = await _teams.FindAsync(u => u.ObjectId == ObjectID);
         return results.FirstOrDefault();
+    }
+
+    public async Task<List<TeamsModel>> GetTeamsByName(string name)
+    {
+        var results = await _teams.FindAsync(u => u.name == name);
+        return results.ToList();
     }
 
     public async Task<List<TeamsModel>> GetTeamsByLeader(string leaderID)
@@ -44,7 +50,7 @@ public class MongoTeamsData : ITeamsData
 
     public Task UpdateTeam(TeamsModel team)
     {
-        var filter = Builders<TeamsModel>.Filter.Eq("ObjectID", team.ObjectID);
+        var filter = Builders<TeamsModel>.Filter.Eq("ObjectId", team.ObjectId);
         return _teams.ReplaceOneAsync(filter, team, new ReplaceOptions { IsUpsert = true });
     }
 
@@ -52,6 +58,11 @@ public class MongoTeamsData : ITeamsData
     {
         var filter = Builders<TeamsModel>.Filter.Eq("ObjectID", ObjectID);
         var result = await _teams.DeleteOneAsync(filter);
+    }
+
+    public async Task RemoveAllTeams()
+    {
+        await _teams.DeleteManyAsync(new BsonDocument());
     }
 
 }

@@ -3,6 +3,7 @@
 @inject AuthenticationStateProvider authProvider
 @inject NavigationManager navManager
 @inject IUserData userData
+@inject ITeamsData teamData
 @inject IAccoladeData accoladeData
 @inject IJSRuntime JsRuntime 
 @inject IDialogService DialogService
@@ -77,7 +78,9 @@
     List<UserModel> users;
     UserModel currentUser;
     List<UserModel> subordinateUsers = new ();
+    List<UserModel> selfAssignedEvaluators = new();
     List<UserModel> displayedUsers = new();
+    List<TeamsModel> currentUserTeams = new ();
 
     public class FilterStatus
     {
@@ -100,11 +103,8 @@
 
         for(int i = 0; i < filtersStatus.GetLength(0); i++)
         {
-            if (filtersStatus[i].name == "Users who you have ADCON over" && filtersStatus[i].showFilterData)
+            if (filtersStatus[i].name == "Users under your ADCON" && filtersStatus[i].showFilterData)
             {
-                // System.Diagnostics.Debug.WriteLine("This will be displayed in output window");
-
-                // TODO: get ADCON over here
                 if (!filtersStatus[i].hasFetchedFilterData)
                 {
                     subordinateUsers = await userData.GetDirectSubordinates(currentUser);
@@ -113,12 +113,16 @@
                 displayedUsers = displayedUsers.Union(subordinateUsers).ToList();
                 buttonFlag = false;
             }
-            else if (filtersStatus[i].name == "Self assigned evaluators")
+            else if (filtersStatus[i].name == "Self assigned evaluators" && filtersStatus[i].showFilterData)
             {
-                // TODO: get self assigned evaluators here
                 if (!filtersStatus[i].hasFetchedFilterData)
                 {
-
+                    selfAssignedEvaluators = await getSelfAssignedEvaluators(currentUser);
+                }
+                if(selfAssignedEvaluators != null)
+                {
+                    displayedUsers = displayedUsers.Union(selfAssignedEvaluators).ToList();
+                    displayedUsers.RemoveAll(item => item == null);
                 }
             }
             else if (filtersStatus[i].name == "Users who you evaluate")
@@ -129,11 +133,7 @@
 
                 }
             }
-            else if (filtersStatus[i].name == "Users who have OPCON over you")
-            {
-                // TODO: get users who have OPCON over you
-            }
-            else if (filtersStatus[i].name == "Users who you have OPCON over")
+            else if (filtersStatus[i].name == "Users under your OPCON")
             {
                 // TODO: get users that you have OPCON over
                 if (!filtersStatus[i].hasFetchedFilterData)
@@ -176,6 +176,7 @@
 
         parameters.Add("selectedUser", selectedUser);
         parameters.Add("currentUser", currentUser);
+        parameters.Add("currentUserTeams", currentUserTeams);
 
         DialogService.Show<TeamManagementUserDialog>("User Data", parameters, options );
     }
@@ -214,11 +215,10 @@
         for (int i = 0; i < filtersStatus.GetLength(0); i++)
         {
             String filterName;
-            if (i == 0) filterName = "Users who you have ADCON over";
+            if (i == 0) filterName = "Users under your ADCON";
             else if (i == 1) filterName = "Self assigned evaluators";
-            else if (i == 2) filterName = "Users who you evaluate";
-            else if (i == 3) filterName = "Users who you have OPCON over";
-            else filterName = "Users who have OPCON over you";
+            else if (i == 2) filterName = "Users you evaluate";
+            else filterName = "Users under your OPCON";
             filtersStatus[i] = new FilterStatus
                 {
                     name = filterName,
@@ -229,13 +229,40 @@
     }
 
 
+    // TODO: move this to data layer
+    public async Task<List<UserModel>> getSelfAssignedEvaluators(UserModel user)
+    {
+        if (user.selfAssignedEvaluators == null) return null;
+        List<UserModel> evaluators = new List<UserModel>();
+
+        foreach(var evaluatorID in user.selfAssignedEvaluators)
+        {
+            evaluators.Add(await userData.GetUser(evaluatorID));
+        }
+
+        return evaluators;
+    }
+
+
     protected async override Task OnInitializedAsync()
     {
         currentUser = await AuthenticationStateProviderHelpers.GetUserFromAuth(authProvider, userData);
         users = await userData.getAllUsers();
         AddUsersToDictionary(users, DisplayedUsersDictionary);
-        //subordinateUsers = await getDirectSubordinates();
-        filtersStatus = new FilterStatus[5];
+
+        if(currentUser.teamIDs != null)
+        {
+            foreach(var teamID in currentUser.teamIDs)
+            {
+                if(teamID != "") 
+                {
+                    TeamsModel tempTeam = new TeamsModel();
+                    tempTeam = await teamData.GetTeam(teamID);
+                    currentUserTeams.Add(tempTeam);
+                }
+            }
+        }
+        filtersStatus = new FilterStatus[4];
         initializeFiltersStatus();
         isLoading = false;
     }

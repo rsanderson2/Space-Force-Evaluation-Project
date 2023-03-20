@@ -13,6 +13,12 @@ namespace SpaceForceEvaluationAppLibrary.DataAccess
 
         Task<UserModel> GetClosestCommander(string userID);
 
+        bool hasDirectADCONOverUser(UserModel potentialSubordinate, UserModel potentialSuperior);
+
+        Task<bool> hasIndirectADCONOverUser(UserModel potentialSubordinate, UserModel potentialSuperior);
+
+        Task EmptyAllTeamIDs();
+
         /*
         Task<List<UserModel>> GetUsersFromIdList(List<string> userIds);
         Task<List<UserModel>> GetAllSubordinates(string ObjectIdentifier);

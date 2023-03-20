@@ -1,0 +1,121 @@
+﻿@inject IUserData userData
+@inject ITeamsData teamsData
+@inject ISnackbar Snackbar
+
+<MudDialog>
+    <DialogContent>
+        @if(teamInfo.teamLeader != null)
+        {
+            <MudText>Team Leader Name: @teamInfo.teamLeader.firstName</MudText>
+            <MudText>Team Leader Contact: @teamInfo.teamLeader.email</MudText>
+
+
+        }
+        <MudTable Items="@teamInfo.teamMembers" Hover="true" Loading="@isLoading">
+            <ToolBarContent>
+                <MudText Typo="Typo.h6">Members</MudText>
+                <MudSpacer />
+            </ToolBarContent>
+
+            <HeaderContent>
+                <MudTh>Name</MudTh>
+                <MudTh>Contact</MudTh>
+                <MudTh>Rank</MudTh>
+            </HeaderContent>
+            <RowTemplate>
+                <MudTd>@context.firstName</MudTd>
+                <MudTd>@context.email</MudTd>
+                <MudTd>@context.rank</MudTd>
+                @if(currentUser.userID == team.leader)
+                {
+                    <MudTd><MudButton OnClick="() => onMemberRemoval(team.ObjectId, context.userID)">Remove From Team</MudButton></MudTd>
+                }
+            </RowTemplate>
+        </MudTable>
+    </DialogContent>
+
+    <DialogActions>
+        <MudButton OnClick="Cancel">Close</MudButton>
+    </DialogActions>
+</MudDialog>
+
+
+
+@code {
+
+    public class TeamView
+    {
+        public UserModel teamLeader;
+        public List<UserModel> teamMembers;
+        public string teamName;
+        public TeamsModel team;
+    }
+
+    [CascadingParameter] MudDialogInstance MudDialog { get; set; }
+    [Parameter] public UserModel currentUser { get; set; }
+    [Parameter] public TeamsModel team { get; set; }
+
+    TeamView teamInfo = new TeamView();
+
+    bool isLoading = false;
+
+    void Submit() => MudDialog.Close(DialogResult.Ok(true));
+    void Cancel() => MudDialog.Cancel();
+
+    public async Task<bool> removeMember(string teamID, string memberToRemove)
+    {
+        TeamsModel team = await teamsData.GetTeam(teamID);
+
+        if(team.members.Contains(memberToRemove) == false)
+        {
+            return false;
+        }
+
+        UserModel userToRemove = await userData.GetUser(memberToRemove);
+
+        if(userToRemove.teamIDs.Contains(teamID) == false)
+        {
+            return false;
+        }
+
+        team.members.Remove(memberToRemove);
+        userToRemove.teamIDs.Remove(teamID);
+
+        await userData.UpdateUser(userToRemove);
+        await teamsData.UpdateTeam(team);
+
+        return true;
+    }
+
+    public async Task onMemberRemoval(string teamID, string memberToRemoveID)
+    {
+        bool result = await removeMember(teamID, memberToRemoveID);
+
+        if(result)
+        {
+            Snackbar.Add("Successfully removed user from team. Refresh to see changes.", Severity.Success);
+        }
+        else
+        {
+            Snackbar.Add("ERROR: unable to remove user from team.", Severity.Success);
+        }
+    }
+
+    protected async override Task OnInitializedAsync()
+    {
+        isLoading = true;
+
+        teamInfo.teamLeader = await userData.GetUser(team.leader);
+        teamInfo.teamName = team.name;
+        if(team.members != null)
+        {
+            teamInfo.teamMembers = new List<UserModel>();
+            foreach(var member in team.members)
+            {
+                teamInfo.teamMembers.Add(await userData.GetUser(member));
+            }
+        }
+
+        isLoading = false;
+    }
+}
