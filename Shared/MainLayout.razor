@@ -71,17 +71,28 @@
             color: #FFFFFF;
             font-family: 'HelveticaNeueMedium';
             font-style: normal;
-            font-weight: 1000;
+            font-weight: 900;
             font-size: 100%;
         }
 
         .btn {
             color: #FFFFFF;
+            font-weight: 900;
         }
 
         .dropdown:hover .dropdown-menu {
             display: block;
+            background-color: #E7F1FF;
         }
+
+        .dropdown-menu .dropdown-item{
+            font-family: 'HelveticaNeueMedium';
+            font-style: normal;
+            font-weight: 900;
+            font-size: 80%;
+            background-color: #E7F1FF;
+        }
+
     </style>
 </head>
 
@@ -92,8 +103,11 @@
 
             <!-- Bootstrap Navbar-->
 
+            <!--33.3 x 46.2-->
+
             <nav class="navbar navbar-expand-lg navbar-light">
                 <div class="container-flex">
+                    <img src="/Logo_3_no_words.png" width="49.95px" height="69.3px" class="d-inline-block align-top" alt="">
                     <span class="navbar-brand mb-0 h1">GAEA</span>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -105,17 +119,23 @@
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Reports</a>
                                 <ul class="dropdown-menu">
-                                    <li class="dropdown-item"><a class="nav-link" href="/Reports">Team Reports</a></li>
+                                    <!--<li class="dropdown-item"><a class="nav-link" href="/Reports">Team Reports</a></li>-->
                                     <li class="dropdown-item"><a class="nav-link" href="/mysurveys">My Surveys</a></li>
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Management</a>
                                 <ul class="dropdown-menu">
-                                    <li class="dropdown-item"><a class="nav-link" href="/Teammanagement">Team Management</a></li>
-                                    <li class="dropdown-item">
-                                        <a class="nav-link" href="/Teammanagement/Requests">Requests</a>
-                                    </li>
+                                    <li class="dropdown-item"><a class="nav-link" href="/Teammanagement">Manage Teams</a></li>
+                                    <li class="dropdown-item"><a class="nav-link" href="/my-teams">My Team</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Requests</a>
+                                <ul class="dropdown-menu">
+                                    <li class="dropdown-item"><a class="nav-link" href="/Teammanagement/Requests">ADCON</a></li>
+                                    <li class="dropdown-item"><a class="nav-link" href="#">OPCON</a></li>
+                                    <li class="dropdown-item"><a class="nav-link" href="/Teammanagement/evaluation-assignment-requests">Evaluator</a></li>
                                 </ul>
                             </li>
                         </ul>
