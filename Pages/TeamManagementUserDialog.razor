@@ -46,69 +46,66 @@
                         @if (selectedIsSelfAssignedEvaluator)
                         {
                             <MudButton Disabled="@(processingEvaluatorRequest)"
-                               OnClick="() =>
-                    removeSelfAssignedEvaluator()">Remove from your evaluators</MudButton>
+                               OnClick="() => removeSelfAssignedEvaluator()">Remove from your evaluators</MudButton>
                         }
 
 
 
 
                 @if ((hasDirectADCON || hasIndirectADCON) && currentUser.role == "Commander") // TODO: update to account for supervisors being team leaders if Roger says so
-                        {
-                            <MudSelect @bind-Value="selectedTeam" Label="Assign To Team" Placeholder="Select team" AdornmentColor="Color.Primary">
-                                <MudSelectItem T="@TeamsModel" Value="@null" Disabled="true">Your Teams</MudSelectItem>
+                {
+                    <MudSelect @bind-Value="selectedTeam" Label="Assign To Team" Placeholder="Select team" AdornmentColor="Color.Primary">
+                        <MudSelectItem T="@TeamsModel" Value="@null" Disabled="true">Your Teams</MudSelectItem>
                
-                                @if(currentUserTeams != null)
-                                {
-                                    @foreach(var team in currentUserTeams)
-                                    {
-                                        <MudSelectItem Disabled="@processingOPCONRequest" T="@TeamsModel" Value="@team">@team.name</MudSelectItem>
-                                    }
-                                }
+                        @if(currentUserTeams != null)
+                        {
+                            @foreach(var team in currentUserTeams)
+                            {
+                                <MudSelectItem Disabled="@processingOPCONRequest" T="@TeamsModel" Value="@team">@team.name</MudSelectItem>
+                            }
+                        }
                                 
-                            </MudSelect>
+                    </MudSelect>
 
-                            <MudButton OnClick="() => onOPCONAssignment(selectedUser.userID, selectedTeam.ObjectId)">Confirm Team Assignment</MudButton>
-                        }
-                        <!-- TODO: ask if we need to send request even when there is indirect ADCON
-                        else if(hasIndirectADCON)
+                    <MudButton OnClick="() => onOPCONAssignment(selectedUser.userID, selectedTeam.ObjectId)">Confirm Team Assignment</MudButton>
+                }
+                <!-- TODO: ask if we need to send request even when there is indirect ADCON
+                else if(hasIndirectADCON)
+                {
+                    OPCON Request here
+                }-->
+                else if (hasGreatORequalRole)
+                {
+                    <MudSelect @bind-Value="selectedTeam" Label="Request Team Outsource" Placeholder="Select team" AdornmentColor="Color.Primary">
+                        <MudSelectItem T="@TeamsModel" Value="@null" Disabled="true">Your Teams</MudSelectItem>
+
+                        @if (currentUserTeams != null)
                         {
-                            OPCON Request here
-                        }-->
-                        else if (hasGreatORequalRole)
-                        {
-                            <MudSelect @bind-Value="selectedTeam" Label="Request Team Outsource" Placeholder="Select team" AdornmentColor="Color.Primary">
-                                <MudSelectItem T="@TeamsModel" Value="@null" Disabled="true">Your Teams</MudSelectItem>
+                            @foreach (var team in currentUserTeams)
+                            {
+                                <MudSelectItem T="@TeamsModel" Value="@team">@team.name</MudSelectItem>
 
-                                @if (currentUserTeams != null)
-                                {
-                                    @foreach (var team in currentUserTeams)
-                                    {
-                                        <MudSelectItem T="@TeamsModel" Value="@team">@team.name</MudSelectItem>
-
-                                    }
-                                }
-
-                            </MudSelect>
-
-                    <MudButton OnClick="() => makeOPCONOutsourceRequest()">Request Team Outsource</MudButton>
+                            }
                         }
-                    }
 
-                    @if (currentUser.role == "HQ" && !isSameUser)
-                    {
-                        <MudSelect @bind-Value="roleAssignmentValue" Label="Update Role" Placeholder="Select role" AdornmentColor="Color.Primary">
-                            <MudSelectItem Value="@("N/A")" Disabled="true">Roles</MudSelectItem>
-                            <MudSelectItem Value="@("Commander")">Commander</MudSelectItem>
-                            <MudSelectItem Value="@("Supervisor")">Supervisor</MudSelectItem>
-                            <MudSelectItem Value="@("Member")">Member</MudSelectItem>
-                        </MudSelect>
+                    </MudSelect>
 
-                        <MudButton 
-                            OnClick="() => updateSelectedUserRole(roleAssignmentValue)">Confirm Role @roleAssignmentPrompt</MudButton>
-                    }
+            <MudButton OnClick="() => makeOPCONOutsourceRequest()">Request Team Outsource</MudButton>
+                }
+            }
 
-            
+            @if (currentUser.role == "HQ" && !isSameUser)
+            {
+                <MudSelect @bind-Value="roleAssignmentValue" Label="Update Role" Placeholder="Select role" AdornmentColor="Color.Primary">
+                    <MudSelectItem Value="@("N/A")" Disabled="true">Roles</MudSelectItem>
+                    <MudSelectItem Value="@("Commander")">Commander</MudSelectItem>
+                    <MudSelectItem Value="@("Supervisor")">Supervisor</MudSelectItem>
+                    <MudSelectItem Value="@("Member")">Member</MudSelectItem>
+                </MudSelect>
+
+                <MudButton 
+                    OnClick="() => updateSelectedUserRole(roleAssignmentValue)">Confirm Role @roleAssignmentPrompt</MudButton>
+            }
         </div>
         
     </DialogContent>

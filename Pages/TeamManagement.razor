@@ -73,14 +73,18 @@
 
 @code {
 
+
     Dictionary<String, bool> DisplayedUsersDictionary = new Dictionary<String, bool>();
+
 
     List<UserModel> users;
     UserModel currentUser;
     List<UserModel> subordinateUsers = new ();
     List<UserModel> selfAssignedEvaluators = new();
+    List<UserModel> usersUnderYourOPCON = new();
     List<UserModel> displayedUsers = new();
     List<TeamsModel> currentUserTeams = new ();
+
 
     public class FilterStatus
     {
@@ -89,12 +93,15 @@
         public bool hasFetchedFilterData { get; set; }
     }
 
+
     private FilterStatus[] filtersStatus;
+
 
     bool filtersHaveBeenReset;
     bool _additionalFeaturesIsExpanded;
     bool isLoading = true;
     bool buttonFlag = true;
+
 
     async Task onFilterChange()
     {
@@ -113,11 +120,13 @@
                 displayedUsers = displayedUsers.Union(subordinateUsers).ToList();
                 buttonFlag = false;
             }
+
             else if (filtersStatus[i].name == "Self assigned evaluators" && filtersStatus[i].showFilterData)
             {
                 if (!filtersStatus[i].hasFetchedFilterData)
                 {
                     selfAssignedEvaluators = await getSelfAssignedEvaluators(currentUser);
+                    filtersStatus[i].hasFetchedFilterData = true;
                 }
                 if(selfAssignedEvaluators != null)
                 {
@@ -125,7 +134,8 @@
                     displayedUsers.RemoveAll(item => item == null);
                 }
             }
-            else if (filtersStatus[i].name == "Users who you evaluate")
+
+            else if (filtersStatus[i].name == "Users you evaluate")
             {
                 // TODO: get users who you evaluate
                 if (!filtersStatus[i].hasFetchedFilterData)
@@ -133,18 +143,26 @@
 
                 }
             }
-            else if (filtersStatus[i].name == "Users under your OPCON")
+
+            else if (filtersStatus[i].name == "Users under your OPCON" && filtersStatus[i].showFilterData)
             {
                 // TODO: get users that you have OPCON over
                 if (!filtersStatus[i].hasFetchedFilterData)
                 {
-
+                    usersUnderYourOPCON = await getUsersUnderOPCON(currentUser);
+                    filtersStatus[i].hasFetchedFilterData = true;
+                }
+                if(usersUnderYourOPCON != null)
+                {
+                    displayedUsers = displayedUsers.Union(usersUnderYourOPCON).ToList();
+                    displayedUsers.RemoveAll(item => item == null);
                 }
             }
         }
         filtersHaveBeenReset = false;
         isLoading = false;
     }
+
 
     void onFilterReset()
     {
@@ -155,7 +173,9 @@
         // TODO: reset displayed users
     }
 
+
     private string _searchString;
+
 
     private Func<UserModel, bool> _quickFilter => x =>
     {
@@ -241,6 +261,35 @@
         }
 
         return evaluators;
+    }
+
+
+    // TODO: move to data layer
+    public async Task<List<UserModel>> getUsersUnderOPCON(UserModel user)
+    {
+        List<TeamsModel> teamsUserLeads = await teamData.GetTeamsByLeader(user.userID);
+        List<UserModel> usersUnderOPCON = new List<UserModel>();
+        List<string> usersIDUnderOPCON = new List<string>();
+
+        if(teamsUserLeads != null)
+        {
+            foreach(var team in teamsUserLeads)
+            {
+                if(team.members != null)
+                {
+                    foreach (var member in team.members)
+                    {
+                        if(usersIDUnderOPCON.Contains(member) == false)
+                        {
+                            usersIDUnderOPCON.Add(member);
+                            usersUnderOPCON.Add(await userData.GetUser(member));
+                        }
+                    }
+                }
+            }
+        }
+
+        return usersUnderOPCON;
     }
 
 

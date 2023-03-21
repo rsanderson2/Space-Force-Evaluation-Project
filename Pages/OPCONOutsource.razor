@@ -92,7 +92,7 @@
     }
 
 
-    public async void _UpdateEvaluationTransferRequestsStatus(String newStatus, OPCONOutsourceRequests context)
+    public async void _UpdateRequestsStatus(String newStatus, OPCONOutsourceRequests context)
     {
         context.status = newStatus;
         context.request.status = newStatus;
@@ -114,12 +114,12 @@
         var parameters = new DialogParameters();
         var options = new DialogOptions { CloseOnEscapeKey = true };
 
-        void UpdateEvaluationTransferRequestsStatus(String newStatus)
+        void UpdateRequestsStatus(String newStatus)
         {
-            _UpdateEvaluationTransferRequestsStatus(newStatus, context);
+            _UpdateRequestsStatus(newStatus, context);
         }
 
-        parameters.Add("UpdateStatus", UpdateEvaluationTransferRequestsStatus);
+        parameters.Add("UpdateStatus", _UpdateRequestsStatus);
         parameters.Add("CurrentStatus", context.request.status);
         parameters.Add("canApproveOrDeny", (currentUser.userID == context.request.requestTarget1
                                           || currentUser.userID == context.request.requestTarget2));
