@@ -19,6 +19,8 @@ namespace SpaceForceEvaluationAppLibrary.DataAccess
 
         Task EmptyAllTeamIDs();
 
+        Task<UserModel> GetUserByEmail(String email);
+
         /*
         Task<List<UserModel>> GetUsersFromIdList(List<string> userIds);
         Task<List<UserModel>> GetAllSubordinates(string ObjectIdentifier);
@@ -28,6 +30,8 @@ namespace SpaceForceEvaluationAppLibrary.DataAccess
         Task<bool> ADCONTransfer(String currentUserID, String subordinateID);
 
         Task<bool> addUserToSelfAssignedEvaluators(String currentUserID, String newEvaluatorID);
+
+        Task<bool> addUserToSuperiorAssignedEvaluators(String currentUserID, String newEvaluatorID);
 
         Task<List<UserModel>> GetUsersAsync();
         Task<List<UserModel>> GetUsersFromTeam(string teamId);
@@ -39,6 +43,8 @@ namespace SpaceForceEvaluationAppLibrary.DataAccess
         Task EmptyAllSupordinatesAndSuperiorsList();
 
         Task removeSelfAssignedEvaluatorFromUser(String evaluatorID, String userID);
+        Task removeSuperiorAssignedEvaluatorFromUser(String evaluatorID, String userID);
+
 
     }
 }

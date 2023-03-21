@@ -77,15 +77,32 @@ public class MongoRequestsData : IRequestsData
 
     public async Task<bool> CheckIfRequestExist(RequestsModel request)
     {
-        // var results = await _requests.FindAsync(u => u.requestInitiator != "");
-        var queryResponse = await _requests.FindAsync(u => 
-                                                    u.requestInitiator == request.requestInitiator && 
-                                                    u.requestTarget == request.requestTarget &&
-                                                    u.value == request.value &&
-                                                    u.type == request.type &&
-                                                    u.status == "Pending"); 
-        var results = queryResponse.ToList();
+        // TODO: remove this after refactoring
+        if(request.values == null)
+        {
+            var queryResponse = await _requests.FindAsync(u =>
+                                                        u.requestInitiator == request.requestInitiator &&
+                                                        u.requestTarget == request.requestTarget &&
+                                                        u.value == request.value &&
+                                                        u.type == request.type &&
+                                                        u.status == "Pending");
+            var results = queryResponse.ToList();
 
-        return (results.Count > 0);
+            return (results.Count > 0);
+        }
+        else // TODO: only use this after refactoring. 
+        {
+            var queryResponse = await _requests.FindAsync(u =>
+                                                        u.requestInitiator == request.requestInitiator &&
+                                                        u.requestTarget == request.requestTarget &&
+                                                        u.values != null && u.values[0] == request.values[0] && u.values[1] == request.values[1] &&
+                                                        u.type == request.type &&
+                                                        u.status == "Pending");
+            var results = queryResponse.ToList();
+
+            return (results.Count > 0);
+        }
+
+        
     }
 }

@@ -157,6 +157,41 @@ public class MongoUserData : IUserData
         }
     }
 
+
+    public async Task<bool> addUserToSuperiorAssignedEvaluators(String currentUserID, String newEvaluatorID)
+    {
+        UserModel currentUser = await GetUser(currentUserID);
+        // Three is the current limit for self assigned evaluators. 
+        if (currentUser.superiorAssignedEvaluators.Count < 3)
+        {
+            // newEvaluators is already an evaluator for this user
+            bool isSuperiorAssignedEvaluator = currentUser.superiorAssignedEvaluators.Contains(newEvaluatorID); ;
+            bool isSelfAssignedEvaluator = currentUser.selfAssignedEvaluators.Contains(newEvaluatorID);
+
+            if (isSuperiorAssignedEvaluator || isSelfAssignedEvaluator)
+            {
+                return false;
+            }
+
+            currentUser.superiorAssignedEvaluators.Add(newEvaluatorID);
+            await UpdateUser(currentUser);
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public async Task removeSuperiorAssignedEvaluatorFromUser(String evaluatorID, String userID)
+    {
+        UserModel user = await GetUser(userID);
+
+        user.superiorAssignedEvaluators.Remove(evaluatorID);
+        await UpdateUser(user);
+        return;
+    }
+
     public async Task removeSelfAssignedEvaluatorFromUser(String evaluatorID, String userID)
     {
         UserModel user = await GetUser(userID);
@@ -200,6 +235,13 @@ public class MongoUserData : IUserData
             return await hasIndirectADCONOverUser(nextUser, potentialSuperior);
         }
         return false;
+    }
+
+
+    public async Task<UserModel> GetUserByEmail(String email)
+    {
+        var results = await _users.FindAsync(u => u.email == email);
+        return results.FirstOrDefault();
     }
 
     /*

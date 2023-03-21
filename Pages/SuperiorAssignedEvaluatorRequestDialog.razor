@@ -1,0 +1,89 @@
+﻿@inject IUserData userData
+@inject IRequestsData requestsData
+@inject ISnackbar Snackbar
+
+<MudDialog>
+    <DialogContent>
+        <div>
+               <p>TODO: add summary information here</p>
+        </div>
+    </DialogContent>
+
+    <DialogActions>
+        <MudButton OnClick="Cancel">Cancel</MudButton>
+
+        @if (canApproveOrDeny)
+        {
+            <MudButton Disabled="@(processingEvaluationRequest || (currentStatus != "Pending" && currentStatus != "Awaiting second response"))"
+                OnClick="() => onApproval()">Approve</MudButton>
+
+            <MudButton Disabled="@(processingEvaluationRequest || (currentStatus != "Pending" && currentStatus != "Awaiting second response"))"
+                OnClick="() => denyEvaluationRequests()"
+            >Deny</MudButton>
+        }
+    </DialogActions>
+    
+
+</MudDialog>
+
+
+
+@code {
+    public class EvaluationAssignmentRequests
+    {
+        public UserModel user;
+        public UserModel superiorOfUser;
+        public UserModel newEvaluator;
+        public RequestsModel request;
+        public String status;
+    }
+
+    [CascadingParameter] MudDialogInstance MudDialog { get; set; }
+    [Parameter] public UserModel newEvaluator { get; set; }
+    [Parameter] public UserModel user { get; set; }
+    [Parameter] public String currentStatus { get; set; }
+    [Parameter] public Action<string> UpdateStatus { get; set; }
+    [Parameter] public bool canApproveOrDeny { get; set; }
+    [Parameter] public bool requiresMultipleApprovals { get; set; }
+
+
+    void Submit() => MudDialog.Close(DialogResult.Ok(true));
+    void Cancel() => MudDialog.Cancel();
+
+    bool processingEvaluationRequest = false;
+
+    async Task onApproval()
+    {
+        processingEvaluationRequest = true;
+        // call addUserToSelfAssignedEvaluators
+        bool result = await userData.addUserToSuperiorAssignedEvaluators(user.userID, newEvaluator.userID);
+
+        if(result)
+        {
+            UpdateStatus("Approved");
+            currentStatus = "Approved";
+            Snackbar.Add("Successfully approved evaluation requests.", Severity.Success);
+        }
+        else
+        {
+            UpdateStatus("Error");
+            currentStatus = "Error";
+            Snackbar.Add("Error: exceeded limit of evaluators or error assigning user to evaluators", Severity.Error);
+        }
+        processingEvaluationRequest = false;
+    }
+
+
+    async Task denyEvaluationRequests()
+    {
+        UpdateStatus("Denied");
+        currentStatus = "Denied";
+        Snackbar.Add("Successfully denied evaluation requests.", Severity.Success);
+        StateHasChanged();
+    }
+
+
+    protected async override Task OnInitializedAsync()
+    {
+    }
+}

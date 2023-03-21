@@ -95,10 +95,29 @@
 
                 @if (hasDirectADCON)
                 {
+                    @if(superiorAssignedEvaluators != null && superiorAssignedEvaluators.Count > 0)
+                    {
+                        <MudTable Items="@superiorAssignedEvaluators" Hover="false">
+                            <ToolBarContent>
+                                <MudText>Superior Assigned Evaluators</MudText>
+                                <MudSpacer />
+                            </ToolBarContent>
+                            <HeaderContent>
+                                <MudTh>User</MudTh>
+                                <MudTh>Email</MudTh>
+                            </HeaderContent>
+                            <RowTemplate>
+                                <MudTd>@context.firstName</MudTd>
+                                <MudTd>@context.email</MudTd>
+                                <MudTd><MudButton OnClick="() => onRemoveSuperiorAssignedEvaluator(context.userID, selectedUser.userID)">Remove evaluator</MudButton></MudTd>
+                            </RowTemplate>
+                        </MudTable>
+                    }
+                    
                    <div>
-                        <MudInput FullWidth="true" T="string" Placeholder="New evaluator's email" />
+                        <MudInput FullWidth="true" T="string" Placeholder="New evaluator's email" @bind-Value="superiorAssignedEvaluatorEmail"/>
                         <div>
-                            <MudButton>Request to be @selectedUser.firstName's evaluator </MudButton>
+                            <MudButton OnClick="() => makeSuperiorAssignedEvaluatorRequest()">Request to be @selectedUser.firstName's evaluator </MudButton>
                         </div>
                     </div>
                     
@@ -135,6 +154,8 @@
     [Parameter] public UserModel currentUser { get; set; }
     [Parameter] public List<TeamsModel> currentUserTeams { get; set; }
 
+    List<UserModel> superiorAssignedEvaluators = new List<UserModel>();
+
     TeamsModel selectedTeam;
 
     bool hasDirectADCON = false;
@@ -150,11 +171,14 @@
     bool processingADCONRequest = false;
     bool processingOPCONRequest = false;
     bool processingEvaluatorRequest = false;
+    bool processingSuperiorEvaluationRequest = false;
 
     String roleAssignmentValue = "";
     String roleAssignmentPrompt = "";
     String superiorName = "";
     UserModel superior;
+    String superiorAssignedEvaluatorEmail = ""; 
+
 
     void Submit() => MudDialog.Close(DialogResult.Ok(true));
     void Cancel() => MudDialog.Cancel();
@@ -270,6 +294,53 @@
         return user.superiorAssignedEvaluators.Contains(potentialEvaluator.userID);
     }
 
+    async Task makeSuperiorAssignedEvaluatorRequest()
+    {
+        processingSuperiorEvaluationRequest = true;
+        UserModel potentialEvaluator = await userData.GetUserByEmail(superiorAssignedEvaluatorEmail);
+        if(selectedUser.superiorAssignedEvaluators != null && selectedUser.superiorAssignedEvaluators.Count > 3) // TODO: change the 3 to a variable, not a hard coded number
+        {
+            Snackbar.Add($"ERROR: user has max number of superior assigned evaluators.", Severity.Error);
+        }
+        else if(potentialEvaluator == null)
+        {
+            Snackbar.Add($"ERROR: user with email ({superiorAssignedEvaluatorEmail}) not found", Severity.Error);
+        }
+        else if (await isUserSuperiorAssignedEvaluator(selectedUser, potentialEvaluator))
+        {
+            Snackbar.Add($"ERROR: {potentialEvaluator.firstName} is already a superior assigned evaluator", Severity.Error);
+        }
+        else if(await isUserSelfAssignedEvaluator(selectedUser, potentialEvaluator))
+        {
+            Snackbar.Add($"ERROR: {potentialEvaluator.firstName} was already assigned by {selectedUser.firstName} to be an evaluator", Severity.Error);
+        }
+        else
+        {
+            // TODO: update after Ethan sends new model. 
+            RequestsModel newEvaluationAssignmentRequest = new RequestsModel();
+            newEvaluationAssignmentRequest.requestInitiator = currentUser.userID;
+            newEvaluationAssignmentRequest.requestTarget1 = potentialEvaluator.userID;
+            newEvaluationAssignmentRequest.requestTarget2 = null;
+            newEvaluationAssignmentRequest.value = selectedUser.userID;
+            //newEvaluationAssignmentRequest.values = new List<string>();
+            //newEvaluationAssignmentRequest.values.Add(potentialEvaluator.userID);
+            //newEvaluationAssignmentRequest.values.Add(selectedUser.userID);
+            newEvaluationAssignmentRequest.type = "SuperiorAssignedEvaluationRequest";
+            newEvaluationAssignmentRequest.status = "Pending";
+
+            if (await requestsData.CheckIfRequestExist(newEvaluationAssignmentRequest))
+            {
+                Snackbar.Add("ERROR: request alread exist", Severity.Error);
+            }
+            else
+            {
+                Snackbar.Add("Request sent", Severity.Success);
+                await requestsData.CreateRequests(newEvaluationAssignmentRequest);
+            }
+        }
+        processingSuperiorEvaluationRequest = false;
+    }
+
 
     async Task makeSelfAssignedEvaluatorRequest()
     {
@@ -299,6 +370,17 @@
         await userData.removeSelfAssignedEvaluatorFromUser(selectedUser.userID, currentUser.userID);
         Snackbar.Add("Removed as evaluator. Refresh to see changes", Severity.Success);
         processingEvaluatorRequest = true;
+    }
+
+    async Task onRemoveSuperiorAssignedEvaluator(string evaluatorID, string userID)
+    {
+        await userData.removeSuperiorAssignedEvaluatorFromUser(evaluatorID, userID);
+        Snackbar.Add("Removed as evaluator. Refresh to see changes", Severity.Success);
+        var itemToRemove = superiorAssignedEvaluators.SingleOrDefault(r => r.userID == evaluatorID);
+        if (itemToRemove != null)
+        {
+            superiorAssignedEvaluators.Remove(itemToRemove);
+        }
     }
 
     IDictionary<string, int> roles = new Dictionary<string, int>() {
@@ -451,6 +533,15 @@
 
         }
 
+        if(selectedUser.superiorAssignedEvaluators != null)
+        {
+            foreach (var evaluator in selectedUser.superiorAssignedEvaluators) 
+            {
+                superiorAssignedEvaluators.Add(await userData.GetUser(evaluator));
+            }
+            superiorAssignedEvaluators.RemoveAll(item => item == null);
+        }
+
         //await userData.EmptyAllSupordinatesAndSuperiorsList();
         // await requestsData.RemoveAllRequests();
 
@@ -460,6 +551,6 @@
         //await userData.EmptyAllTeamIDs();
         //await teamsData.RemoveAllTeams();
 
-        //await requestsData.RemoveAllRequestsOfType("OPCONOutsourceRequest");
+        // await requestsData.RemoveAllRequestsOfType("SuperiorAssignedEvaluationRequest");
     }
 }

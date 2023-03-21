@@ -1,4 +1,4 @@
-﻿@page "/Teammanagement/evaluation-assignment-requests"
+﻿@page "/Requests/evaluation-assignment-requests"
 @attribute [Authorize]
 @inject AuthenticationStateProvider authProvider
 @inject NavigationManager navManager
@@ -8,7 +8,7 @@
 @inject ISnackbar Snackbar
 
 
-<PageTitle>Team Management</PageTitle>
+<PageTitle>Evaluation Requests</PageTitle>
 
 <div>
 
@@ -19,7 +19,6 @@
                 <HeaderContent>
                     <MudTh>User</MudTh>
                     <MudTh>New Evaluator</MudTh>
-                    <MudTh>Status</MudTh>
                     <MudTh><MudTableSortLabel InitialDirection="SortDirection.Ascending" SortBy="new Func<EvaluationAssignmentRequests, object>(x=>x.status)">Status</MudTableSortLabel></MudTh>
                 </HeaderContent>
                 <RowTemplate>
@@ -41,7 +40,6 @@
                 <HeaderContent>
                     <MudTh>User</MudTh>
                     <MudTh>New Evaluator</MudTh>
-                    <MudTh>Status</MudTh>
                     <MudTh><MudTableSortLabel InitialDirection="SortDirection.Ascending" SortBy="new Func<EvaluationAssignmentRequests, object>(x=>x.status)">Status</MudTableSortLabel></MudTh>
                 </HeaderContent>
                 <RowTemplate>
@@ -130,7 +128,15 @@
         parameters.Add("requiresMultipleApprovals", (context.request.requestTarget2 != null));
         parameters.Add("newEvaluator", (context.newEvaluator));
         parameters.Add("user", context.user);
-        DialogService.Show<SelfAssignedEvaluatorRequestDialog>("Request Data", parameters, options);
+
+        if (context.request.type == "EvaluationAssignmentRequest")
+        {
+            DialogService.Show<SelfAssignedEvaluatorRequestDialog>("Request Data", parameters, options);
+        }
+        else if(context.request.type == "SuperiorAssignedEvaluationRequest")
+        {
+            DialogService.Show<SuperiorAssignedEvaluatorRequestDialog>("Request Data", parameters, options);
+        }
     }
 
 
@@ -143,13 +149,25 @@
         for (int i = 0; i < recievedRequests.Count; i++)
         {
             RequestsModel request = recievedRequests[i];
-
+            // gets self assigned evaluation requests
             if (request.type == "EvaluationAssignmentRequest")
             {
                 EvaluationAssignmentRequests newRequest = new EvaluationAssignmentRequests();
 
                 newRequest.newEvaluator = (await userData.GetUser(request.requestTarget1));
                 newRequest.superiorOfUser = (await userData.GetUser(request.requestTarget2));
+                newRequest.user = (await userData.GetUser(request.value));
+                newRequest.request = request;
+                newRequest.status = request.status;
+
+                recievedEvaluationRequests.Add(newRequest);
+            }
+            else if (request.type == "SuperiorAssignedEvaluationRequest") // NOTE: keeping this incase we have to send the evaluation request to another person as well
+            {
+                EvaluationAssignmentRequests newRequest = new EvaluationAssignmentRequests();
+
+                newRequest.newEvaluator = (await userData.GetUser(request.requestTarget1));
+                newRequest.superiorOfUser = null;
                 newRequest.user = (await userData.GetUser(request.value));
                 newRequest.request = request;
                 newRequest.status = request.status;
@@ -167,6 +185,18 @@
             RequestsModel request = sentRequests[i];
 
             if (request.type == "EvaluationAssignmentRequest")
+            {
+                EvaluationAssignmentRequests newRequest = new EvaluationAssignmentRequests();
+
+                newRequest.newEvaluator = (await userData.GetUser(request.requestTarget1));
+                newRequest.superiorOfUser = (await userData.GetUser(request.requestTarget2));
+                newRequest.user = (await userData.GetUser(request.value));
+                newRequest.request = request;
+                newRequest.status = request.status;
+
+                sentEvaluationRequests.Add(newRequest);
+            }
+            else if (request.type == "SuperiorAssignedEvaluationRequest")
             {
                 EvaluationAssignmentRequests newRequest = new EvaluationAssignmentRequests();
 
