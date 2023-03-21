@@ -24,35 +24,35 @@
 
         <div>
 
-                    @if (!isSameUser)
-                    {
-                        @if (hasGreatORequalRole && !hasDirectADCON && !hasIndirectADCON)
-                        {
-                            <MudButton Disabled="@(superior == null || processingADCONRequest)" OnClick="() => requestADCONOverUser()">Request ADCON</MudButton>
-                            <MudButton Disabled="@(hasOPCON || processingOPCONRequest)" OnClick="() => Cancel()">Request OPCON</MudButton>
-                        }
+            @if (!isSameUser)
+            {
+                @if (hasGreatORequalRole && !hasDirectADCON && !hasIndirectADCON)
+                {
+                    <MudButton Disabled="@(superior == null || processingADCONRequest)" OnClick="() => requestADCONOverUser()">Request ADCON</MudButton>
+                    <MudButton Disabled="@(hasOPCON || processingOPCONRequest)" OnClick="() => Cancel()">Request OPCON</MudButton>
+                }
 
-                        @if ((!hasDirectADCON && hasIndirectADCON) || (currentUser.role == "HQ" && !hasDirectADCON))
-                        {
-                            <MudButton Disabled="@(processingADCONRequest)" OnClick="() => takeADCON(selectedUser)">Take ADCON</MudButton>
-                        }
+                @if ((!hasDirectADCON && hasIndirectADCON) || (currentUser.role == "HQ" && !hasDirectADCON))
+                {
+                    <MudButton Disabled="@(processingADCONRequest)" OnClick="() => takeADCON(selectedUser)">Take ADCON</MudButton>
+                }
 
-                        @if (currentUser.role != "HQ" && !selectedIsEvaluatorOfCurrent)
-                        {
-                            <MudButton Disabled="@(selectedIsEvaluatorOfCurrent || processingEvaluatorRequest)"
-                               OnClick="() => makeSelfAssignedEvaluatorRequest()">Request to be your evaluator</MudButton>
-                        }
+                @if (currentUser.role != "HQ" && !selectedIsEvaluatorOfCurrent)
+                {
+                    <MudButton Disabled="@(selectedIsEvaluatorOfCurrent || processingEvaluatorRequest)"
+                        OnClick="() => makeSelfAssignedEvaluatorRequest()">Request to be your evaluator</MudButton>
+                }
 
-                        @if (selectedIsSelfAssignedEvaluator)
-                        {
-                            <MudButton Disabled="@(processingEvaluatorRequest)"
-                               OnClick="() => removeSelfAssignedEvaluator()">Remove from your evaluators</MudButton>
-                        }
-
-
+                @if (selectedIsSelfAssignedEvaluator)
+                {
+                    <MudButton Disabled="@(processingEvaluatorRequest)"
+                        OnClick="() => removeSelfAssignedEvaluator()">Remove from your evaluators</MudButton>
+                }
 
 
-                @if ((hasDirectADCON || hasIndirectADCON) && currentUser.role == "Commander") // TODO: update to account for supervisors being team leaders if Roger says so
+
+
+                @if ((hasDirectADCON || hasIndirectADCON) && (currentUser.role == "Commander" || currentUser.role == "HQ")) // TODO: update to account for supervisors being team leaders if Roger says so
                 {
                     <MudSelect @bind-Value="selectedTeam" Label="Assign To Team" Placeholder="Select team" AdornmentColor="Color.Primary">
                         <MudSelectItem T="@TeamsModel" Value="@null" Disabled="true">Your Teams</MudSelectItem>
@@ -90,9 +90,22 @@
 
                     </MudSelect>
 
-            <MudButton OnClick="() => makeOPCONOutsourceRequest()">Request Team Outsource</MudButton>
+                    <MudButton OnClick="() => makeOPCONOutsourceRequest()">Request Team Outsource</MudButton>
+                }
+
+                @if (hasDirectADCON)
+                {
+                   <div>
+                        <MudInput FullWidth="true" T="string" Placeholder="New evaluator's email" />
+                        <div>
+                            <MudButton>Request to be @selectedUser.firstName's evaluator </MudButton>
+                        </div>
+                    </div>
+                    
                 }
             }
+
+            
 
             @if (currentUser.role == "HQ" && !isSameUser)
             {
