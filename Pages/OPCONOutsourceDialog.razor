@@ -1,0 +1,111 @@
+﻿@inject IUserData userData
+@inject IRequestsData requestsData
+@inject ISnackbar Snackbar
+@inject ITeamsData teamsData
+
+
+<MudDialog>
+    <DialogContent>
+        <div>
+            <p>TODO: add summary information here</p>
+        </div>
+    </DialogContent>
+
+    <DialogActions>
+        <MudButton OnClick="Cancel">Cancel</MudButton>
+
+        @if (canApproveOrDeny)
+        {
+            <MudButton Disabled="@(processingRequest || (currentStatus != "Pending" && currentStatus != "Awaiting second response"))"
+                   OnClick="() => onApproval()">Approve</MudButton>
+
+            <MudButton Disabled="@(processingRequest || (currentStatus != "Pending" && currentStatus != "Awaiting second response"))"
+                   OnClick="() => denyRequests()">Deny</MudButton>
+        }
+    </DialogActions>
+
+
+</MudDialog>
+
+
+
+@code {
+    public class OPCONOutsourceRequests
+    {
+        public UserModel user;
+        public TeamsModel newTeam;
+        public RequestsModel request;
+        public String status;
+    }
+
+    [CascadingParameter] MudDialogInstance MudDialog { get; set; }
+    [Parameter] public TeamsModel newTeam { get; set; }
+    [Parameter] public UserModel user { get; set; }
+    [Parameter] public String currentStatus { get; set; }
+    [Parameter] public Action<string> UpdateStatus { get; set; }
+    [Parameter] public bool canApproveOrDeny { get; set; }
+
+
+    void Submit() => MudDialog.Close(DialogResult.Ok(true));
+    void Cancel() => MudDialog.Cancel();
+
+    bool processingRequest = false;
+
+    public async Task<bool> addUserToTeam(string userID, string teamID)
+    {
+        UserModel user = await userData.GetUser(userID);
+
+        if(user.teamIDs.Contains(teamID))
+        {
+            return false;
+        }
+
+        TeamsModel team = await teamsData.GetTeam(teamID);
+
+        if(team.members.Contains(userID))
+        {
+            return false;
+        }
+
+        user.teamIDs.Add(teamID);
+        team.members.Add(userID);
+        await userData.UpdateUser(user);
+        await teamsData.UpdateTeam(team);
+
+        return true;
+    }
+
+    async Task onApproval()
+    {
+        processingRequest = true;
+        bool result = await addUserToTeam(user.userID, newTeam.ObjectId);
+
+        if (result)
+        {
+            UpdateStatus("Approved");
+            currentStatus = "Approved";
+            Snackbar.Add("Successfully approved evaluation requests.", Severity.Success);
+        }
+        else
+        {
+            UpdateStatus("Error");
+            currentStatus = "Error";
+            Snackbar.Add("Error: exceeded limit of evaluators or error assigning user to evaluators", Severity.Error);
+        }
+        processingRequest = false;
+    }
+
+
+    async Task denyRequests()
+    {
+        UpdateStatus("Denied");
+        currentStatus = "Denied";
+        Snackbar.Add("Successfully denied evaluation requests.", Severity.Success);
+        StateHasChanged();
+    }
+
+
+    protected async override Task OnInitializedAsync()
+    {
+    }
+}

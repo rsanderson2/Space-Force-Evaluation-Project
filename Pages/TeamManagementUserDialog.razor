@@ -51,9 +51,9 @@
                         }
 
 
-                        
 
-                        @if (hasDirectADCON || hasIndirectADCON)
+
+                @if ((hasDirectADCON || hasIndirectADCON) && currentUser.role == "Commander") // TODO: update to account for supervisors being team leaders if Roger says so
                         {
                             <MudSelect @bind-Value="selectedTeam" Label="Assign To Team" Placeholder="Select team" AdornmentColor="Color.Primary">
                                 <MudSelectItem T="@TeamsModel" Value="@null" Disabled="true">Your Teams</MudSelectItem>
@@ -91,7 +91,7 @@
 
                             </MudSelect>
 
-                            <MudButton>Request Team Outsource</MudButton>
+                    <MudButton OnClick="() => makeOPCONOutsourceRequest()">Request Team Outsource</MudButton>
                         }
                     }
 
@@ -369,6 +369,37 @@
     }
 
 
+    async Task makeOPCONOutsourceRequest()
+    {
+
+        processingOPCONRequest = true;
+        if (selectedTeam == null)
+        {
+            Snackbar.Add("ERROR: must select a valid team", Severity.Error);
+        }
+        RequestsModel newOPCONOutsourceRequest = new RequestsModel();
+        newOPCONOutsourceRequest.requestTarget1 = selectedUser.superiors[0];
+        newOPCONOutsourceRequest.requestTarget2 = selectedTeam.ObjectId; // TODO: update to account for supervisors being team leaders if Roger says so
+        newOPCONOutsourceRequest.requestInitiator = selectedTeam.leader;
+        newOPCONOutsourceRequest.value = selectedUser.userID;
+        newOPCONOutsourceRequest.type = "OPCONOutsourceRequest";
+        newOPCONOutsourceRequest.status = "Pending";
+
+
+        if (await requestsData.CheckIfRequestExist(newOPCONOutsourceRequest))
+        {
+            Snackbar.Add("ERROR: request alread exist", Severity.Error);
+        }
+        else
+        {
+            await requestsData.CreateRequests(newOPCONOutsourceRequest);
+            Snackbar.Add("Request sent", Severity.Success);
+
+        }
+        processingOPCONRequest = false;
+    }
+
+
     protected async override Task OnInitializedAsync()
     {
         hasIndirectADCON = await userData.hasIndirectADCONOverUser(selectedUser, currentUser);
@@ -418,5 +449,7 @@
 
         //await userData.EmptyAllTeamIDs();
         //await teamsData.RemoveAllTeams();
+
+        //await requestsData.RemoveAllRequestsOfType("OPCONOutsourceRequest");
     }
 }

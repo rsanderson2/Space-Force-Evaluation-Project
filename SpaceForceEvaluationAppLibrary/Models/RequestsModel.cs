@@ -9,6 +9,7 @@ public class RequestsModel
 
     // For ADCONTransferRequest: nearest superior commander of user being transfered 
     // For EvaluatorAssignmentRequests: new potential evaluator
+    // For OPCONTransferRequest: direct superior (person with direct ADCON) of user being outsourced
     public string requestTarget1 { get; set; } 
 
 
@@ -16,18 +17,26 @@ public class RequestsModel
         // if user requesting transfer is a commander, than none
         // else closest superior commander to user reqeusting transfer
     // For EvaluationAssignmentRequests: superior of user being evaluated,
+    // For OPCONTransferRequest:
+        // team ID of team that the user is being outsourced to. 
+
+        //OLD:  if requestInitiator.leader.role is commander, than none
+        //OLD:  else closest superior commander to user requesting transfer TODO: see if this is necessary because it may be that only commanders can lead teams
+        
     public string requestTarget2 { get; set; }
 
 
     // For ADCONTransferRequest: userID of person who iniated the request
     // For EvaluationAssignmentRequests: user being evaluated, or their direct/indirect superior
+    // For OPCONTransferRequests: leader of team user is being outsourced to                  OLD: teamID of team that the user is being outsourced to
     public string requestInitiator { get; set; }
 
 
-    public string type { get; set; } // "ADCONTransferRequest", "EvaluationAssignmentRequest"
+    public string type { get; set; } // "ADCONTransferRequest", "EvaluationAssignmentRequest", "OPCONOutsourceRequest"
 
     // For ADCONTransferRequest: user being transfered
     // For EvaluationAssignmentRequest: user being evaluated
+    // For OPCONTransferRequests: user being outsourced to team. 
     public string value { get; set; } 
 
 

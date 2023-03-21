@@ -68,6 +68,12 @@ public class MongoRequestsData : IRequestsData
         var result = await _requests.DeleteManyAsync(filter);
     }
 
+    public async Task RemoveAllRequestsOfType(string type)
+    {
+        var filter = Builders<RequestsModel>.Filter.Eq("type", type);
+        var result = await _requests.DeleteOneAsync(filter);
+    }
+
 
     public async Task<bool> CheckIfRequestExist(RequestsModel request)
     {

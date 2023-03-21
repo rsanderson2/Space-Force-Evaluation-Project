@@ -16,6 +16,8 @@ namespace SpaceForceEvaluationAppLibrary.DataAccess
         Task RemoveRequest(string ObjectID);
 
         Task RemoveAllRequests();
+
+        Task RemoveAllRequestsOfType(string type);
         Task<bool> CheckIfRequestExist(RequestsModel request);
     }
 }
