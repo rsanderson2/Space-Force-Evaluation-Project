@@ -38,7 +38,10 @@ namespace SpaceForceEvaluationAppLibrary.DataAccess
 
         IMongoCollection<TeamsModel> TeamsCollection { get; }
         string TeamsCollectionName { get; }
-
+        IMongoCollection<QuestionsModel> QuestionCollection { get; }
+        string QuestionCollectionName { get; }
+        IMongoCollection<NewSurveyModel> NewSurveyCollection { get; }
+        string NewSurveyCollectionName { get; }
 
     }
 }

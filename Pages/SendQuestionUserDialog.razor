@@ -96,6 +96,46 @@
     {
         List<GeneratedSurveyModel> surveyList = await generatedSurveyData.GetGeneratedSurveysbyUser(selectedUser.userID);
 
+        if (surveyList.Count == 0)
+        {
+            GeneratedSurveyModel newGeneratedSurvey = new GeneratedSurveyModel();
+
+            // Daily
+            newGeneratedSurvey.surveyType = "Daily";
+            newGeneratedSurvey.takerID = selectedUser.userID;
+            newGeneratedSurvey.date_administered = DateTime.Now;
+            newGeneratedSurvey.date_taken = DateTime.Now;
+            newGeneratedSurvey.generatedQuestions = new List<string>();
+            newGeneratedSurvey.injectedQuestions = new List<string>();
+            newGeneratedSurvey.userReportStats = new List<string>();
+            await generatedSurveyData.CreateGeneratedSurvey(newGeneratedSurvey);
+
+            // Weekly
+            newGeneratedSurvey = new GeneratedSurveyModel();
+            newGeneratedSurvey.surveyType = "Weekly";
+            newGeneratedSurvey.takerID = selectedUser.userID;
+            newGeneratedSurvey.date_administered = DateTime.Now;
+            newGeneratedSurvey.date_taken = DateTime.Now;
+            newGeneratedSurvey.generatedQuestions = new List<string>();
+            newGeneratedSurvey.injectedQuestions = new List<string>();
+            newGeneratedSurvey.userReportStats = new List<string>();
+            await generatedSurveyData.CreateGeneratedSurvey(newGeneratedSurvey);
+
+            // Monthly
+            newGeneratedSurvey = new GeneratedSurveyModel();
+            newGeneratedSurvey.surveyType = "Monthly";
+            newGeneratedSurvey.takerID = selectedUser.userID;
+            newGeneratedSurvey.date_administered = DateTime.Now;
+            newGeneratedSurvey.date_taken = DateTime.Now;
+            newGeneratedSurvey.generatedQuestions = new List<string>();
+            newGeneratedSurvey.injectedQuestions = new List<string>();
+            newGeneratedSurvey.userReportStats = new List<string>();
+            await generatedSurveyData.CreateGeneratedSurvey(newGeneratedSurvey);
+
+            surveyList = await generatedSurveyData.GetGeneratedSurveysbyUser(selectedUser.userID);
+            Console.WriteLine(surveyList.Count.ToString());
+        }
+
         foreach (GeneratedSurveyModel s in surveyList)
         {
             if (s.surveyType == surveyValue)

@@ -1,19 +1,9 @@
 ﻿@inject IUserData userData
+@inject INewSurveyData newSurveyData
 
 <MudDialog>
     <DialogContent>
-         <!--
-            <div>
-                <h6>Question 3</h6>
-                <div style="padding-left: 5%; padding-bottom: 2%">
-                    <p><b>Question: </b> Do you like cheese?</p>
-                    <p><b>Type: </b>insanity check</p>
-                    <p><b>Response: </b>Absolutely, I am not a mad man</p>
-                </div>
-            </div>
-            <MudDivider />
-
-                 --><SpaceForceEvaluations.Components.CompletedSurveyContentHolder/>
+         <SpaceForceEvaluations.Components.CompletedSurveyContentHolder></SpaceForceEvaluations.Components.CompletedSurveyContentHolder>
     </DialogContent>
     <DialogActions>
         <MudButton OnClick="Cancel">Close</MudButton>
@@ -26,6 +16,7 @@
 
 
     [CascadingParameter] MudDialogInstance MudDialog { get; set; }
+    //[Parameter] public SurveyDataModel surveyParam { get; set; }
     [Parameter] public UserModel currentUser { get; set; }
 
     void Submit() => MudDialog.Close(DialogResult.Ok(true));
@@ -34,5 +25,30 @@
     protected async override Task OnInitializedAsync()
     {
 
+    }
+
+
+    public class SurveyDataModel
+    {
+        public DateTime dateTaken
+        {
+            get;
+            set;
+        }
+        public DateTime dateAdministered
+        {
+            get;
+            set;
+        }
+        public string type
+        {
+            get;
+            set;
+        }
+        public NewSurveyModel newSurveyStore
+        {
+            get;
+            set;
+        }
     }
 }

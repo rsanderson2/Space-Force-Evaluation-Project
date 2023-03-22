@@ -20,10 +20,10 @@ public class MongoGeneratedSurvey : IGeneratedSurveyData
         _generatedSurvey = db.GeneratedSurvey;
     }
 
-    public async Task<List<GeneratedSurveyModel>> CreateGeneratedSurvey(GeneratedSurveyModel survey)
+    public Task CreateGeneratedSurvey(GeneratedSurveyModel survey)
     {
-        await _generatedSurvey.InsertOneAsync(survey);
-        return await GetGeneratedSurveysbyUser(survey.takerID);
+        return _generatedSurvey.InsertOneAsync(survey);
+        //return await GetGeneratedSurveysbyUser(survey.takerID);
     }
 
     public async Task<GeneratedSurveyModel> GetGeneratedSurvey(string id)

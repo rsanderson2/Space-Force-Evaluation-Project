@@ -7,7 +7,7 @@ namespace SpaceForceEvaluationAppLibrary.DataAccess
 {
     public interface IGeneratedSurveyData
     {
-        Task<List<GeneratedSurveyModel>> CreateGeneratedSurvey(GeneratedSurveyModel survey);
+        Task CreateGeneratedSurvey(GeneratedSurveyModel survey);
         Task<GeneratedSurveyModel> GetGeneratedSurvey(string id);
         Task<List<GeneratedSurveyModel>> GetGeneratedSurveysbyUser(string takerID);
         Task UpdateGeneratedSurvey(GeneratedSurveyModel generatedSurvey);

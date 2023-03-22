@@ -34,6 +34,9 @@ public class DbConnection : IDbConnection
 
     public string TeamsCollectionName { get; private set; } = "Teams";
 
+    public string QuestionCollectionName { get; private set; } = "Questions";
+    public string NewSurveyCollectionName { get; private set; } = "NewSurvey";
+
 
     // here each of the collections is intialized as a type referencing their respective models
     // located in SpaceForceEvaluationAppLibrary/Models.
@@ -58,6 +61,8 @@ public class DbConnection : IDbConnection
 
     public IMongoCollection<TeamsModel> TeamsCollection { get; private set; }
 
+    public IMongoCollection<QuestionsModel> QuestionCollection { get; private set; }
+    public IMongoCollection<NewSurveyModel> NewSurveyCollection { get; private set; }
 
     // here is the constructor for the database connection. The database connection is made first, then
     // each of the collections are connected.
@@ -80,6 +85,8 @@ public class DbConnection : IDbConnection
         RequestsCollection = _db.GetCollection<RequestsModel>(RequestsCollectionName);
         GeneratedSurvey = _db.GetCollection<GeneratedSurveyModel>(GeneratedSurveyCollectionName);
         TeamsCollection = _db.GetCollection<TeamsModel>(TeamsCollectionName);
+        QuestionCollection = _db.GetCollection<QuestionsModel>(QuestionCollectionName);
+        NewSurveyCollection = _db.GetCollection<NewSurveyModel>(NewSurveyCollectionName);
 
     }
 }

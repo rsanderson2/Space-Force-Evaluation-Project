@@ -4,6 +4,7 @@
 @inject IUserData userData
 @inject NavigationManager navManager
 @inject IGeneratedSurveyData generatedSurveyData
+@inject IQuestionsData questionData
 @inherits LayoutComponentBase
 
 
@@ -501,6 +502,46 @@
     {
         UserModel currentUser = await AuthenticationStateProviderHelpers.GetUserFromAuth(authProvider, userData);
         List<GeneratedSurveyModel> generatedSurveyList = await generatedSurveyData.GetGeneratedSurveysbyUser(currentUser.userID);
+        //Console.WriteLine(generatedSurveyList.Count.ToString());
+
+        if (generatedSurveyList.Count == 0)
+        {
+            GeneratedSurveyModel newGeneratedSurvey = new GeneratedSurveyModel();
+
+            // Daily
+            newGeneratedSurvey.surveyType = "Daily";
+            newGeneratedSurvey.takerID = currentUser.userID;
+            newGeneratedSurvey.date_administered = DateTime.Now;
+            newGeneratedSurvey.date_taken = DateTime.Now;
+            newGeneratedSurvey.generatedQuestions = new List<string>();
+            newGeneratedSurvey.injectedQuestions = new List<string>();
+            newGeneratedSurvey.userReportStats = new List<string>();
+            await generatedSurveyData.CreateGeneratedSurvey(newGeneratedSurvey);
+
+            // Weekly
+            newGeneratedSurvey = new GeneratedSurveyModel();
+            newGeneratedSurvey.surveyType = "Weekly";
+            newGeneratedSurvey.takerID = currentUser.userID;
+            newGeneratedSurvey.date_administered = DateTime.Now;
+            newGeneratedSurvey.date_taken = DateTime.Now;
+            newGeneratedSurvey.generatedQuestions = new List<string>();
+            newGeneratedSurvey.injectedQuestions = new List<string>();
+            newGeneratedSurvey.userReportStats = new List<string>();
+            await generatedSurveyData.CreateGeneratedSurvey(newGeneratedSurvey);
+
+            // Monthly
+            newGeneratedSurvey = new GeneratedSurveyModel();
+            newGeneratedSurvey.surveyType = "Monthly";
+            newGeneratedSurvey.takerID = currentUser.userID;
+            newGeneratedSurvey.date_administered = DateTime.Now;
+            newGeneratedSurvey.date_taken = DateTime.Now;
+            newGeneratedSurvey.generatedQuestions = new List<string>();
+            newGeneratedSurvey.injectedQuestions = new List<string>();
+            newGeneratedSurvey.userReportStats = new List<string>();
+            await generatedSurveyData.CreateGeneratedSurvey(newGeneratedSurvey);
+
+            generatedSurveyList = await generatedSurveyData.GetGeneratedSurveysbyUser(currentUser.userID);
+        }
 
         foreach (GeneratedSurveyModel survey in generatedSurveyList)
         {
@@ -511,7 +552,13 @@
                 for (int i = 0; i < dailyQuestionNum; i++)
                 {
                     cat = GenerateCategory().ToString();
-                    while (survey.injectedQuestions.Contains(cat) || tmpQuestions.Contains(cat)) cat = GenerateCategory().ToString();
+                    List<QuestionsModel> questions = await questionData.GetQuestionsByCategory(GetCategory(int.Parse(cat)));
+                    while (survey.injectedQuestions.Contains(cat) || tmpQuestions.Contains(cat) || questions.Count < 1 || cat == "13" || cat == "14" || cat == "9" || cat == "20")
+                    {
+                        //Console.WriteLine(questions.Count.ToString());
+                        questions = await questionData.GetQuestionsByCategory(GetCategory(int.Parse(cat)));
+                        cat = GenerateCategory().ToString();
+                    }
                     tmpQuestions.Add(cat);
                 }
             }
@@ -520,7 +567,12 @@
                 for (int i = 0; i < weeklyQuestionNum; i++)
                 {
                     cat = GenerateCategory().ToString();
-                    while (survey.injectedQuestions.Contains(cat) || tmpQuestions.Contains(cat)) cat = GenerateCategory().ToString();
+                    List<QuestionsModel> questions = await questionData.GetQuestionsByCategory(GetCategory(int.Parse(cat)));
+                    while (survey.injectedQuestions.Contains(cat) || tmpQuestions.Contains(cat) || questions.Count < 1 || cat == "13" || cat == "14" || cat == "9" || cat == "20")
+                    {
+                        questions = await questionData.GetQuestionsByCategory(GetCategory(int.Parse(cat)));
+                        cat = GenerateCategory().ToString();
+                    }
                     tmpQuestions.Add(cat);
                 }
             }
@@ -529,12 +581,14 @@
                 for (int i = 0; i < monthlyQuestionNum; i++)
                 {
                     cat = GenerateCategory().ToString();
-                    while (survey.injectedQuestions.Contains(cat) || tmpQuestions.Contains(cat))
+                    List<QuestionsModel> questions = await questionData.GetQuestionsByCategory(GetCategory(int.Parse(cat)));
+                    while (survey.injectedQuestions.Contains(cat) || tmpQuestions.Contains(cat) || questions.Count < 1 || cat == "13" || cat == "14" || cat == "9" || cat == "20")
                     {
-                        Console.WriteLine("TETSTSTSTS");
+                        questions = await questionData.GetQuestionsByCategory(GetCategory(int.Parse(cat)));
                         cat = GenerateCategory().ToString();
                     }
-                    tmpQuestions.Add(cat);
+                    //Console.WriteLine("Count: " + questions.Count.ToString());
+                    if (questions.Count > 0) tmpQuestions.Add(cat);
                 }
             }
             survey.generatedQuestions = tmpQuestions;
@@ -547,6 +601,7 @@
         if (type == 2) navManager.NavigateTo("/SurveyWeekly");
         if (type == 3) navManager.NavigateTo("/SurveyMonthly");
     }
+
     // Function to check that the user is logged in, and get the information from their b2c profile
     private async Task LoadAndVerifyUser()
     {
