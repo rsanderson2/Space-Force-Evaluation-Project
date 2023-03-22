@@ -1,11 +1,16 @@
 ﻿@inject IUserData userData
 @inject IRequestsData requestsData
 @inject ISnackbar Snackbar
+@inject ITeamsData teamsData
 
 <MudDialog>
     <DialogContent>
         <div>
-               <p>TODO: add summary information here</p>
+            <p class="adcon-dialogue"><b>User</b>: @newSubordinate.firstName</p>
+            <p><b>Direct Superior</b>: @superiorName</p>
+            <p><b>Rank:</b> @newSubordinate.rank</p>
+            <p><b>Job:</b> @newSubordinate.job</p>
+            <p><b>Role:</b> @newSubordinate.role</p>
         </div>
     </DialogContent>
 
@@ -14,17 +19,14 @@
 
         @if (canApproveOrDeny)
         {
-            <MudButton 
-                Disabled="@(processingADCONRequest || hasADCON || (currentStatus != "Pending" && currentStatus != "Awaiting second response"))"
-                OnClick="() => onApproval()">Approve</MudButton>
+            <MudButton Disabled="@(processingADCONRequest || hasADCON || (currentStatus != "Pending" && currentStatus != "Awaiting second response"))"
+                       OnClick="() => onApproval()">Approve</MudButton>
 
-            <MudButton 
-                Disabled="@(processingADCONRequest || hasADCON ||  (currentStatus != "Pending" && currentStatus != "Awaiting second response"))"
-                OnClick="() => denyADCON()"
-            >Deny</MudButton>
+            <MudButton Disabled="@(processingADCONRequest || hasADCON ||  (currentStatus != "Pending" && currentStatus != "Awaiting second response"))"
+                       OnClick="() => denyADCON()">Deny</MudButton>
         }
     </DialogActions>
-    
+
 
 </MudDialog>
 
@@ -60,11 +62,11 @@
     void Cancel() => MudDialog.Cancel();
 
 
-    async Task takeADCON(UserModel newSuperior ,UserModel newSubordinate)
+    async Task takeADCON(UserModel newSuperior, UserModel newSubordinate)
     {
         processingADCONRequest = true;
 
-        if(newSuperior.subordinates != null)
+        if (newSuperior.subordinates != null)
         {
             foreach (var newSuperiorSubordinate in newSuperior?.subordinates)
             {
