@@ -13,13 +13,32 @@
 
 <head>
     <link rel="stylesheet" href="/css/fonts.css" />
+
+    <style>
+        .filter {
+            border-radius: 15px;
+            background: #E7F1FF;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
+        }
+
+        .filter-title {
+            font-family: helveticaNeueBold;
+            font-size: 120%;
+        }
+
+        .filter-options {
+            font-family: helveticaNeueMedium;
+            font-size: 120%;
+        }
+
+    </style>
 </head>
 
 <div>
 
-    <MudPaper Width="350px" Class="mt-15 mb-3 pa-2" Elevation="4" Style="border-radius: 15px; background: #E7F1FF">
-        <MudNavMenu>
-            <MudNavGroup Class="mt-auto" Title="Additional Filters" Style="font-family: helveticaNeueBold; font-size: 120%;" @bind-Expanded=_additionalFeaturesIsExpanded>
+    <MudPaper Width="350px" Class="filter mt-15 mb-3 pa-2" Elevation="4">
+        <MudNavMenu class="filter-options">
+            <MudNavGroup Class="filter-title mt-auto" Title="Additional Filters" @bind-Expanded=_additionalFeaturesIsExpanded>
                 @if (filtersStatus != null)
                 {
                     @foreach(var filterStatus in filtersStatus)
