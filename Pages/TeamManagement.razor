@@ -23,12 +23,11 @@
 
         .filter-title {
             font-family: helveticaNeueBold;
-            font-size: 120%;
+            font-size: 135%;
         }
 
         .filter-options {
             font-family: helveticaNeueMedium;
-            font-size: 120%;
         }
 
     </style>
@@ -43,42 +42,42 @@
                 {
                     @foreach(var filterStatus in filtersStatus)
                     {
-                        <MudSwitch @bind-Checked="@filterStatus.showFilterData" Color="Color.Primary">@filterStatus.name</MudSwitch>
+                        <MudSwitch @bind-Checked="@filterStatus.showFilterData" Color="Color.Primary" Style="font-family: helveticaNeueMedium;">@filterStatus.name</MudSwitch>
                     }
                 }
-                <MudButton Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary" OnClick="@(() => onFilterChange())">
+                <MudButton Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary" OnClick="@(() => onFilterChange())" Style=" font-family: helveticaNeueMedium;">
                         Update Filters
                 </MudButton>
-                <MudButton Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary" OnClick="@(() => onFilterReset())">
+                <MudButton Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary" OnClick="@(() => onFilterReset())" Style=" font-family: helveticaNeueMedium;">
                     Remove Filters
                 </MudButton>
             </MudNavGroup>
         </MudNavMenu>
     </MudPaper>
 
-    <MudDataGrid Items="@( filtersHaveBeenReset ? users : (displayedUsers.Count == 0 ? noResults : displayedUsers))" MultiSelection="true" Hover="true" Hideable="true" Filterable="true" QuickFilter="@_quickFilter" Loading="@isLoading" Elevation="4" Style="border-radius: 15px; background: #E7F1FF" >
+    <MudDataGrid Items="@( filtersHaveBeenReset ? users : (displayedUsers.Count == 0 ? noResults : displayedUsers))" MultiSelection="true" Hover="true" Hideable="true" Filterable="true" QuickFilter="@_quickFilter" Loading="@isLoading" Elevation="4" Style="border-radius: 15px; background: #E7F1FF; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);">
         <ToolBarContent>
-            <MudText Typo="Typo.h5">Guardians</MudText>
+            <MudText Style="font-family: helveticaNeueBold; font-size: 300%;">Guardians</MudText>
             <MudSpacer />
             <MudTextField @bind-Value="_searchString" Placeholder="Search" Adornment="Adornment.Start" Immediate="true"
                           AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
         </ToolBarContent>
         <Columns >
-            <Column T="UserModel" Field="firstName" Title="First Name"/>
+            <Column T="UserModel" Field="firstName" Title="First Name" />
             <Column T="UserModel" Field="lastName" Title="Last Name" />
             <Column T="UserModel" Field="email" Title="Contact" />
             <Column T="UserModel" Field="rank" Title="Rank"/>
             <Column T="UserModel" Field="job" Title="Job"/>
             <Column T="UserModel" Filterable="false" Hideable="false">
                 <CellTemplate>
-                    <MudButton Disabled="@buttonFlag" Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary" OnClick="@(() => OpenSendQuestion(context.Item, currentUser))">
+                    <MudButton Disabled="@buttonFlag" Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary" OnClick="@(() => OpenSendQuestion(context.Item, currentUser))" Style=" font-family: helveticaNeueMedium;">
                         Send Question
                     </MudButton>
                 </CellTemplate>
             </Column>
             <Column T="UserModel" Filterable="false" Hideable="false">
                 <CellTemplate>
-                    <MudButton Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary" OnClick="@(() => OpenDialog(context.Item, currentUser))">
+                    <MudButton Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary" OnClick="@(() => OpenDialog(context.Item, currentUser))" Style=" font-family: helveticaNeueMedium;">
                         View More
                     </MudButton>
                 </CellTemplate>
