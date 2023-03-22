@@ -126,6 +126,8 @@
     async Task onFilterChange()
     {
         displayedUsers.Clear();
+        DisplayedUsersDictionary.Clear(); // empties dictionary
+                                          // clear the dictionary as well
         isLoading = true;
 
         for(int i = 0; i < filtersStatus.GetLength(0); i++)
@@ -137,7 +139,19 @@
                     subordinateUsers = await userData.GetDirectSubordinates(currentUser);
                     filtersStatus[i].hasFetchedFilterData = true;
                 }
-                displayedUsers = displayedUsers.Union(subordinateUsers).ToList();
+                // if not in dictionary already, then add
+                // else, nothing
+                if(subordinateUsers != null)
+                {
+                    foreach (var subordinate in subordinateUsers)
+                    {
+                        if (DisplayedUsersDictionary.ContainsKey(subordinate.userID) == false)
+                        {
+                            displayedUsers.Add(subordinate);
+                        }
+                    }
+                }
+                //displayedUsers = displayedUsers.Union(subordinateUsers).ToList();
                 buttonFlag = false;
             }
 
@@ -148,11 +162,23 @@
                     selfAssignedEvaluators = await getSelfAssignedEvaluators(currentUser);
                     filtersStatus[i].hasFetchedFilterData = true;
                 }
-                if(selfAssignedEvaluators != null)
+
+                if (selfAssignedEvaluators != null)
                 {
-                    displayedUsers = displayedUsers.Union(selfAssignedEvaluators).ToList();
+                    // if not in dictionary already, then add
+                    // else, code below
+                    foreach (var evaluator in selfAssignedEvaluators)
+                    {
+                        if (DisplayedUsersDictionary.ContainsKey(evaluator.userID) == false)
+                        {
+                            displayedUsers.Add(evaluator);
+                        }
+                    }
+
+                    //displayedUsers = displayedUsers.Union(selfAssignedEvaluators).ToList();
                     displayedUsers.RemoveAll(item => item == null);
                 }
+
             }
 
             else if (filtersStatus[i].name == "Users you evaluate")
@@ -166,15 +192,23 @@
 
             else if (filtersStatus[i].name == "Users under your OPCON" && filtersStatus[i].showFilterData)
             {
-                // TODO: get users that you have OPCON over
                 if (!filtersStatus[i].hasFetchedFilterData)
                 {
                     usersUnderYourOPCON = await getUsersUnderOPCON(currentUser);
                     filtersStatus[i].hasFetchedFilterData = true;
                 }
+
                 if(usersUnderYourOPCON != null)
                 {
-                    displayedUsers = displayedUsers.Union(usersUnderYourOPCON).ToList();
+
+                    foreach (var user in usersUnderYourOPCON)
+                    {
+                        if (DisplayedUsersDictionary.ContainsKey(user.userID) == false)
+                        {
+                            displayedUsers.Add(user);
+                        }
+                    }
+                    // displayedUsers = displayedUsers.Union(usersUnderYourOPCON).ToList();
                     displayedUsers.RemoveAll(item => item == null);
                 }
             }
@@ -257,7 +291,7 @@
             String filterName;
             if (i == 0) filterName = "Users under your ADCON";
             else if (i == 1) filterName = "Self assigned evaluators";
-            else if (i == 2) filterName = "Users you evaluate";
+            //else if (i == 2) filterName = "Users you evaluate";
             else filterName = "Users under your OPCON";
             filtersStatus[i] = new FilterStatus
                 {
@@ -331,7 +365,7 @@
                 }
             }
         }
-        filtersStatus = new FilterStatus[4];
+        filtersStatus = new FilterStatus[3];
         initializeFiltersStatus();
         isLoading = false;
     }
