@@ -51,12 +51,12 @@
                 <MudSelectItem Value="@("Monthly")" />
             </MudSelect>
 
-            <MudSelect @bind-Value="selectedSubject" T="UserModel" Label="Select Subject Type..." AnchorOrigin="Origin.BottomCenter">
-                @if(possibleSubjects != null)
+            <MudSelect @bind-Value="selectedSubject" T="UserModel" Label="Select Subject..." AnchorOrigin="Origin.BottomCenter">
+                @if (possibleSubjects != null)
                 {
-                    @foreach(var user in possibleSubjects)
+                    @foreach (var user in possibleSubjects)
                     {
-                        <MudSelectItem T="@UserModel" Value="@user">@user.firstName</MudSelectItem>
+                        <MudSelectItem T="@UserModel" Value="@user">@user.firstName @user.lastName</MudSelectItem>
                     }
                 }
             </MudSelect>
@@ -157,6 +157,9 @@
                 //tmp.Add("aaaaa");
                 //s.injectedQuestions = tmp;
                 //surveyId = s.injectedQuestions.ElementAt(1);
+                List<string> tmp = new List<string>();
+                tmp.Add(selectedSubject.userID);
+                s.userReportStats = tmp;
                 s.injectedQuestions.Add(categoryValue);
                 await generatedSurveyData.UpdateGeneratedSurvey(s);
             }
