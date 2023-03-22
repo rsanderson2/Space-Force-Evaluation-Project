@@ -3,7 +3,21 @@
 
 <MudDialog>
     <DialogContent>
-         <SpaceForceEvaluations.Components.CompletedSurveyContentHolder></SpaceForceEvaluations.Components.CompletedSurveyContentHolder>
+        @for(int i = 0; i< survey.question.Count; i++)
+        {
+
+            <div>
+            <h6>Question 5</h6>
+                <div style="padding-left: 5%; padding-bottom: 2%">
+                    <p><b>Question: </b> @survey.question[i]</p>
+                    <p><b>Category: </b>@GetCategory(int.Parse(survey.category[i]))</p>
+                    <p><b>Response: </b>@survey.freeResponseText[i]</p>
+                </div>
+             </div>
+            <MudDivider />
+        }
+
+
     </DialogContent>
     <DialogActions>
         <MudButton OnClick="Cancel">Close</MudButton>
@@ -13,11 +27,87 @@
 
 @code {
 
-
+    string GetCategory(int categoryNumber)
+    {
+        switch (categoryNumber)
+        {
+            case 1:
+                return "Job Dedication";
+            case 2:
+                return "Interpersonal Justice";
+            case 3:
+                return "Informational Justice";
+            case 4:
+                return "Innovator";
+            case 5:
+                return "Risk Attitude ";
+            case 6:
+                return "Integrity";
+            case 7:
+                return "TP";
+            case 8:
+                return "Trust";
+            case 9:
+                return "Innovation Climate";
+            case 10:
+                return "Authenticity - Authentic Living ";
+            case 11:
+                return "Supporting";
+            case 12:
+                return "OCB-I";
+            case 13:
+return "Help-Seeking";
+            case 14:
+                return "Problem-solving assistance";
+            case 15:
+                return "Supervisor Task Support";
+            case 16:
+                return "Honesty/Candor";
+            case 17:
+                return "Inclusion";
+            case 18:
+                return "Moral strivings";
+            case 19:
+                return "Fairness";
+            case 20:
+                return "Managerial Behavior: Broker";
+            case 21:
+                return "Psychological Saftey";
+            case 22:
+                return "Communication/Cooperation";
+            case 23:
+                return "Information Sharing";
+            case 24:
+                return "Servant Leadership";
+            case 25:
+                return "Resource Availability";
+            case 26:
+                return "Learning goal orientation";
+            case 27:
+                return "Intellectual Stimulation";
+            case 28:
+                return "Feedback from Agents";
+            case 29:
+                return "General Risk Propensity";
+            case 30:
+                return "Feedback Seeking";
+            case 31:
+                return "Accountability";
+            case 32:
+                return "DEI";
+            case 33:
+                return "Moral Courage";
+            case 34:
+                return "OCB-O";
+            default:
+                return "General Risk Propensity";
+        }
+    }
 
     [CascadingParameter] MudDialogInstance MudDialog { get; set; }
     //[Parameter] public SurveyDataModel surveyParam { get; set; }
     [Parameter] public UserModel currentUser { get; set; }
+    [Parameter] public NewSurveyModel survey{ get; set; }
 
     void Submit() => MudDialog.Close(DialogResult.Ok(true));
     void Cancel() => MudDialog.Cancel();

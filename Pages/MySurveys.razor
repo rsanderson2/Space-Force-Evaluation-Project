@@ -15,7 +15,7 @@
 </head>
 
 <div>
-
+    <!-- 
     <MudDataGrid Class="mt-15 mb-3 pa-2" Items="@Surveys" MultiSelection="true" Hideable="true" Filterable="true" QuickFilter="@_quickFilter" Loading="@isLoading" Elevation="4" Style="border-radius: 15px; background: #E7F1FF" >
         <ToolBarContent>
             <MudText Typo="Typo.h5">My Surveys</MudText>
@@ -36,7 +36,23 @@
             </Column>
         </Columns>
     </MudDataGrid>
+    -->
 
+    <MudTable Class="mt-15 mb-3 pa-2" Items="@newSurveyList" Hover="true" Loading="@isLoading">
+        <HeaderContent>
+            <MudTh>Date Administered</MudTh>
+            <MudTh>Date Taken</MudTh>
+        </HeaderContent>
+        <RowTemplate>
+            <MudTd>@context.date_administered</MudTd>
+            <MudTd>@context.date_taken</MudTd>
+            <MudTd>
+                <MudButton OnClick="@(() => OpenDialog(context))" Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary">
+                    View More
+                </MudButton>
+            </MudTd>
+        </RowTemplate>
+    </MudTable>
 
 </div>
 
@@ -73,13 +89,14 @@
     }
 
 
-    private void OpenDialog(SurveyDataModel surveyParam, UserModel currentUser)
+    private void OpenDialog(NewSurveyModel surveyParam)
     {
         var parameters = new DialogParameters();
         var options = new DialogOptions { CloseOnEscapeKey = true, CloseButton = true, FullWidth = true };
 
         //parameters.Add("surveyParam", surveyParam);
         parameters.Add("currentUser", currentUser);
+        parameters.Add("survey", surveyParam);
         DialogService.Show<SurveyDialog>("Survey Data", parameters, options);
     }
 
@@ -88,27 +105,12 @@
     {
         isLoading = false;
         currentUser = await AuthenticationStateProviderHelpers.GetUserFromAuth(authProvider, userData);
+
+         
         newSurveyList = await newSurveyData.GetNewSurveysbyUser(currentUser.userID);
         TimeZoneInfo Eastern_Standard_Time = TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time");
-
-        Surveys = new List<SurveyDataModel>();
-        foreach (NewSurveyModel newSurvey in newSurveyList)
-        {
-            SurveyDataModel tmp = new SurveyDataModel();
-            DateTime dtTaken = TimeZoneInfo.ConvertTimeFromUtc(newSurvey.date_taken, Eastern_Standard_Time);
-            DateTime dtAdmin = TimeZoneInfo.ConvertTimeFromUtc(newSurvey.date_administered, Eastern_Standard_Time);
-            tmp.dateTaken = dtTaken;
-            tmp.dateAdministered = dtAdmin;
-            tmp.type = newSurvey.surveyType;
-            tmp.newSurveyStore = newSurvey;
-            
-
-            Surveys.Add(tmp);
-        }
+        
     }
-
-
-    List<SurveyDataModel> Surveys;
 
   
     public class SurveyDataModel
