@@ -368,8 +368,25 @@ public class MongoUserData : IUserData
     public async Task<List<UserModel>> GetUsersByEvaluator(String evaluatorID)
     {
         var results = await _users.FindAsync(u => (u.selfAssignedEvaluators != null
-                                                && u.selfAssignedEvaluators.Contains(evaluatorID))
-                                                || (u.superiorAssignedEvaluators != null && u.superiorAssignedEvaluators.Contains(evaluatorID)));
-        return results.ToList();
+                                              && u.selfAssignedEvaluators.Contains(evaluatorID))
+                                            || (u.superiorAssignedEvaluators != null && u.superiorAssignedEvaluators.Contains(evaluatorID)));
+         return results.ToList();
+
+        /*
+        var users = await GetUsersAsync();
+        var response = new List<UserModel>();
+        foreach(var user in users)
+        {
+            if(user.selfAssignedEvaluators != null && user.selfAssignedEvaluators.Contains(evaluatorID))
+            {
+                response.Add(user);
+            }
+            else if (user.superiorAssignedEvaluators != null && user.superiorAssignedEvaluators.Contains(evaluatorID))
+            {
+                response.Add(user);
+            }
+        }
+        return response;
+        */
     }
 }

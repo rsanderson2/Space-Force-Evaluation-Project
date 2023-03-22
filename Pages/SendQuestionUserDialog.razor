@@ -56,7 +56,7 @@
                 {
                     @foreach(var user in possibleSubjects)
                     {
-                        <MudSelectItem Value="@(user)">@user.firstName</MudSelectItem>
+                        <MudSelectItem T="@UserModel" Value="@user">@user.firstName</MudSelectItem>
                     }
                 }
             </MudSelect>
@@ -75,7 +75,7 @@
     [Parameter] public UserModel selectedUser { get; set; }
     [Parameter] public UserModel currentUser { get; set; }
     public List<UserModel> possibleSubjects = new();
-    public UserModel selectedSubject = new UserModel();
+    public UserModel selectedSubject;
     private string categoryValue { get; set; }
     private string surveyValue { get; set; }
     string surveyId = "a";
