@@ -51,6 +51,16 @@
                 <MudSelectItem Value="@("Monthly")" />
             </MudSelect>
 
+            <MudSelect @bind-Value="selectedSubject" T="UserModel" Label="Select Subject Type..." AnchorOrigin="Origin.BottomCenter">
+                @if(possibleSubjects != null)
+                {
+                    @foreach(var user in possibleSubjects)
+                    {
+                        <MudSelectItem Value="@(user)">@user.firstName</MudSelectItem>
+                    }
+                }
+            </MudSelect>
+
         </div>
     </DialogContent>
     <DialogActions>
@@ -65,6 +75,7 @@
     [Parameter] public UserModel selectedUser { get; set; }
     [Parameter] public UserModel currentUser { get; set; }
     public List<UserModel> possibleSubjects = new();
+    public UserModel selectedSubject = new UserModel();
     private string categoryValue { get; set; }
     private string surveyValue { get; set; }
     string surveyId = "a";

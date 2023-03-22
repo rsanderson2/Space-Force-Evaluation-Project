@@ -3,15 +3,14 @@
 
 <MudDialog>
     <DialogContent>
-        @for(int i = 0; i< survey.question.Count; i++)
+        @foreach(var question in questions)
         {
-
             <div>
-            <h6>Question 5</h6>
+            <h6>Question @question.questionNumber</h6>
                 <div style="padding-left: 5%; padding-bottom: 2%">
-                    <p><b>Question: </b> @survey.question[i]</p>
-                    <p><b>Category: </b>@GetCategory(int.Parse(survey.category[i]))</p>
-                    <p><b>Response: </b>@survey.freeResponseText[i]</p>
+                    <p><b>Question: </b> @question.question</p>
+                    <p><b>Category: </b>@question.category</p>
+                    <p><b>Response: </b>@question.response</p>
                 </div>
              </div>
             <MudDivider />
@@ -26,6 +25,16 @@
 
 
 @code {
+
+    public class QuestionView
+    {
+        public string question = "";
+        public string category = "";
+        public string response = "";
+        public int questionNumber;
+    }
+
+    List<QuestionView> questions = new List<QuestionView>();
 
     string GetCategory(int categoryNumber)
     {
@@ -56,7 +65,7 @@
             case 12:
                 return "OCB-I";
             case 13:
-return "Help-Seeking";
+                return "Help-Seeking";
             case 14:
                 return "Problem-solving assistance";
             case 15:
@@ -114,8 +123,20 @@ return "Help-Seeking";
 
     protected async override Task OnInitializedAsync()
     {
+        @for (int i = 0; i < survey.question.Count; i++)
+        {
+            QuestionView newQuestion = new QuestionView();
 
+            newQuestion.question = survey.question[i];
+            newQuestion.category = GetCategory(int.Parse(survey.category[i]));
+            newQuestion.response = survey.freeResponseText[i];
+            newQuestion.questionNumber = i + 1;
+            questions.Add(newQuestion);
+        }
     }
+
+
+
 
 
     public class SurveyDataModel
