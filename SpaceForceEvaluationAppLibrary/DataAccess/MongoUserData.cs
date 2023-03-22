@@ -2,6 +2,8 @@
 // This is the file that contains the connections to the User collection in the database, and
 // contains the task necessary to get and set users in the database.
 // ================================================================================================
+using MongoDB.Bson;
+
 namespace SpaceForceEvaluationAppLibrary.DataAccess;
 
 public class MongoUserData : IUserData
@@ -136,10 +138,20 @@ public class MongoUserData : IUserData
     {
         UserModel currentUser = await GetUser(currentUserID);
         // Three is the current limit for self assigned evaluators. 
-        if(currentUser.selfAssignedEvaluators.Count < 3)
+        if(currentUser.selfAssignedEvaluators == null)
+        {
+            currentUser.selfAssignedEvaluators = new List<String>();
+        }
+        
+        if(currentUser.superiorAssignedEvaluators == null)
+        {
+            currentUser.superiorAssignedEvaluators = new List<String>();
+        }
+        
+        if (currentUser.selfAssignedEvaluators.Count < 3)
         {
             // newEvaluators is already an evaluator for this user
-            bool isSuperiorAssignedEvaluator = currentUser.superiorAssignedEvaluators.Contains(newEvaluatorID); ;
+            bool isSuperiorAssignedEvaluator = currentUser.superiorAssignedEvaluators.Contains(newEvaluatorID);
             bool isSelfAssignedEvaluator = currentUser.selfAssignedEvaluators.Contains(newEvaluatorID);
 
             if(isSuperiorAssignedEvaluator || isSelfAssignedEvaluator)
@@ -338,5 +350,26 @@ public class MongoUserData : IUserData
 
             await UpdateUser(user);
         }
+    }
+
+
+    public async Task EmptyAllEvaluators()
+    {
+        var users = await GetUsersAsync();
+        foreach (var user in users.ToList())
+        {
+            user.selfAssignedEvaluators.Clear();
+            user.superiorAssignedEvaluators.Clear();
+            await UpdateUser(user);
+        }
+    }
+
+
+    public async Task<List<UserModel>> GetUsersByEvaluator(String evaluatorID)
+    {
+        var results = await _users.FindAsync(u => (u.selfAssignedEvaluators != null
+                                                && u.selfAssignedEvaluators.Contains(evaluatorID))
+                                                || (u.superiorAssignedEvaluators != null && u.superiorAssignedEvaluators.Contains(evaluatorID)));
+        return results.ToList();
     }
 }

@@ -37,7 +37,7 @@
         </MudNavMenu>
     </MudPaper>
 
-    <MudDataGrid Items="@(displayedUsers.Count == 0 || filtersHaveBeenReset ? users : displayedUsers)" MultiSelection="true" Hideable="true" Filterable="true" QuickFilter="@_quickFilter" Loading="@isLoading" Elevation="4" Style="border-radius: 15px; background: #E7F1FF" >
+    <MudDataGrid Items="@( filtersHaveBeenReset ? users : (displayedUsers.Count == 0 ? noResults : displayedUsers))" MultiSelection="true" Hover="true" Hideable="true" Filterable="true" QuickFilter="@_quickFilter" Loading="@isLoading" Elevation="4" Style="border-radius: 15px; background: #E7F1FF" >
         <ToolBarContent>
             <MudText Typo="Typo.h5">Guardians</MudText>
             <MudSpacer />
@@ -82,6 +82,7 @@
     List<UserModel> subordinateUsers = new ();
     List<UserModel> selfAssignedEvaluators = new();
     List<UserModel> usersUnderYourOPCON = new();
+    List<UserModel> noResults = new();
     List<UserModel> displayedUsers = new();
     List<TeamsModel> currentUserTeams = new ();
 
@@ -97,7 +98,7 @@
     private FilterStatus[] filtersStatus;
 
 
-    bool filtersHaveBeenReset;
+    bool filtersHaveBeenReset = true;
     bool _additionalFeaturesIsExpanded;
     bool isLoading = true;
     bool buttonFlag = true;

@@ -45,6 +45,8 @@ namespace SpaceForceEvaluationAppLibrary.DataAccess
         Task removeSelfAssignedEvaluatorFromUser(String evaluatorID, String userID);
         Task removeSuperiorAssignedEvaluatorFromUser(String evaluatorID, String userID);
 
+        Task EmptyAllEvaluators();
 
+        Task<List<UserModel>> GetUsersByEvaluator(String evaluatorID);
     }
 }

@@ -29,7 +29,6 @@
                 @if (hasGreatORequalRole && !hasDirectADCON && !hasIndirectADCON)
                 {
                     <MudButton Disabled="@(superior == null || processingADCONRequest)" OnClick="() => requestADCONOverUser()">Request ADCON</MudButton>
-                    <MudButton Disabled="@(hasOPCON || processingOPCONRequest)" OnClick="() => Cancel()">Request OPCON</MudButton>
                 }
 
                 @if ((!hasDirectADCON && hasIndirectADCON) || (currentUser.role == "HQ" && !hasDirectADCON))
@@ -543,14 +542,14 @@
         }
 
         //await userData.EmptyAllSupordinatesAndSuperiorsList();
-        // await requestsData.RemoveAllRequests();
-
-        //currentUser.subordinates.Remove(selectedUser.userID);
-        //await userData.UpdateUser(currentUser);
-
+        //await userData.EmptyAllEvaluators();
         //await userData.EmptyAllTeamIDs();
         //await teamsData.RemoveAllTeams();
+        //await requestsData.RemoveAllRequests();
 
-        // await requestsData.RemoveAllRequestsOfType("SuperiorAssignedEvaluationRequest");
+        //UserModel testUser = await userData.GetUserFromFirstName("Angela");
+        //testUser.firstName = "Matthew";
+        //testUser.lastName = "Jones";
+        //await userData.UpdateUser(testUser);
     }
 }
