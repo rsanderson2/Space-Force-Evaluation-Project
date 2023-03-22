@@ -58,21 +58,32 @@
     async Task onApproval()
     {
         processingEvaluationRequest = true;
-        // call addUserToSelfAssignedEvaluators
-        bool result = await userData.addUserToSelfAssignedEvaluators(user.userID, newEvaluator.userID);
 
-        if(result)
+        if (requiresMultipleApprovals)
         {
-            UpdateStatus("Approved");
-            currentStatus = "Approved";
-            Snackbar.Add("Successfully approved evaluation requests.", Severity.Success);
+            UpdateStatus("Awaiting second response");
+            currentStatus = "Awaiting second response";
+            Snackbar.Add("Successfully approved evaluation requests. Wait for other approvals", Severity.Success);
         }
         else
         {
-            UpdateStatus("Error");
-            currentStatus = "Error";
-            Snackbar.Add("Error: exceeded limit of evaluators or error assigning user to evaluators", Severity.Error);
+            // call addUserToSelfAssignedEvaluators
+            bool result = await userData.addUserToSelfAssignedEvaluators(user.userID, newEvaluator.userID);
+
+            if (result)
+            {
+                UpdateStatus("Approved");
+                currentStatus = "Approved";
+                Snackbar.Add("Successfully approved evaluation requests.", Severity.Success);
+            }
+            else
+            {
+                UpdateStatus("Error");
+                currentStatus = "Error";
+                Snackbar.Add("Error: exceeded limit of evaluators or error assigning user to evaluators", Severity.Error);
+            }
         }
+
         processingEvaluationRequest = false;
     }
 

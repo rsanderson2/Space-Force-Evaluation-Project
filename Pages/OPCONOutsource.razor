@@ -119,7 +119,7 @@
             _UpdateRequestsStatus(newStatus, context);
         }
 
-        parameters.Add("UpdateStatus", _UpdateRequestsStatus);
+        parameters.Add("UpdateStatus", UpdateRequestsStatus);
         parameters.Add("CurrentStatus", context.request.status);
         parameters.Add("canApproveOrDeny", (currentUser.userID == context.request.requestTarget1
                                           || currentUser.userID == context.request.requestTarget2));
