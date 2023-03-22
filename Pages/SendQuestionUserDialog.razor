@@ -64,6 +64,7 @@
     [CascadingParameter] MudDialogInstance MudDialog { get; set; }
     [Parameter] public UserModel selectedUser { get; set; }
     [Parameter] public UserModel currentUser { get; set; }
+    public List<UserModel> possibleSubjects = new();
     private string categoryValue { get; set; }
     private string surveyValue { get; set; }
     string surveyId = "a";
@@ -154,7 +155,7 @@
 
     protected async override Task OnInitializedAsync()
     {
-
+        possibleSubjects = await userData.GetUsersByEvaluator(selectedUser.userID);
         //List<GeneratedSurveyModel> surveyList = await generatedSurveyData.GetGeneratedSurveysbyUser(selectedUser.userID);
         //surveyId = surveyList.ElementAt(0).injectedQuestions.ElementAt(2);
     }
