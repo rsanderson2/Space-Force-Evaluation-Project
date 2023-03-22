@@ -1,0 +1,117 @@
+﻿:root {
+}
+
+/* Main body CSS */
+body {
+    background-image: linear-gradient(180deg, #002035 0%, #000f 99%);
+    /*color: #7f838a;*/
+    color: white;
+    min-height: 800px;
+}
+
+/* Basic CSS */
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+h1 {
+    line-height: 2;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+img {
+    width: 100%;
+}
+
+div h1 {
+    text-align: center;
+}
+
+h2 {
+    font-size: 18px;
+    color: black;
+}
+
+/* Container for page contents */
+.container {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 40px 20px;
+
+    justify-items: center;
+    text-align: center;
+}
+
+/* Custom card for contents inside Containers */
+.col-2 {
+    padding: 10px 0;
+    border-radius: 15px;
+    background: steelblue;
+    border: 3px solid black;
+    height: 100%;
+    min-width: 300px;
+    margin: auto;
+}
+
+.taken {
+    background: rgb(0,119,20);
+    background: radial-gradient(circle, rgba(0,119,20,1) 0%, rgba(7,227,36,1) 45%, rgba(0,119,20,1) 100%);
+    border: 3px solid black;
+}
+
+.notTaken {
+    background: rgb(102,0,0);
+    background: linear-gradient(90deg, rgba(102,0,0,1) 0%, rgba(227,7,7,1) 45%, rgba(97,0,0,1) 100%);
+}
+
+/* Default grid CSS */
+.grid {
+    display: grid;
+    gap: 15px;
+    padding-block: 2rem;
+    grid-template-columns: repeat(3, 1fr);
+
+}
+
+.flex {
+    display: flex;
+    margin-top: 10px;
+}
+
+.btn-primary{
+    min-width: 80px;
+    font-size: 16px;
+    position: center;
+    padding: 0.5px;
+}
+
+
+/* Mobile View */
+@media(max-width: 1000px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .flex {
+        flex-wrap: wrap;
+    }
+
+    div {
+        margin-bottom: 20px;
+    }
+}
+
+@media(max-width: 350px) {
+    .col-2 {
+        min-width: 180px;
+    }
+}
