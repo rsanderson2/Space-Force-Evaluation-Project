@@ -23,12 +23,11 @@
 
         .filter-title {
             font-family: helveticaNeueBold;
-            font-size: 120%;
+            font-size: 135%;
         }
 
         .filter-options {
             font-family: helveticaNeueMedium;
-            font-size: 120%;
         }
 
     </style>
@@ -43,42 +42,42 @@
                 {
                     @foreach(var filterStatus in filtersStatus)
                     {
-                        <MudSwitch @bind-Checked="@filterStatus.showFilterData" Color="Color.Primary">@filterStatus.name</MudSwitch>
+                        <MudSwitch @bind-Checked="@filterStatus.showFilterData" Color="Color.Primary" Style="font-family: helveticaNeueMedium;">@filterStatus.name</MudSwitch>
                     }
                 }
-                <MudButton Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary" OnClick="@(() => onFilterChange())">
+                <MudButton Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary" OnClick="@(() => onFilterChange())" Style=" font-family: helveticaNeueMedium;">
                         Update Filters
                 </MudButton>
-                <MudButton Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary" OnClick="@(() => onFilterReset())">
+                <MudButton Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary" OnClick="@(() => onFilterReset())" Style=" font-family: helveticaNeueMedium;">
                     Remove Filters
                 </MudButton>
             </MudNavGroup>
         </MudNavMenu>
     </MudPaper>
 
-    <MudDataGrid Items="@( filtersHaveBeenReset ? users : (displayedUsers.Count == 0 ? noResults : displayedUsers))" MultiSelection="true" Hover="true" Hideable="true" Filterable="true" QuickFilter="@_quickFilter" Loading="@isLoading" Elevation="4" Style="border-radius: 15px; background: #E7F1FF" >
+    <MudDataGrid Items="@( filtersHaveBeenReset ? users : (displayedUsers.Count == 0 ? noResults : displayedUsers))" MultiSelection="true" Hover="true" Hideable="true" Filterable="true" QuickFilter="@_quickFilter" Loading="@isLoading" Elevation="4" Style="border-radius: 15px; background: #E7F1FF; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);">
         <ToolBarContent>
-            <MudText Typo="Typo.h5">Guardians</MudText>
+            <MudText Style="font-family: helveticaNeueBold; font-size: 300%;">Guardians</MudText>
             <MudSpacer />
             <MudTextField @bind-Value="_searchString" Placeholder="Search" Adornment="Adornment.Start" Immediate="true"
                           AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
         </ToolBarContent>
         <Columns >
-            <Column T="UserModel" Field="firstName" Title="First Name"/>
+            <Column T="UserModel" Field="firstName" Title="First Name" />
             <Column T="UserModel" Field="lastName" Title="Last Name" />
             <Column T="UserModel" Field="email" Title="Contact" />
             <Column T="UserModel" Field="rank" Title="Rank"/>
             <Column T="UserModel" Field="job" Title="Job"/>
             <Column T="UserModel" Filterable="false" Hideable="false">
                 <CellTemplate>
-                    <MudButton Disabled="@buttonFlag" Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary" OnClick="@(() => OpenSendQuestion(context.Item, currentUser))">
+                    <MudButton Disabled="@buttonFlag" Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary" OnClick="@(() => OpenSendQuestion(context.Item, currentUser))" Style=" font-family: helveticaNeueMedium;">
                         Send Question
                     </MudButton>
                 </CellTemplate>
             </Column>
             <Column T="UserModel" Filterable="false" Hideable="false">
                 <CellTemplate>
-                    <MudButton Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary" OnClick="@(() => OpenDialog(context.Item, currentUser))">
+                    <MudButton Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary" OnClick="@(() => OpenDialog(context.Item, currentUser))" Style=" font-family: helveticaNeueMedium;">
                         View More
                     </MudButton>
                 </CellTemplate>
@@ -126,6 +125,8 @@
     async Task onFilterChange()
     {
         displayedUsers.Clear();
+        DisplayedUsersDictionary.Clear(); // empties dictionary
+                                          // clear the dictionary as well
         isLoading = true;
 
         for(int i = 0; i < filtersStatus.GetLength(0); i++)
@@ -137,7 +138,19 @@
                     subordinateUsers = await userData.GetDirectSubordinates(currentUser);
                     filtersStatus[i].hasFetchedFilterData = true;
                 }
-                displayedUsers = displayedUsers.Union(subordinateUsers).ToList();
+                // if not in dictionary already, then add
+                // else, nothing
+                if(subordinateUsers != null)
+                {
+                    foreach (var subordinate in subordinateUsers)
+                    {
+                        if (DisplayedUsersDictionary.ContainsKey(subordinate.userID) == false)
+                        {
+                            displayedUsers.Add(subordinate);
+                        }
+                    }
+                }
+                //displayedUsers = displayedUsers.Union(subordinateUsers).ToList();
                 buttonFlag = false;
             }
 
@@ -148,11 +161,23 @@
                     selfAssignedEvaluators = await getSelfAssignedEvaluators(currentUser);
                     filtersStatus[i].hasFetchedFilterData = true;
                 }
-                if(selfAssignedEvaluators != null)
+
+                if (selfAssignedEvaluators != null)
                 {
-                    displayedUsers = displayedUsers.Union(selfAssignedEvaluators).ToList();
+                    // if not in dictionary already, then add
+                    // else, code below
+                    foreach (var evaluator in selfAssignedEvaluators)
+                    {
+                        if (DisplayedUsersDictionary.ContainsKey(evaluator.userID) == false)
+                        {
+                            displayedUsers.Add(evaluator);
+                        }
+                    }
+
+                    //displayedUsers = displayedUsers.Union(selfAssignedEvaluators).ToList();
                     displayedUsers.RemoveAll(item => item == null);
                 }
+
             }
 
             else if (filtersStatus[i].name == "Users you evaluate")
@@ -166,15 +191,23 @@
 
             else if (filtersStatus[i].name == "Users under your OPCON" && filtersStatus[i].showFilterData)
             {
-                // TODO: get users that you have OPCON over
                 if (!filtersStatus[i].hasFetchedFilterData)
                 {
                     usersUnderYourOPCON = await getUsersUnderOPCON(currentUser);
                     filtersStatus[i].hasFetchedFilterData = true;
                 }
+
                 if(usersUnderYourOPCON != null)
                 {
-                    displayedUsers = displayedUsers.Union(usersUnderYourOPCON).ToList();
+
+                    foreach (var user in usersUnderYourOPCON)
+                    {
+                        if (DisplayedUsersDictionary.ContainsKey(user.userID) == false)
+                        {
+                            displayedUsers.Add(user);
+                        }
+                    }
+                    // displayedUsers = displayedUsers.Union(usersUnderYourOPCON).ToList();
                     displayedUsers.RemoveAll(item => item == null);
                 }
             }
@@ -257,7 +290,7 @@
             String filterName;
             if (i == 0) filterName = "Users under your ADCON";
             else if (i == 1) filterName = "Self assigned evaluators";
-            else if (i == 2) filterName = "Users you evaluate";
+            //else if (i == 2) filterName = "Users you evaluate";
             else filterName = "Users under your OPCON";
             filtersStatus[i] = new FilterStatus
                 {
@@ -331,7 +364,7 @@
                 }
             }
         }
-        filtersStatus = new FilterStatus[4];
+        filtersStatus = new FilterStatus[3];
         initializeFiltersStatus();
         isLoading = false;
     }

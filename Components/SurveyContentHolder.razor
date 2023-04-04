@@ -298,6 +298,21 @@
         List<QuestionsModel> questions = new List<QuestionsModel>();
 
         // Generated questions
+        /* 
+        List<UserModel> possibleSubjects = new List<UserModel>();
+        possibleSubjects = await userData.GetUsersByEvaluator(currentUser.userID);
+        if(possibleSubjects == null)
+        {
+            possibleSubjects = new List<UserModel>();
+        }
+
+        if(currentUser.superiors != null && currentUser.superiors.Count > 0)
+        {
+            possibleSubjects.Add(await userData.GetUser(currentUser.superiors[0]));
+        }
+        */
+
+
         foreach (GeneratedSurveyModel survey in generatedSurveyList)
         {
             foreach (string genQuestion in survey.generatedQuestions)
@@ -306,6 +321,21 @@
                 questionResponses.Add("");
                 int randIndex = rnd.Next(0, questions.Count);
                 string tmpQuestion = questions[randIndex].question;
+                randNum = rnd.Next(1, 3);
+
+                string tmpQuestion = questions[randIndex].question;
+
+                /*
+                UserModel tmpUser = await userData.GetUser(survey.userReportStats[0]);
+                string tmpQuestion = tmpUser.firstName + " " + tmpUser.lastName + " - ";
+                tmpQuestion += questions[randIndex].question;
+                 */
+
+                //  TODO: see if the below works
+                //surveyQuestion.subjectID = // get some random index and store userID here from possible subjects.
+
+
+                surveyQuestion.question = tmpQuestion;
                 questionsList.Add(tmpQuestion);
                 surveyQuestion.question = tmpQuestion;
                 surveyQuestion.surveyType = "mult";
@@ -320,6 +350,9 @@
                 */
 
                 //Console.WriteLine(surveyQuestion);
+
+
+                //Console.WriteLine(genQuestion);
                 surveyQuestions.Add(surveyQuestion);
                 surveyQuestion = new SurveyModel();
             }

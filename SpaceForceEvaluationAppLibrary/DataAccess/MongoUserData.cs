@@ -358,9 +358,19 @@ public class MongoUserData : IUserData
         var users = await GetUsersAsync();
         foreach (var user in users.ToList())
         {
-            user.selfAssignedEvaluators.Clear();
-            user.superiorAssignedEvaluators.Clear();
+            if(user.selfAssignedEvaluators != null)
+            {
+                user.selfAssignedEvaluators.Clear();
+
+            }
+
+            if(user.superiorAssignedEvaluators != null)
+            {
+                user.superiorAssignedEvaluators.Clear();
+            }
+
             await UpdateUser(user);
+
         }
     }
 

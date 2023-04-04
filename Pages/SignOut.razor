@@ -1,0 +1,590 @@
+﻿@page "/Account/SignOut"
+@using NUnit.Framework
+@inject AuthenticationStateProvider authProvider
+@inject IUserData userData
+@inject NavigationManager navManager
+@inject IGeneratedSurveyData generatedSurveyData
+@inject IQuestionsData questionData
+@inherits LayoutComponentBase
+
+
+<PageTitle>Sign Out</PageTitle>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<head>
+    <style>
+            .container-grid {
+                margin: auto;
+                padding-top: 150px;
+                border-radius: 15px;
+                margin-left: 70px;
+            }
+
+
+            .daily-card {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                border-radius: 15px;
+                box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
+            }
+
+            .weekly-card {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                border-radius: 15px;
+                box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
+            }
+
+            .monthly-card {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                border-radius: 15px;
+                box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
+            }
+
+            .daily-card h2 {
+                text-align: center;
+                font-family: 'HelveticaNeueBold';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 300%;
+            }
+
+            .weekly-card h2 {
+                text-align: center;
+                font-family: 'HelveticaNeueBold';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 300%;
+            }
+
+            .monthly-card h2 {
+                text-align: center;
+                font-family: 'HelveticaNeueBold';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 300%;
+            }
+
+            .daily-card p {
+                text-align: center;
+                font-family: "HelveticaNeueMedium";
+                font-style: normal;
+                font-weight: 900;
+            }
+
+            .weekly-card p {
+                text-align: center;
+                font-family: "HelveticaNeueMedium";
+                font-style: normal;
+                font-weight: 900;
+            }
+
+            .monthly-card p {
+                text-align: center;
+                font-family: "HelveticaNeueMedium";
+                font-style: normal;
+                font-weight: 900;
+            }
+
+            .daily-card .mud-button {
+                font-family: "HelveticaNeueMedium";
+                font-style: normal;
+                font-weight: 900;
+            }
+
+            .weekly-card .mud-button {
+                font-family: "HelveticaNeueMedium";
+                font-style: normal;
+                font-weight: 900;
+            }
+
+            .monthly-card .mud-button {
+                    font-family: "HelveticaNeueMedium";
+                    font-style: normal;
+                    font-weight: 900;
+            }
+
+
+    </style>
+</head>
+
+<!--Main Body-->
+<body>
+    <AuthorizeView>
+        <NotAuthorized>
+            <!--Container to login if the user is not authorized-->
+            @{
+                try
+                {
+                    var hasJSRuntime = navManager != null && (navManager.GetType()?.GetProperty("HasAttachedJSRuntime") != null ?
+                    (bool)navManager.GetType().GetProperty("HasAttachedJSRuntime").GetValue(navManager) : true);
+
+                    if (hasJSRuntime)
+                    {
+                        navManager.NavigateTo("MicrosoftIdentity/Account/SignIn", true);
+                    }
+
+                }
+                catch
+                {
+                    <div class="container">
+                        <div class="col-2">
+                            <input type="button" class="btn btn-primary" value="Login" onclick="location.href='MicrosoftIdentity/Account/SignIn'" />
+                        </div>
+                    </div>
+                }
+            }
+
+        </NotAuthorized>
+    </AuthorizeView>
+
+</body>
+@code
+{
+    DateTime today;
+    DateTime lastSurvey;
+    DateTime lastSurveyWeekly;
+    DateTime lastSurveyMonthly;
+    public bool lastDaily = false;
+    public bool lastWeekly = false;
+    public bool lastMonthly = false;
+    public string showDailyButton = "";
+    public string showWeeklyButton = "";
+    public string showMonthlyButton = "";
+    public string userName;
+    public string userObjectID;
+    public string emailAddress;
+    public string userLastName;
+    public string userFirstName;
+
+    public string questionType { get; set; }
+
+    DateTime surveyDate;
+    public string teammate;
+    public string questionSubjectID;
+    public int SurveyQuestionType;
+    public int questionSubject;
+    public int questionResponse;
+    public int questionNumber;
+    public string questionCategory;
+    public string surveyTaker;
+    public string surveySubject;
+    public string takerTeamID;
+    public string takerName;
+    private SurveyModel surveyModel = new SurveyModel();
+    public int dailyQuestionNum = 1;
+    public int weeklyQuestionNum = 3;
+    public int monthlyQuestionNum = 5;
+    public string TestQuestion = "";
+    public string showQuestion = "";
+    private Random rnd = new Random();
+
+    private UserModel loggedInUser = new UserModel();
+
+    // Current number of climate questions, this will need to be non-static at some point
+    private int getMaxClimate()
+    {
+        return 3;
+        //166;
+    }
+    // Current number of personelle questions, this will need to be non-static at some point
+    private int getMaxDaily()
+    {
+        return 2;
+        //236;
+    }
+    // Function to get a random number to pull a question from the list
+    private int GetDailyQuestionNumber()
+    {
+        return rnd.Next(1, 2/*getMaxDaily()*/);
+    }
+    // Function to get a random number to pull a question from the climate list
+    private int GetClimateQuestionNumber()
+    {
+        return rnd.Next(1, 3/*getMaxClimate()*/);
+    }
+    private int addWeightCategoryId(string category)
+    {
+        //inverse the switch statement in the function GetCategory
+        switch (category)
+        {
+            case "Job Dedication":
+                return 1;
+            case "Interpersonal Justice":
+                return 2;
+            case "Informational Justice":
+                return 3;
+            case "Innovator":
+                return 4;
+            case "Risk Attitude":
+                return 5;
+            case "Integrity":
+                return 6;
+            case "TP":
+                return 7;
+            case "Trust":
+                return 8;
+            case "Innovation Climate":
+                return 9;
+            case "Authenticity - Authentic Living":
+                return 10;
+            case "Supporting":
+                return 11;
+            case "OCB-I":
+                return 12;
+            case "Help-Seeking":
+                return 13;
+            case "Problem-solving assistance":
+                return 14;
+            case "Supervisor Task Support":
+                return 15;
+            case "Honesty/Candor":
+                return 16;
+            case "Inclusion":
+                return 17;
+            case "Moral strivings":
+                return 18;
+            case "Fairness":
+                return 19;
+            case "Managerial Behavior: Broker":
+                return 20;
+            case "Psychological Saftey":
+                return 21;
+            case "Communication/Cooperation":
+                return 22;
+            case "Information Sharing":
+                return 23;
+            case "Servant Leadership":
+                return 24;
+            case "Resource Availability":
+                return 25;
+            case "Learning goal orientation":
+                return 26;
+            case "Intellectual Stimulation":
+                return 27;
+            case "Feedback from Agents":
+                return 28;
+            case "General Risk Propensity":
+                return 29;
+            case "Feedback Seeking":
+                return 30;
+            case "Accountability":
+                return 31;
+            case "DEI":
+                return 32;
+            case "Moral Courage":
+                return 33;
+            case "OCB - O":
+                return 0;
+            default:
+                return 1;
+        }
+        return 2;
+    }
+
+    private int GenerateCategory()
+    {
+        // return a random number 1-32 each with a 1/32 chance of being chosen
+        // based on what the categoryNumber is, that number is more likely to be chosen randomly
+        int numCategories = 32;
+
+        // array of numbers 1-32
+        int[] numbers = new int[numCategories];
+        for (int i = 0; i < numCategories; i++)
+        {
+            numbers[i] = i + 1;
+        }
+        // return a random number from the array from 1- the size of teh array
+        return numbers[rnd.Next(1, numbers.Length)];
+
+    }
+
+    private string GetCategory(int categoryNumber)
+    {
+        switch (categoryNumber)
+        {
+            case 1:
+                return "Job Dedication";
+            case 2:
+                return "Interpersonal Justice";
+            case 3:
+                return "Informational Justice";
+            case 4:
+                return "Innovator";
+            case 5:
+                return "Risk Attitude";
+            case 6:
+                return "Integrity";
+            case 7:
+                return "TP";
+            case 8:
+                return "Trust";
+            case 9:
+                return "Innovation Climate";
+            case 10:
+                return "Authenticity - Authentic Living";
+            case 11:
+                return "Supporting";
+            case 12:
+                return "OCB-I";
+            case 13:
+                return "Help-Seeking";
+            case 14:
+                return "Problem-solving assistance";
+            case 15:
+                return "Supervisor Task Support";
+            case 16:
+                return "Honesty/Candor";
+            case 17:
+                return "Inclusion";
+            case 18:
+                return "Moral strivings";
+            case 19:
+                return "Fairness";
+            case 20:
+                return "Managerial Behavior: Broker";
+            case 21:
+                return "Psychological Saftey";
+            case 22:
+                return "Communication/Cooperation";
+            case 23:
+                return "Information Sharing";
+            case 24:
+                return "Servant Leadership";
+            case 25:
+                return "Resource Availability";
+            case 26:
+                return "Learning goal orientation";
+            case 27:
+                return "Intellectual Stimulation";
+            case 28:
+                return "Feedback from Agents";
+            case 29:
+                return "General Risk Propensity";
+            case 30:
+                return "Feedback Seeking";
+            case 31:
+                return "Accountability";
+            case 32:
+                return "DEI";
+            case 33:
+                return "Moral Courage";
+            case 34:
+                return "OCB-O";
+            default:
+                return "General Risk Propensity";
+        }
+    }
+
+
+
+    async Task navigateToSurvey(int type)
+    {
+        UserModel currentUser = await AuthenticationStateProviderHelpers.GetUserFromAuth(authProvider, userData);
+        List<GeneratedSurveyModel> generatedSurveyList = await generatedSurveyData.GetGeneratedSurveysbyUser(currentUser.userID);
+        //Console.WriteLine(generatedSurveyList.Count.ToString());
+
+        if (generatedSurveyList.Count == 0)
+        {
+            GeneratedSurveyModel newGeneratedSurvey = new GeneratedSurveyModel();
+
+            // Daily
+            newGeneratedSurvey.surveyType = "Daily";
+            newGeneratedSurvey.takerID = currentUser.userID;
+            newGeneratedSurvey.date_administered = DateTime.Now;
+            newGeneratedSurvey.date_taken = DateTime.Now;
+            newGeneratedSurvey.generatedQuestions = new List<string>();
+            newGeneratedSurvey.injectedQuestions = new List<string>();
+            newGeneratedSurvey.userReportStats = new List<string>();
+            await generatedSurveyData.CreateGeneratedSurvey(newGeneratedSurvey);
+
+            // Weekly
+            newGeneratedSurvey = new GeneratedSurveyModel();
+            newGeneratedSurvey.surveyType = "Weekly";
+            newGeneratedSurvey.takerID = currentUser.userID;
+            newGeneratedSurvey.date_administered = DateTime.Now;
+            newGeneratedSurvey.date_taken = DateTime.Now;
+            newGeneratedSurvey.generatedQuestions = new List<string>();
+            newGeneratedSurvey.injectedQuestions = new List<string>();
+            newGeneratedSurvey.userReportStats = new List<string>();
+            await generatedSurveyData.CreateGeneratedSurvey(newGeneratedSurvey);
+
+            // Monthly
+            newGeneratedSurvey = new GeneratedSurveyModel();
+            newGeneratedSurvey.surveyType = "Monthly";
+            newGeneratedSurvey.takerID = currentUser.userID;
+            newGeneratedSurvey.date_administered = DateTime.Now;
+            newGeneratedSurvey.date_taken = DateTime.Now;
+            newGeneratedSurvey.generatedQuestions = new List<string>();
+            newGeneratedSurvey.injectedQuestions = new List<string>();
+            newGeneratedSurvey.userReportStats = new List<string>();
+            await generatedSurveyData.CreateGeneratedSurvey(newGeneratedSurvey);
+
+            generatedSurveyList = await generatedSurveyData.GetGeneratedSurveysbyUser(currentUser.userID);
+        }
+
+        foreach (GeneratedSurveyModel survey in generatedSurveyList)
+        {
+            string cat = GenerateCategory().ToString();
+            List<string> tmpQuestions = new List<string>();
+            if (survey.surveyType == "Daily" && type == 1)
+            {
+                for (int i = 0; i < dailyQuestionNum; i++)
+                {
+                    cat = GenerateCategory().ToString();
+                    List<QuestionsModel> questions = await questionData.GetQuestionsByCategory(GetCategory(int.Parse(cat)));
+                    while (survey.injectedQuestions.Contains(cat) || tmpQuestions.Contains(cat) || questions.Count < 1 || cat == "13" || cat == "14" || cat == "9" || cat == "20")
+                    {
+                        //Console.WriteLine(questions.Count.ToString());
+                        questions = await questionData.GetQuestionsByCategory(GetCategory(int.Parse(cat)));
+                        cat = GenerateCategory().ToString();
+                    }
+                    tmpQuestions.Add(cat);
+                }
+            }
+            if (survey.surveyType == "Weekly" && type == 2)
+            {
+                for (int i = 0; i < weeklyQuestionNum; i++)
+                {
+                    cat = GenerateCategory().ToString();
+                    List<QuestionsModel> questions = await questionData.GetQuestionsByCategory(GetCategory(int.Parse(cat)));
+                    while (survey.injectedQuestions.Contains(cat) || tmpQuestions.Contains(cat) || questions.Count < 1 || cat == "13" || cat == "14" || cat == "9" || cat == "20")
+                    {
+                        questions = await questionData.GetQuestionsByCategory(GetCategory(int.Parse(cat)));
+                        cat = GenerateCategory().ToString();
+                    }
+                    tmpQuestions.Add(cat);
+                }
+            }
+            if (survey.surveyType == "Monthly" && type == 3)
+            {
+                for (int i = 0; i < monthlyQuestionNum; i++)
+                {
+                    cat = GenerateCategory().ToString();
+                    List<QuestionsModel> questions = await questionData.GetQuestionsByCategory(GetCategory(int.Parse(cat)));
+                    while (survey.injectedQuestions.Contains(cat) || tmpQuestions.Contains(cat) || questions.Count < 1 || cat == "13" || cat == "14" || cat == "9" || cat == "20")
+                    {
+                        questions = await questionData.GetQuestionsByCategory(GetCategory(int.Parse(cat)));
+                        cat = GenerateCategory().ToString();
+                    }
+                    //Console.WriteLine("Count: " + questions.Count.ToString());
+                    if (questions.Count > 0) tmpQuestions.Add(cat);
+                }
+            }
+            survey.generatedQuestions = tmpQuestions;
+
+            //Console.WriteLine(cat);
+            //Console.WriteLine(survey.generatedQuestions.ElementAt(0));
+            await generatedSurveyData.UpdateGeneratedSurvey(survey);
+        }
+        if (type == 1) navManager.NavigateTo("/SurveyDaily");
+        if (type == 2) navManager.NavigateTo("/SurveyWeekly");
+        if (type == 3) navManager.NavigateTo("/SurveyMonthly");
+    }
+
+    // Function to check that the user is logged in, and get the information from their b2c profile
+    private async Task LoadAndVerifyUser()
+    {
+        var authState = await authProvider.GetAuthenticationStateAsync();
+        string objectID = authState.User.Claims.FirstOrDefault(c => c.Type.Contains("objectidentifier"))?.Value;
+        string displayName = authState.User.Claims.FirstOrDefault(c => c.Type.Equals("name"))?.Value;
+        string email = authState.User.Claims.FirstOrDefault(c => c.Type.Contains("email"))?.Value;
+        string lastName = authState.User.Claims.FirstOrDefault(c => c.Type.Contains("surname"))?.Value;
+        string firstName = authState.User.Claims.FirstOrDefault(c => c.Type.Contains("givenname"))?.Value;
+
+        // If the user is logged in, and they have an account
+        if (string.IsNullOrWhiteSpace(objectID) == false)
+        {
+
+            // set local variables to the logged in session so that they can be used
+            userObjectID = objectID;
+            userName = displayName;
+            emailAddress = email;
+            userLastName = lastName;
+            userFirstName = firstName;
+
+            loggedInUser.ObjectIdentifier = userObjectID;
+            loggedInUser.firstName = userFirstName;
+            loggedInUser.lastName = userLastName;
+            loggedInUser.email = emailAddress;
+            loggedInUser.userID = userObjectID;
+
+
+            var checkUser = await userData.GetUser(userObjectID);
+            if (checkUser == null)
+            {
+                await userData.CreateUser(loggedInUser);
+            }
+        }
+
+        // Get who is logged in
+        UserModel currentUser = await AuthenticationStateProviderHelpers.GetUserFromAuth(authProvider, userData);
+        if (currentUser != null)
+        {
+            checkDailySurveyEligible(currentUser);
+            checkWeeklySurveyEligible(currentUser);
+            checkMonthlySurveyEligible(currentUser);
+        }
+
+    }
+
+    // Function to check if the user is eligible to take the daily survey
+    private void checkDailySurveyEligible(UserModel currentUser)
+    {
+        today = DateTime.Today;
+        lastSurvey = currentUser.dailyDate;
+        if ((today - lastSurvey).TotalDays > 0)
+        {
+            lastDaily = false;
+        }
+        else
+        {
+            lastDaily = true;
+            showDailyButton = "hidden";
+        }
+
+    }
+
+    private void checkWeeklySurveyEligible(UserModel currentUser)
+    {
+        lastSurveyWeekly = currentUser.weeklyDate;
+
+        if ((today - lastSurveyWeekly).TotalDays > 7)
+        {
+            lastWeekly = false;
+        }
+        else
+        {
+            lastWeekly = true;
+            showWeeklyButton = "hidden";
+        }
+    }
+    private void checkMonthlySurveyEligible(UserModel currentUser)
+    {
+        // Set the total days back to 30 when feedback is finished being collected.
+        lastSurveyMonthly = currentUser.monthlyDate;
+        DateTime nextSurvey = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1).AddMonths(1);
+
+        if ((today - lastSurveyWeekly).TotalDays > (nextSurvey - today).TotalDays)
+        {
+            lastMonthly = false;
+        }
+        else
+        {
+            lastMonthly = true;
+            showMonthlyButton = "hidden";
+        }
+    }
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadAndVerifyUser();
+    }
+
+}
