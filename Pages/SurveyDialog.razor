@@ -6,10 +6,21 @@
         @foreach(var question in questions)
         {
             <div>
-            <h6>Question @question.questionNumber</h6>
+                <h6>Question @question.questionNumber</h6>
                 <div style="padding-left: 5%; padding-bottom: 2%">
                     <p><b>Question: </b> @question.question</p>
                     <p><b>Category: </b>@question.category</p>
+                    <p><b>Response: </b>@question.response</p>
+                </div>
+             </div>
+            <MudDivider />
+        }
+        @foreach(var question in injectedQuestionsHistory)
+        {
+            <div>
+            <h6>Question @question.questionNumber</h6>
+                <div style="padding-left: 5%; padding-bottom: 2%">
+                    <p><b>Injected Question: </b> @question.question</p>
                     <p><b>Response: </b>@question.response</p>
                 </div>
              </div>
@@ -35,6 +46,7 @@
     }
 
     List<QuestionView> questions = new List<QuestionView>();
+    List<QuestionView> injectedQuestionsHistory = new List<QuestionView>();
 
     string GetCategory(int categoryNumber)
     {
@@ -114,7 +126,6 @@
     }
 
     [CascadingParameter] MudDialogInstance MudDialog { get; set; }
-    //[Parameter] public SurveyDataModel surveyParam { get; set; }
     [Parameter] public UserModel currentUser { get; set; }
     [Parameter] public NewSurveyModel survey{ get; set; }
 
@@ -126,40 +137,26 @@
         @for (int i = 0; i < survey.question.Count; i++)
         {
             QuestionView newQuestion = new QuestionView();
-
-            newQuestion.question = survey.question[i];
-            newQuestion.category = GetCategory(int.Parse(survey.category[i]));
-            newQuestion.response = survey.freeResponseText[i];
-            newQuestion.questionNumber = i + 1;
-            questions.Add(newQuestion);
-        }
-    }
-
-
-
-
-
-    public class SurveyDataModel
-    {
-        public DateTime dateTaken
-        {
-            get;
-            set;
-        }
-        public DateTime dateAdministered
-        {
-            get;
-            set;
-        }
-        public string type
-        {
-            get;
-            set;
-        }
-        public NewSurveyModel newSurveyStore
-        {
-            get;
-            set;
+            //Console.WriteLine(survey.category);
+            
+            if (survey.category[i] != "Injected")
+            {
+                Console.WriteLine("Generated Question");
+                newQuestion.question = survey.question[i];
+                newQuestion.category = GetCategory(int.Parse(survey.category[i]));
+                newQuestion.response = survey.freeResponseText[i].ToString();
+                newQuestion.questionNumber = i + 1;
+                questions.Add(newQuestion);
+            }
+            else
+            {
+                Console.WriteLine("Injected Question");
+                newQuestion.question = survey.question[i];
+                newQuestion.response = survey.freeResponseText[i];
+                newQuestion.questionNumber = i + 1;
+                injectedQuestionsHistory.Add(newQuestion);
+            }
+            
         }
     }
 }
