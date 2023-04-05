@@ -334,9 +334,6 @@
             newEvaluationAssignmentRequest.requestTarget1 = potentialEvaluator.userID;
             newEvaluationAssignmentRequest.requestTarget2 = null;
             newEvaluationAssignmentRequest.value = selectedUser.userID;
-            //newEvaluationAssignmentRequest.values = new List<string>();
-            //newEvaluationAssignmentRequest.values.Add(potentialEvaluator.userID);
-            //newEvaluationAssignmentRequest.values.Add(selectedUser.userID);
             newEvaluationAssignmentRequest.type = "SuperiorAssignedEvaluationRequest";
             newEvaluationAssignmentRequest.status = "Pending";
 
@@ -361,7 +358,14 @@
         newEvaluationAssignmentRequest.requestInitiator = currentUser.userID;
         newEvaluationAssignmentRequest.requestTarget1 = selectedUser.userID;
         newEvaluationAssignmentRequest.requestTarget2 = currentUser.superiors[0];
-        newEvaluationAssignmentRequest.value = currentUser.userID;
+
+        if(newEvaluationAssignmentRequest.values == null)
+        {
+            newEvaluationAssignmentRequest.values = new List<string>();
+        }
+        newEvaluationAssignmentRequest.values.Add(selectedUser.userID);
+        newEvaluationAssignmentRequest.values.Add(currentUser.userID);
+
         newEvaluationAssignmentRequest.type = "EvaluationAssignmentRequest";
         newEvaluationAssignmentRequest.status = "Pending";
 

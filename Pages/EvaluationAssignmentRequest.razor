@@ -109,7 +109,7 @@
         StateHasChanged();
     }
 
-    private void OpenDialog(EvaluationAssignmentRequests context)
+    private async void OpenDialog(EvaluationAssignmentRequests context)
     {
         var parameters = new DialogParameters();
         var options = new DialogOptions { CloseOnEscapeKey = true };
@@ -154,9 +154,9 @@
             {
                 EvaluationAssignmentRequests newRequest = new EvaluationAssignmentRequests();
 
-                newRequest.newEvaluator = (await userData.GetUser(request.requestTarget1));
+                newRequest.newEvaluator = (await userData.GetUser(request.values[0]));
                 newRequest.superiorOfUser = (await userData.GetUser(request.requestTarget2));
-                newRequest.user = (await userData.GetUser(request.value));
+                newRequest.user = (await userData.GetUser(request.values[1]));
                 newRequest.request = request;
                 newRequest.status = request.status;
 
@@ -188,9 +188,9 @@
             {
                 EvaluationAssignmentRequests newRequest = new EvaluationAssignmentRequests();
 
-                newRequest.newEvaluator = (await userData.GetUser(request.requestTarget1));
+                newRequest.newEvaluator = (await userData.GetUser(request.values[0]));
                 newRequest.superiorOfUser = (await userData.GetUser(request.requestTarget2));
-                newRequest.user = (await userData.GetUser(request.value));
+                newRequest.user = (await userData.GetUser(request.values[1]));
                 newRequest.request = request;
                 newRequest.status = request.status;
 
