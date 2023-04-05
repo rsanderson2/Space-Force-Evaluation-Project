@@ -17,30 +17,6 @@
 <div>
 
     <MudPaper Class="mt-15 mb-3 pa-2" Elevation="4" Style="border-radius: 15px; background: #E7F1FF">
-        <!-- 
-        <MudDataGrid Items="@teams" MultiSelection="true" Hideable="true" Loading="@isLoading" Elevation="4" Style="border-radius: 15px; background: #E7F1FF">
-        <ToolBarContent>
-            <MudText Typo="Typo.h5">Teams</MudText>
-            <MudSpacer />
-            @if(currentUser != null && (currentUser.role == "Commander" || currentUser.role == "HQ"))
-            {
-                    <MudButton Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary" OnClick="@(() => OpenCreateTeamDialog())">Create Team</MudButton>
-            }
-        </ToolBarContent>
-        <Columns >
-            <Column T="TeamsModel" Field="" Title="Operation Name" />
-            <Column T="TeamsModel" Field="lastName" Title="Operation leader" />
-            <Column T="TeamsModel" Filterable="false" Hideable="false">
-                <CellTemplate>
-                    <MudButton Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary" OnClick="@(() => OpenCreateTeamDialog())">
-                        View More
-                    </MudButton>
-                </CellTemplate>
-            </Column>
-        </Columns>
-    </MudDataGrid>
-        -->
-
 
         <MudNavGroup Title="My Teams" @bind-Expanded=_myteamsExpanded>
             @if (currentUser != null && (currentUser.role == "Commander" || currentUser.role == "HQ"))
