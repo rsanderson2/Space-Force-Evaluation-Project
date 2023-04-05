@@ -85,6 +85,9 @@
         await userData.UpdateUser(currentUser);
         Snackbar.Add("Successfully created new team. Refresh to see changes.", Severity.Success);
 
+        teamName = "";
+        teamLead = null;
+        teamLeadEmail = "";
         isProcessingTeamCreation = false;
     }
 
