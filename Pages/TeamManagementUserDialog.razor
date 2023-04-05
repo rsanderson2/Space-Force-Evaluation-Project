@@ -131,13 +131,20 @@
 
             
 
-            @if (currentUser.role == "HQ" && !isSameUser)
+            @if ((currentUser.role == "HQ" || (currentUser.role == "Commander" && selectedUser.role == "Member")) && !isSameUser)
             {
                 <MudSelect @bind-Value="roleAssignmentValue" Label="Update Role" Placeholder="Select role" AdornmentColor="Color.Primary">
                     <MudSelectItem Value="@("N/A")" Disabled="true">Roles</MudSelectItem>
-                    <MudSelectItem Value="@("Commander")">Commander</MudSelectItem>
-                    <MudSelectItem Value="@("Supervisor")">Supervisor</MudSelectItem>
-                    <MudSelectItem Value="@("Member")">Member</MudSelectItem>
+                    @if(currentUser.role == "HQ") 
+                    {
+                        <MudSelectItem Value="@("Commander")">Commander</MudSelectItem>
+                        <MudSelectItem Value="@("Supervisor")">Supervisor</MudSelectItem>
+                        <MudSelectItem Value="@("Member")">Member</MudSelectItem>
+                    }
+                    else
+                    {
+                        <MudSelectItem Value="@("Supervisor")">Supervisor</MudSelectItem>
+                    }
                 </MudSelect>
 
                 <MudButton 
