@@ -553,7 +553,7 @@
                 {
                     cat = GenerateCategory().ToString();
                     List<QuestionsModel> questions = await questionData.GetQuestionsByCategory(GetCategory(int.Parse(cat)));
-                    while (survey.injectedQuestions.Contains(cat) || tmpQuestions.Contains(cat) || questions.Count < 1 || cat == "13" || cat == "14" || cat == "9" || cat == "20")
+                    while (tmpQuestions.Contains(cat) || questions.Count < 1)
                     {
                         //Console.WriteLine(questions.Count.ToString());
                         questions = await questionData.GetQuestionsByCategory(GetCategory(int.Parse(cat)));
@@ -568,7 +568,7 @@
                 {
                     cat = GenerateCategory().ToString();
                     List<QuestionsModel> questions = await questionData.GetQuestionsByCategory(GetCategory(int.Parse(cat)));
-                    while (survey.injectedQuestions.Contains(cat) || tmpQuestions.Contains(cat) || questions.Count < 1 || cat == "13" || cat == "14" || cat == "9" || cat == "20")
+                    while (tmpQuestions.Contains(cat) || questions.Count < 1)
                     {
                         questions = await questionData.GetQuestionsByCategory(GetCategory(int.Parse(cat)));
                         cat = GenerateCategory().ToString();
@@ -582,7 +582,7 @@
                 {
                     cat = GenerateCategory().ToString();
                     List<QuestionsModel> questions = await questionData.GetQuestionsByCategory(GetCategory(int.Parse(cat)));
-                    while (survey.injectedQuestions.Contains(cat) || tmpQuestions.Contains(cat) || questions.Count < 1 || cat == "13" || cat == "14" || cat == "9" || cat == "20")
+                    while (tmpQuestions.Contains(cat) || questions.Count < 1)
                     {
                         questions = await questionData.GetQuestionsByCategory(GetCategory(int.Parse(cat)));
                         cat = GenerateCategory().ToString();
@@ -592,9 +592,7 @@
                 }
             }
             survey.generatedQuestions = tmpQuestions;
-
-            //Console.WriteLine(cat);
-            //Console.WriteLine(survey.generatedQuestions.ElementAt(0));
+            //survey.injectedQuestions = new List<string>();
             await generatedSurveyData.UpdateGeneratedSurvey(survey);
         }
         if (type == 1) navManager.NavigateTo("/SurveyDaily");
@@ -659,8 +657,8 @@
         }
         else
         {
-            lastDaily = true;
-            showDailyButton = "hidden";
+            // lastDaily = true;
+            // showDailyButton = "hidden";
         }
 
     }
@@ -675,8 +673,8 @@
         }
         else
         {
-            lastWeekly = true;
-            showWeeklyButton = "hidden";
+            // lastWeekly = true;
+            // showWeeklyButton = "hidden";
         }
     }
     private void checkMonthlySurveyEligible(UserModel currentUser)
@@ -691,8 +689,8 @@
         }
         else
         {
-            lastMonthly = true;
-            showMonthlyButton = "hidden";
+            // lastMonthly = true;
+            // showMonthlyButton = "hidden";
         }
     }
     protected override async Task OnInitializedAsync()
