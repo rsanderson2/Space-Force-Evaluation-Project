@@ -1,6 +1,7 @@
 ﻿@inject IUserData userData
 @inject ITeamsData teamsData
 @inject ISnackbar Snackbar
+@inject IDialogService DialogService
 
 <MudDialog>
     <DialogContent>
@@ -36,6 +37,9 @@
 
     <DialogActions>
         <MudButton OnClick="Cancel">Close</MudButton>
+        <MudButton Disabled="@buttonFlag" Size="@Size.Small" Variant="@Variant.Filled" OnClick="@(() => OpenSendQuestion())" Color="@Color.Primary">
+            Send Question
+        </MudButton>
     </DialogActions>
 </MudDialog>
 
@@ -46,6 +50,7 @@
     public class TeamView
     {
         public UserModel teamLeader;
+        public UserModel currentUser;
         public List<UserModel> teamMembers;
         public string teamName;
         public TeamsModel team;
@@ -56,11 +61,22 @@
     [Parameter] public TeamsModel team { get; set; }
 
     TeamView teamInfo = new TeamView();
-
+    bool buttonFlag = false;
     bool isLoading = false;
 
     void Submit() => MudDialog.Close(DialogResult.Ok(true));
     void Cancel() => MudDialog.Cancel();
+
+    private void OpenSendQuestion()
+    {
+        var parameters = new DialogParameters();
+        var options = new DialogOptions { CloseOnEscapeKey = true };
+
+        parameters.Add("users", team.members);
+        parameters.Add("currentUser", currentUser);
+
+        DialogService.Show<SendQuestionUserDialog>("Send Question", parameters, options);
+    }
 
     public async Task<bool> removeMember(string teamID, string memberToRemove)
     {
@@ -104,7 +120,7 @@
     protected async override Task OnInitializedAsync()
     {
         isLoading = true;
-
+        buttonFlag = true;
         teamInfo.teamLeader = await userData.GetUser(team.leader);
         teamInfo.teamName = team.name;
         if(team.members != null)
@@ -117,5 +133,7 @@
         }
 
         isLoading = false;
+        if (currentUser.userID == teamInfo.teamLeader.userID && teamInfo.teamMembers.Count > 0) buttonFlag = false;
+        else buttonFlag = true;
     }
 }

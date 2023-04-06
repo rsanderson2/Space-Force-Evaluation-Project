@@ -70,13 +70,6 @@
             <Column T="UserModel" Field="job" Title="Job"/>
             <Column T="UserModel" Filterable="false" Hideable="false">
                 <CellTemplate>
-                    <MudButton Disabled="@buttonFlag" Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary" OnClick="@(() => OpenSendQuestion(context.Item, currentUser))" Style=" font-family: helveticaNeueMedium;">
-                        Send Question
-                    </MudButton>
-                </CellTemplate>
-            </Column>
-            <Column T="UserModel" Filterable="false" Hideable="false">
-                <CellTemplate>
                     <MudButton Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary" OnClick="@(() => OpenDialog(context.Item, currentUser))" Style=" font-family: helveticaNeueMedium;">
                         View More
                     </MudButton>
@@ -254,17 +247,6 @@
         DialogService.Show<TeamManagementUserDialog>("User Data", parameters, options );
     }
 
-
-    private void OpenSendQuestion(UserModel selectedUser, UserModel currentUser)
-    {
-        var parameters = new DialogParameters();
-        var options = new DialogOptions { CloseOnEscapeKey = true };
-
-        parameters.Add("selectedUser", selectedUser);
-        parameters.Add("currentUser", currentUser);
-
-        DialogService.Show<SendQuestionUserDialog>("Send Question", parameters, options);
-    }
 
     private void AddUsersToDictionary(List<UserModel> usersList, Dictionary<String, bool> usersDictionary)
     {

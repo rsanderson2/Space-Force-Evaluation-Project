@@ -26,7 +26,7 @@
 
 
     [CascadingParameter] MudDialogInstance MudDialog { get; set; }
-    [Parameter] public UserModel selectedUser { get; set; }
+    [Parameter] public List<String> users { get; set; }
     [Parameter] public UserModel currentUser { get; set; }
     public List<UserModel> possibleSubjects = new();
     public UserModel selectedSubject;
@@ -60,62 +60,66 @@
 
     async Task fillInjectedQuestions()
     {
-        List<GeneratedSurveyModel> surveyList = await generatedSurveyData.GetGeneratedSurveysbyUser(selectedUser.userID);
-
-        if (surveyList.Count == 0)
+        foreach (String user in users)
         {
-            GeneratedSurveyModel newGeneratedSurvey = new GeneratedSurveyModel();
+            List<GeneratedSurveyModel> surveyList = await generatedSurveyData.GetGeneratedSurveysbyUser(user);
 
-            // Daily
-            newGeneratedSurvey.surveyType = "Daily";
-            newGeneratedSurvey.takerID = selectedUser.userID;
-            newGeneratedSurvey.date_administered = DateTime.Now;
-            newGeneratedSurvey.date_taken = DateTime.Now;
-            newGeneratedSurvey.generatedQuestions = new List<string>();
-            newGeneratedSurvey.injectedQuestions = new List<string>();
-            newGeneratedSurvey.userReportStats = new List<string>();
-            await generatedSurveyData.CreateGeneratedSurvey(newGeneratedSurvey);
-
-            // Weekly
-            newGeneratedSurvey = new GeneratedSurveyModel();
-            newGeneratedSurvey.surveyType = "Weekly";
-            newGeneratedSurvey.takerID = selectedUser.userID;
-            newGeneratedSurvey.date_administered = DateTime.Now;
-            newGeneratedSurvey.date_taken = DateTime.Now;
-            newGeneratedSurvey.generatedQuestions = new List<string>();
-            newGeneratedSurvey.injectedQuestions = new List<string>();
-            newGeneratedSurvey.userReportStats = new List<string>();
-            await generatedSurveyData.CreateGeneratedSurvey(newGeneratedSurvey);
-
-            // Monthly
-            newGeneratedSurvey = new GeneratedSurveyModel();
-            newGeneratedSurvey.surveyType = "Monthly";
-            newGeneratedSurvey.takerID = selectedUser.userID;
-            newGeneratedSurvey.date_administered = DateTime.Now;
-            newGeneratedSurvey.date_taken = DateTime.Now;
-            newGeneratedSurvey.generatedQuestions = new List<string>();
-            newGeneratedSurvey.injectedQuestions = new List<string>();
-            newGeneratedSurvey.userReportStats = new List<string>();
-            await generatedSurveyData.CreateGeneratedSurvey(newGeneratedSurvey);
-
-            surveyList = await generatedSurveyData.GetGeneratedSurveysbyUser(selectedUser.userID);
-            Console.WriteLine(surveyList.Count.ToString());
-        }
-
-        foreach (GeneratedSurveyModel s in surveyList)
-        {
-            if (s.surveyType == surveyValue)
+            if (surveyList.Count == 0)
             {
-                List<string> tmp = new List<string>();
-                s.injectedQuestions.Add(categoryValue);
-                await generatedSurveyData.UpdateGeneratedSurvey(s);
+                GeneratedSurveyModel newGeneratedSurvey = new GeneratedSurveyModel();
+
+                // Daily
+                newGeneratedSurvey.surveyType = "Daily";
+                newGeneratedSurvey.takerID = user;
+                newGeneratedSurvey.date_administered = DateTime.Now;
+                newGeneratedSurvey.date_taken = DateTime.Now;
+                newGeneratedSurvey.generatedQuestions = new List<string>();
+                newGeneratedSurvey.injectedQuestions = new List<string>();
+                newGeneratedSurvey.userReportStats = new List<string>();
+                await generatedSurveyData.CreateGeneratedSurvey(newGeneratedSurvey);
+
+                // Weekly
+                newGeneratedSurvey = new GeneratedSurveyModel();
+                newGeneratedSurvey.surveyType = "Weekly";
+                newGeneratedSurvey.takerID = user;
+                newGeneratedSurvey.date_administered = DateTime.Now;
+                newGeneratedSurvey.date_taken = DateTime.Now;
+                newGeneratedSurvey.generatedQuestions = new List<string>();
+                newGeneratedSurvey.injectedQuestions = new List<string>();
+                newGeneratedSurvey.userReportStats = new List<string>();
+                await generatedSurveyData.CreateGeneratedSurvey(newGeneratedSurvey);
+
+                // Monthly
+                newGeneratedSurvey = new GeneratedSurveyModel();
+                newGeneratedSurvey.surveyType = "Monthly";
+                newGeneratedSurvey.takerID = user;
+                newGeneratedSurvey.date_administered = DateTime.Now;
+                newGeneratedSurvey.date_taken = DateTime.Now;
+                newGeneratedSurvey.generatedQuestions = new List<string>();
+                newGeneratedSurvey.injectedQuestions = new List<string>();
+                newGeneratedSurvey.userReportStats = new List<string>();
+                await generatedSurveyData.CreateGeneratedSurvey(newGeneratedSurvey);
+
+                surveyList = await generatedSurveyData.GetGeneratedSurveysbyUser(user);
+                Console.WriteLine(surveyList.Count.ToString());
             }
+
+            foreach (GeneratedSurveyModel s in surveyList)
+            {
+                if (s.surveyType == surveyValue)
+                {
+                    List<string> tmp = new List<string>();
+                    s.injectedQuestions.Add(categoryValue);
+                    await generatedSurveyData.UpdateGeneratedSurvey(s);
+                }
+            }
+            
         }
     }
 
 
     protected async override Task OnInitializedAsync()
     {
-        possibleSubjects = await userData.GetUsersByEvaluator(selectedUser.userID);
+        
     }
 }
