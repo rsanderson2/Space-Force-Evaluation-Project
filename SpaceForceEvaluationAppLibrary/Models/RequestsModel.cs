@@ -14,11 +14,13 @@ public class RequestsModel
 
 
     // For ADCONTransferReqeust: 
-    // if user requesting transfer is a commander, than none
-    // else closest superior commander to user reqeusting transfer
+        // if user requesting transfer is a commander, than none
+        // else closest superior commander to user reqeusting transfer
+
     // For EvaluationAssignmentRequests: superior of user being evaluated,
+
     // For OPCONTransferRequest:
-    // team ID of team that the user is being outsourced to. 
+        // team ID of team that the user is being outsourced to. 
 
     //OLD:  if requestInitiator.leader.role is commander, than none
     //OLD:  else closest superior commander to user requesting transfer TODO: see if this is necessary because it may be that only commanders can lead teams
@@ -34,12 +36,16 @@ public class RequestsModel
 
     public string type { get; set; } // "ADCONTransferRequest", "EvaluationAssignmentRequest", "SuperiorAssignedEvaluationRequest", "OPCONOutsourceRequest"
 
+
+
     // For ADCONTransferRequest: user being transfered
     // For EvaluationAssignmentRequest: user being evaluated
     // For OPCONTransferRequests: user being outsourced to team. 
     public string value { get; set; } // TODO: replace with List<string> values after demo
 
+
     // For SuperiorAssignedEvaluationRequest: values[0] = userID of potential evaluator, values[1] = user being evaluated
+    // For EvaluationAssignmentRequest: values[0] = userID of potential evaluator, values[1] = user being evaluated
     public List<string> values { get; set; }
 
 

@@ -7,6 +7,9 @@
         <div>
             <MudInput T="string" Placeholder="Team Name" @bind-Value="teamName" />
         </div>
+        <div>
+            <MudInput T="string" Placeholder="Team Lead's email" @bind-Value="teamLeadEmail" />
+        </div>
     </DialogContent>
 
     <DialogActions>
@@ -26,12 +29,41 @@
 
     bool isProcessingTeamCreation = false;
     string teamName;
+    string teamLeadEmail; 
+    UserModel teamLead; 
+
+
+    public async Task<UserModel> getNewTeamLead() {
+        UserModel potentialTeamLead = await userData.GetUserByEmail(teamLeadEmail);
+
+        if (potentialTeamLead == null)
+        {
+            Snackbar.Add($"ERROR: user with email ({teamLeadEmail}) not found", Severity.Error);
+            return null;
+        }
+        else if (potentialTeamLead.role != "HQ" && potentialTeamLead.role != "Commander" && potentialTeamLead.role != "Supervisor")
+        {
+            Snackbar.Add($"ERROR: specified team leader must have a role of HQ, Commander, or Supervisor", Severity.Error);
+            return null;
+        }
+
+        return potentialTeamLead;
+    }
+
 
     public async Task createTeam()
     {
         isProcessingTeamCreation = true;
+
+        teamLead = await getNewTeamLead();
+        if(teamLead == null)
+        {
+            isProcessingTeamCreation = false;
+            return;
+        }
+
         TeamsModel newTeam = new TeamsModel();
-        newTeam.leader = currentUser.userID;
+        newTeam.leader = teamLead.userID;
         newTeam.members = new List<string>();
         newTeam.name = teamName;
 
@@ -46,12 +78,16 @@
                 return;
             }
         }
+
         await teamsData.CreateTeam(newTeam);
         if (currentUser.teamIDs == null) currentUser.teamIDs = new List<String>();
         currentUser.teamIDs.Add(newTeam.ObjectId);
         await userData.UpdateUser(currentUser);
         Snackbar.Add("Successfully created new team. Refresh to see changes.", Severity.Success);
 
+        teamName = "";
+        teamLead = null;
+        teamLeadEmail = "";
         isProcessingTeamCreation = false;
     }
 
