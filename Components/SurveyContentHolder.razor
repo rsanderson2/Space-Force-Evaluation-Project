@@ -11,10 +11,11 @@
     @for (int i = 0; i < surveyQuestions.Count(); i++)
     {
         SurveyModel surveyQuestion = surveyQuestions[i];
+        string s = subjectText[i];
         @if (surveyQuestion.surveyType == "mult")
         {
             <div>
-                <h6>Question @(i + 1): @surveyQuestion.question</h6>
+                <h6>Question @(i + 1): @s @surveyQuestion.question</h6>
                 <div style="padding-left: 5%; padding-bottom: 2%">
                     <MudGrid Spacing="3" Justify="Justify.Center">
                         <MudItem xs="2" sm="2" md="2" lg="2" xl="2">
@@ -80,6 +81,7 @@
     List<string> questionsList = new List<string>();
     List<string> questionResponses = new List<string>();
     List<string> subjectText = new List<string>();
+    String surveySubjectId = "";
 
     int getIndexOfQuestion(string q)
     {
@@ -173,7 +175,6 @@
     {
         UserModel currentUser = await AuthenticationStateProviderHelpers.GetUserFromAuth(authProvider, userData);
         List<GeneratedSurveyModel> generatedSurveyList = await generatedSurveyData.GetGeneratedSurveysbyUser(currentUser.userID);
-        //List<NewSurveyModel> newSurveyList = await newSurveyData.GetNewSurveysbyUser(currentUser.userID);
         TimeZoneInfo Eastern_Standard_Time = TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time");
         DateTime dateTime_Eastern = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, Eastern_Standard_Time);
 
@@ -190,6 +191,7 @@
                 newSurvey.surveyType = "Daily";
                 newSurvey.date_taken = dateTime_Eastern;
                 newSurvey.date_administered = today;
+                newSurvey.subjectID = surveySubjectId;
                 newSurvey.question = new List<string>();
                 newSurvey.category = new List<string>();
                 newSurvey.freeResponseText = new List<string>();
@@ -225,6 +227,7 @@
                 newSurvey.surveyType = "Weekly";
                 newSurvey.date_taken = dateTime_Eastern;
                 newSurvey.date_administered = today;
+                newSurvey.subjectID = surveySubjectId;
                 newSurvey.question = new List<string>();
                 newSurvey.category = new List<string>();
                 newSurvey.freeResponseText = new List<string>();
@@ -260,6 +263,7 @@
                 newSurvey.surveyType = "Monthly";
                 newSurvey.date_taken = dateTime_Eastern;
                 newSurvey.date_administered = today;
+                newSurvey.subjectID = surveySubjectId;
                 newSurvey.question = new List<string>();
                 newSurvey.category = new List<string>();
                 newSurvey.freeResponseText = new List<string>();
@@ -296,6 +300,10 @@
         UserModel currentUser = await AuthenticationStateProviderHelpers.GetUserFromAuth(authProvider, userData);
         List<GeneratedSurveyModel> generatedSurveyList = await generatedSurveyData.GetGeneratedSurveysbyUser(currentUser.userID);
         List<QuestionsModel> questions = new List<QuestionsModel>();
+        UserModel tmpUser;
+        int randSuperior = rnd.Next(0, currentUser.superiors.Count);
+        surveySubjectId = currentUser.superiors[randSuperior];
+        tmpUser = await userData.GetUser(currentUser.superiors[randSuperior]);
 
         // Generated questions
         foreach (GeneratedSurveyModel survey in generatedSurveyList)
@@ -309,15 +317,7 @@
                 questionsList.Add(tmpQuestion);
                 surveyQuestion.question = tmpQuestion;
                 surveyQuestion.surveyType = "mult";
-
-                /*
-                UserModel tmpUser;
-                if (survey.userReportStats != null && survey.userReportStats.Count > 0) tmpUser = await userData.GetUser(survey.userReportStats[0]);
-                else tmpUser = await userData.GetUser(currentUser.superiors[0]);
-                surveyQuestion.question = tmpQuestion;
-                subjectText.Add(tmpUser.firstName + " " + tmpUser.lastName + " - ");
-                questionsList.Add(tmpQuestion);
-                */
+                subjectText.Add(tmpUser.firstName + " " + tmpUser.lastName + " -");
 
                 //Console.WriteLine(surveyQuestion);
                 surveyQuestions.Add(surveyQuestion);

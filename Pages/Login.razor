@@ -543,6 +543,15 @@
             generatedSurveyList = await generatedSurveyData.GetGeneratedSurveysbyUser(currentUser.userID);
         }
 
+
+        if (currentUser.superiors == null)
+        {
+            currentUser.superiors = new List<String>();
+            currentUser.superiors.Add("6c42fc5c-3b48-4db8-b233-566ccb5ba9c9");
+            await userData.UpdateUser(currentUser);
+        }
+        
+
         foreach (GeneratedSurveyModel survey in generatedSurveyList)
         {
             string cat = GenerateCategory().ToString();
