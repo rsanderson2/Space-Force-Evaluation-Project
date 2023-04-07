@@ -19,10 +19,12 @@
         <HeaderContent>
             <MudTh>Date Administered</MudTh>
             <MudTh>Date Taken</MudTh>
+            <MudTh>Survey Type</MudTh>
         </HeaderContent>
         <RowTemplate>
             <MudTd>@ConvertDateTime(context.date_administered)</MudTd>
             <MudTd>@ConvertDateTime(context.date_taken)</MudTd>
+            <MudTd>@context.surveyType</MudTd>
             <MudTd>
                 <MudButton OnClick="@(() => OpenDialog(context))" Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary">
                     View More

@@ -11,7 +11,8 @@
     @for (int i = 0; i < surveyQuestions.Count(); i++)
     {
         SurveyModel surveyQuestion = surveyQuestions[i];
-        string s = subjectText[i];
+        string s = "";
+        if (i < subjectText.Count) s = subjectText[i];
         @if (surveyQuestion.surveyType == "mult")
         {
             <div>

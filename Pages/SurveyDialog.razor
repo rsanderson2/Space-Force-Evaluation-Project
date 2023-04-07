@@ -9,6 +9,7 @@
                 <h6>Question @question.questionNumber</h6>
                 <div style="padding-left: 5%; padding-bottom: 2%">
                     <p><b>Question: </b> @question.question</p>
+                    <p><b>Subject: </b> @question.subject</p>
                     <p><b>Category: </b>@question.category</p>
                     <p><b>Response: </b>@question.response</p>
                 </div>
@@ -40,6 +41,7 @@
     public class QuestionView
     {
         public string question = "";
+        public string subject = "";
         public string category = "";
         public string response = "";
         public int questionNumber;
@@ -140,8 +142,9 @@
             
             if (survey.category[i] != "Injected")
             {
-                Console.WriteLine("Generated Question");
+                UserModel subjectUser = await userData.GetUser(survey.subjectID);
                 newQuestion.question = survey.question[i];
+                newQuestion.subject = subjectUser.firstName + " " + subjectUser.lastName;
                 newQuestion.category = GetCategory(int.Parse(survey.category[i]));
                 newQuestion.response = survey.freeResponseText[i].ToString();
                 newQuestion.questionNumber = i + 1;
@@ -149,7 +152,6 @@
             }
             else
             {
-                Console.WriteLine("Injected Question");
                 newQuestion.question = survey.question[i];
                 newQuestion.response = survey.freeResponseText[i];
                 newQuestion.questionNumber = i + 1;
