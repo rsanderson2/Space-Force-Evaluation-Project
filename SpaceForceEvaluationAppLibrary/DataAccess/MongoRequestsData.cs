@@ -28,6 +28,7 @@ public class MongoRequestsData : IRequestsData
 
     public async Task<List<RequestsModel>> GetRecievedRequests(string userID)
     {
+
         var results = await _requests.FindAsync(u => u.requestTarget1 == userID ||
                                                      u.requestTarget2 == userID);
         return results.ToList();
