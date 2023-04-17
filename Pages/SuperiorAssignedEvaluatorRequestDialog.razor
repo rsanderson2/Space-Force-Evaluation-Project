@@ -1,5 +1,6 @@
 ﻿@inject IUserData userData
 @inject IRequestsData requestsData
+@inject IEvaluationsData evaluationsData
 @inject ISnackbar Snackbar
 
 <MudDialog>
@@ -58,11 +59,18 @@
     async Task onApproval()
     {
         processingEvaluationRequest = true;
-        // call addUserToSelfAssignedEvaluators
-        bool result = await userData.addUserToSuperiorAssignedEvaluators(user.userID, newEvaluator.userID);
 
-        if(result)
+        var superiorAssignedEvaluators = await evaluationsData.GetAllSuperiorAssignedEvaluatorsIDs(user.userID);
+
+        if (superiorAssignedEvaluators.Count < 3)
         {
+            EvaluationsModel newEvaluation = new EvaluationsModel();
+            newEvaluation.superiorAssigned = true;
+            newEvaluation.evaluatorId = newEvaluator.userID;
+            newEvaluation.userBeingEvaluatedId = user.userID;
+
+            await evaluationsData.CreateEvaluation(newEvaluation);
+
             UpdateStatus("Approved");
             currentStatus = "Approved";
             Snackbar.Add("Successfully approved evaluation requests.", Severity.Success);
@@ -73,6 +81,7 @@
             currentStatus = "Error";
             Snackbar.Add("Error: exceeded limit of evaluators or error assigning user to evaluators", Severity.Error);
         }
+
         processingEvaluationRequest = false;
     }
 

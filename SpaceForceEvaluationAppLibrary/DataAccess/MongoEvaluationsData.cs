@@ -57,9 +57,9 @@ public class MongoEvaluationsData : IEvaluationsData
         return results.ToList();
     }
 
-    public async Task RemoveEvaluation(string ObjectID)
+    public async Task RemoveEvaluation(EvaluationsModel evaluation)
     {
-        var filter = Builders<EvaluationsModel>.Filter.Eq("ObjectID", ObjectID);
+        var filter = Builders<EvaluationsModel>.Filter.Eq("ObjectIdentifier", evaluation.ObjectIdentifier);
         var result = await _evaluations.DeleteOneAsync(filter);
     }
 
@@ -79,10 +79,27 @@ public class MongoEvaluationsData : IEvaluationsData
         return (results.Count > 0);
     }
 
-    public async Task<List<String>> GetSelfAllAssignedEvaluatorsIDs(string userID)
+    public async Task<List<String>> GetAllSelfAssignedEvaluatorsIDs(string userID)
     {
         var results = await _evaluations.FindAsync(u => u.userBeingEvaluatedId == userID && 
                                                         u.superiorAssigned == false);
+
+        var resultsList = results.ToList();
+
+        List<String> evaluatorsIDs = new();
+
+        foreach (var evaluation in resultsList)
+        {
+            evaluatorsIDs.Add(evaluation.evaluatorId);
+        }
+        return evaluatorsIDs;
+    }
+
+
+    public async Task<List<String>> GetAllSuperiorAssignedEvaluatorsIDs(string userID)
+    {
+        var results = await _evaluations.FindAsync(u => u.userBeingEvaluatedId == userID &&
+                                                        u.superiorAssigned == true);
 
         var resultsList = results.ToList();
 

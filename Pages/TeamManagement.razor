@@ -7,6 +7,7 @@
 @inject IAccoladeData accoladeData
 @inject IJSRuntime JsRuntime 
 @inject IDialogService DialogService
+@inject IEvaluationsData evaluationsData
 
 
 <PageTitle>Team Management</PageTitle>
@@ -287,15 +288,19 @@
     // TODO: move this to data layer
     public async Task<List<UserModel>> getSelfAssignedEvaluators(UserModel user)
     {
-        if (user.selfAssignedEvaluators == null) return null;
-        List<UserModel> evaluators = new List<UserModel>();
+        var selfAssignedEvaluatorIDs = await evaluationsData.GetAllSelfAssignedEvaluatorsIDs(user.userID);
 
-        foreach(var evaluatorID in user.selfAssignedEvaluators)
+        List<UserModel> selfAssignedEvaluators = new List<UserModel>();
+
+        if(selfAssignedEvaluatorIDs != null)
         {
-            evaluators.Add(await userData.GetUser(evaluatorID));
+            foreach(var evaluatorID in selfAssignedEvaluatorIDs)
+            {
+                selfAssignedEvaluators.Add(await userData.GetUser(evaluatorID));
+            }
         }
 
-        return evaluators;
+        return selfAssignedEvaluators;
     }
 
 

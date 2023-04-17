@@ -20,16 +20,16 @@ namespace SpaceForceEvaluationAppLibrary.DataAccess
         
         Task<List<EvaluationsModel>> GetAllEvaluations();
 
-        
-        Task RemoveEvaluation(string ObjectID);
-        
+        Task RemoveEvaluation(EvaluationsModel evaluation);
+
         Task RemoveAllEvaluations();
         
         Task<bool> CheckIfEvaluationExist(EvaluationsModel evaluation);
 
-        Task<List<String>> GetSelfAllAssignedEvaluatorsIDs(string userID);
+        Task<List<String>> GetAllSelfAssignedEvaluatorsIDs(string userID);
 
         Task<EvaluationsModel> GetByEvaluatorAndUserBeingEvaluated(string evaluatorID, string userBeingEvaluatedID);
 
+        Task<List<String>> GetAllSuperiorAssignedEvaluatorsIDs(string userID);
     }
 }
