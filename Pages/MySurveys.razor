@@ -15,7 +15,7 @@
 </head>
 
 <div>
-    <MudTable Class="mt-15 mb-3 pa-2" Items="@newSurveyList" Hover="true" Loading="@isLoading">
+    <MudTable Style="font-family:HelveticaNeueMedium; font-style: normal; font-weight: 900; font-size:90%; border-radius: 15px; background: #E7F1FF; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);" Class="mt-15 mb-3 pa-2" Items="@newSurveyList" Hover="true" Loading="@isLoading">
         <HeaderContent>
             <MudTh>Date Administered</MudTh>
             <MudTh>Date Taken</MudTh>
@@ -26,7 +26,7 @@
             <MudTd>@ConvertDateTime(context.date_taken)</MudTd>
             <MudTd>@context.surveyType</MudTd>
             <MudTd>
-                <MudButton OnClick="@(() => OpenDialog(context))" Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary">
+                <MudButton OnClick="@(() => OpenDialog(context))" Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary" Style=" font-family: helveticaNeueMedium;">
                     View More
                 </MudButton>
             </MudTd>
