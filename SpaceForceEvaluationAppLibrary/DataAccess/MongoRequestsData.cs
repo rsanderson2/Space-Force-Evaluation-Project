@@ -28,6 +28,7 @@ public class MongoRequestsData : IRequestsData
 
     public async Task<List<RequestsModel>> GetRecievedRequests(string userID)
     {
+
         var results = await _requests.FindAsync(u => u.requestTarget1 == userID ||
                                                      u.requestTarget2 == userID);
         return results.ToList();
@@ -85,7 +86,9 @@ public class MongoRequestsData : IRequestsData
                                                         u.requestTarget == request.requestTarget &&
                                                         u.value == request.value &&
                                                         u.type == request.type &&
-                                                        u.status == "Pending");
+                                                        u.status == "Pending" &&
+                                                        u.requestTarget1 == request.requestTarget1 &&
+                                                        u.requestTarget2 == request.requestTarget2);
             var results = queryResponse.ToList();
 
             return (results.Count > 0);

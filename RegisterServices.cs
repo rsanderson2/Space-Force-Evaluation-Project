@@ -44,6 +44,8 @@ public static class RegisterServices
         builder.Services.AddSingleton<IGeneratedSurveyData, MongoGeneratedSurvey>();
         builder.Services.AddSingleton<IQuestionsData, MongoQuestionsData>();
         builder.Services.AddSingleton<INewSurveyData, MongoNewSurveyData>();
+        builder.Services.AddSingleton<IEvaluationsData, MongoEvaluationsData>();
+
 
 
     }

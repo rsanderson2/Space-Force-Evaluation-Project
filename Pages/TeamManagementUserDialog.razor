@@ -1,5 +1,6 @@
 ﻿@inject IUserData userData
 @inject IRequestsData requestsData
+@inject IEvaluationsData evaluationsData
 @inject ISnackbar Snackbar
 @inject ITeamsData teamsData
 <head>
@@ -18,21 +19,21 @@
             <p><b>Rank:</b> @selectedUser.rank</p>
             <p><b>Job:</b> @selectedUser.job</p>
             <p><b>Role:</b> @selectedUser.role</p>
-             
-            @if ((hasDirectADCON || hasIndirectADCON) && !isSameUser)
-            {
-                <p>last daily survey taken: TODO</p>
-                <p>last weekly survey taken: TODO</p>
-                <p>last monthly survey taken: TODO</p>
-                <p>Assign evaluator: TODO</p>
-            }
         </div>
 
         <div>
 
             @if (!isSameUser)
             {
+                /*
+                TODO: use this if we have indirect ADCON support
                 @if (hasGreatORequalRole && !hasDirectADCON && !hasIndirectADCON)
+                {
+                    <MudButton Disabled="@(superior == null || processingADCONRequest)" OnClick="() => requestADCONOverUser()">Request ADCON</MudButton>
+                }
+                */
+
+                @if (hasGreatORequalRole && !hasDirectADCON)
                 {
                     <MudButton Disabled="@(superior == null || processingADCONRequest)" OnClick="() => requestADCONOverUser()">Request ADCON</MudButton>
                 }
@@ -150,6 +151,7 @@
                 <MudButton 
                     OnClick="() => updateSelectedUserRole(roleAssignmentValue)">Confirm Role @roleAssignmentPrompt</MudButton>
             }
+
         </div>
         
     </DialogContent>
@@ -287,23 +289,15 @@
 
     async Task<bool> isUserSelfAssignedEvaluator(UserModel user, UserModel potentialEvaluator)
     {
-        if(user.selfAssignedEvaluators == null)
-        {
-            return false;
-        }
-
-        return user.selfAssignedEvaluators.Contains(potentialEvaluator.userID);
+        EvaluationsModel evaluation = await evaluationsData.GetByEvaluatorAndUserBeingEvaluated(potentialEvaluator.userID, user.userID);
+        return ((evaluation != null) && (evaluation.superiorAssigned == false));
     }
 
 
     async Task<bool> isUserSuperiorAssignedEvaluator(UserModel user, UserModel potentialEvaluator)
     {
-        if (user.superiorAssignedEvaluators == null)
-        {
-            return false;
-        }
-
-        return user.superiorAssignedEvaluators.Contains(potentialEvaluator.userID);
+        EvaluationsModel evaluation = await evaluationsData.GetByEvaluatorAndUserBeingEvaluated(potentialEvaluator.userID, user.userID);
+        return ((evaluation != null) && (evaluation.superiorAssigned == true));
     }
 
     async Task makeSuperiorAssignedEvaluatorRequest()
@@ -383,20 +377,20 @@
 
     async Task removeSelfAssignedEvaluator()
     {
-        await userData.removeSelfAssignedEvaluatorFromUser(selectedUser.userID, currentUser.userID);
+
+        // Task RemoveEvaluation(string ObjectID)
+        var evaluation = await evaluationsData.GetByEvaluatorAndUserBeingEvaluated(selectedUser.userID, currentUser.userID);
+        await evaluationsData.RemoveEvaluation(evaluation);
         Snackbar.Add("Removed as evaluator. Refresh to see changes", Severity.Success);
         processingEvaluatorRequest = true;
     }
 
     async Task onRemoveSuperiorAssignedEvaluator(string evaluatorID, string userID)
     {
-        await userData.removeSuperiorAssignedEvaluatorFromUser(evaluatorID, userID);
+        var evaluation = await evaluationsData.GetByEvaluatorAndUserBeingEvaluated(evaluatorID, userID);
+        await evaluationsData.RemoveEvaluation(evaluation);
         Snackbar.Add("Removed as evaluator. Refresh to see changes", Severity.Success);
-        var itemToRemove = superiorAssignedEvaluators.SingleOrDefault(r => r.userID == evaluatorID);
-        if (itemToRemove != null)
-        {
-            superiorAssignedEvaluators.Remove(itemToRemove);
-        }
+        processingEvaluatorRequest = true;
     }
 
     IDictionary<string, int> roles = new Dictionary<string, int>() {
@@ -508,15 +502,35 @@
     }
 
 
+    public async Task<List<UserModel>> getSuperiorAssignedEvaluators(UserModel user)
+    {
+        var superiorAssignedEvaluatorIDs = await evaluationsData.GetAllSuperiorAssignedEvaluatorsIDs(user.userID);
+
+        List<UserModel> superiorAssignedEvaluators = new List<UserModel>();
+
+        if (superiorAssignedEvaluatorIDs != null)
+        {
+            foreach (var evaluatorID in superiorAssignedEvaluatorIDs)
+            {
+                superiorAssignedEvaluators.Add(await userData.GetUser(evaluatorID));
+            }
+        }
+
+        return superiorAssignedEvaluators;
+    }
+
+
     protected async override Task OnInitializedAsync()
     {
         hasIndirectADCON = await userData.hasIndirectADCONOverUser(selectedUser, currentUser);
         hasDirectADCON = userData.hasDirectADCONOverUser(selectedUser, currentUser);
         hasOPCON = false; // TODO: update to see if they have OPCON over the selected user
 
-        selectedIsSelfAssignedEvaluator = currentUser.selfAssignedEvaluators != null ? currentUser.selfAssignedEvaluators.Contains(selectedUser.userID) : false;
-        selectedIsSuperiorAssignedEvaluator = currentUser.superiorAssignedEvaluators != null ? currentUser.superiorAssignedEvaluators.Contains(selectedUser.userID) : false;
-        selectedIsEvaluatorOfCurrent = selectedIsSelfAssignedEvaluator || selectedIsSuperiorAssignedEvaluator;
+        var evaluationCheck = await evaluationsData.GetByEvaluatorAndUserBeingEvaluated(selectedUser.userID, currentUser.userID);
+        selectedIsEvaluatorOfCurrent = (evaluationCheck != null);
+        selectedIsSelfAssignedEvaluator = ((selectedIsEvaluatorOfCurrent == true) && (evaluationCheck.superiorAssigned == false));
+        selectedIsSuperiorAssignedEvaluator = ((selectedIsEvaluatorOfCurrent == true) && (evaluationCheck.superiorAssigned == true));
+
 
         hasGreatORequalRole = isSuperiorToSelectedUser(selectedUser.role);
         selectedUserHasUnassignedRole = doesUserHaveUnassignedRole(selectedUser);
@@ -549,16 +563,10 @@
 
         }
 
-        if(selectedUser.superiorAssignedEvaluators != null)
-        {
-            foreach (var evaluator in selectedUser.superiorAssignedEvaluators) 
-            {
-                superiorAssignedEvaluators.Add(await userData.GetUser(evaluator));
-            }
-            superiorAssignedEvaluators.RemoveAll(item => item == null);
-        }
+        superiorAssignedEvaluators = await getSuperiorAssignedEvaluators(selectedUser);
 
-        //await userData.EmptyAllSupordinatesAndSuperiorsList();
+
+        // await userData.EmptyAllSupordinatesAndSuperiorsList();
         //await userData.EmptyAllEvaluators();
         //await userData.EmptyAllTeamIDs();
         //await teamsData.RemoveAllTeams();

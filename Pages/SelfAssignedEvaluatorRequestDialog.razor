@@ -1,6 +1,8 @@
 ﻿@inject IUserData userData
 @inject IRequestsData requestsData
+@inject IEvaluationsData evaluationsData
 @inject ISnackbar Snackbar
+
 
 <MudDialog>
     <DialogContent>
@@ -67,11 +69,18 @@
         }
         else
         {
-            // call addUserToSelfAssignedEvaluators
-            bool result = await userData.addUserToSelfAssignedEvaluators(user.userID, newEvaluator.userID);
 
-            if (result)
+            var selfAssignedEvaluators = await evaluationsData.GetAllSelfAssignedEvaluatorsIDs(user.userID);
+
+            if(selfAssignedEvaluators.Count < 3)
             {
+                EvaluationsModel newEvaluation = new EvaluationsModel();
+                newEvaluation.superiorAssigned = false;
+                newEvaluation.evaluatorId = newEvaluator.userID;
+                newEvaluation.userBeingEvaluatedId = user.userID;
+
+                await evaluationsData.CreateEvaluation(newEvaluation);
+
                 UpdateStatus("Approved");
                 currentStatus = "Approved";
                 Snackbar.Add("Successfully approved evaluation requests.", Severity.Success);
