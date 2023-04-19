@@ -46,5 +46,8 @@ namespace SpaceForceEvaluationAppLibrary.DataAccess
         IMongoCollection<EvaluationsModel> EvaluationsCollection { get; }
         string EvaluationsCollectionName { get; }
 
+        IMongoCollection<ADCONModel> ADCONCollection { get; }
+        string ADCONCollectionName { get; }
+
     }
 }

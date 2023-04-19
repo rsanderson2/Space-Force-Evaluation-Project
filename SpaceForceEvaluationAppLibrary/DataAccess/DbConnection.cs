@@ -39,6 +39,8 @@ public class DbConnection : IDbConnection
 
     public string EvaluationsCollectionName { get; private set; } = "Evaluations";
 
+    public string ADCONCollectionName { get; private set; } = "ADCON";
+
 
 
     // here each of the collections is intialized as a type referencing their respective models
@@ -69,6 +71,8 @@ public class DbConnection : IDbConnection
 
     public IMongoCollection<EvaluationsModel> EvaluationsCollection { get; private set; }
 
+    public IMongoCollection<ADCONModel> ADCONCollection { get; private set; }
+
 
     // here is the constructor for the database connection. The database connection is made first, then
     // each of the collections are connected.
@@ -94,7 +98,7 @@ public class DbConnection : IDbConnection
         QuestionCollection = _db.GetCollection<QuestionsModel>(QuestionCollectionName);
         NewSurveyCollection = _db.GetCollection<NewSurveyModel>(NewSurveyCollectionName);
         EvaluationsCollection = _db.GetCollection<EvaluationsModel>(EvaluationsCollectionName);
-
+        ADCONCollection = _db.GetCollection<ADCONModel>(ADCONCollectionName);
 
     }
 }
