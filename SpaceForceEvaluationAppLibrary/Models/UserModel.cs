@@ -30,5 +30,6 @@ public class UserModel
     public List<String> selfAssignedEvaluators { get; set; }
     public List<String> superiorAssignedEvaluators { get; set; }
 
+    public String superiorID { get; set; }
 
 }
