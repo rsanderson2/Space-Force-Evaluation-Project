@@ -4,6 +4,7 @@
 @inject NavigationManager navManager
 @inject IUserData userData
 @inject ITeamsData teamData
+@inject IADCONData ADCONData
 @inject IAccoladeData accoladeData
 @inject IJSRuntime JsRuntime 
 @inject IDialogService DialogService
@@ -128,8 +129,8 @@
             if (filtersStatus[i].name == "Users under your ADCON" && filtersStatus[i].showFilterData)
             {
                 if (!filtersStatus[i].hasFetchedFilterData)
-                {
-                    subordinateUsers = await userData.GetDirectSubordinates(currentUser);
+                { 
+                    subordinateUsers = await ADCONData.GetDirectSubordinates(currentUser);
                     filtersStatus[i].hasFetchedFilterData = true;
                 }
                 // if not in dictionary already, then add

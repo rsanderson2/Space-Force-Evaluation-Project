@@ -3,6 +3,8 @@
 @inject IEvaluationsData evaluationsData
 @inject ISnackbar Snackbar
 @inject ITeamsData teamsData
+@inject IADCONData ADCONData
+
 <head>
     <style>
     </style>
@@ -200,16 +202,16 @@
     async Task takeADCON(UserModel subordinate)
     {
         processingADCONRequest = true;
-        foreach(var currentUsersSubordinate in currentUser?.subordinates)
-        {
-            if (currentUsersSubordinate == subordinate.userID)
-            {
-                Snackbar.Add("ERROR: user already has direct ADCON", Severity.Error);
-                return;
-            }
 
+        bool ADCONCheck = await ADCONData.hasDirectADCONOverUser(subordinate, currentUser);
+
+        if(ADCONCheck == true)
+        {
+            Snackbar.Add("ERROR: user already has direct ADCON", Severity.Error);
+            return;
         }
-        bool result = await userData.ADCONTransfer(currentUser.userID, subordinate.userID);
+
+        bool result = await ADCONData.ADCONTransfer(currentUser.userID, subordinate.userID);
 
         if(result)
         {
@@ -229,30 +231,34 @@
         RequestsModel newADCONTransferRequest = new RequestsModel();
         newADCONTransferRequest.requestInitiator = currentUser.userID;
 
-        UserModel firstUserForHandshake = (await userData.GetClosestCommander(selectedUser.superiors[0]));
-        UserModel secondUserForHandshake = (await userData.GetClosestCommander(currentUser.userID));
+        String selectedUsers_superiorID = (await ADCONData.GetADCONBySubordinate(selectedUser.userID))?.superiorID;
 
-        if(firstUserForHandshake.userID == secondUserForHandshake.superiors[0])
+        UserModel firstUserForHandshake = (await ADCONData.GetClosestCommander(selectedUsers_superiorID)); 
+        UserModel secondUserForHandshake = (await ADCONData.GetClosestCommander(currentUser.userID)); 
+
+
+        String secondUserForHandshakes_superior = (await ADCONData.GetADCONBySubordinate(secondUserForHandshake.userID))?.superiorID;
+        if(firstUserForHandshake.userID == secondUserForHandshakes_superior)
         {
             // if the current user is trying to ask for ADCON of a peer,then only need their direct superior.
             newADCONTransferRequest.requestTarget1 = firstUserForHandshake.userID;
         }
-        else if(userData.hasDirectADCONOverUser(secondUserForHandshake, firstUserForHandshake))
+        else if (await ADCONData.hasDirectADCONOverUser(secondUserForHandshake, firstUserForHandshake)) 
         {
             // only need second user
             newADCONTransferRequest.requestTarget1 = secondUserForHandshake.userID;
         }
-        else if(userData.hasDirectADCONOverUser(firstUserForHandshake, secondUserForHandshake))
+        else if (await ADCONData.hasDirectADCONOverUser(firstUserForHandshake, secondUserForHandshake)) 
         {
             // only need first user
             newADCONTransferRequest.requestTarget1 = firstUserForHandshake.userID;
         }
-        else if( await userData.hasIndirectADCONOverUser(secondUserForHandshake, firstUserForHandshake))
+        else if( await ADCONData.hasIndirectADCONOverUser(secondUserForHandshake, firstUserForHandshake)) 
         {
             // only need second user
             newADCONTransferRequest.requestTarget1 = secondUserForHandshake.userID;
         }
-        else if(await userData.hasIndirectADCONOverUser(firstUserForHandshake, secondUserForHandshake))
+        else if(await ADCONData.hasIndirectADCONOverUser(firstUserForHandshake, secondUserForHandshake))
         {
             // only need first user
             newADCONTransferRequest.requestTarget1 = firstUserForHandshake.userID;
@@ -304,7 +310,9 @@
     {
         processingSuperiorEvaluationRequest = true;
         UserModel potentialEvaluator = await userData.GetUserByEmail(superiorAssignedEvaluatorEmail);
-        if(selectedUser.superiorAssignedEvaluators != null && selectedUser.superiorAssignedEvaluators.Count > 3) // TODO: change the 3 to a variable, not a hard coded number
+
+        var superiorAssignedEvaluatorIDs = await evaluationsData.GetAllSuperiorAssignedEvaluatorsIDs(selectedUser.userID);
+        if (superiorAssignedEvaluatorIDs != null && superiorAssignedEvaluatorIDs.Count > 3) // TODO: change the 3 to a variable, not a hard coded number
         {
             Snackbar.Add($"ERROR: user has max number of superior assigned evaluators.", Severity.Error);
         }
@@ -351,7 +359,9 @@
         RequestsModel newEvaluationAssignmentRequest = new RequestsModel();
         newEvaluationAssignmentRequest.requestInitiator = currentUser.userID;
         newEvaluationAssignmentRequest.requestTarget1 = selectedUser.userID;
-        newEvaluationAssignmentRequest.requestTarget2 = currentUser.superiors[0];
+
+        String curentUsers_superior = (await ADCONData.GetADCONBySubordinate(currentUser.userID))?.superiorID;
+        newEvaluationAssignmentRequest.requestTarget2 = curentUsers_superior;
 
         if(newEvaluationAssignmentRequest.values == null)
         {
@@ -480,7 +490,9 @@
             Snackbar.Add("ERROR: must select a valid team", Severity.Error);
         }
         RequestsModel newOPCONOutsourceRequest = new RequestsModel();
-        newOPCONOutsourceRequest.requestTarget1 = selectedUser.superiors[0];
+
+        String selectedUsers_superior = (await ADCONData.GetADCONBySubordinate(selectedUser.userID))?.superiorID;
+        newOPCONOutsourceRequest.requestTarget1 = selectedUsers_superior;
         newOPCONOutsourceRequest.requestTarget2 = selectedTeam.ObjectId; // TODO: update to account for supervisors being team leaders if Roger says so
         newOPCONOutsourceRequest.requestInitiator = selectedTeam.leader;
         newOPCONOutsourceRequest.value = selectedUser.userID;
@@ -522,8 +534,8 @@
 
     protected async override Task OnInitializedAsync()
     {
-        hasIndirectADCON = await userData.hasIndirectADCONOverUser(selectedUser, currentUser);
-        hasDirectADCON = userData.hasDirectADCONOverUser(selectedUser, currentUser);
+        hasIndirectADCON = await ADCONData.hasIndirectADCONOverUser(selectedUser, currentUser);
+        hasDirectADCON = await ADCONData.hasDirectADCONOverUser(selectedUser, currentUser);
         hasOPCON = false; // TODO: update to see if they have OPCON over the selected user
 
         var evaluationCheck = await evaluationsData.GetByEvaluatorAndUserBeingEvaluated(selectedUser.userID, currentUser.userID);
@@ -536,6 +548,8 @@
         selectedUserHasUnassignedRole = doesUserHaveUnassignedRole(selectedUser);
         isSameUser = selectedUser.userID == currentUser.userID;
 
+        String selectedUsers_superiorID = (await ADCONData.GetADCONBySubordinate(selectedUser.userID))?.superiorID;
+
         if (selectedUser.role == null)
         {
             roleAssignmentPrompt = "Assignment";
@@ -545,32 +559,24 @@
             roleAssignmentPrompt = "Change";
         }
 
-        if (selectedUser.superiors == null)
+        if (selectedUsers_superiorID == null || selectedUsers_superiorID == "")
         {
             superiorName = "None";
         }
         else
         {
-            if(selectedUser.superiors.Count > 0)
-            {
-                superior = await userData.GetUser(selectedUser?.superiors[0]);
-                superiorName = superior?.firstName;
-            }
-            else
-            {
-                superiorName = "None";
-            }
-
+            superior = await userData.GetUser(selectedUsers_superiorID);
+            superiorName = superior?.firstName;
         }
 
         superiorAssignedEvaluators = await getSuperiorAssignedEvaluators(selectedUser);
 
 
         // await userData.EmptyAllSupordinatesAndSuperiorsList();
-        //await userData.EmptyAllEvaluators();
-        //await userData.EmptyAllTeamIDs();
-        //await teamsData.RemoveAllTeams();
-        //await requestsData.RemoveAllRequests();
+        // await userData.EmptyAllTeamIDs();
+        // await teamsData.RemoveAllTeams();
+        // await requestsData.RemoveAllRequests();
+        // await ADCONData.RemoveAllADCON();
 
         //UserModel testUser = await userData.GetUserFromFirstName("Angela");
         //testUser.firstName = "Matthew";

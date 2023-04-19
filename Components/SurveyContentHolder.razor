@@ -5,6 +5,7 @@
 @inject IGeneratedSurveyData generatedSurveyData
 @inject IQuestionsData questionData
 @inject INewSurveyData newSurveyData
+@inject IADCONData ADCONData
 @inject NavigationManager navManager
 
 <div>
@@ -312,11 +313,13 @@
         UserModel currentUser = await AuthenticationStateProviderHelpers.GetUserFromAuth(authProvider, userData);
         List<GeneratedSurveyModel> generatedSurveyList = await generatedSurveyData.GetGeneratedSurveysbyUser(currentUser.userID);
         List<QuestionsModel> questions = new List<QuestionsModel>();
-        UserModel tmpUser;
-        int randSuperior = rnd.Next(0, currentUser.superiors.Count);
-        surveySubjectId = currentUser.superiors[randSuperior];
-        tmpUser = await userData.GetUser(currentUser.superiors[randSuperior]);
 
+        UserModel tmpUser;
+
+        String currentUsers_superiorID = (await ADCONData.GetADCONBySubordinate(currentUser.userID))?.superiorID;
+        surveySubjectId = currentUsers_superiorID;
+        tmpUser = await userData.GetUser(currentUsers_superiorID);
+    
         // Generated questions
         foreach (GeneratedSurveyModel survey in generatedSurveyList)
         {

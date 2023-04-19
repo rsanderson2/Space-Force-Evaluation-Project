@@ -6,6 +6,7 @@
 @inject IRequestsData requestsData
 @inject IDialogService DialogService
 @inject ISnackbar Snackbar
+@inject IADCONData ADCONData
 
 
 <PageTitle>Team Management</PageTitle>
@@ -157,7 +158,10 @@
                 ADCONTransferRequests newRequest = new ADCONTransferRequests();
                 newRequest.newSuperior = (await userData.GetUser(request.requestInitiator));
                 newRequest.user = (await userData.GetUser(request.value));
-                newRequest.currentSuperior = (await userData.GetUser(newRequest.user.superiors[0]));
+       
+                string currentSuperiorID = (await ADCONData.GetADCONBySubordinate(newRequest.user.userID))?.superiorID;
+                newRequest.currentSuperior = (await userData.GetUser(currentSuperiorID));
+
                 newRequest.request = request;
                 newRequest.status = request.status;
 
@@ -175,7 +179,10 @@
             ADCONTransferRequests newRequest = new ADCONTransferRequests();
             newRequest.newSuperior = (await userData.GetUser(request.requestInitiator));
             newRequest.user = (await userData.GetUser(request.value));
-            newRequest.currentSuperior = (await userData.GetUser(newRequest.user.superiors[0]));
+
+            string currentSuperiorID = (await ADCONData.GetADCONBySubordinate(newRequest.user.userID))?.superiorID;
+            newRequest.currentSuperior = (await userData.GetUser(currentSuperiorID));
+
             newRequest.request = request;
             newRequest.status = request.status;
 
