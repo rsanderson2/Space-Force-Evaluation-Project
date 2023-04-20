@@ -32,9 +32,6 @@
                         <MudItem xs="12" sm="12" md="12" lg="12" xl="12">
                             <h5 class="infotext">Job: @job</h5>
                         </MudItem>
-                        <MudItem xs="12" sm="12" md="12" lg="12" xl="12">
-                            <h5 class="infotext">Team: @team</h5>
-                        </MudItem>
                     </MudGrid>
                 </MudItem>
             </MudGrid>
@@ -50,143 +47,43 @@
                     </MudButton>
                 </MudItem>
                 <MudItem xs="12" sm="12" md="12" lg="12" xl="12">
-                    <MudButton Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary">
+                    <MudButton Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary" OnClick="ShowUpdateRank">
                         Update Rank
                     </MudButton>
+                    <div style="display: @showUpdateRank">
+
+
+                    <MudSelect @bind-Value="selectedRank" Label="Rank" Placeholder="Select Rank" AdornmentColor="Color.Primary">
+                        <MudSelectItem T="String" Value="@null" Disabled="true">Your Teams</MudSelectItem>
+                            <MudSelectItem T="String" Value="@("Specialist One (Spc1/E-1)")">Specialist One (Spc1/E-1)</MudSelectItem>
+                            <MudSelectItem T="String" Value="@("Specialist Two (Spc2/E-2)")">Specialist Two (Spc2/E-2)</MudSelectItem>
+                            <MudSelectItem T="String" Value="@("Specialist Three (Spc3/E-3)")">Specialist Three (Spc3/E-3)</MudSelectItem>
+                            <MudSelectItem T="String" Value="@("Specialist Four (Spc4/E-4)")">Specialist Four (Spc4/E-4)</MudSelectItem>
+                            <MudSelectItem T="String" Value="@("Sergeant (Sgt/E-5)")">Sergeant (Sgt/E-5)</MudSelectItem>
+                            <MudSelectItem T="String" Value="@("Technical Sergeant (TSgt/E-6)")">Technical Sergeant (TSgt/E-6)</MudSelectItem>
+                            <MudSelectItem T="String" Value="@("Second Lieutenant (2d Lt/0-1)")">Second Lieutenant (2d Lt/0-1)</MudSelectItem>
+                            <MudSelectItem T="String" Value="@("First Lieutenant (1st LD/0-2)")">First Lieutenant (1st LD/0-2)</MudSelectItem>
+                            <MudSelectItem T="String" Value="@("Captain (Capt/0-3)")">Captain (Capt/0-3)</MudSelectItem>
+                            <MudSelectItem T="String" Value="@("Major (Maj/0-4)")">Major (Maj/0-4)</MudSelectItem>
+                            <MudSelectItem T="String" Value="@("Lieutenant Colonel (Lt Col/0-5)")">Lieutenant Colonel (Lt Col/0-5)</MudSelectItem>
+
+                        </MudSelect>
+
+                        <MudButton OnClick="HandleRankUpdate">Submit</MudButton>
+                </div>
                 </MudItem>
                 <MudItem xs="12" sm="12" md="12" lg="12" xl="12">
-                    <MudButton Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary">
+                    <MudButton Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary" OnClick="ShowUpdateJob">
                         Update Job
                     </MudButton>
-                </MudItem>
-                <MudItem xs="12" sm="12" md="12" lg="12" xl="12">
-                    <MudButton Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary">
-                        Update Team
-                    </MudButton>
+                    <div style="display: @showUpdateJob">
+                        <MudInput FullWidth="true" T="string" Placeholder="New job title" @bind-Value="inputJob" />
+                        <div>
+                            <MudButton OnClick="HandleJobUpdate">Submit</MudButton>
+                        </div>
+                    </div>
                 </MudItem>
             </MudGrid>
-            <div class="flexbox">
-
-
-
-            </div>
-
-            <div class="accountupdate">
-                <div style="display: @showUpdateRank">
-                    <EditForm Model="@userModel" OnValidSubmit="@HandleRankUpdate">
-                        <!--Update User Rank-->
-                        <label>
-                            Rank
-                            <InputSelect @bind-Value="userModel.rank">
-                                <option value="">Select Rank...</option>
-                                <option value="Specialist One (Spc1/E-1)">Specialist One (Spc1/E-1)</option>
-                                <option value="Specialist Two (Spc2/E-2)">Specialist Two (Spc2/E-2)</option>
-                                <option value="Specialist Three (Spc3/E-3)">Specialist Three (Spc3/E-3)</option>
-                                <option value="Specialist Four (Spc4/E-4)">Specialist Four (Spc4/E-4)</option>
-                                <option value="Sergeant (Sgt/E-5)">Sergeant (Sgt/E-5)</option>
-                                <option value="Technical Sergeant (TSgt/E-6)">Technical Sergeant (TSgt/E-6)</option>
-                                <option value="Second Lieutenant (2d Lt/0-1)">Second Lieutenant (2d Lt/0-1)</option>
-                                <option value="First Lieutenant (1st LD/0-2)">First Lieutenant (1st LD/0-2)</option>
-                                <option value="Captain (Capt/0-3)">Captain (Capt/0-3)</option>
-                                <option value="Major (Maj/0-4)">Major (Maj/0-4)</option>
-                                <option value="Lieutenant Colonel (Lt Col/0-5)">Lieutenant Colonel (Lt Col/0-5)</option>
-                            </InputSelect>
-                        </label>
-                        <button type="submit">Submit</button>
-                    </EditForm>
-                </div>
-
-                <!--Update User Job-->
-
-                <div style="display: @showUpdateJob">
-                    <EditForm Model="@userModel" OnValidSubmit="@HandleJobUpdate">
-                        <label>
-                            Job Title
-                            <InputText @bind-Value="userModel.job"></InputText>
-                        </label>
-                        <button type="submit">Submit</button>
-                    </EditForm>
-                </div>
-
-                <!--Update User Team-->
-
-                <div style="display: @showUpdateTeam">
-                    <EditForm Model="@userModel" OnValidSubmit="@HandleTeamUpdate">
-                        <label>
-                            Team ID
-                            <InputSelect @bind-Value="userModel.teamID">
-                                <option value="">Select Team...</option>
-                                <option value="Sales">Sales</option>
-                                <option value="Accounting">Accounting</option>
-                                <option value="Management">Management</option>
-                                <option value="Human Resources">Human Resources</option>
-                            </InputSelect>
-                        </label>
-                        <button type="submit">Submit</button>
-                    </EditForm>
-                </div>
-            </div>
-
-        </section>
-
-    
-    <!--User Survey History-->
-        <!--
-        <section class="card">
-            <h2 class="survey-history" style="text-align: center">Survey History</h2>
-            <p>These are the surveys that you have completed.</p>
-            <div class="scroll">
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>QuestionID</th>
-                            <th>Question Text</th>
-                            <th>Response</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var SurveyModel in surveys)
-                        {
-                            <tr>
-                                <td>@SurveyModel.surveyID</td>
-                                <td>@SurveyModel.question</td>
-                                <td>@SurveyModel.response</td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
-        </section>-->
-
-        <!--User Received Accolades-->
-        <section class="card">
-            <h2 class="personal-accolades" style="text-align: center">Personal Accolades</h2>
-
-            <div class="content">
-                <h4 class="accolade-rank" style="text-align: center">Your accolade rank:</h4>
-                <img class="rank" style="display: block; margin: 0 auto;" src="@accoladesRank" />
-                <div class="hide" style="text-align: center"> <b>@rankName</b> </div>
-            </div>
-
-
-            <p>*These are accolades that have been awarded anonymously from your team members</p>
-            <div class="scroll">
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>Accolade:</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var AccoladeModel in accolades)
-                        {
-                            <tr>
-                                <td>@AccoladeModel.text</td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
         </section>
     </div>
 </div>
@@ -204,6 +101,8 @@
     private SurveyModel surveyModel = new SurveyModel();
     List<SurveyModel> surveys = new List<SurveyModel>();
     List<AccoladeModel> accolades = new List<AccoladeModel>();
+    public String selectedRank = "";
+    public String inputJob = "";
 
     // Link the user to B2C to update their B2C specific information
     private void UpdateB2CInfo()
@@ -258,13 +157,19 @@
     }
     private async Task HandleRankUpdate()
     {
-        rank = userModel.rank;
-        await UpdateUserRank();
+        if (selectedRank != null && selectedRank != "")
+        {
+            rank = selectedRank;
+            await UpdateUserRank();
+        }
     }
     private async Task HandleJobUpdate()
     {
-        job = userModel.job;
-        await UpdateUserJob();
+        if(inputJob != null && inputJob != "")
+        {
+            job = inputJob;
+            await UpdateUserJob();
+        }
     }
     private async Task UpdateUserTeam()
     {
@@ -273,13 +178,13 @@
     }
     private async Task UpdateUserJob()
     {
-        loggedInUser.job = job;
+        loggedInUser.job = inputJob;
         await userData.UpdateUser(loggedInUser);
     }
     private async Task UpdateUserRank()
-    {
-        loggedInUser.rank = rank;
-        await userData.UpdateUser(loggedInUser); 
+    {        
+        loggedInUser.rank = selectedRank;
+        await userData.UpdateUser(loggedInUser);
     }
     protected async override Task OnInitializedAsync()
     {
