@@ -133,10 +133,10 @@
 
         parameters.Add("newSubordinate", context.user);
         parameters.Add("newSuperior", context.newSuperior);
+        parameters.Add("currentSuperior", context.currentSuperior);
         parameters.Add("UpdateStatus", UpdateADCONTransferRequestsStatus);
         parameters.Add("CurrentStatus", context.request.status);
-        parameters.Add("canApproveOrDeny", (currentUser.userID == context.request.requestRecipiants[0]
-                                            || currentUser.userID == context.request.requestRecipiants[1]));
+        parameters.Add("canApproveOrDeny", ( context.request.requestRecipiants.Contains(currentUser.userID)));
         parameters.Add("requiresMultipleApprovals", (context.request.requestRecipiants.Count == 2 && context.request.requestRecipiants[1] != null));
 
         DialogService.Show<RequestDialog>("Request Data", parameters, options);

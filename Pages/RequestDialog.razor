@@ -6,13 +6,41 @@
 
 <MudDialog>
     <DialogContent>
-        <div>
-            <p class="adcon-dialogue"><b>User</b>: @newSubordinate.firstName</p>
-            <p><b>Direct Superior</b>: @superiorName</p>
-            <p><b>Rank:</b> @newSubordinate.rank</p>
-            <p><b>Job:</b> @newSubordinate.job</p>
-            <p><b>Role:</b> @newSubordinate.role</p>
-        </div>
+        <MudGrid>
+            <MudItem xs="4">
+                <div style="border-right: solid 1px; padding-right:5px; height:100%;">
+                    <h6 style="font-weight: bold">User Being Transferred</h6>
+
+                    <p class="adcon-dialogue"><b>User</b>: @newSubordinate.firstName @newSubordinate.lastName</p>
+                    <p><b>Rank:</b> @newSubordinate.rank</p>
+                    <p><b>Job:</b> @newSubordinate.job</p>
+                    <p><b>Role:</b> @newSubordinate.role</p>
+                </div>
+            </MudItem>
+            <MudItem xs="4">
+                <div style="border-right: solid 1px; height:100%;">
+                    <h6 style="font-weight: bold">New Superior</h6>
+                    <p class="mb-4"><b>User</b>: @currentSuperior.firstName @currentSuperior.lastName</p>
+                    <p><b>Rank:</b> @currentSuperior.rank</p>
+                    <p><b>Job:</b> @currentSuperior.job</p>
+                    <p><b>Role:</b> @currentSuperior.role</p>
+                </div>
+            </MudItem>
+            <MudItem xs="4">
+                <div style="height:100%;">
+                    <h6 style="font-weight: bold">Old Superior</h6>
+                    <p class="mb-4"><b>User</b>: @newSuperior.firstName @newSuperior.lastName</p>
+                    <p><b>Rank:</b> @newSuperior.rank</p>
+                    <p><b>Job:</b> @newSuperior.job</p>
+                    <p><b>Role:</b> @newSuperior.role</p>
+                </div>
+            </MudItem>
+        </MudGrid>
+        
+
+        
+
+
     </DialogContent>
 
     <DialogActions>
@@ -45,6 +73,7 @@
 
     [CascadingParameter] MudDialogInstance MudDialog { get; set; }
     [Parameter] public UserModel newSuperior { get; set; }
+    [Parameter] public UserModel currentSuperior { get; set; }
     [Parameter] public UserModel newSubordinate { get; set; }
     [Parameter] public String currentStatus { get; set; }
     [Parameter] public Action<string> UpdateStatus { get; set; }

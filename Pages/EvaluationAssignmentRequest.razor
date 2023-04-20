@@ -17,7 +17,7 @@
         <MudNavGroup Title="Recieved Evaluation Requests" @bind-Expanded=_recievedEvaluationisExpanded>
             <MudTable Items="@recievedEvaluationRequests" Hover="true" Loading="@_loadingRecievedRequests">
                 <HeaderContent>
-                    <MudTh>User</MudTh>
+                    <MudTh>User Being Evaluated</MudTh>
                     <MudTh>New Evaluator</MudTh>
                     <MudTh><MudTableSortLabel InitialDirection="SortDirection.Ascending" SortBy="new Func<EvaluationAssignmentRequests, object>(x=>x.status)">Status</MudTableSortLabel></MudTh>
                 </HeaderContent>
@@ -38,7 +38,7 @@
         <MudNavGroup Title="Sent Evaluation Requests" @bind-Expanded=_sentEvaluationisExpanded>
             <MudTable Items="@sentEvaluationRequests" Hover="true" Loading="@_loadingSentRequests">
                 <HeaderContent>
-                    <MudTh>User</MudTh>
+                    <MudTh>User Being Evaluated</MudTh>
                     <MudTh>New Evaluator</MudTh>
                     <MudTh><MudTableSortLabel InitialDirection="SortDirection.Ascending" SortBy="new Func<EvaluationAssignmentRequests, object>(x=>x.status)">Status</MudTableSortLabel></MudTh>
                 </HeaderContent>

@@ -6,12 +6,30 @@
 
 <MudDialog>
     <DialogContent>
-        <div>
-            <p class="opcon-dialogue"><b>User</b>: @user.firstName</p>
-            <p><b>Rank:</b> @user.rank</p>
-            <p><b>Job:</b> @user.job</p>
-            <p><b>Role:</b> @user.role</p>
-        </div>
+        <MudGrid>
+            <MudItem xs="6">
+                <div style="border-right: solid 1px; padding-right:5px; height:100%;">
+                    <h6 style="font-weight: bold">User Being Outsourced</h6>
+
+                    <p class="adcon-dialogue"><b>User</b>: @user.firstName @user.lastName</p>
+                    <p><b>Rank:</b> @user.rank</p>
+                    <p><b>Job:</b> @user.job</p>
+                    <p><b>Role:</b> @user.role</p>
+                </div>
+            </MudItem>
+            @if(newTeamLeader != null)
+            {
+                <MudItem xs="6">
+                    <div style="padding-right:5px; height:100%; width:100%">
+                        <h6 style="font-weight: bold">User Being Outsourced</h6>
+
+                        <p class="adcon-dialogue"><b>Team</b>: @newTeam.name</p>
+                        <p><b>Team Leader:</b> @newTeamLeader.firstName @newTeamLeader.lastName</p>
+                    </div>
+                </MudItem>
+            }
+            
+        </MudGrid>
     </DialogContent>
 
     <DialogActions>
@@ -48,6 +66,7 @@
     [Parameter] public Action<string> UpdateStatus { get; set; }
     [Parameter] public bool canApproveOrDeny { get; set; }
 
+    public UserModel newTeamLeader;
 
     void Submit() => MudDialog.Close(DialogResult.Ok(true));
     void Cancel() => MudDialog.Cancel();
@@ -110,5 +129,6 @@
 
     protected async override Task OnInitializedAsync()
     {
+        newTeamLeader = await userData.GetUser(newTeam.leader);
     }
 }
