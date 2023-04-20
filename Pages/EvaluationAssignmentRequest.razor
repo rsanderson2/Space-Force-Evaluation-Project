@@ -17,13 +17,15 @@
         <MudNavGroup Title="Recieved Evaluation Requests" @bind-Expanded=_recievedEvaluationisExpanded>
             <MudTable Items="@recievedEvaluationRequests" Hover="true" Loading="@_loadingRecievedRequests">
                 <HeaderContent>
+                    <MudTh>Request Initiator</MudTh>
                     <MudTh>User Being Evaluated</MudTh>
                     <MudTh>New Evaluator</MudTh>
                     <MudTh><MudTableSortLabel InitialDirection="SortDirection.Ascending" SortBy="new Func<EvaluationAssignmentRequests, object>(x=>x.status)">Status</MudTableSortLabel></MudTh>
                 </HeaderContent>
                 <RowTemplate>
-                    <MudTd>@context.user.firstName</MudTd>
-                    <MudTd>@context.newEvaluator.firstName</MudTd>
+                    <MudTd>@context.requestInitiator.firstName @context.requestInitiator.lastName</MudTd>
+                    <MudTd>@context.user.firstName @context.user.lastName</MudTd>
+                    <MudTd>@context.newEvaluator.firstName  @context.newEvaluator.lastName</MudTd>
                     <MudTd>@context.status</MudTd>
                     <MudTd>
                         <MudButton OnClick="@(() => OpenDialog(context))" Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary">
@@ -38,13 +40,15 @@
         <MudNavGroup Title="Sent Evaluation Requests" @bind-Expanded=_sentEvaluationisExpanded>
             <MudTable Items="@sentEvaluationRequests" Hover="true" Loading="@_loadingSentRequests">
                 <HeaderContent>
+                    <MudTh>Request Initiator</MudTh>
                     <MudTh>User Being Evaluated</MudTh>
                     <MudTh>New Evaluator</MudTh>
                     <MudTh><MudTableSortLabel InitialDirection="SortDirection.Ascending" SortBy="new Func<EvaluationAssignmentRequests, object>(x=>x.status)">Status</MudTableSortLabel></MudTh>
                 </HeaderContent>
                 <RowTemplate>
-                    <MudTd>@context.user.firstName</MudTd>
-                    <MudTd>@context.newEvaluator.firstName</MudTd>
+                    <MudTd>@context.requestInitiator.firstName @context.requestInitiator.lastName</MudTd>
+                    <MudTd>@context.user.firstName @context.user.lastName</MudTd>
+                    <MudTd>@context.newEvaluator.firstName  @context.newEvaluator.lastName</MudTd>
                     <MudTd>@context.status</MudTd>
                     <MudTd>
                         <MudButton OnClick="@(() => OpenDialog(context))" Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary">
@@ -70,6 +74,7 @@
         public UserModel newEvaluator; 
         public RequestsModel request;
         public String status;
+        public UserModel requestInitiator;
     }
 
     List<EvaluationAssignmentRequests> recievedEvaluationRequests = new List<EvaluationAssignmentRequests>();
@@ -144,7 +149,6 @@
     {
         _loadingRecievedRequests = true;
         await GetLogin();
-
         recievedRequests = await requestsData.GetRecievedRequests(currentUser.userID);
         for (int i = 0; i < recievedRequests.Count; i++)
         {
@@ -159,6 +163,7 @@
                 newRequest.user = (await userData.GetUser(request.values[1]));
                 newRequest.request = request;
                 newRequest.status = request.status;
+                newRequest.requestInitiator = (await userData.GetUser(request.requestInitiator));
 
                 recievedEvaluationRequests.Add(newRequest);
             }
@@ -171,6 +176,7 @@
                 newRequest.user = (await userData.GetUser(request.values[0]));
                 newRequest.request = request;
                 newRequest.status = request.status;
+                newRequest.requestInitiator = (await userData.GetUser(request.requestInitiator));
 
                 recievedEvaluationRequests.Add(newRequest);
             }
@@ -193,6 +199,7 @@
                 newRequest.user = (await userData.GetUser(request.values[1]));
                 newRequest.request = request;
                 newRequest.status = request.status;
+                newRequest.requestInitiator = (await userData.GetUser(request.requestInitiator));
 
                 sentEvaluationRequests.Add(newRequest);
             }
@@ -205,6 +212,7 @@
                 newRequest.user = (await userData.GetUser(request.values[0]));
                 newRequest.request = request;
                 newRequest.status = request.status;
+                newRequest.requestInitiator = (await userData.GetUser(request.requestInitiator));
 
                 sentEvaluationRequests.Add(newRequest);
             }
