@@ -31,8 +31,7 @@ public class MongoRequestsData : IRequestsData
     public async Task<List<RequestsModel>> GetRecievedRequests(string userID)
     {
 
-        var results = await _requests.FindAsync(u => u.requestTarget1 == userID ||
-                                                     u.requestTarget2 == userID);
+        var results = await _requests.FindAsync(u => u.requestRecipiants.Contains(userID));
         return results.ToList();
     }
 
@@ -80,13 +79,43 @@ public class MongoRequestsData : IRequestsData
 
     public bool StrListEquals(List<String> list1, List<String> list2)
     {
-        if(list1.Count != list2.Count)
+        if(list1 == null && list2 != null)
+        {
+            return false;
+        }
+
+        if (list2 == null && list1 != null)
+        {
+            return false;
+        }
+
+        if(list1 == null && list2 == null)
+        {
+            return true;
+        }
+
+        if (list1.Count != list2.Count)
         {
             return false;
         }
 
         for(int i = 0; i < list1.Count; i++)
         {
+            if (list1[i] == null && list2[i] != null)
+            {
+                return false;
+            }
+
+            if (list2[i] == null && list1[i] != null)
+            {
+                return false;
+            }
+
+            if (list1[i] == null && list2[i] == null)
+            {
+                return true;
+            }
+
             if (list1[i].Equals(list2[i]) == false)
             {
                 return false;
@@ -105,12 +134,14 @@ public class MongoRequestsData : IRequestsData
                                                         u.requestTarget == request.requestTarget &&
                                                         u.value == request.value &&
                                                         u.type == request.type &&
-                                                        u.status == "Pending" &&
-                                                        u.requestTarget1 == request.requestTarget1 &&
-                                                        u.requestTarget2 == request.requestTarget2);
+                                                        u.status == "Pending");
             var results = queryResponse.ToList();
 
-            return (results.Count > 0);
+            List<RequestsModel> filteredList = results.Where(
+                                                req => StrListEquals(req.requestRecipiants, request.requestRecipiants)).ToList();
+
+
+            return (filteredList.Count > 0);
         }
         else // TODO: only use this after refactoring. 
         {
@@ -123,7 +154,9 @@ public class MongoRequestsData : IRequestsData
                                                         u.status == "Pending");
             var results = queryResponse.ToList();
 
-            List<RequestsModel> filteredList = results.Where(req => StrListEquals(req.values, request.values)).ToList();
+            List<RequestsModel> filteredList = results.Where(
+                                                req => StrListEquals(req.values, request.values) 
+                                                    && StrListEquals(req.requestRecipiants, request.requestRecipiants)).ToList();
 
             return (filteredList.Count > 0);
         }

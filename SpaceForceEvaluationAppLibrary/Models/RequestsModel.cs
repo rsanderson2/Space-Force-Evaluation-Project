@@ -21,10 +21,6 @@ public class RequestsModel
 
     // For OPCONTransferRequest:
         // team ID of team that the user is being outsourced to. 
-
-    //OLD:  if requestInitiator.leader.role is commander, than none
-    //OLD:  else closest superior commander to user requesting transfer TODO: see if this is necessary because it may be that only commanders can lead teams
-
     public string requestTarget2 { get; set; } // TODO: replace with List<string> requestTargets after demo
 
 

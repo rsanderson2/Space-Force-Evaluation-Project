@@ -251,38 +251,37 @@
         if(firstUserForHandshake.userID == secondUserForHandshakes_superior)
         {
             // if the current user is trying to ask for ADCON of a peer,then only need their direct superior.
-            newADCONTransferRequest.requestTarget1 = firstUserForHandshake.userID;
+            newADCONTransferRequest.requestRecipiants = new List<String> { firstUserForHandshake.userID };
         }
         else if (await ADCONData.hasDirectADCONOverUser(secondUserForHandshake, firstUserForHandshake)) 
         {
             // only need second user
-            newADCONTransferRequest.requestTarget1 = secondUserForHandshake.userID;
+            newADCONTransferRequest.requestRecipiants = new List<String> { secondUserForHandshake.userID };
         }
         else if (await ADCONData.hasDirectADCONOverUser(firstUserForHandshake, secondUserForHandshake)) 
         {
             // only need first user
-            newADCONTransferRequest.requestTarget1 = firstUserForHandshake.userID;
+            newADCONTransferRequest.requestRecipiants = new List<String> { firstUserForHandshake.userID };
         }
         else if( await ADCONData.hasIndirectADCONOverUser(secondUserForHandshake, firstUserForHandshake)) 
         {
             // only need second user
-            newADCONTransferRequest.requestTarget1 = secondUserForHandshake.userID;
+            newADCONTransferRequest.requestRecipiants = new List<String> { secondUserForHandshake.userID };
         }
         else if(await ADCONData.hasIndirectADCONOverUser(firstUserForHandshake, secondUserForHandshake))
         {
             // only need first user
-            newADCONTransferRequest.requestTarget1 = firstUserForHandshake.userID;
+            newADCONTransferRequest.requestRecipiants = new List<String> { firstUserForHandshake.userID };
         }
         else if (secondUserForHandshake.userID == newADCONTransferRequest.requestInitiator)
         {
             // no need second user for handshake is also sender, so only need permission from second user
-            newADCONTransferRequest.requestTarget1 = firstUserForHandshake.userID;
+            newADCONTransferRequest.requestRecipiants = new List<String> { firstUserForHandshake.userID };
         }
         else 
         {
             // need both users
-            newADCONTransferRequest.requestTarget1 = firstUserForHandshake.userID;
-            newADCONTransferRequest.requestTarget2 = secondUserForHandshake.userID;
+            newADCONTransferRequest.requestRecipiants = new List<String> { firstUserForHandshake.userID, secondUserForHandshake.userID };
         }
 
         newADCONTransferRequest.values = new List<String> { selectedUser.userID };
@@ -343,8 +342,9 @@
             // TODO: update after Ethan sends new model. 
             RequestsModel newEvaluationAssignmentRequest = new RequestsModel();
             newEvaluationAssignmentRequest.requestInitiator = currentUser.userID;
-            newEvaluationAssignmentRequest.requestTarget1 = potentialEvaluator.userID;
-            newEvaluationAssignmentRequest.requestTarget2 = null;
+
+            newEvaluationAssignmentRequest.requestRecipiants = new List<String> { potentialEvaluator.userID, null };
+
             newEvaluationAssignmentRequest.values = new List<String>{ selectedUser.userID };
             newEvaluationAssignmentRequest.type = "SuperiorAssignedEvaluationRequest";
             newEvaluationAssignmentRequest.status = "Pending";
@@ -368,10 +368,8 @@
         processingEvaluatorRequest = true;
         RequestsModel newEvaluationAssignmentRequest = new RequestsModel();
         newEvaluationAssignmentRequest.requestInitiator = currentUser.userID;
-        newEvaluationAssignmentRequest.requestTarget1 = selectedUser.userID;
-
         String curentUsers_superior = (await ADCONData.GetADCONBySubordinate(currentUser.userID))?.superiorID;
-        newEvaluationAssignmentRequest.requestTarget2 = curentUsers_superior;
+        newEvaluationAssignmentRequest.requestRecipiants = new List<String> { curentUsers_superior, selectedUser.userID };
 
         if(newEvaluationAssignmentRequest.values == null)
         {
@@ -502,8 +500,14 @@
         RequestsModel newOPCONOutsourceRequest = new RequestsModel();
 
         String selectedUsers_superior = (await ADCONData.GetADCONBySubordinate(selectedUser.userID))?.superiorID;
-        newOPCONOutsourceRequest.requestTarget1 = selectedUsers_superior;
-        newOPCONOutsourceRequest.requestTarget2 = selectedTeam.ObjectId; // TODO: update to account for supervisors being team leaders if Roger says so
+
+        newOPCONOutsourceRequest.requestRecipiants = new List<String>
+        {
+            selectedUsers_superior,
+            selectedTeam.ObjectId
+        };
+        // TODO: update to account for supervisors being team leaders if Roger says so
+
         newOPCONOutsourceRequest.requestInitiator = selectedTeam.leader;
         newOPCONOutsourceRequest.values = new List<String> { selectedUser.userID };
         newOPCONOutsourceRequest.type = "OPCONOutsourceRequest";
@@ -587,7 +591,7 @@
         //await userData.EmptyAllSupordinatesAndSuperiorsList();
         //await userData.EmptyAllTeamIDs();
         //await teamsData.RemoveAllTeams();
-        // await requestsData.RemoveAllRequests();
+        //await requestsData.RemoveAllRequests();
         //await ADCONData.RemoveAllADCON();
         //await evaluationsData.RemoveAllEvaluations();
 

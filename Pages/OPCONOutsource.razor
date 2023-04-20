@@ -99,11 +99,11 @@
 
         if (newStatus == "Awaiting second response")
         {
-            if(context.request.requestTarget1 == currentUser.userID)
+            if(context.request.requestRecipiants[0] == currentUser.userID)
             {
-                context.request.requestTarget1 = context.request.requestTarget2;
+                context.request.requestRecipiants[0] = context.request.requestRecipiants[1];
             }
-            context.request.requestTarget2 = null;
+            context.request.requestRecipiants[1] = null;
         }
         await requestsData.UpdateRequest(context.request);
         StateHasChanged();
@@ -121,8 +121,8 @@
 
         parameters.Add("UpdateStatus", UpdateRequestsStatus);
         parameters.Add("CurrentStatus", context.request.status);
-        parameters.Add("canApproveOrDeny", (currentUser.userID == context.request.requestTarget1
-                                          || currentUser.userID == context.request.requestTarget2));
+        parameters.Add("canApproveOrDeny", (currentUser.userID == context.request.requestRecipiants[0]
+                                          || currentUser.userID == context.request.requestRecipiants[1]));
         parameters.Add("newTeam", (context.newTeam));
         parameters.Add("user", context.user);
         DialogService.Show<OPCONOutsourceDialog>("Request Data", parameters, options);
@@ -146,7 +146,7 @@
                 newRequest.request = request;
                 newRequest.status = request.status;
                 newRequest.user = await userData.GetUser(request.values[0]);
-                newRequest.newTeam = await teamsData.GetTeam(request.requestTarget2);
+                newRequest.newTeam = await teamsData.GetTeam(request.requestRecipiants[1]);
 
                 recievedOutsourceRequests.Add(newRequest);
             }
@@ -167,7 +167,7 @@
                 newRequest.request = request;
                 newRequest.status = request.status;
                 newRequest.user = await userData.GetUser(request.values[0]);
-                newRequest.newTeam = await teamsData.GetTeam(request.requestTarget2);
+                newRequest.newTeam = await teamsData.GetTeam(request.requestRecipiants[1]);
 
                 sentOutsourceRequests.Add(newRequest);
             }

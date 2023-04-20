@@ -111,11 +111,11 @@
 
         if (newStatus == "Awaiting second response")
         {
-            if(context.request.requestTarget1 == currentUser.userID)
+            if (context.request.requestRecipiants[0] == currentUser.userID)
             {
-                context.request.requestTarget1 = context.request.requestTarget2;
+                context.request.requestRecipiants[0] = context.request.requestRecipiants[1];
             }
-            context.request.requestTarget2 = null;
+            context.request.requestRecipiants[1] = null;
         }
         await requestsData.UpdateRequest(context.request);
         StateHasChanged();
@@ -135,9 +135,9 @@
         parameters.Add("newSuperior", context.newSuperior);
         parameters.Add("UpdateStatus", UpdateADCONTransferRequestsStatus);
         parameters.Add("CurrentStatus", context.request.status);
-        parameters.Add("canApproveOrDeny", (currentUser.userID == context.request.requestTarget1
-                                            || currentUser.userID == context.request.requestTarget2));
-        parameters.Add("requiresMultipleApprovals", (context.request.requestTarget2 != null));
+        parameters.Add("canApproveOrDeny", (currentUser.userID == context.request.requestRecipiants[0]
+                                            || currentUser.userID == context.request.requestRecipiants[1]));
+        parameters.Add("requiresMultipleApprovals", (context.request.requestRecipiants.Count == 2 && context.request.requestRecipiants[1] != null));
 
         DialogService.Show<RequestDialog>("Request Data", parameters, options);
     }

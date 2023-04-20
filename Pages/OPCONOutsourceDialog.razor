@@ -93,7 +93,7 @@
         {
             UpdateStatus("Error");
             currentStatus = "Error";
-            Snackbar.Add("Error: exceeded limit of evaluators or error assigning user to evaluators", Severity.Error);
+            Snackbar.Add("Error: user is already in team", Severity.Error);
         }
         processingRequest = false;
     }
