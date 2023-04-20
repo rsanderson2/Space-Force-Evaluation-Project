@@ -44,8 +44,13 @@ public class RequestsModel
     public string value { get; set; } // TODO: replace with List<string> values after demo
 
 
+
     // For SuperiorAssignedEvaluationRequest: values[0] = userID of potential evaluator, values[1] = user being evaluated
     // For EvaluationAssignmentRequest: values[0] = userID of potential evaluator, values[1] = user being evaluated
+
+    // For ADCONTransferRequest: values[0] = user being transfered
+    // For EvaluationAssignmentRequest: values[0] = user being evaluated
+    // For OPCONTransferRequests: values[0] = user being outsourced to team. 
     public List<string> values { get; set; }
 
 
@@ -54,4 +59,6 @@ public class RequestsModel
 
 
     public string requestTarget { get; set; }
+
+    public List<string> requestRecipiants { get; set; }
 }

@@ -2,6 +2,8 @@
 // This is the file that contains the connections to the User collection in the database, and
 // contains the task necessary to get and set users in the database.
 // ================================================================================================
+using System.Collections.Generic;
+
 namespace SpaceForceEvaluationAppLibrary.DataAccess;
 
 public class MongoRequestsData : IRequestsData
@@ -76,6 +78,23 @@ public class MongoRequestsData : IRequestsData
     }
 
 
+    public bool StrListEquals(List<String> list1, List<String> list2)
+    {
+        if(list1.Count != list2.Count)
+        {
+            return false;
+        }
+
+        for(int i = 0; i < list1.Count; i++)
+        {
+            if (list1[i].Equals(list2[i]) == false)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public async Task<bool> CheckIfRequestExist(RequestsModel request)
     {
         // TODO: remove this after refactoring
@@ -95,15 +114,18 @@ public class MongoRequestsData : IRequestsData
         }
         else // TODO: only use this after refactoring. 
         {
+            
             var queryResponse = await _requests.FindAsync(u =>
                                                         u.requestInitiator == request.requestInitiator &&
                                                         u.requestTarget == request.requestTarget &&
-                                                        u.values != null && u.values[0] == request.values[0] && u.values[1] == request.values[1] &&
+                                                        u.values != null &&
                                                         u.type == request.type &&
                                                         u.status == "Pending");
             var results = queryResponse.ToList();
 
-            return (results.Count > 0);
+            List<RequestsModel> filteredList = results.Where(req => StrListEquals(req.values, request.values)).ToList();
+
+            return (filteredList.Count > 0);
         }
 
         

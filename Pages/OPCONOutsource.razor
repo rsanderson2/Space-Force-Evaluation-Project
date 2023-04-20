@@ -145,7 +145,7 @@
 
                 newRequest.request = request;
                 newRequest.status = request.status;
-                newRequest.user = await userData.GetUser(request.value);
+                newRequest.user = await userData.GetUser(request.values[0]);
                 newRequest.newTeam = await teamsData.GetTeam(request.requestTarget2);
 
                 recievedOutsourceRequests.Add(newRequest);
@@ -166,7 +166,7 @@
 
                 newRequest.request = request;
                 newRequest.status = request.status;
-                newRequest.user = await userData.GetUser(request.value);
+                newRequest.user = await userData.GetUser(request.values[0]);
                 newRequest.newTeam = await teamsData.GetTeam(request.requestTarget2);
 
                 sentOutsourceRequests.Add(newRequest);

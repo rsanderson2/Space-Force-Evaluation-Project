@@ -285,7 +285,7 @@
             newADCONTransferRequest.requestTarget2 = secondUserForHandshake.userID;
         }
 
-        newADCONTransferRequest.value = selectedUser.userID;
+        newADCONTransferRequest.values = new List<String> { selectedUser.userID };
         newADCONTransferRequest.type = "ADCON transfer request";
         newADCONTransferRequest.status = "Pending";
 
@@ -345,7 +345,7 @@
             newEvaluationAssignmentRequest.requestInitiator = currentUser.userID;
             newEvaluationAssignmentRequest.requestTarget1 = potentialEvaluator.userID;
             newEvaluationAssignmentRequest.requestTarget2 = null;
-            newEvaluationAssignmentRequest.value = selectedUser.userID;
+            newEvaluationAssignmentRequest.values = new List<String>{ selectedUser.userID };
             newEvaluationAssignmentRequest.type = "SuperiorAssignedEvaluationRequest";
             newEvaluationAssignmentRequest.status = "Pending";
 
@@ -505,7 +505,7 @@
         newOPCONOutsourceRequest.requestTarget1 = selectedUsers_superior;
         newOPCONOutsourceRequest.requestTarget2 = selectedTeam.ObjectId; // TODO: update to account for supervisors being team leaders if Roger says so
         newOPCONOutsourceRequest.requestInitiator = selectedTeam.leader;
-        newOPCONOutsourceRequest.value = selectedUser.userID;
+        newOPCONOutsourceRequest.values = new List<String> { selectedUser.userID };
         newOPCONOutsourceRequest.type = "OPCONOutsourceRequest";
         newOPCONOutsourceRequest.status = "Pending";
 
@@ -558,7 +558,7 @@
 
         hasGreatORequalRole = isSuperiorToSelectedUser(selectedUser.role);
         selectedUserHasUnassignedRole = doesUserHaveUnassignedRole(selectedUser);
-        
+
 
         String selectedUsers_superiorID = (await ADCONData.GetADCONBySubordinate(selectedUser.userID))?.superiorID;
 
@@ -584,11 +584,12 @@
         superiorAssignedEvaluators = await getSuperiorAssignedEvaluators(selectedUser);
 
 
-        // await userData.EmptyAllSupordinatesAndSuperiorsList();
-        // await userData.EmptyAllTeamIDs();
-        // await teamsData.RemoveAllTeams();
+        //await userData.EmptyAllSupordinatesAndSuperiorsList();
+        //await userData.EmptyAllTeamIDs();
+        //await teamsData.RemoveAllTeams();
         // await requestsData.RemoveAllRequests();
-        // await ADCONData.RemoveAllADCON();
+        //await ADCONData.RemoveAllADCON();
+        //await evaluationsData.RemoveAllEvaluations();
 
         //UserModel testUser = await userData.GetUserFromFirstName("Angela");
         //testUser.firstName = "Matthew";

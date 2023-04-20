@@ -157,7 +157,7 @@
             {
                 ADCONTransferRequests newRequest = new ADCONTransferRequests();
                 newRequest.newSuperior = (await userData.GetUser(request.requestInitiator));
-                newRequest.user = (await userData.GetUser(request.value));
+                newRequest.user = (await userData.GetUser(request.values[0]));
        
                 string currentSuperiorID = (await ADCONData.GetADCONBySubordinate(newRequest.user.userID))?.superiorID;
                 newRequest.currentSuperior = (await userData.GetUser(currentSuperiorID));
@@ -178,7 +178,7 @@
             RequestsModel request = sentRequests[i];
             ADCONTransferRequests newRequest = new ADCONTransferRequests();
             newRequest.newSuperior = (await userData.GetUser(request.requestInitiator));
-            newRequest.user = (await userData.GetUser(request.value));
+            newRequest.user = (await userData.GetUser(request.values[0]));
 
             string currentSuperiorID = (await ADCONData.GetADCONBySubordinate(newRequest.user.userID))?.superiorID;
             newRequest.currentSuperior = (await userData.GetUser(currentSuperiorID));

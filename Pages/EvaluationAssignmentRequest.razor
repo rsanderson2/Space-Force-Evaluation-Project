@@ -168,7 +168,7 @@
 
                 newRequest.newEvaluator = (await userData.GetUser(request.requestTarget1));
                 newRequest.superiorOfUser = null;
-                newRequest.user = (await userData.GetUser(request.value));
+                newRequest.user = (await userData.GetUser(request.values[0]));
                 newRequest.request = request;
                 newRequest.status = request.status;
 
@@ -202,7 +202,7 @@
 
                 newRequest.newEvaluator = (await userData.GetUser(request.requestTarget1));
                 newRequest.superiorOfUser = (await userData.GetUser(request.requestTarget2));
-                newRequest.user = (await userData.GetUser(request.value));
+                newRequest.user = (await userData.GetUser(request.values[0]));
                 newRequest.request = request;
                 newRequest.status = request.status;
 
