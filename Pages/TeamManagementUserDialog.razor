@@ -26,10 +26,6 @@
             </MudItem>
 
             <MudItem xs="6">
-                
-            
-        
-
                 <div style=" height: 100%;width: 100%; border-left: solid 1px; padding-left: 15px">
 
                     @if (!isSameUser)
@@ -107,36 +103,6 @@
 
                             <MudButton OnClick="() => makeOPCONOutsourceRequest()">Request Team Outsource</MudButton>
                         }
-
-                        @if (hasDirectADCON)
-                        {
-                            @if(superiorAssignedEvaluators != null && superiorAssignedEvaluators.Count > 0)
-                            {
-                                <MudTable Items="@superiorAssignedEvaluators" Hover="false">
-                                    <ToolBarContent>
-                                        <MudText>Superior Assigned Evaluators</MudText>
-                                        <MudSpacer />
-                                    </ToolBarContent>
-                                    <HeaderContent>
-                                        <MudTh>User</MudTh>
-                                        <MudTh>Email</MudTh>
-                                    </HeaderContent>
-                                    <RowTemplate>
-                                        <MudTd>@context.firstName</MudTd>
-                                        <MudTd>@context.email</MudTd>
-                                        <MudTd><MudButton OnClick="() => onRemoveSuperiorAssignedEvaluator(context.userID, selectedUser.userID)">Remove evaluator</MudButton></MudTd>
-                                    </RowTemplate>
-                                </MudTable>
-                            }
-                    
-                           <div>
-                                <MudInput FullWidth="true" T="string" Placeholder="New evaluator's email" @bind-Value="superiorAssignedEvaluatorEmail"/>
-                                <div>
-                                    <MudButton OnClick="() => makeSuperiorAssignedEvaluatorRequest()">Request to be @selectedUser.firstName's evaluator </MudButton>
-                                </div>
-                            </div>
-                    
-                        }
                     }
 
             
@@ -160,8 +126,42 @@
                         <MudButton 
                             OnClick="() => updateSelectedUserRole(roleAssignmentValue)">Confirm Role @roleAssignmentPrompt</MudButton>
                     }
-
                 </div>
+            </MudItem>
+
+            <MudItem xs="12">
+
+                @if (hasDirectADCON)
+                {
+                    <div style=" height: 100%;width: 100%; border-top: solid 1px; padding-top: 15px">
+                        @if(superiorAssignedEvaluators != null && superiorAssignedEvaluators.Count > 0)
+                        {
+                            <MudTable Items="@superiorAssignedEvaluators" Hover="false">
+                                <ToolBarContent>
+                                    <MudText>Superior Assigned Evaluators</MudText>
+                                    <MudSpacer />
+                                </ToolBarContent>
+                                <HeaderContent>
+                                    <MudTh>User</MudTh>
+                                    <MudTh>Email</MudTh>
+                                </HeaderContent>
+                                <RowTemplate>
+                                    <MudTd>@context.firstName</MudTd>
+                                    <MudTd>@context.email</MudTd>
+                                    <MudTd><MudButton OnClick="() => onRemoveSuperiorAssignedEvaluator(context.userID, selectedUser.userID)">Remove evaluator</MudButton></MudTd>
+                                </RowTemplate>
+                            </MudTable>
+                        }
+                    
+                        <div>
+                            <MudInput FullWidth="true" T="string" Placeholder="New evaluator's email" @bind-Value="superiorAssignedEvaluatorEmail"/>
+                            <div>
+                                <MudButton OnClick="() => makeSuperiorAssignedEvaluatorRequest()">Request to be @selectedUser.firstName's evaluator </MudButton>
+                            </div>
+                        </div>
+                    </div>
+                    
+                }
             </MudItem>
         </MudGrid>
         
