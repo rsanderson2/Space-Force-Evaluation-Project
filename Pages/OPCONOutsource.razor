@@ -123,6 +123,7 @@
         parameters.Add("CurrentStatus", context.request.status);
         parameters.Add("canApproveOrDeny", (currentUser.userID == context.request.requestRecipiants[0]
                                           || currentUser.userID == context.request.requestRecipiants[1]));
+        parameters.Add("requiresMultipleApprovals", (context.request.requestRecipiants.Count > 1 && context.request.requestRecipiants[1] != null));
         parameters.Add("newTeam", (context.newTeam));
         parameters.Add("user", context.user);
         DialogService.Show<OPCONOutsourceDialog>("Request Data", parameters, options);
@@ -146,7 +147,7 @@
                 newRequest.request = request;
                 newRequest.status = request.status;
                 newRequest.user = await userData.GetUser(request.values[0]);
-                newRequest.newTeam = await teamsData.GetTeam(request.requestRecipiants[1]);
+                newRequest.newTeam = await teamsData.GetTeam(request.values[1]);
 
                 recievedOutsourceRequests.Add(newRequest);
             }
@@ -167,7 +168,7 @@
                 newRequest.request = request;
                 newRequest.status = request.status;
                 newRequest.user = await userData.GetUser(request.values[0]);
-                newRequest.newTeam = await teamsData.GetTeam(request.requestRecipiants[1]);
+                newRequest.newTeam = await teamsData.GetTeam(request.values[1]);
 
                 sentOutsourceRequests.Add(newRequest);
             }

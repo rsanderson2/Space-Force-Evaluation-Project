@@ -21,7 +21,7 @@
             {
                 <MudItem xs="6">
                     <div style="padding-right:5px; height:100%; width:100%">
-                        <h6 style="font-weight: bold">User Being Outsourced</h6>
+                        <h6 style="font-weight: bold">Potential New Team</h6>
 
                         <p class="adcon-dialogue"><b>Team</b>: @newTeam.name</p>
                         <p><b>Team Leader:</b> @newTeamLeader.firstName @newTeamLeader.lastName</p>
@@ -65,6 +65,7 @@
     [Parameter] public String currentStatus { get; set; }
     [Parameter] public Action<string> UpdateStatus { get; set; }
     [Parameter] public bool canApproveOrDeny { get; set; }
+    [Parameter] public bool requiresMultipleApprovals { get; set; }
 
     public UserModel newTeamLeader;
 
@@ -100,20 +101,31 @@
     async Task onApproval()
     {
         processingRequest = true;
-        bool result = await addUserToTeam(user.userID, newTeam.ObjectId);
-
-        if (result)
+        // TODO: check if there need to be a second aproval first
+        if (requiresMultipleApprovals)
         {
-            UpdateStatus("Approved");
-            currentStatus = "Approved";
-            Snackbar.Add("Successfully approved evaluation requests.", Severity.Success);
+            UpdateStatus("Awaiting second response");
+            currentStatus = "Awaiting second response";
+            Snackbar.Add("Successfully approved evaluation requests. Wait for other approvals", Severity.Success);
         }
         else
         {
-            UpdateStatus("Error");
-            currentStatus = "Error";
-            Snackbar.Add("Error: user is already in team", Severity.Error);
+            bool result = await addUserToTeam(user.userID, newTeam.ObjectId);
+
+            if (result)
+            {
+                UpdateStatus("Approved");
+                currentStatus = "Approved";
+                Snackbar.Add("Successfully approved evaluation requests.", Severity.Success);
+            }
+            else
+            {
+                UpdateStatus("Error");
+                currentStatus = "Error";
+                Snackbar.Add("Error: user is already in team", Severity.Error);
+            }
         }
+        
         processingRequest = false;
     }
 
