@@ -144,7 +144,7 @@
             {
                 UserModel subjectUser = await userData.GetUser(survey.subjectID);
                 newQuestion.question = survey.question[i];
-                newQuestion.subject = subjectUser.firstName + " " + subjectUser.lastName;
+                newQuestion.subject = subjectUser.firstName + " " + subjectUser.lastName; // TODO: check for null???
                 newQuestion.category = GetCategory(int.Parse(survey.category[i]));
                 newQuestion.response = survey.freeResponseText[i].ToString();
                 newQuestion.questionNumber = i + 1;
