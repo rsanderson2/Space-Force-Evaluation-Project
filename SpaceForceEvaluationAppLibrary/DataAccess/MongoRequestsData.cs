@@ -31,7 +31,9 @@ public class MongoRequestsData : IRequestsData
     public async Task<List<RequestsModel>> GetRecievedRequests(string userID)
     {
 
-        var results = await _requests.FindAsync(u => u.requestRecipiants.Contains(userID));
+        var results = await _requests.FindAsync(u => u.requestRecipiants.Contains(userID) || 
+                                                     (u.requestRespondents != null && 
+                                                     u.requestRespondents.Contains(userID)));
         return results.ToList();
     }
 

@@ -97,6 +97,13 @@
         context.status = newStatus;
         context.request.status = newStatus;
 
+        if (context.request.requestRespondents == null)
+        {
+            context.request.requestRespondents = new List<String>();
+        }
+
+        context.request.requestRespondents.Add(currentUser.userID);
+
         if (newStatus == "Awaiting second response")
         {
             if(context.request.requestRecipiants[0] == currentUser.userID)

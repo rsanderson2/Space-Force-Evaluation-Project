@@ -244,15 +244,13 @@
 
         UserModel firstUserForHandshake = (await ADCONData.GetClosestCommander(selectedUsers_superiorID)); 
         UserModel secondUserForHandshake = (await ADCONData.GetClosestCommander(currentUser.userID)); 
-
-
         String secondUserForHandshakes_superior = (await ADCONData.GetADCONBySubordinate(secondUserForHandshake.userID))?.superiorID;
 
         if(firstUserForHandshake.userID == secondUserForHandshake.userID)
         {
             newADCONTransferRequest.requestRecipiants = new List<String> { secondUserForHandshake.userID };
         }
-        else if(firstUserForHandshake.userID == secondUserForHandshakes_superior)
+        else if(firstUserForHandshake.userID == secondUserForHandshakes_superior) // TODO: may need to refactor this
         {
             // if the current user is trying to ask for ADCON of a peer,then only need their direct superior.
             newADCONTransferRequest.requestRecipiants = new List<String> { firstUserForHandshake.userID };
@@ -343,7 +341,6 @@
         }
         else
         {
-            // TODO: update after Ethan sends new model. 
             RequestsModel newEvaluationAssignmentRequest = new RequestsModel();
             newEvaluationAssignmentRequest.requestInitiator = currentUser.userID;
             newEvaluationAssignmentRequest.requestRespondents = new List<string>();
@@ -518,24 +515,62 @@
         }
         else
         {
-            UserModel secondRecipiant = await ADCONData.GetClosestCommander(selectedUsers_superior);
-            UserModel closestSuperCommanderTo_CurrentUser = await ADCONData.GetClosestCommander(currentUser.userID);
+            UserModel closestSuperiorCommanderTo_selectedUser = await ADCONData.GetClosestCommander(selectedUsers_superior);
+            UserModel closestCommanderTo_CurrentUser = await ADCONData.GetClosestCommander(currentUser.userID);
 
-            newOPCONOutsourceRequest.requestRecipiants = new List<String>
+            // todo: make sure that secondRecipiant and closestSuperCommanderTo_CurrentUser are not the same person
+            // make sure that one closestSuperCommanderTo_CurrentUser or secondRecipiant does not have ADCON over another
+                // if so, pick the lowest level one. 
+
+            if (closestSuperiorCommanderTo_selectedUser.userID == closestCommanderTo_CurrentUser.userID)
             {
-                closestSuperCommanderTo_SelectedUser.userID,
-                closestSuperCommanderTo_CurrentUser.userID
-            };
+                newOPCONOutsourceRequest.requestRecipiants = new List<String>
+                {
+                    closestSuperCommanderTo_SelectedUser.userID,
+                };
+            }
+            else if (await ADCONData.hasDirectADCONOverUser(closestCommanderTo_CurrentUser, closestSuperiorCommanderTo_selectedUser))
+            {
+                // only need second user
+                newOPCONOutsourceRequest.requestRecipiants = new List<String>
+                {
+                    closestCommanderTo_CurrentUser.userID
+                };
+            }
+            else if (await ADCONData.hasDirectADCONOverUser(closestSuperiorCommanderTo_selectedUser, closestCommanderTo_CurrentUser))
+            {
+                // only need first user
+                newOPCONOutsourceRequest.requestRecipiants = new List<String>
+                {
+                    closestSuperiorCommanderTo_selectedUser.userID,
+                };
+            }
+            else if( await ADCONData.hasIndirectADCONOverUser(closestCommanderTo_CurrentUser, closestSuperiorCommanderTo_selectedUser)) 
+            {
+                // only need second user
+                newOPCONOutsourceRequest.requestRecipiants = new List<String>
+                {
+                    closestCommanderTo_CurrentUser.userID
+                };
+            }
+            else if(await ADCONData.hasIndirectADCONOverUser(closestSuperiorCommanderTo_selectedUser, closestCommanderTo_CurrentUser))
+            {
+                // only need first user
+                newOPCONOutsourceRequest.requestRecipiants = new List<String>
+                {
+                    closestSuperiorCommanderTo_selectedUser.userID,
+                };
+            }
+            else 
+            {
+                // need both users
+                newOPCONOutsourceRequest.requestRecipiants = new List<String>
+                {
+                    closestSuperCommanderTo_SelectedUser.userID,
+                    closestCommanderTo_CurrentUser.userID
+                };
+            }
         }
-
-        
-        //TODO: update to account for supervisors being team leaders
-        //in the event that a supervisor is a team leader, then you need to have both the 
-        //closest commander to the team leader and the colest commander to the user being transfered 
-        //approve of the requests. 
-        
-        //TODO: if the team leader is a Commander, then we simply just need to ask the closest commander of the
-        //supervisor for permission. 
 
         newOPCONOutsourceRequest.requestInitiator = selectedTeam.leader;
         newOPCONOutsourceRequest.requestRespondents = new List<string>();
