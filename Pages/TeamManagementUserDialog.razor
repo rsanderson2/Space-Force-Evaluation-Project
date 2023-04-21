@@ -4,6 +4,8 @@
 @inject ISnackbar Snackbar
 @inject ITeamsData teamsData
 @inject IADCONData ADCONData
+@inject IDialogService DialogService
+
 
 <head>
     <style>
@@ -30,13 +32,6 @@
 
                     @if (!isSameUser)
                     {
-                        /*
-                        TODO: use this if we have indirect ADCON support
-                        @if (hasGreatORequalRole && !hasDirectADCON && !hasIndirectADCON)
-                        {
-                            <MudButton Disabled="@(superior == null || processingADCONRequest)" OnClick="() => requestADCONOverUser()">Request ADCON</MudButton>
-                        }
-                        */
 
                         @if (hasGreatORequalRole && !hasDirectADCON)
                         {
@@ -62,7 +57,6 @@
 
 
 
-                        // TODO: update to account for supervisors
                         // A simple way to get around this if statement would be to check if the user leads any teams
                         // in addition to checking for direct/indirect ADCON
                         @if ((hasDirectADCON || hasIndirectADCON) && (currentUser.role == "Commander" || currentUser.role == "HQ")) 
@@ -82,8 +76,6 @@
 
                             <MudButton OnClick="() => onOPCONAssignment(selectedUser.userID, selectedTeam.ObjectId)">Confirm Team Assignment</MudButton>
                         }
-                        
-                        // TODO: update to account for supervisors
                         else if (hasGreatORequalRole)
                         {
                             <MudSelect @bind-Value="selectedTeam" Label="Request Team Outsource" Placeholder="Select team" AdornmentColor="Color.Primary">
@@ -100,6 +92,11 @@
                             </MudSelect>
 
                             <MudButton OnClick="() => makeOPCONOutsourceRequest()">Request Team Outsource</MudButton>
+                        }
+
+                        @if (hasDirectADCON)
+                        {
+                            <MudButton OnClick="OpenReportDialog">View Report</MudButton>
                         }
                     }
 
@@ -206,6 +203,14 @@
 
     void Submit() => MudDialog.Close(DialogResult.Ok(true));
     void Cancel() => MudDialog.Cancel();
+
+
+    private void OpenReportDialog()
+    {
+        var parameters = new DialogParameters();
+        var options = new DialogOptions { CloseOnEscapeKey = true, MaxWidth = MaxWidth.Large, FullWidth = true };
+        DialogService.Show<ReportDialog>("Report Data", parameters, options);
+    }
 
     async Task takeADCON(UserModel subordinate)
     {
@@ -517,10 +522,6 @@
         {
             UserModel closestSuperiorCommanderTo_selectedUser = await ADCONData.GetClosestCommander(selectedUsers_superior);
             UserModel closestCommanderTo_CurrentUser = await ADCONData.GetClosestCommander(currentUser.userID);
-
-            // todo: make sure that secondRecipiant and closestSuperCommanderTo_CurrentUser are not the same person
-            // make sure that one closestSuperCommanderTo_CurrentUser or secondRecipiant does not have ADCON over another
-                // if so, pick the lowest level one. 
 
             if (closestSuperiorCommanderTo_selectedUser.userID == closestCommanderTo_CurrentUser.userID)
             {

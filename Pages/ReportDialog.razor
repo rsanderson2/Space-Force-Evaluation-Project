@@ -1,0 +1,170 @@
+﻿@inject IUserData userData
+@inject IRequestsData requestsData
+@inject ISnackbar Snackbar
+@inject ITeamsData teamsData
+@inject IADCONData ADCONData
+
+<MudDialog>
+    <DialogContent>
+
+        
+        <!--
+            add table with check boxes
+            each row is a category of question 
+            when a check box is selected, then it addes it to the trendline graph to the right
+
+            for graph on the right
+        -->
+        <MudGrid>
+            <MudItem xs="5">
+                <MudTable T="ReportStat" Items="@stats" MultiSelection="true" @bind-SelectedItems="selectedItems" Hover="true"
+                          @bind-SelectOnRowClick="@_selectOnRowClick" Height="400px" OnRowClick="@OnRowClick">
+                    <HeaderContent>
+                        <MudTh>Category</MudTh>
+                        <MudTh>Average</MudTh>
+                    </HeaderContent>
+                    <RowTemplate>
+                        <MudTd DataLabel="Category">@context.categoryName</MudTd>
+                        <MudTd DataLabel="Value">@context.categoryAverage</MudTd>
+                    </RowTemplate>
+                </MudTable>
+                <MudButton OnClick="ClearSeries">Clear</MudButton>
+            </MudItem>
+
+            <MudItem xs="7">
+                <div>
+                    <MudChart ChartType="ChartType.Line" ChartSeries="@Series" @bind-SelectedIndex="Index" XAxisLabels="@XAxisLabels" ChartOptions="@_options" Width="100%" Height="350px"></MudChart>
+                </div>
+            </MudItem>
+        </MudGrid>
+        
+
+
+    </DialogContent>
+
+    <DialogActions>
+        <MudButton OnClick="Cancel">Cancel</MudButton>
+    </DialogActions>
+
+
+</MudDialog>
+
+
+
+@code {
+    public class ReportStat
+    {
+        public string categoryName;
+        public double[] categoryValues;
+        public double categoryAverage;
+    }
+
+    [CascadingParameter] MudDialogInstance MudDialog { get; set; }
+
+    void Submit() => MudDialog.Close(DialogResult.Ok(true));
+    void Cancel() => MudDialog.Cancel();
+    private bool _selectOnRowClick = true;
+    private int Index = -1; //default value cannot be 0 -> first selectedindex is 0.
+
+
+    public List<ReportStat> stats = new List<ReportStat>();
+    public HashSet<ReportStat> selectedItems = new HashSet<ReportStat>();
+
+
+    public List<ChartSeries> Series = new List<ChartSeries>();
+
+    public string[] XAxisLabels = { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep" };
+
+    public void ClearSeries()
+    {
+        selectedItems.Clear();
+        Series.Clear();
+    }
+
+    void OnRowClick(TableRowClickEventArgs<ReportStat> args)
+    {
+        Series.Clear();
+        foreach(var stat in selectedItems)
+        {
+            ChartSeries temp = new ChartSeries() { Name = stat.categoryName, Data = stat.categoryValues };
+            Series.Add(temp);
+        }
+        StateHasChanged();
+    }
+
+
+    public double[] GenerateRandomArray()
+    {
+        double[] array = new double[9];
+        Random random = new Random();
+        for (int i = 0; i < 9; i++)
+        {
+            array[i] = random.NextDouble() * 4 + 1;
+        }
+        return array;
+    }
+
+    public double GenerateRandomDouble()
+    {
+        Random random = new Random();
+        double value = random.NextDouble() * 4 + 1;
+        return Math.Round(value, 2);
+    }
+
+    Dictionary<string, double> categoryScores = new Dictionary<string, double> {
+        { "Job Dedication", 1.5 },
+        { "Interpersonal Justice", 1.5 },
+        { "Innovator", 1.5 },
+        { "Risk Attitude", 1.5 },
+        { "Integrity", 1.5 },
+        { "TP", 1.5 },
+        { "Trust", 1.5 },
+        { "Innovation Climate", 1.5 },
+        { "Authenticity - Authentic Living", 1.5 },
+        { "Supporting", 1.5 },
+        { "OCB-I", 1.5 },
+        { "Help-Seeking", 1.5 },
+        { "Problem-solving assistance", 1.5 },
+        { "Supervisor Task Support", 1.5 },
+        { "Honesty/Candor", 1.5 },
+        { "Inclusion", 1.5 },
+        { "Moral strivings", 1.5 },
+        { "Fairness", 1.5 },
+        { "Managerial Behavior: Broker", 1.5 },
+        { "Psychological Saftey", 1.5 },
+        { "Communication/Cooperation", 1.5 },
+        { "Information Sharing", 1.5 },
+        { "Servant Leadership", 1.5 },
+        { "Resource Availability", 1.5 },
+        { "Learning goal orientation", 1.5 },
+        { "Intellectual Stimulation", 1.5 },
+        { "Feedback from Agents", 1.5 },
+        { "General Risk Propensity", 1.5 },
+        { "Feedback Seeking", 1.5 },
+        { "Accountability", 1.5 },
+        { "DEI", 1.5 },
+        { "Moral Courage", 1.5 },
+        { "OCB-O", 1.5 },
+
+    };
+
+    private readonly ChartOptions _options = new();
+
+    protected async override Task OnInitializedAsync()
+    {
+
+        foreach (KeyValuePair<string, double> entry in categoryScores)
+        {
+            // do something with entry.Value or entry.Key
+            ReportStat temp = new ReportStat();
+            temp.categoryName = entry.Key;
+            temp.categoryValues = GenerateRandomArray();
+            temp.categoryAverage = GenerateRandomDouble();
+
+            stats.Add(temp);
+        }
+
+        _options.YAxisTicks = 5;
+    }
+
+}
