@@ -247,6 +247,7 @@
 
 
         String secondUserForHandshakes_superior = (await ADCONData.GetADCONBySubordinate(secondUserForHandshake.userID))?.superiorID;
+
         if(firstUserForHandshake.userID == secondUserForHandshake.userID)
         {
             newADCONTransferRequest.requestRecipiants = new List<String> { secondUserForHandshake.userID };

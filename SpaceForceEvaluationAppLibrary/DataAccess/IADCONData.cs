@@ -26,5 +26,7 @@ namespace SpaceForceEvaluationAppLibrary.DataAccess
         Task RemoveADCON(ADCONModel ADCON);
 
         Task RemoveAllADCON();
+
+        Task<UserModel> GetDirectSuperior(string userId);
     }
 }

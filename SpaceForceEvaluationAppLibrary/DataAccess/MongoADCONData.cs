@@ -175,4 +175,12 @@ public class MongoADCONData : IADCONData
         var filter = Builders<ADCONModel>.Filter.Empty;
         var result = await _ADCON.DeleteManyAsync(filter);
     }
+
+    public async Task<UserModel> GetDirectSuperior(string userId)
+    {
+        String supeiorID = (await GetADCONBySubordinate(userId)).superiorID;
+        UserModel directSuperior = (await GetUser(supeiorID));
+
+        return directSuperior;
+    }
 }
