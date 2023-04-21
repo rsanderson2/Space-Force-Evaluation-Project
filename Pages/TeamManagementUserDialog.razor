@@ -62,8 +62,10 @@
 
 
 
-
-                        @if ((hasDirectADCON || hasIndirectADCON) && (currentUser.role == "Commander" || currentUser.role == "HQ")) // TODO: update to account for supervisors being team leaders if Roger says so
+                        // TODO: update to account for supervisors
+                        // A simple way to get around this if statement would be to check if the user leads any teams
+                        // in addition to checking for direct/indirect ADCON
+                        @if ((hasDirectADCON || hasIndirectADCON) && (currentUser.role == "Commander" || currentUser.role == "HQ")) 
                         {
                             <MudSelect @bind-Value="selectedTeam" Label="Assign To Team" Placeholder="Select team" AdornmentColor="Color.Primary">
                                 <MudSelectItem T="@TeamsModel" Value="@null" Disabled="true">Your Teams</MudSelectItem>
@@ -80,11 +82,8 @@
 
                             <MudButton OnClick="() => onOPCONAssignment(selectedUser.userID, selectedTeam.ObjectId)">Confirm Team Assignment</MudButton>
                         }
-                        <!-- TODO: ask if we need to send request even when there is indirect ADCON
-                        else if(hasIndirectADCON)
-                        {
-                            OPCON Request here
-                        }-->
+                        
+                        // TODO: update to account for supervisors
                         else if (hasGreatORequalRole)
                         {
                             <MudSelect @bind-Value="selectedTeam" Label="Request Team Outsource" Placeholder="Select team" AdornmentColor="Color.Primary">
@@ -95,7 +94,6 @@
                                     @foreach (var team in currentUserTeams)
                                     {
                                         <MudSelectItem T="@TeamsModel" Value="@team">@team.name</MudSelectItem>
-
                                     }
                                 }
 
@@ -239,6 +237,7 @@
     {
         processingADCONRequest = true;
         RequestsModel newADCONTransferRequest = new RequestsModel();
+        newADCONTransferRequest.requestRespondents = new List<string>();
         newADCONTransferRequest.requestInitiator = currentUser.userID;
 
         String selectedUsers_superiorID = (await ADCONData.GetADCONBySubordinate(selectedUser.userID))?.superiorID;
@@ -248,7 +247,11 @@
 
 
         String secondUserForHandshakes_superior = (await ADCONData.GetADCONBySubordinate(secondUserForHandshake.userID))?.superiorID;
-        if(firstUserForHandshake.userID == secondUserForHandshakes_superior)
+        if(firstUserForHandshake.userID == secondUserForHandshake.userID)
+        {
+            newADCONTransferRequest.requestRecipiants = new List<String> { secondUserForHandshake.userID };
+        }
+        else if(firstUserForHandshake.userID == secondUserForHandshakes_superior)
         {
             // if the current user is trying to ask for ADCON of a peer,then only need their direct superior.
             newADCONTransferRequest.requestRecipiants = new List<String> { firstUserForHandshake.userID };
@@ -342,7 +345,7 @@
             // TODO: update after Ethan sends new model. 
             RequestsModel newEvaluationAssignmentRequest = new RequestsModel();
             newEvaluationAssignmentRequest.requestInitiator = currentUser.userID;
-
+            newEvaluationAssignmentRequest.requestRespondents = new List<string>();
             newEvaluationAssignmentRequest.requestRecipiants = new List<String> { potentialEvaluator.userID, null };
 
             newEvaluationAssignmentRequest.values = new List<String>{ selectedUser.userID };
@@ -368,6 +371,7 @@
         processingEvaluatorRequest = true;
         RequestsModel newEvaluationAssignmentRequest = new RequestsModel();
         newEvaluationAssignmentRequest.requestInitiator = currentUser.userID;
+        newEvaluationAssignmentRequest.requestRespondents = new List<string>();
         String curentUsers_superior = (await ADCONData.GetADCONBySubordinate(currentUser.userID))?.superiorID;
         newEvaluationAssignmentRequest.requestRecipiants = new List<String> { curentUsers_superior, selectedUser.userID };
 
@@ -497,19 +501,44 @@
         {
             Snackbar.Add("ERROR: must select a valid team", Severity.Error);
         }
+
         RequestsModel newOPCONOutsourceRequest = new RequestsModel();
 
         String selectedUsers_superior = (await ADCONData.GetADCONBySubordinate(selectedUser.userID))?.superiorID;
+        UserModel closestSuperCommanderTo_SelectedUser = await ADCONData.GetClosestCommander(selectedUsers_superior);
 
-        newOPCONOutsourceRequest.requestRecipiants = new List<String>
+        // If current user's role is Commander/HQ, then we only need the closest superior commander to the selected user to approve
+        if(currentUser.role == "Commander")
         {
-            selectedUsers_superior,
-            selectedTeam.ObjectId
-        };
-        // TODO: update to account for supervisors being team leaders if Roger says so
+            newOPCONOutsourceRequest.requestRecipiants = new List<String>
+            {
+                closestSuperCommanderTo_SelectedUser.userID,
+            };
+        }
+        else
+        {
+            UserModel secondRecipiant = await ADCONData.GetClosestCommander(selectedUsers_superior);
+            UserModel closestSuperCommanderTo_CurrentUser = await ADCONData.GetClosestCommander(currentUser.userID);
+
+            newOPCONOutsourceRequest.requestRecipiants = new List<String>
+            {
+                closestSuperCommanderTo_SelectedUser.userID,
+                closestSuperCommanderTo_CurrentUser.userID
+            };
+        }
+
+        
+        //TODO: update to account for supervisors being team leaders
+        //in the event that a supervisor is a team leader, then you need to have both the 
+        //closest commander to the team leader and the colest commander to the user being transfered 
+        //approve of the requests. 
+        
+        //TODO: if the team leader is a Commander, then we simply just need to ask the closest commander of the
+        //supervisor for permission. 
 
         newOPCONOutsourceRequest.requestInitiator = selectedTeam.leader;
-        newOPCONOutsourceRequest.values = new List<String> { selectedUser.userID };
+        newOPCONOutsourceRequest.requestRespondents = new List<string>();
+        newOPCONOutsourceRequest.values = new List<String> { selectedUser.userID, selectedTeam.ObjectId };
         newOPCONOutsourceRequest.type = "OPCONOutsourceRequest";
         newOPCONOutsourceRequest.status = "Pending";
 

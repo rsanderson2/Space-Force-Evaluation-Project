@@ -342,18 +342,8 @@
         users = await userData.getAllUsers();
         AddUsersToDictionary(users, DisplayedUsersDictionary);
 
-        if(currentUser.teamIDs != null)
-        {
-            foreach(var teamID in currentUser.teamIDs)
-            {
-                if(teamID != "") 
-                {
-                    TeamsModel tempTeam = new TeamsModel();
-                    tempTeam = await teamData.GetTeam(teamID);
-                    currentUserTeams.Add(tempTeam);
-                }
-            }
-        }
+        currentUserTeams = await teamData.GetTeamsByLeader(currentUser.userID);
+
         filtersStatus = new FilterStatus[3];
         initializeFiltersStatus();
         isLoading = false;

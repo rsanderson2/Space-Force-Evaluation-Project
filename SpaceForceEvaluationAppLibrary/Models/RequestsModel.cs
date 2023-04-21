@@ -46,7 +46,7 @@ public class RequestsModel
 
     // For ADCONTransferRequest: values[0] = user being transfered
     // For EvaluationAssignmentRequest: values[0] = user being evaluated
-    // For OPCONTransferRequests: values[0] = user being outsourced to team. 
+    // For OPCONTransferRequests: values[0] = user being outsourced to team, values[1] = team ID of team that the user is being outsourced to. 
     public List<string> values { get; set; }
 
 
@@ -57,4 +57,6 @@ public class RequestsModel
     public string requestTarget { get; set; }
 
     public List<string> requestRecipiants { get; set; }
+
+    public List<string> requestRespondents { get; set; }
 }
