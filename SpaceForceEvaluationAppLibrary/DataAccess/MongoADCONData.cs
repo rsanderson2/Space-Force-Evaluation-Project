@@ -178,9 +178,18 @@ public class MongoADCONData : IADCONData
 
     public async Task<UserModel> GetDirectSuperior(string userId)
     {
-        String supeiorID = (await GetADCONBySubordinate(userId)).superiorID;
-        UserModel directSuperior = (await GetUser(supeiorID));
+        ADCONModel ADCONCheck = (await GetADCONBySubordinate(userId));
+        if (ADCONCheck == null)
+        {
+            return null;
+        }
+        else
+        {
+            string superiorID = ADCONCheck.superiorID;
+            UserModel directSuperior = (await GetUser(superiorID));
+            return directSuperior;
 
-        return directSuperior;
+        }
     }
+
 }

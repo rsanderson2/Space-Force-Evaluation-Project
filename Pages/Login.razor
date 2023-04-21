@@ -5,6 +5,7 @@
 @inject NavigationManager navManager
 @inject IGeneratedSurveyData generatedSurveyData
 @inject IQuestionsData questionData
+@inject IADCONData ADCONData
 @inherits LayoutComponentBase
 
 
@@ -142,7 +143,7 @@
                                         @if (!@lastDaily)
                                         {
                                             <MudCardActions>
-                                                <MudButton OnClick="() => navigateToSurvey(1)" Variant="Variant.Text" Color="Color.Secondary" Style="background-color: #003B73">Begin</MudButton>
+                                                <MudButton Disabled="@hasADCON" OnClick="() => navigateToSurvey(1)" Variant="Variant.Text" Color="Color.Secondary" Style="background-color: #003B73">Begin</MudButton>
                                             </MudCardActions>
                                         }
                                     </MudCard>
@@ -163,7 +164,7 @@
                                         @if (!@lastWeekly)
                                         {
                                             <MudCardActions>
-                                                <MudButton OnClick="() => navigateToSurvey(2)" Variant="Variant.Text" Color="Color.Secondary" Style="background-color: #003B73">Begin</MudButton>
+                                                <MudButton Disabled="@hasADCON" OnClick="() => navigateToSurvey(2)" Variant="Variant.Text" Color="Color.Secondary" Style="background-color: #003B73">Begin</MudButton>
                                             </MudCardActions>
                                         }
                                     </MudCard>
@@ -183,7 +184,7 @@
                                         @if (!@lastMonthly)
                                         {
                                             <MudCardActions>
-                                                <MudButton OnClick="() => navigateToSurvey(3)" Variant="Variant.Text" Color="Color.Secondary" Style="background-color: #003B73">Begin</MudButton>
+                                                <MudButton Disabled="@hasADCON" OnClick="() => navigateToSurvey(3)" Variant="Variant.Text" Color="Color.Secondary" Style="background-color: #003B73">Begin</MudButton>
                                             </MudCardActions>
                                         }
                                     </MudCard>
@@ -276,9 +277,7 @@
     public string emailAddress;
     public string userLastName;
     public string userFirstName;
-
     public string questionType { get; set; }
-
     DateTime surveyDate;
     public string teammate;
     public string questionSubjectID;
@@ -298,7 +297,7 @@
     public string TestQuestion = "";
     public string showQuestion = "";
     private Random rnd = new Random();
-
+    public bool hasADCON = true;
     private UserModel loggedInUser = new UserModel();
 
     // Current number of climate questions, this will need to be non-static at some point
@@ -542,7 +541,7 @@
 
             generatedSurveyList = await generatedSurveyData.GetGeneratedSurveysbyUser(currentUser.userID);
         }
-        
+
 
         foreach (GeneratedSurveyModel survey in generatedSurveyList)
         {
@@ -638,8 +637,18 @@
 
         // Get who is logged in
         UserModel currentUser = await AuthenticationStateProviderHelpers.GetUserFromAuth(authProvider, userData);
+
         if (currentUser != null)
         {
+            if (await ADCONData.GetDirectSuperior(currentUser.userID) == null)
+            {
+                hasADCON = true;
+            }
+            else
+            {
+                hasADCON = false;
+            }
+
             checkDailySurveyEligible(currentUser);
             checkWeeklySurveyEligible(currentUser);
             checkMonthlySurveyEligible(currentUser);
