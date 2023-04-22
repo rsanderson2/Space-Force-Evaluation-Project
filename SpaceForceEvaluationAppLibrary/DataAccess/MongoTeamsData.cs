@@ -62,6 +62,16 @@ public class MongoTeamsData : ITeamsData
     }
 
 
+    public async Task TransferTeam(TeamsModel team, UserModel newSupervisingCommander)
+    {
+        TeamsModel teamToTransfer = await GetTeam(team.ObjectId);
+
+        teamToTransfer.creator = newSupervisingCommander.userID;
+
+        await UpdateTeam(teamToTransfer);
+    }
+
+
     public Task UpdateTeam(TeamsModel team)
     {
         var filter = Builders<TeamsModel>.Filter.Eq("ObjectId", team.ObjectId);

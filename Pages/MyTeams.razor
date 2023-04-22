@@ -46,6 +46,11 @@
                                 Delete Team
                             </MudButton>
                         </MudTd>
+                        <MudTd>
+                            <MudButton OnClick="() => OpenTransferTeamDialog(context.team)" Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary" Style="font-family: helveticaNeueMedium;">
+                                Transfer Team
+                            </MudButton>
+                        </MudTd>
                     }
                     else if (currentUser != null && (context.teamLeader.userID == currentUser.userID && (currentUser.role == "HQ" || currentUser.role == "Commander")))
                     {
@@ -102,6 +107,16 @@
         parameters.Add("teamToDelete", teamToDelete);
 
         DialogService.Show<DeleteTeamDialog>("Delete Team", parameters, options);
+    }
+
+    private void OpenTransferTeamDialog(TeamsModel teamToTransfer)
+    {
+        var parameters = new DialogParameters();
+        var options = new DialogOptions { CloseOnEscapeKey = true };
+
+        parameters.Add("teamToTransfer", teamToTransfer);
+
+        DialogService.Show<TransferTeamDialog>("teamToTransfer Team", parameters, options);
     }
 
 

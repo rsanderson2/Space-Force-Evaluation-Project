@@ -27,5 +27,7 @@ namespace SpaceForceEvaluationAppLibrary.DataAccess
 
         Task<bool> CheckIfTeamExists(TeamsModel team);
 
+        Task TransferTeam(TeamsModel team, UserModel newSupervisingCommander);
+
     }
 }
