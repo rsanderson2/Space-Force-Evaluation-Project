@@ -376,7 +376,15 @@
         newEvaluationAssignmentRequest.requestInitiator = currentUser.userID;
         newEvaluationAssignmentRequest.requestRespondents = new List<string>();
         String curentUsers_superior = (await ADCONData.GetADCONBySubordinate(currentUser.userID))?.superiorID;
-        newEvaluationAssignmentRequest.requestRecipiants = new List<String> { curentUsers_superior, selectedUser.userID };
+
+        if(curentUsers_superior != selectedUser.userID)
+        {
+            newEvaluationAssignmentRequest.requestRecipiants = new List<String> { curentUsers_superior, selectedUser.userID };
+        }
+        else 
+        {
+            newEvaluationAssignmentRequest.requestRecipiants = new List<String> { curentUsers_superior };
+        }
 
         if(newEvaluationAssignmentRequest.values == null)
         {
