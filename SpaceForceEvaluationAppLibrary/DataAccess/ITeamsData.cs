@@ -29,5 +29,7 @@ namespace SpaceForceEvaluationAppLibrary.DataAccess
 
         Task TransferTeam(TeamsModel team, UserModel newSupervisingCommander);
 
+        Task TransferAllUserTeams(List<TeamsModel> teamsToTransfer, UserModel newSupervisingCommander);
+
     }
 }

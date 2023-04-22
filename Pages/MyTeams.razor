@@ -22,6 +22,7 @@
             @if (currentUser != null && (currentUser.role == "Commander" || currentUser.role == "HQ"))
             {
                 <MudButton Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary" OnClick="@(() => OpenCreateTeamDialog())">Create Team</MudButton>
+                <MudButton Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary" OnClick="@(() => OpenTransferAllTeamsDialog())">Transfer All Teams</MudButton>
             }
             <MudTable Items="@teams" Hover="true" Loading="@isLoading">
                 <HeaderContent>
@@ -117,6 +118,14 @@
         parameters.Add("teamToTransfer", teamToTransfer);
 
         DialogService.Show<TransferTeamDialog>("teamToTransfer Team", parameters, options);
+    }
+
+    private void OpenTransferAllTeamsDialog()
+    {
+        var parameters = new DialogParameters();
+        var options = new DialogOptions { CloseOnEscapeKey = true };
+        parameters.Add("currentUser", currentUser);
+        DialogService.Show<TransferAllTeamsDialog>("Transfer Team", parameters, options);
     }
 
 

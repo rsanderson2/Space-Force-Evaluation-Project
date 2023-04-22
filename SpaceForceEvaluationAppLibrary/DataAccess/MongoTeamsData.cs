@@ -71,6 +71,18 @@ public class MongoTeamsData : ITeamsData
         await UpdateTeam(teamToTransfer);
     }
 
+    public async Task TransferAllUserTeams(List<TeamsModel> teamsToTransfer, UserModel newSupervisingCommander)
+    {
+        foreach (var team in teamsToTransfer)
+        {
+            TeamsModel teamToTransfer = await GetTeam(team.ObjectId);
+
+            teamToTransfer.creator = newSupervisingCommander.userID;
+
+            await UpdateTeam(teamToTransfer);
+        }
+    }
+
 
     public Task UpdateTeam(TeamsModel team)
     {
