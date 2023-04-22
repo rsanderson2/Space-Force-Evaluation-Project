@@ -155,6 +155,7 @@
                         if (DisplayedUsersDictionary.ContainsKey(subordinate.userID) == false)
                         {
                             displayedUsers.Add(subordinate);
+                            DisplayedUsersDictionary.Add(subordinate.userID, true);
                         }
                     }
                 }
@@ -179,6 +180,7 @@
                         if (DisplayedUsersDictionary.ContainsKey(evaluator.userID) == false)
                         {
                             displayedUsers.Add(evaluator);
+                            DisplayedUsersDictionary.Add(evaluator.userID, true);
                         }
                     }
 
@@ -186,15 +188,6 @@
                     displayedUsers.RemoveAll(item => item == null);
                 }
 
-            }
-
-            else if (filtersStatus[i].name == "Users you evaluate")
-            {
-                // TODO: get users who you evaluate
-                if (!filtersStatus[i].hasFetchedFilterData)
-                {
-
-                }
             }
 
             else if (filtersStatus[i].name == "Users under your OPCON" && filtersStatus[i].showFilterData)
@@ -208,11 +201,12 @@
                 if(usersUnderYourOPCON != null)
                 {
 
-                    foreach (var user in usersUnderYourOPCON)
+                    foreach (var userUnderOPCON in usersUnderYourOPCON)
                     {
-                        if (DisplayedUsersDictionary.ContainsKey(user.userID) == false)
+                        if (DisplayedUsersDictionary.ContainsKey(userUnderOPCON.userID) == false)
                         {
-                            displayedUsers.Add(user);
+                            displayedUsers.Add(userUnderOPCON);
+                            DisplayedUsersDictionary.Add(userUnderOPCON.userID, true);
                         }
                     }
                     // displayedUsers = displayedUsers.Union(usersUnderYourOPCON).ToList();
