@@ -43,13 +43,20 @@
                     @if (currentUser != null && (context.teamCreator.userID == currentUser.userID))
                     {
                         <MudTd>
-                            <MudButton OnClick="() => OpenDeleteTeamDialog(context.team)" Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary" Style="font-family: helveticaNeueMedium;">
-                                Delete Team
+                            <MudButton OnClick="() => OpenUpdateTeamLeaderTeamDialog(context.team)" Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary" Style="font-family: helveticaNeueMedium;">
+                                Change Team Leader
                             </MudButton>
                         </MudTd>
+                        
                         <MudTd>
                             <MudButton OnClick="() => OpenTransferTeamDialog(context.team)" Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary" Style="font-family: helveticaNeueMedium;">
                                 Transfer Team
+                            </MudButton>
+                        </MudTd>
+
+                        <MudTd>
+                            <MudButton OnClick="() => OpenDeleteTeamDialog(context.team)" Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary" Style="font-family: helveticaNeueMedium;">
+                                Delete Team
                             </MudButton>
                         </MudTd>
                     }
@@ -126,6 +133,16 @@
         var options = new DialogOptions { CloseOnEscapeKey = true };
         parameters.Add("currentUser", currentUser);
         DialogService.Show<TransferAllTeamsDialog>("Transfer Team", parameters, options);
+    }
+
+    private void OpenUpdateTeamLeaderTeamDialog(TeamsModel teamToUpdateLeader)
+    {
+        var parameters = new DialogParameters();
+        var options = new DialogOptions { CloseOnEscapeKey = true };
+        parameters.Add("teamToUpdateLeader", teamToUpdateLeader);
+
+
+        DialogService.Show<UpdateTeamLeaderDialog>("Update Team Leader", parameters, options);
     }
 
 
