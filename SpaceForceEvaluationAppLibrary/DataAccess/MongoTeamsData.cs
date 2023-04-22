@@ -3,6 +3,7 @@
 // contains the task necessary to get and set users in the database.
 // ================================================================================================
 using MongoDB.Bson;
+using System;
 
 namespace SpaceForceEvaluationAppLibrary.DataAccess;
 
@@ -20,6 +21,13 @@ public class MongoTeamsData : ITeamsData
     public Task CreateTeam(TeamsModel team)
     {
         return _teams.InsertOneAsync(team);
+    }
+
+    public async Task<bool> CheckIfTeamExists(TeamsModel team)
+    {
+        var results = await _teams.FindAsync(u => u.leader == team.leader && u.name == team.name && u.creator == team.creator);
+        var resultsList = results.ToList();
+        return (resultsList != null && resultsList.Count >= 1);
     }
 
     public async Task<TeamsModel> GetTeam(string ObjectID)
@@ -60,9 +68,9 @@ public class MongoTeamsData : ITeamsData
         return _teams.ReplaceOneAsync(filter, team, new ReplaceOptions { IsUpsert = true });
     }
 
-    public async Task RemoveTeam(string ObjectID)
+    public async Task DeleteTeam(string ObjectID)
     {
-        var filter = Builders<TeamsModel>.Filter.Eq("ObjectID", ObjectID);
+        var filter = Builders<TeamsModel>.Filter.Eq("ObjectId", ObjectID);
         var result = await _teams.DeleteOneAsync(filter);
     }
 

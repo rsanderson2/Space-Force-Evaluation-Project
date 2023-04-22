@@ -27,7 +27,7 @@
                 <MudTd>@context.firstName</MudTd>
                 <MudTd>@context.email</MudTd>
                 <MudTd>@context.rank</MudTd>
-                @if(currentUser.userID == team.leader)
+                @if(currentUser.userID == team.leader || currentUser.userID == team.creator)
                 {
                     <MudTd><MudButton OnClick="() => onMemberRemoval(team.ObjectId, context.userID)">Remove From Team</MudButton></MudTd>
                 }
@@ -87,17 +87,7 @@
             return false;
         }
 
-        UserModel userToRemove = await userData.GetUser(memberToRemove);
-
-        if(userToRemove.teamIDs.Contains(teamID) == false)
-        {
-            return false;
-        }
-
         team.members.Remove(memberToRemove);
-        userToRemove.teamIDs.Remove(teamID);
-
-        await userData.UpdateUser(userToRemove);
         await teamsData.UpdateTeam(team);
 
         return true;

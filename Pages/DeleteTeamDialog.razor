@@ -1,0 +1,50 @@
+﻿@inject IUserData userData
+@inject IRequestsData requestsData
+@inject ISnackbar Snackbar
+@inject ITeamsData teamsData
+@inject IADCONData ADCONData
+
+<MudDialog>
+    <DialogContent>
+        <MudGrid>
+            <MudItem xs="12">
+                    <MudText>Are you sure that you would like to delete team: @teamToDelete.name</MudText>
+                    <MudText Style="font-weight: bold" Align="Align.Center">This action cannot be undone</MudText>
+            </MudItem>
+        </MudGrid>
+        
+
+
+    </DialogContent>
+
+    <DialogActions>
+        <MudButton OnClick="Cancel">Cancel</MudButton>
+        <MudButton OnClick="HandleDeleteTeam" Color="Color.Error">Delete</MudButton>
+    </DialogActions>
+
+
+</MudDialog>
+
+
+
+@code {
+
+    [CascadingParameter] MudDialogInstance MudDialog { get; set; }
+    [Parameter] public TeamsModel teamToDelete { get; set; }
+
+
+    void Submit() => MudDialog.Close(DialogResult.Ok(true));
+    void Cancel() => MudDialog.Cancel();
+
+    
+    public async Task HandleDeleteTeam()
+    {
+        await teamsData.DeleteTeam(teamToDelete.ObjectId);
+        Snackbar.Add($"SUCCESS: team was deleted. Refresh to see changes.", Severity.Success);
+    }
+
+    protected async override Task OnInitializedAsync()
+    {
+    }
+
+}

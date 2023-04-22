@@ -464,16 +464,7 @@
 
         if (team.members.Contains(userID) == false)
         {
-            UserModel user = await userData.GetUser(userID);
-
-            if(user.teamIDs.Contains(team.ObjectId) == true)
-            {
-                return false;
-            }
-
             team.members.Add(userID);
-            user.teamIDs.Add(team.ObjectId);
-            await userData.UpdateUser(user);
             await teamsData.UpdateTeam(team);
             return true;
         }

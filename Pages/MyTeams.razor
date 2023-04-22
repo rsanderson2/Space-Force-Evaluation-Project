@@ -27,6 +27,7 @@
                 <HeaderContent>
                     <MudTh>Name</MudTh>
                     <MudTh>Leader</MudTh>
+                    <MudTh></MudTh>
                 </HeaderContent>
                 <RowTemplate>
                     <MudTd>@context.teamName</MudTd>
@@ -37,6 +38,24 @@
                             View More
                         </MudButton>
                     </MudTd>
+
+                    @if (currentUser != null && (context.teamCreator.userID == currentUser.userID))
+                    {
+                        <MudTd>
+                            <MudButton OnClick="() => OpenDeleteTeamDialog(context.team)" Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary" Style="font-family: helveticaNeueMedium;">
+                                Delete Team
+                            </MudButton>
+                        </MudTd>
+                    }
+                    else if (currentUser != null && (context.teamLeader.userID == currentUser.userID && (currentUser.role == "HQ" || currentUser.role == "Commander")))
+                    {
+                        <MudTd>
+                            <MudButton OnClick="() => OpenDeleteTeamDialog(context.team)" Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary" Style="font-family: helveticaNeueMedium;">
+                                Delete Team
+                            </MudButton>
+                        </MudTd>
+                    }
+                    
                 </RowTemplate>
             </MudTable>
         </MudNavGroup>
@@ -53,12 +72,14 @@
         public List<UserModel> teamMembers;
         public string teamName;
         public TeamsModel team;
+        public UserModel teamCreator;
     }
 
     UserModel currentUser;
     List<TeamView> teams = new ();
     List<TeamsModel> teamsCurrentUserLeads = new();
     List<TeamsModel> teamsCurrentUserIsMember = new();
+    List<TeamsModel> teamsCurrentUserCreated = new();
 
     bool isLoading = true;
     bool _myteamsExpanded = true;
@@ -71,6 +92,16 @@
         parameters.Add("currentUser", currentUser);
 
         DialogService.Show<CreateTeamDialog>("Team Creation", parameters, options );
+    }
+
+    private void OpenDeleteTeamDialog(TeamsModel teamToDelete)
+    {
+        var parameters = new DialogParameters();
+        var options = new DialogOptions { CloseOnEscapeKey = true };
+
+        parameters.Add("teamToDelete", teamToDelete);
+
+        DialogService.Show<DeleteTeamDialog>("Delete Team", parameters, options);
     }
 
 
@@ -93,12 +124,14 @@
 
         teamsCurrentUserLeads = await teamsData.GetTeamsByLeader(currentUser.userID);
         teamsCurrentUserIsMember = await teamsData.GetTeamsByMember(currentUser.userID);
+        teamsCurrentUserCreated = await teamsData.GetTeamsByCreator(currentUser.userID);
 
         foreach (var team in teamsCurrentUserLeads)
         {
             TeamView tempTeam = new TeamView();
 
             tempTeam.teamLeader = await userData.GetUser(team.leader);
+            tempTeam.teamCreator = await userData.GetUser(team.creator);
             tempTeam.teamName = team.name;
             tempTeam.teamMembers = new List<UserModel>();
             tempTeam.team = team;
@@ -117,6 +150,30 @@
             TeamView tempTeam = new TeamView();
 
             tempTeam.teamLeader = await userData.GetUser(team.leader);
+            tempTeam.teamCreator = await userData.GetUser(team.creator);
+            tempTeam.teamName = team.name;
+            tempTeam.teamMembers = new List<UserModel>();
+            tempTeam.team = team;
+
+            foreach (var member in team.members)
+            {
+                tempTeam.teamMembers.Add(await userData.GetUser(member));
+            }
+
+            teams.Add(tempTeam);
+        }
+
+
+        foreach (var team in teamsCurrentUserCreated)
+        {
+            if(team.creator == team.leader && team.leader == currentUser.userID)
+            {
+                continue; 
+            }
+            TeamView tempTeam = new TeamView();
+
+            tempTeam.teamLeader = await userData.GetUser(team.leader);
+            tempTeam.teamCreator = await userData.GetUser(team.creator);
             tempTeam.teamName = team.name;
             tempTeam.teamMembers = new List<UserModel>();
             tempTeam.team = team;
