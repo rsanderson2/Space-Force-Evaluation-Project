@@ -115,4 +115,10 @@ public class MongoUserData : IUserData
         }
     }
 
+    public async Task DeleteUser(string userID)
+    {
+        var filter = Builders<UserModel>.Filter.Eq(u => u.userID, userID);
+        await _users.DeleteOneAsync(filter);
+    }
+
 }

@@ -79,6 +79,17 @@
                     </MudButton>
                 </CellTemplate>
             </Column>
+
+            @if(currentUser != null && currentUser.role == "HQ")
+            {
+                <Column T="UserModel" Filterable="false" Hideable="false">
+                    <CellTemplate>
+                        <MudButton Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary" OnClick="@(() => OpenDeleteUserDialog(context.Item))" Style=" font-family: helveticaNeueMedium;">
+                            Delete User
+                        </MudButton>
+                    </CellTemplate>
+                </Column>
+            }
         </Columns>
     </MudDataGrid>
 
@@ -238,6 +249,15 @@
         return false;
     };
 
+    private void OpenDeleteUserDialog(UserModel userToDelete)
+    {
+        var parameters = new DialogParameters();
+        parameters.Add("userToDelete", userToDelete);
+        parameters.Add("currentUser", currentUser);
+
+        var options = new DialogOptions { CloseOnEscapeKey = true };
+        DialogService.Show<DeleteUserDialog>("Delete User", parameters, options);
+    }
 
     private void OpenDialog(UserModel selectedUser, UserModel currentUser)
     {
@@ -334,6 +354,8 @@
 
         return usersUnderOPCON;
     }
+
+
 
 
     protected async override Task OnInitializedAsync()
