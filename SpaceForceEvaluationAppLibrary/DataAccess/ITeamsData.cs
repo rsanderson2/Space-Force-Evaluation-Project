@@ -23,5 +23,7 @@ namespace SpaceForceEvaluationAppLibrary.DataAccess
 
         Task RemoveAllTeams();
 
+        Task<List<TeamsModel>> GetTeamsByCreator(string creatorID);
+
     }
 }

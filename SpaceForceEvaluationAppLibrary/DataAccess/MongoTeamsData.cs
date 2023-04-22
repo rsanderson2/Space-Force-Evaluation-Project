@@ -40,7 +40,13 @@ public class MongoTeamsData : ITeamsData
         return results.ToList();
     }
 
-    
+    public async Task<List<TeamsModel>> GetTeamsByCreator(string creatorID)
+    {
+        var results = await _teams.FindAsync(u => u.creator == creatorID);
+        return results.ToList();
+    }
+
+
     public async Task<List<TeamsModel>> GetTeamsByMember(string memberID)
     {
         var results = await _teams.FindAsync(u => u.members != null && u.members.Contains(memberID));
