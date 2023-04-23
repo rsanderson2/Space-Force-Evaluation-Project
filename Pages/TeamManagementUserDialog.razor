@@ -102,7 +102,7 @@
 
             
 
-                    @if ((currentUser.role == "HQ" || (currentUser.role == "Commander" && selectedUser.role == "Member")) && !isSameUser)
+                    @if ((currentUser.role == "HQ" || currentUser.role == "Commander") && !isSameUser)
                     {
                         <MudSelect @bind-Value="roleAssignmentValue" Label="Update Role" Placeholder="Select role" AdornmentColor="Color.Primary">
                             <MudSelectItem Value="@("N/A")" Disabled="true">Roles</MudSelectItem>
@@ -660,9 +660,7 @@
         //await ADCONData.RemoveAllADCON();
         //await evaluationsData.RemoveAllEvaluations();
 
-        //UserModel testUser = await userData.GetUserFromFirstName("Angela");
-        //testUser.firstName = "Matthew";
-        //testUser.lastName = "Jones";
-        //await userData.UpdateUser(testUser);
+        //UserModel testUser = await userData.GetUserFromFirstName("Roger");
+        //await userData.DeleteUser(testUser.userID);
     }
 }
