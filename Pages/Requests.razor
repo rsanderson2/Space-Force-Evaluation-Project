@@ -13,23 +13,23 @@
 
 <div>
 
-    <MudPaper Width="100%" Class="mt-15 mb-3 pa-2" Elevation="1">
+    <MudPaper Width="100%" Class="mt-15 mb-3 pa-2" Elevation="1" Style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px; background: #E7F1FF;">
 
-        <MudNavGroup Title="Recieved ADCON Transfer Requests" @bind-Expanded=_recievedADCONisExpanded>
+        <MudNavGroup Title="Recieved ADCON Transfer Requests" @bind-Expanded=_recievedADCONisExpanded Style="font-family: 'HelveticaNeueBold'; font-style: normal; font-weight: 400; font-size: 130%;">
                 <MudTable Items="@recievedADCONRequests" Hover="true" Loading="@_loadingRecievedRequests">
                     <HeaderContent>
-                        <MudTh>User</MudTh>
-                        <MudTh>Current Superior</MudTh>
-                        <MudTh>New Superior</MudTh>
-                    <MudTh><MudTableSortLabel InitialDirection="SortDirection.Ascending" SortBy="new Func<ADCONTransferRequests, object>(x=>x.status)">Status</MudTableSortLabel></MudTh>
+                    <MudTh Style="font-family: 'HelveticaNeueBold'; font-style: normal; font-weight: 400; font-size: 100%;">User</MudTh>
+                    <MudTh Style="font-family: 'HelveticaNeueBold'; font-style: normal; font-weight: 400; font-size: 100%;">Current Superior</MudTh>
+                    <MudTh Style="font-family: 'HelveticaNeueBold'; font-style: normal; font-weight: 400; font-size: 100%;">New Superior</MudTh>
+                    <MudTh Style="font-family: 'HelveticaNeueBold'; font-style: normal; font-weight: 400; font-size: 100%;"><MudTableSortLabel InitialDirection="SortDirection.Ascending" SortBy="new Func<ADCONTransferRequests, object>(x=>x.status)">Status</MudTableSortLabel></MudTh>
                     </HeaderContent>
                     <RowTemplate>
-                        <MudTd>@context.user.firstName</MudTd>
-                        <MudTd>@context.currentSuperior.firstName</MudTd>
-                        <MudTd>@context.newSuperior.firstName</MudTd>
-                        <MudTd>@context.status</MudTd>
+                    <MudTd Style="font-family: 'HelveticaNeueMedium'; font-style: normal; font-weight: 400; font-size: 70%;">@context.user.firstName</MudTd>
+                    <MudTd Style="font-family: 'HelveticaNeueMedium'; font-style: normal; font-weight: 400; font-size: 70%;">@context.currentSuperior.firstName</MudTd>
+                    <MudTd Style="font-family: 'HelveticaNeueMedium'; font-style: normal; font-weight: 400; font-size: 70%;">@context.newSuperior.firstName</MudTd>
+                    <MudTd Style="font-family: 'HelveticaNeueMedium'; font-style: normal; font-weight: 400; font-size: 70%;">@context.status</MudTd>
                         <MudTd>
-                            <MudButton OnClick="@(() => OpenDialog(context))" Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary">
+                        <MudButton OnClick="@(() => OpenDialog(context))" Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary" Style=" font-family: helveticaNeueMedium;">
                                 View More
                             </MudButton>
                         </MudTd>
@@ -38,21 +38,21 @@
             </MudNavGroup>
 
             
-        <MudNavGroup Title="Sent ADCON Transfer Requests" @bind-Expanded=_sentADCONisExpanded>
+        <MudNavGroup Title="Sent ADCON Transfer Requests" @bind-Expanded=_sentADCONisExpanded Style="font-family: 'HelveticaNeueBold'; font-style: normal; font-weight: 400; font-size: 130%;">
                 <MudTable Items="@sentADCONRequests" Hover="true" Loading="@_loadingSentRequests">
                     <HeaderContent>
-                        <MudTh>User</MudTh>
-                        <MudTh>Current Superior</MudTh>
-                        <MudTh>New Superior</MudTh>
-                    <MudTh><MudTableSortLabel InitialDirection="SortDirection.Ascending" SortBy="new Func<ADCONTransferRequests, object>(x=>x.status)">Status</MudTableSortLabel></MudTh>
+                    <MudTh Style="font-family: 'HelveticaNeueBold'; font-style: normal; font-weight: 400; font-size: 100%;">User</MudTh>
+                    <MudTh Style="font-family: 'HelveticaNeueBold'; font-style: normal; font-weight: 400; font-size: 100%;">Current Superior</MudTh>
+                    <MudTh Style="font-family: 'HelveticaNeueBold'; font-style: normal; font-weight: 400; font-size: 100%;">New Superior</MudTh>
+                    <MudTh Style="font-family: 'HelveticaNeueBold'; font-style: normal; font-weight: 400; font-size: 100%;"><MudTableSortLabel InitialDirection="SortDirection.Ascending" SortBy="new Func<ADCONTransferRequests, object>(x=>x.status)">Status</MudTableSortLabel></MudTh>
                     </HeaderContent>
                     <RowTemplate>
-                        <MudTd>@context.user.firstName</MudTd>
-                        <MudTd>@context.currentSuperior.firstName</MudTd>
-                        <MudTd>@context.newSuperior.firstName</MudTd>
-                        <MudTd>@context.status</MudTd>
+                    <MudTd Style="font-family: 'HelveticaNeueMedium'; font-style: normal; font-weight: 400; font-size: 70%;">@context.user.firstName</MudTd>
+                    <MudTd Style="font-family: 'HelveticaNeueMedium'; font-style: normal; font-weight: 400; font-size: 70%;">@context.currentSuperior.firstName</MudTd>
+                    <MudTd Style="font-family: 'HelveticaNeueMedium'; font-style: normal; font-weight: 400; font-size: 70%;">@context.newSuperior.firstName</MudTd>
+                    <MudTd Style="font-family: 'HelveticaNeueMedium'; font-style: normal; font-weight: 400; font-size: 70%;">@context.status</MudTd>
                         <MudTd>
-                            <MudButton OnClick="@(() => OpenDialog(context))" Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary">
+                        <MudButton OnClick="@(() => OpenDialog(context))" Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary" Style=" font-family: helveticaNeueMedium;">
                                 View More
                             </MudButton>
                         </MudTd>

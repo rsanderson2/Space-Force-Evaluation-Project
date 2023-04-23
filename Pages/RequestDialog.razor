@@ -8,31 +8,31 @@
     <DialogContent>
         <MudGrid>
             <MudItem xs="4">
-                <div style="border-right: solid 1px; padding-right:5px; height:100%;">
-                    <h6 style="font-weight: bold">User Being Transferred</h6>
+                <div style="border-right: solid 1px; padding-right:5px; height:100%; ">
+                    <h6 style="font-family: 'HelveticaNeueBold'; font-style: normal; font-weight: 400; font-size: 130%;">User Being Transferred</h6>
 
-                    <p class="adcon-dialogue"><b>User</b>: @newSubordinate.firstName @newSubordinate.lastName</p>
-                    <p><b>Rank:</b> @newSubordinate.rank</p>
-                    <p><b>Job:</b> @newSubordinate.job</p>
-                    <p><b>Role:</b> @newSubordinate.role</p>
+                    <p class="adcon-dialogue"><b style="font-family: 'HelveticaNeueBold'; font-style: normal; font-weight: 400; font-size: 100%;">User:</b> @newSubordinate.firstName @newSubordinate.lastName</p>
+                    <p><b style="font-family: 'HelveticaNeueBold'; font-style: normal; font-weight: 400; font-size: 100%;">Rank:</b> @newSubordinate.rank</p>
+                    <p><b style="font-family: 'HelveticaNeueBold'; font-style: normal; font-weight: 400; font-size: 100%;">Job:</b> @newSubordinate.job</p>
+                    <p><b style="font-family: 'HelveticaNeueBold'; font-style: normal; font-weight: 400; font-size: 100%;">Role:</b> @newSubordinate.role</p>
                 </div>
             </MudItem>
             <MudItem xs="4">
                 <div style="border-right: solid 1px; height:100%;">
-                    <h6 style="font-weight: bold">Current Superior</h6>
-                    <p class="mb-4"><b>User</b>: @currentSuperior.firstName @currentSuperior.lastName</p>
-                    <p><b>Rank:</b> @currentSuperior.rank</p>
-                    <p><b>Job:</b> @currentSuperior.job</p>
-                    <p><b>Role:</b> @currentSuperior.role</p>
+                    <h6 style="font-family: 'HelveticaNeueBold'; font-style: normal; font-weight: 400; font-size: 130%;">Current Superior</h6>
+                    <p class="mb-4"><b style="font-family: 'HelveticaNeueBold'; font-style: normal; font-weight: 400; font-size: 100%;">User:</b> @currentSuperior.firstName @currentSuperior.lastName</p>
+                    <p><b style="font-family: 'HelveticaNeueBold'; font-style: normal; font-weight: 400; font-size: 100%;">Rank:</b> @currentSuperior.rank</p>
+                    <p><b style="font-family: 'HelveticaNeueBold'; font-style: normal; font-weight: 400; font-size: 100%;">Job:</b> @currentSuperior.job</p>
+                    <p><b style="font-family: 'HelveticaNeueBold'; font-style: normal; font-weight: 400; font-size: 100%;">Role:</b> @currentSuperior.role</p>
                 </div>
             </MudItem>
             <MudItem xs="4">
                 <div style="height:100%;">
-                    <h6 style="font-weight: bold">New Superior</h6>
-                    <p class="mb-4"><b>User</b>: @newSuperior.firstName @newSuperior.lastName</p>
-                    <p><b>Rank:</b> @newSuperior.rank</p>
-                    <p><b>Job:</b> @newSuperior.job</p>
-                    <p><b>Role:</b> @newSuperior.role</p>
+                    <h6 style="font-family: 'HelveticaNeueBold'; font-style: normal; font-weight: 400; font-size: 130%;">New Superior</h6>
+                    <p class="mb-4"><b style="font-family: 'HelveticaNeueBold'; font-style: normal; font-weight: 400; font-size: 100%;">User:</b> @newSuperior.firstName @newSuperior.lastName</p>
+                    <p><b style="font-family: 'HelveticaNeueBold'; font-style: normal; font-weight: 400; font-size: 100%;">Rank:</b> @newSuperior.rank</p>
+                    <p><b style="font-family: 'HelveticaNeueBold'; font-style: normal; font-weight: 400; font-size: 100%;">Job:</b> @newSuperior.job</p>
+                    <p><b style="font-family: 'HelveticaNeueBold'; font-style: normal; font-weight: 400; font-size: 100%;">Role:</b> @newSuperior.role</p>
                 </div>
             </MudItem>
         </MudGrid>
@@ -44,14 +44,14 @@
     </DialogContent>
 
     <DialogActions>
-        <MudButton OnClick="Cancel">Cancel</MudButton>
+        <MudButton Style="font-family: HelveticaNeueMedium;" OnClick="Cancel">Cancel</MudButton>
 
         @if (canApproveOrDeny)
         {
-            <MudButton Disabled="@(processingADCONRequest || hasADCON || (currentStatus != "Pending" && currentStatus != "Awaiting second response"))"
+            <MudButton Style="font-family: HelveticaNeueMedium;" Disabled="@(processingADCONRequest || hasADCON || (currentStatus != "Pending" && currentStatus != "Awaiting second response"))"
                        OnClick="() => onApproval()">Approve</MudButton>
 
-            <MudButton Disabled="@(processingADCONRequest || hasADCON ||  (currentStatus != "Pending" && currentStatus != "Awaiting second response"))"
+            <MudButton Style="font-family: HelveticaNeueMedium;" Disabled="@(processingADCONRequest || hasADCON ||  (currentStatus != "Pending" && currentStatus != "Awaiting second response"))"
                        OnClick="() => denyADCON()">Deny</MudButton>
         }
     </DialogActions>

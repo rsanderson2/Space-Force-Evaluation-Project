@@ -12,23 +12,23 @@
 
 <div>
 
-    <MudPaper Width="100%" Class="mt-15 mb-3 pa-2" Elevation="1">
+    <MudPaper Width="100%" Class="mt-15 mb-3 pa-2" Elevation="1" Style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px; background: #E7F1FF;">
 
-        <MudNavGroup Title="Recieved Evaluation Requests" @bind-Expanded=_recievedEvaluationisExpanded>
+        <MudNavGroup Title="Recieved Evaluation Requests" @bind-Expanded=_recievedEvaluationisExpanded Style="font-family: 'HelveticaNeueBold'; font-style: normal; font-weight: 400; font-size: 130%;">
             <MudTable Items="@recievedEvaluationRequests" Hover="true" Loading="@_loadingRecievedRequests">
                 <HeaderContent>
-                    <MudTh>Request Initiator</MudTh>
-                    <MudTh>User Being Evaluated</MudTh>
-                    <MudTh>New Evaluator</MudTh>
-                    <MudTh><MudTableSortLabel InitialDirection="SortDirection.Ascending" SortBy="new Func<EvaluationAssignmentRequests, object>(x=>x.status)">Status</MudTableSortLabel></MudTh>
+                    <MudTh Style="font-family: 'HelveticaNeueBold'; font-style: normal; font-weight: 400; font-size: 100%;">Request Initiator</MudTh>
+                    <MudTh Style="font-family: 'HelveticaNeueBold'; font-style: normal; font-weight: 400; font-size: 100%;">User Being Evaluated</MudTh>
+                    <MudTh Style="font-family: 'HelveticaNeueBold'; font-style: normal; font-weight: 400; font-size: 100%;">New Evaluator</MudTh>
+                    <MudTh Style="font-family: 'HelveticaNeueBold'; font-style: normal; font-weight: 400; font-size: 100%;"><MudTableSortLabel InitialDirection="SortDirection.Ascending" SortBy="new Func<EvaluationAssignmentRequests, object>(x=>x.status)">Status</MudTableSortLabel></MudTh>
                 </HeaderContent>
                 <RowTemplate>
-                    <MudTd>@context.requestInitiator.firstName @context.requestInitiator.lastName</MudTd>
-                    <MudTd>@context.user.firstName @context.user.lastName</MudTd>
-                    <MudTd>@context.newEvaluator.firstName  @context.newEvaluator.lastName</MudTd>
-                    <MudTd>@context.status</MudTd>
+                    <MudTd Style="font-family: 'HelveticaNeueMedium'; font-style: normal; font-weight: 400; font-size: 70%;">@context.requestInitiator.firstName @context.requestInitiator.lastName</MudTd>
+                    <MudTd Style="font-family: 'HelveticaNeueMedium'; font-style: normal; font-weight: 400; font-size: 70%;">@context.user.firstName @context.user.lastName</MudTd>
+                    <MudTd Style="font-family: 'HelveticaNeueMedium'; font-style: normal; font-weight: 400; font-size: 70%;">@context.newEvaluator.firstName  @context.newEvaluator.lastName</MudTd>
+                    <MudTd Style="font-family: 'HelveticaNeueMedium'; font-style: normal; font-weight: 400; font-size: 70%;">@context.status</MudTd>
                     <MudTd>
-                        <MudButton OnClick="@(() => OpenDialog(context))" Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary">
+                        <MudButton OnClick="@(() => OpenDialog(context))" Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary" Style=" font-family: helveticaNeueMedium;">
                             View More
                         </MudButton>
                     </MudTd>
@@ -37,21 +37,21 @@
         </MudNavGroup>
 
             
-        <MudNavGroup Title="Sent Evaluation Requests" @bind-Expanded=_sentEvaluationisExpanded>
+        <MudNavGroup Title="Sent Evaluation Requests" @bind-Expanded=_sentEvaluationisExpanded Style="font-family: 'HelveticaNeueBold'; font-style: normal; font-weight: 400; font-size: 130%;">
             <MudTable Items="@sentEvaluationRequests" Hover="true" Loading="@_loadingSentRequests">
                 <HeaderContent>
-                    <MudTh>Request Initiator</MudTh>
-                    <MudTh>User Being Evaluated</MudTh>
-                    <MudTh>New Evaluator</MudTh>
-                    <MudTh><MudTableSortLabel InitialDirection="SortDirection.Ascending" SortBy="new Func<EvaluationAssignmentRequests, object>(x=>x.status)">Status</MudTableSortLabel></MudTh>
+                    <MudTh Style="font-family: 'HelveticaNeueBold'; font-style: normal; font-weight: 400; font-size: 100%;">Request Initiator</MudTh>
+                    <MudTh Style="font-family: 'HelveticaNeueBold'; font-style: normal; font-weight: 400; font-size: 100%;">User Being Evaluated</MudTh>
+                    <MudTh Style="font-family: 'HelveticaNeueBold'; font-style: normal; font-weight: 400; font-size: 100%;">New Evaluator</MudTh>
+                    <MudTh Style="font-family: 'HelveticaNeueBold'; font-style: normal; font-weight: 400; font-size: 100%;"><MudTableSortLabel InitialDirection="SortDirection.Ascending" SortBy="new Func<EvaluationAssignmentRequests, object>(x=>x.status)">Status</MudTableSortLabel></MudTh>
                 </HeaderContent>
                 <RowTemplate>
-                    <MudTd>@context.requestInitiator.firstName @context.requestInitiator.lastName</MudTd>
-                    <MudTd>@context.user.firstName @context.user.lastName</MudTd>
-                    <MudTd>@context.newEvaluator.firstName  @context.newEvaluator.lastName</MudTd>
-                    <MudTd>@context.status</MudTd>
+                    <MudTd Style="font-family: 'HelveticaNeueMedium'; font-style: normal; font-weight: 400; font-size: 70%;">@context.requestInitiator.firstName @context.requestInitiator.lastName</MudTd>
+                    <MudTd Style="font-family: 'HelveticaNeueMedium'; font-style: normal; font-weight: 400; font-size: 70%;">@context.user.firstName @context.user.lastName</MudTd>
+                    <MudTd Style="font-family: 'HelveticaNeueMedium'; font-style: normal; font-weight: 400; font-size: 70%;">@context.newEvaluator.firstName  @context.newEvaluator.lastName</MudTd>
+                    <MudTd Style="font-family: 'HelveticaNeueMedium'; font-style: normal; font-weight: 400; font-size: 70%;">@context.status</MudTd>
                     <MudTd>
-                        <MudButton OnClick="@(() => OpenDialog(context))" Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary">
+                        <MudButton OnClick="@(() => OpenDialog(context))" Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary" Style=" font-family: helveticaNeueMedium;">
                             View More
                         </MudButton>
                     </MudTd>
