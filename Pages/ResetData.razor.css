@@ -1,0 +1,147 @@
+﻿/* Main page */
+.mainDiv {
+    background-image: linear-gradient(180deg, #002035 0%, #000f 99%);
+    color: black;
+    min-height: 100vh;
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+}
+
+/* Basic CSS */
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+h2 {
+    border-bottom: 1px solid black;
+}
+
+h3 {
+    font-size: 18px;
+}
+
+ul {
+    list-style: none;
+}
+
+img {
+    width: 6vh;
+    height: 6vh;
+}
+
+.rank {
+   
+}
+
+/* Container for page contents */
+.container  {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    justify-items: center;
+    text-align: center;
+}
+
+.card {
+    padding: 10px;
+    border-radius: 15px;
+    background: lightgray;
+    border: 2px solid black;
+    height: 100%;
+    min-width: 40vw;
+}
+
+.leftalign {
+    padding-left: 10px;
+    padding-top: 10px;
+    text-align: left;
+}
+
+.infotext {
+    text-transform: uppercase;
+    font-size: 18px;
+}
+
+.accountupdate {
+    display: block;
+    margin: 1vw auto;
+    text-align: center;
+}
+
+.btn-primary {
+    min-width: 80px;
+    font-size: 20px;
+    position: center;
+    padding: 0.5px;
+}
+
+table {
+    color: black;
+    border: darkgray;
+}
+
+.scroll {
+    height: 45vh;
+    overflow-y: auto;
+}
+
+.content {
+    position: relative;
+    margin: 0 10vw;
+}
+
+.content .hide {
+    position: absolute;
+    bottom: 0;
+    left: 55%;
+    min-width: 35%;
+    background: black;
+    border-radius: 10px;
+    color: white;
+    opacity: 0;
+    transition: .5s ease;
+}
+
+.content:hover > .hide {
+    opacity: 0.65;
+}
+
+/* Default grid CSS */
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.profilegrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-bottom: 1px solid darkgray;
+}
+
+.flexbox {
+    margin-top: 1vh;
+    align-items: center;
+    align-content: center;
+}
+
+.grid-col-span-2 {
+    grid-column: span 2;
+}
+
+/* Mobile devices */
+@media(max-width: 768px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .grid-col-span-2 {
+        grid-column: span 1;
+    }
+}
