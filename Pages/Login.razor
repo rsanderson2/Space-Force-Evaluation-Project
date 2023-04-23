@@ -131,7 +131,7 @@
                                     <MudCard width="80%" height="150px" Style="background-color: #E7F1FF;" Class="daily-card">
                                         <MudCardContent>
                                             <h2>Daily Survey</h2>
-                                            @if (lastDaily)
+                                            @if (lastDaily == true)
                                             {
                                                 int daysUntilNextSurvey = 1;
                                                 DateTime nextSurveyDaily = lastSurvey.AddDays(daysUntilNextSurvey);
@@ -140,7 +140,7 @@
                                                 <p>Available in @Math.Round((nextSurveyDaily - DateTime.Now).TotalDays) day</p>
                                             }
                                         </MudCardContent>
-                                        @if (!@lastDaily)
+                                        @if (lastDaily == false)
                                         {
                                             <MudCardActions>
                                                 <MudButton Disabled="@hasADCON" OnClick="() => navigateToSurvey(1)" Variant="Variant.Text" Color="Color.Secondary" Style="background-color: #003B73">Begin</MudButton>
@@ -152,7 +152,7 @@
                                     <MudCard width="80%" height="150px" Style="background-color: #E7F1FF;" Class="weekly-card">
                                         <MudCardContent>
                                             <h2>Weekly Survey</h2>
-                                            @if (lastWeekly)
+                                            @if (lastWeekly == true)
                                             {
                                                 int daysUntilNextSurvey = 7;
                                                 DateTime nextSurveyWeekly = lastSurvey.AddDays(daysUntilNextSurvey);
@@ -161,7 +161,7 @@
                                                 <p>Available in @Math.Round((nextSurveyWeekly - DateTime.Now).TotalDays) days</p>
                                             }
                                         </MudCardContent>
-                                        @if (!@lastWeekly)
+                                        @if (lastWeekly == false)
                                         {
                                             <MudCardActions>
                                                 <MudButton Disabled="@hasADCON" OnClick="() => navigateToSurvey(2)" Variant="Variant.Text" Color="Color.Secondary" Style="background-color: #003B73">Begin</MudButton>
@@ -173,7 +173,7 @@
                                     <MudCard width="80%" height="150px" Style="background-color: #E7F1FF;" Class="monthly-card">
                                         <MudCardContent>
                                             <h2>Monthly Survey</h2>
-                                            @if (lastMonthly)
+                                            @if (lastMonthly == true)
                                             {
                                                 DateTime nextSurvey = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1).AddMonths(1);
 
@@ -181,7 +181,7 @@
                                                 <p>Available in @Math.Round((nextSurvey - DateTime.Now).TotalDays) days</p>
                                             }
                                         </MudCardContent>
-                                        @if (!@lastMonthly)
+                                        @if (lastMonthly == false)
                                         {
                                             <MudCardActions>
                                                 <MudButton Disabled="@hasADCON" OnClick="() => navigateToSurvey(3)" Variant="Variant.Text" Color="Color.Secondary" Style="background-color: #003B73">Begin</MudButton>
@@ -657,25 +657,27 @@
     }
 
     // Function to check if the user is eligible to take the daily survey
-    private void checkDailySurveyEligible(UserModel currentUser)
+    private async Task checkDailySurveyEligible(UserModel currentUser)
     {
+
         today = DateTime.Today;
-        lastSurvey = currentUser.dailyDate;
+        lastSurvey = (await userData.GetUser(currentUser.userID)).dailyDate;
         if ((today - lastSurvey).TotalDays > 0)
         {
             lastDaily = false;
         }
         else
         {
-             //lastDaily = true;
-             //showDailyButton = "hidden";
+            // TODO: uncomment this before the demo
+            //  lastDaily = true;
+            //  showDailyButton = "hidden";
         }
 
     }
 
-    private void checkWeeklySurveyEligible(UserModel currentUser)
+    private async Task checkWeeklySurveyEligible(UserModel currentUser)
     {
-        lastSurveyWeekly = currentUser.weeklyDate;
+        lastSurveyWeekly = (await userData.GetUser(currentUser.userID)).weeklyDate;
 
         if ((today - lastSurveyWeekly).TotalDays > 7)
         {
@@ -683,14 +685,14 @@
         }
         else
         {
-             //lastWeekly = true;
-             //showWeeklyButton = "hidden";
+             lastWeekly = true;
+             showWeeklyButton = "hidden";
         }
     }
-    private void checkMonthlySurveyEligible(UserModel currentUser)
+    private async Task checkMonthlySurveyEligible(UserModel currentUser)
     {
         // Set the total days back to 30 when feedback is finished being collected.
-        lastSurveyMonthly = currentUser.monthlyDate;
+        lastSurveyMonthly = (await userData.GetUser(currentUser.userID)).monthlyDate;
         DateTime nextSurvey = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1).AddMonths(1);
 
         if ((today - lastSurveyWeekly).TotalDays > (nextSurvey - today).TotalDays)
@@ -699,8 +701,8 @@
         }
         else
         {
-             //lastMonthly = true;
-             //showMonthlyButton = "hidden";
+             lastMonthly = true;
+             showMonthlyButton = "hidden";
         }
     }
     protected override async Task OnInitializedAsync()
