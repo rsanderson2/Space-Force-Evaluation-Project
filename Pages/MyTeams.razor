@@ -18,24 +18,27 @@
 
     <MudPaper Class="mt-15 mb-3 pa-2" Elevation="4" Style="border-radius: 15px; background: #E7F1FF">
 
-        <MudNavGroup Title="My Teams" @bind-Expanded=_myteamsExpanded>
+        <MudNavGroup Title="My Teams" @bind-Expanded=_myteamsExpanded Style="font-family: 'HelveticaNeueBold';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 200%;">
             @if (currentUser != null && (currentUser.role == "Commander" || currentUser.role == "HQ"))
             {
-                <MudButton Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary" OnClick="@(() => OpenCreateTeamDialog())">Create Team</MudButton>
-                <MudButton Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary" OnClick="@(() => OpenTransferAllTeamsDialog())">Transfer All Teams</MudButton>
+                <MudButton Style="font-family: HelveticaNeueMedium; left: 10px; bottom: 10px;" Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary" OnClick="@(() => OpenCreateTeamDialog())">Create Team</MudButton>
+                <MudButton Style="font-family: HelveticaNeueMedium; left: 10px; bottom: 10px;" Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary" OnClick="@(() => OpenTransferAllTeamsDialog())">Transfer All Teams</MudButton>
             }
             <MudTable Items="@teams" Hover="true" Loading="@isLoading">
                 <HeaderContent>
-                    <MudTh>Name</MudTh>
-                    <MudTh>Leader</MudTh>
+                    <MudTh style="font-family: 'HelveticaNeueBold'; font-style: normal; font-weight: 400; font-size: 70%;">Name</MudTh>
+                    <MudTh style="font-family: 'HelveticaNeueBold'; font-style: normal; font-weight: 400; font-size: 70%;">Leader</MudTh>
                     <MudTh></MudTh>
                 </HeaderContent>
                 <RowTemplate>
-                    <MudTd>@context.teamName</MudTd>
-                    <MudTd>@context.teamLeader.firstName</MudTd>
+                    <MudTd style="font-family: 'HelveticaNeueMedium'; font-style: normal; font-weight: 400; font-size: 50%;">@context.teamName</MudTd>
+                    <MudTd style="font-family: 'HelveticaNeueMedium'; font-style: normal; font-weight: 400; font-size: 50%;">@context.teamLeader.firstName</MudTd>
 
                     <MudTd>
-                        <MudButton OnClick="@(() => OpenViewTeamDialog(context))" Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary">
+                        <MudButton Style="font-family: HelveticaNeueMedium;" OnClick="@(() => OpenViewTeamDialog(context))" Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary">
                             View More
                         </MudButton>
                     </MudTd>
