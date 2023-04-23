@@ -12,7 +12,7 @@ namespace SpaceForceEvaluationAppLibrary.DataAccess
 
         Task UpdateTeam(TeamsModel team);
 
-        Task RemoveTeam(string ObjectID);
+        Task DeleteTeam(string ObjectID);
 
         Task<List<TeamsModel>> GetTeamsByLeader(string leaderID);
 
@@ -22,6 +22,14 @@ namespace SpaceForceEvaluationAppLibrary.DataAccess
         Task<List<TeamsModel>> GetTeamsByName(string name);
 
         Task RemoveAllTeams();
+
+        Task<List<TeamsModel>> GetTeamsByCreator(string creatorID);
+
+        Task<bool> CheckIfTeamExists(TeamsModel team);
+
+        Task TransferTeam(TeamsModel team, UserModel newSupervisingCommander);
+
+        Task TransferAllUserTeams(List<TeamsModel> teamsToTransfer, UserModel newSupervisingCommander);
 
     }
 }

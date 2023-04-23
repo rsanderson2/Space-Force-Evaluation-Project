@@ -66,23 +66,19 @@
         newTeam.leader = teamLead.userID;
         newTeam.members = new List<string>();
         newTeam.name = teamName;
+        newTeam.creator = currentUser.userID;
 
         List<TeamsModel> teamsUserLeads = await teamsData.GetTeamsByLeader(currentUser.userID);
-        foreach(var team in teamsUserLeads)
+        bool doesTeamExists = await teamsData.CheckIfTeamExists(newTeam);
+        if(doesTeamExists == true)
         {
-            if(team.name == newTeam.name)
-            {
-                // cannot add team since one already exist with same lead/name
-                Snackbar.Add("ERROR: team with specified name already exist", Severity.Error);
-                isProcessingTeamCreation = false;
-                return;
-            }
+            // cannot add team since one already exist with same lead/name
+            Snackbar.Add("ERROR: team with specified name already exist", Severity.Error);
+            isProcessingTeamCreation = false;
+            return;
         }
 
         await teamsData.CreateTeam(newTeam);
-        if (currentUser.teamIDs == null) currentUser.teamIDs = new List<String>();
-        currentUser.teamIDs.Add(newTeam.ObjectId);
-        await userData.UpdateUser(currentUser);
         Snackbar.Add("Successfully created new team. Refresh to see changes.", Severity.Success);
 
         teamName = "";

@@ -28,5 +28,7 @@ namespace SpaceForceEvaluationAppLibrary.DataAccess
         Task RemoveAllADCON();
 
         Task<UserModel> GetDirectSuperior(string userId);
+
+        Task<List<String>> GetDirectSubordinatesIDs(String userID);
     }
 }

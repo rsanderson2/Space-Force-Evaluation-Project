@@ -1,0 +1,64 @@
+﻿@inject IUserData userData
+@inject IRequestsData requestsData
+@inject ISnackbar Snackbar
+@inject ITeamsData teamsData
+@inject IADCONData ADCONData
+
+
+<MudDialog>
+    <DialogContent>
+        <MudGrid>
+            <MudItem xs="12">
+                <MudInput Style="width: 100%" FullWidth="true" T="string" Placeholder="New Supervising Commander's Email" @bind-Value="newCommanderEmail" />
+                <MudText Style="padding-top: 25px">Are you sure that you would like to tranfer team: @teamToTransfer.name</MudText>
+                <MudText Style="font-weight: bold" Align="Align.Center">This action cannot be undone</MudText>
+                
+            </MudItem>
+        </MudGrid>
+    </DialogContent>
+
+    <DialogActions>
+        <MudButton OnClick="Cancel">Cancel</MudButton>
+        <MudButton OnClick="HandleTeamTransfer" Color="Color.Error">Transfer</MudButton>
+    </DialogActions>
+
+
+</MudDialog>
+
+
+
+@code {
+
+    [CascadingParameter] MudDialogInstance MudDialog { get; set; }
+    [Parameter] public TeamsModel teamToTransfer { get; set; }
+
+    public String newCommanderEmail = "";
+    void Submit() => MudDialog.Close(DialogResult.Ok(true));
+    void Cancel() => MudDialog.Cancel();
+
+
+    public async Task HandleTeamTransfer()
+    {
+        UserModel newSupervisingCommander = await userData.GetUserByEmail(newCommanderEmail);
+
+        if(newSupervisingCommander == null)
+        {
+            Snackbar.Add($"ERROR: Unable to transfer team. User not found.", Severity.Error);
+            return;
+        }
+
+        if(newSupervisingCommander.role != "Commander" && newSupervisingCommander.role != "HQ")
+        {
+            Snackbar.Add($"ERROR: Unable to transfer team. User is not a Commander or HQ.", Severity.Error);
+            return;
+        }
+
+        await teamsData.TransferTeam(teamToTransfer, newSupervisingCommander);
+        Snackbar.Add($"SUCCESS: team was transferred. Refresh to see changes.", Severity.Success);
+    }
+
+    protected async override Task OnInitializedAsync()
+    {
+    }
+
+}

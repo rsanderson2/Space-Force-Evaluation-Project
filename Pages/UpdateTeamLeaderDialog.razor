@@ -1,0 +1,65 @@
+﻿@inject IUserData userData
+@inject IRequestsData requestsData
+@inject ISnackbar Snackbar
+@inject ITeamsData teamsData
+@inject IADCONData ADCONData
+
+<MudDialog>
+    <DialogContent>
+        <MudGrid>
+            <MudItem xs="12">
+                <MudInput Style="width: 100%" FullWidth="true" T="string" Placeholder="New Team Leader's' Email" @bind-Value="newTeamLeadsEmail" />
+                <MudText Style="padding-top: 25px">Are you sure that you would like to change team leader for team: @teamToUpdateLeader.name</MudText>                
+            </MudItem>
+        </MudGrid>
+    </DialogContent>
+
+    <DialogActions>
+        <MudButton OnClick="Cancel">Cancel</MudButton>
+        <MudButton OnClick="HandleTeamLeaderUpdate" Color="Color.Error">Update</MudButton>
+    </DialogActions>
+
+
+</MudDialog>
+
+
+
+@code {
+
+    [CascadingParameter] MudDialogInstance MudDialog { get; set; }
+    [Parameter] public TeamsModel teamToUpdateLeader { get; set; }
+
+
+    void Submit() => MudDialog.Close(DialogResult.Ok(true));
+    void Cancel() => MudDialog.Cancel();
+
+    public String newTeamLeadsEmail = "";
+
+
+    public async Task HandleTeamLeaderUpdate()
+    {
+        UserModel newTeamLead = await userData.GetUserByEmail(newTeamLeadsEmail);
+
+        if (newTeamLead == null)
+        {
+            Snackbar.Add($"ERROR: Unable to update team leader. User not found.", Severity.Error);
+            return;
+        }
+
+        if (newTeamLead.role != "Commander" && newTeamLead.role != "HQ" && newTeamLead.role != "Supervisor")
+        {
+            Snackbar.Add($"ERROR: Unable to update team leader. User is not a HQ, Commander, or Supervisor.", Severity.Error);
+            return;
+        }
+
+        //await teamsData.TransferTeam(teamToTransfer, newSupervisingCommander);
+        teamToUpdateLeader.leader = newTeamLead.userID;
+        await teamsData.UpdateTeam(teamToUpdateLeader);
+        Snackbar.Add($"SUCCESS: New team leader was assigned. Refresh to see changes.", Severity.Success);
+    }
+
+    protected async override Task OnInitializedAsync()
+    {
+    }
+
+}

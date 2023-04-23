@@ -1,0 +1,57 @@
+﻿@inject IUserData userData
+@inject IRequestsData requestsData
+@inject ISnackbar Snackbar
+@inject ITeamsData teamsData
+@inject IADCONData ADCONData
+
+<MudDialog>
+    <DialogContent>
+        <MudGrid>
+            <MudItem xs="12">
+                @if (userToDelete.userID != currentUser.userID)
+                {
+                    <MudText>Are you sure that you would like to delete @userToDelete.firstName @userToDelete.lastName</MudText>
+                    <MudText Style="font-weight: bold" Align="Align.Center">This action cannot be undone</MudText>
+                }
+                else
+                {
+                    <MudText>Cannot remove yourself</MudText>
+                }
+                
+            </MudItem>
+        </MudGrid>
+        
+
+
+    </DialogContent>
+
+    <DialogActions>
+        <MudButton OnClick="Cancel">Cancel</MudButton>
+        <MudButton OnClick="HandleDeleteUser" Color="Color.Error">Delete</MudButton>
+    </DialogActions>
+
+
+</MudDialog>
+
+
+
+@code {
+
+    [CascadingParameter] MudDialogInstance MudDialog { get; set; }
+    [Parameter] public UserModel userToDelete { get; set; }
+    [Parameter] public UserModel currentUser { get; set; }
+
+    void Submit() => MudDialog.Close(DialogResult.Ok(true));
+    void Cancel() => MudDialog.Cancel();
+
+    
+    public void HandleDeleteUser()
+    {
+        userData.DeleteUser(userToDelete.userID);
+    }
+
+    protected async override Task OnInitializedAsync()
+    {
+    }
+
+}

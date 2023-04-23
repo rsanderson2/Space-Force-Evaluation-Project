@@ -27,5 +27,7 @@ namespace SpaceForceEvaluationAppLibrary.DataAccess
         Task UpdateUser(UserModel user);
 
         Task EmptyAllSupordinatesAndSuperiorsList();
+
+        Task DeleteUser(string userID);
     }
 }

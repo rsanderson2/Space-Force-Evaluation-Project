@@ -76,13 +76,6 @@
 
     public async Task<bool> addUserToTeam(string userID, string teamID)
     {
-        UserModel user = await userData.GetUser(userID);
-
-        if(user.teamIDs.Contains(teamID))
-        {
-            return false;
-        }
-
         TeamsModel team = await teamsData.GetTeam(teamID);
 
         if(team.members.Contains(userID))
@@ -90,9 +83,7 @@
             return false;
         }
 
-        user.teamIDs.Add(teamID);
         team.members.Add(userID);
-        await userData.UpdateUser(user);
         await teamsData.UpdateTeam(team);
 
         return true;

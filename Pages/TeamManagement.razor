@@ -79,6 +79,17 @@
                     </MudButton>
                 </CellTemplate>
             </Column>
+
+            @if(currentUser != null && currentUser.role == "HQ")
+            {
+                <Column T="UserModel" Filterable="false" Hideable="false">
+                    <CellTemplate>
+                        <MudButton Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary" OnClick="@(() => OpenDeleteUserDialog(context.Item))" Style=" font-family: helveticaNeueMedium;">
+                            Delete User
+                        </MudButton>
+                    </CellTemplate>
+                </Column>
+            }
         </Columns>
     </MudDataGrid>
 
@@ -144,6 +155,7 @@
                         if (DisplayedUsersDictionary.ContainsKey(subordinate.userID) == false)
                         {
                             displayedUsers.Add(subordinate);
+                            DisplayedUsersDictionary.Add(subordinate.userID, true);
                         }
                     }
                 }
@@ -168,6 +180,7 @@
                         if (DisplayedUsersDictionary.ContainsKey(evaluator.userID) == false)
                         {
                             displayedUsers.Add(evaluator);
+                            DisplayedUsersDictionary.Add(evaluator.userID, true);
                         }
                     }
 
@@ -175,15 +188,6 @@
                     displayedUsers.RemoveAll(item => item == null);
                 }
 
-            }
-
-            else if (filtersStatus[i].name == "Users you evaluate")
-            {
-                // TODO: get users who you evaluate
-                if (!filtersStatus[i].hasFetchedFilterData)
-                {
-
-                }
             }
 
             else if (filtersStatus[i].name == "Users under your OPCON" && filtersStatus[i].showFilterData)
@@ -197,11 +201,12 @@
                 if(usersUnderYourOPCON != null)
                 {
 
-                    foreach (var user in usersUnderYourOPCON)
+                    foreach (var userUnderOPCON in usersUnderYourOPCON)
                     {
-                        if (DisplayedUsersDictionary.ContainsKey(user.userID) == false)
+                        if (DisplayedUsersDictionary.ContainsKey(userUnderOPCON.userID) == false)
                         {
-                            displayedUsers.Add(user);
+                            displayedUsers.Add(userUnderOPCON);
+                            DisplayedUsersDictionary.Add(userUnderOPCON.userID, true);
                         }
                     }
                     // displayedUsers = displayedUsers.Union(usersUnderYourOPCON).ToList();
@@ -238,6 +243,15 @@
         return false;
     };
 
+    private void OpenDeleteUserDialog(UserModel userToDelete)
+    {
+        var parameters = new DialogParameters();
+        parameters.Add("userToDelete", userToDelete);
+        parameters.Add("currentUser", currentUser);
+
+        var options = new DialogOptions { CloseOnEscapeKey = true };
+        DialogService.Show<DeleteUserDialog>("Delete User", parameters, options);
+    }
 
     private void OpenDialog(UserModel selectedUser, UserModel currentUser)
     {
@@ -334,6 +348,8 @@
 
         return usersUnderOPCON;
     }
+
+
 
 
     protected async override Task OnInitializedAsync()

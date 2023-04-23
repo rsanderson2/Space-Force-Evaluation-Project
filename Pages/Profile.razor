@@ -42,19 +42,25 @@
             <h3 class="account-options" style="text-align: center">Account Options</h3>
             <MudGrid>
                 <MudItem xs="12" sm="12" md="12" lg="12" xl="12">
-                    <MudButton Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary">
+                    <MudButton OnClick="ShowUpdateFirstAndLastName" Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary">
                         Update First/Last Name
                     </MudButton>
+                    <div style="display: @showUpdateName">
+                        <MudInput FullWidth="true" T="string" Placeholder="New First Name" @bind-Value="inputFirstName" />
+                        <MudInput FullWidth="true" T="string" Placeholder="New Last Name" @bind-Value="inputLastName" />
+
+                        <div>
+                            <MudButton OnClick="UpdateFirstAndLastNameUpdate">Submit</MudButton>
+                        </div>
+                    </div>
                 </MudItem>
                 <MudItem xs="12" sm="12" md="12" lg="12" xl="12">
                     <MudButton Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary" OnClick="ShowUpdateRank">
                         Update Rank
                     </MudButton>
                     <div style="display: @showUpdateRank">
-
-
-                    <MudSelect @bind-Value="selectedRank" Label="Rank" Placeholder="Select Rank" AdornmentColor="Color.Primary">
-                        <MudSelectItem T="String" Value="@null" Disabled="true">Your Teams</MudSelectItem>
+                        <MudSelect @bind-Value="selectedRank" Label="Rank" Placeholder="Select Rank" AdornmentColor="Color.Primary">
+                            <MudSelectItem T="String" Value="@null" Disabled="true">Your Teams</MudSelectItem>
                             <MudSelectItem T="String" Value="@("Specialist One (Spc1/E-1)")">Specialist One (Spc1/E-1)</MudSelectItem>
                             <MudSelectItem T="String" Value="@("Specialist Two (Spc2/E-2)")">Specialist Two (Spc2/E-2)</MudSelectItem>
                             <MudSelectItem T="String" Value="@("Specialist Three (Spc3/E-3)")">Specialist Three (Spc3/E-3)</MudSelectItem>
@@ -66,11 +72,9 @@
                             <MudSelectItem T="String" Value="@("Captain (Capt/0-3)")">Captain (Capt/0-3)</MudSelectItem>
                             <MudSelectItem T="String" Value="@("Major (Maj/0-4)")">Major (Maj/0-4)</MudSelectItem>
                             <MudSelectItem T="String" Value="@("Lieutenant Colonel (Lt Col/0-5)")">Lieutenant Colonel (Lt Col/0-5)</MudSelectItem>
-
                         </MudSelect>
-
                         <MudButton OnClick="HandleRankUpdate">Submit</MudButton>
-                </div>
+                    </div>
                 </MudItem>
                 <MudItem xs="12" sm="12" md="12" lg="12" xl="12">
                     <MudButton Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary" OnClick="ShowUpdateJob">
@@ -97,37 +101,29 @@
     private string showUpdateRank = "none";
     private string showUpdateJob = "none";
     private string showUpdateTeam = "none";
-    private string editB2Cinfo = "https://spaceforceevaluationsauth.b2clogin.com/spaceforceevaluationsauth.onmicrosoft.com/oauth2/v2.0/authorize?p=B2C_1_edit&client_id=90f2a18e-4d4b-48c3-b9b5-444253a6400d&nonce=defaultNonce&redirect_uri=https%3A%2F%2Fspaceforceevaluations.azurewebsites.net%2Fsignin-oidc&scope=openid&response_type=id_token&prompt=login";
+    private string editB2Cinfo = "https://Group19SpaceForce.b2clogin.com/Group19SpaceForce.onmicrosoft.com/oauth2/v2.0/authorize?p=B2C_1_profile_editing&client_id=e8648150-4ad1-4cd3-8934-2e0b0c92316d&nonce=defaultNonce&redirect_uri=https%3A%2F%2Flocalhost%3A7209%2F&scope=openid&response_type=id_token&prompt=login";
     private SurveyModel surveyModel = new SurveyModel();
     List<SurveyModel> surveys = new List<SurveyModel>();
     List<AccoladeModel> accolades = new List<AccoladeModel>();
     public String selectedRank = "";
     public String inputJob = "";
+    public String inputFirstName = "";
+    public String inputLastName = "";
+    public string showUpdateName = "none";
 
     // Link the user to B2C to update their B2C specific information
     private void UpdateB2CInfo()
     {
         navMangager.NavigateTo(editB2Cinfo);
     }
-    private void ShowUpdateTeam()
-    {
-        if (showUpdateTeam == "none")
-        {
-            showUpdateTeam = "";
-            showUpdateRank = "none";
-            showUpdateJob = "none";
-        }
-        else
-        {
-            showUpdateTeam = "none";
-        }
-    }
+
     private void ShowUpdateJob()
     {
         if (showUpdateJob == "none")
         {
             showUpdateTeam = "none";
             showUpdateRank = "none";
+            showUpdateName = "none";
             showUpdateJob = "";
         }
         else
@@ -142,6 +138,7 @@
             showUpdateTeam = "none";
             showUpdateRank = "";
             showUpdateJob = "none";
+            showUpdateName = "none";
         }
         else
         {
@@ -149,12 +146,22 @@
         }
     }
 
-    // Functions for handling various updates for the user profile
-    private async Task HandleTeamUpdate()
+    private void ShowUpdateFirstAndLastName()
     {
-        team = userModel.teamID;
-        await UpdateUserTeam();
+        if (showUpdateName == "none")
+        {
+            showUpdateTeam = "none";
+            showUpdateName = "";
+            showUpdateJob = "none";
+            showUpdateRank = "none";
+        }
+        else
+        {
+            showUpdateName = "none";
+        }
     }
+
+
     private async Task HandleRankUpdate()
     {
         if (selectedRank != null && selectedRank != "")
@@ -163,6 +170,7 @@
             await UpdateUserRank();
         }
     }
+
     private async Task HandleJobUpdate()
     {
         if(inputJob != null && inputJob != "")
@@ -171,21 +179,37 @@
             await UpdateUserJob();
         }
     }
-    private async Task UpdateUserTeam()
+
+    private async Task UpdateFirstAndLastNameUpdate()
     {
-        loggedInUser.teamID = team;
+        if(inputFirstName != null && inputFirstName != "")
+        {
+            loggedInUser.firstName = inputFirstName;
+            firstName = inputFirstName;
+        }
+
+        if(inputFirstName != null && inputLastName != "")
+        {
+            loggedInUser.lastName = inputLastName;
+            lastName = inputLastName;
+        }
+
         await userData.UpdateUser(loggedInUser);
     }
+
+
     private async Task UpdateUserJob()
     {
         loggedInUser.job = inputJob;
         await userData.UpdateUser(loggedInUser);
     }
+
     private async Task UpdateUserRank()
     {        
         loggedInUser.rank = selectedRank;
         await userData.UpdateUser(loggedInUser);
     }
+
     protected async override Task OnInitializedAsync()
     {
         loggedInUser = await AuthenticationStateProviderHelpers.GetUserFromAuth(authProvider, userData);
