@@ -8,7 +8,8 @@
 @inject IADCONData ADCONData
 @inject NavigationManager navManager
 
-<div>
+
+<div style="background-color: #E7F1FF; border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);">
     @for (int i = 0; i < surveyQuestions.Count(); i++)
     {
         SurveyModel surveyQuestion = surveyQuestions[i];
@@ -16,42 +17,71 @@
         if (i < subjectText.Count) s = subjectText[i];
         @if (surveyQuestion.surveyType == "mult")
         {
-            <div>
-                <h6>Question @(i + 1): @s @surveyQuestion.question</h6>
-                <div style="padding-left: 5%; padding-bottom: 2%">
-                    <MudGrid Spacing="3" Justify="Justify.Center">
+            <div style="background-color: #E7F1FF; border-radius: 15px; padding: 1%;">
+                <h6 style="font-family:HelveticaNeueBold; font-style: normal; font-weight: 900; font-size:150%;">Question @(i + 1): @s @surveyQuestion.question</h6>
+                <div style="background-color: #E7F1FF; padding: 1%;">
+                    <MudGrid Spacing="3" Justify="Justify.Center" Style="font-family:HelveticaNeueMedium; font-style: normal; font-weight: 900; font-size:100%;">
+                        <!-- Strongly Disagree 1 -->
                         <MudItem xs="2" sm="2" md="2" lg="2" xl="2">
                             <MudGrid Justify="Justify.FlexStart">
                                 <MudItem xs="12" sm="12" md="12" lg="12" xl="12">
-                                    <MudButton Variant="Variant.Filled" OnClick="() => setResponseForQuestion(1, surveyQuestion.question)">1</MudButton>
+                                    <MudButton Style="background-color: white; font-family: HelveticaNeueBold;" Variant="Variant.Filled" OnClick="() => setResponseForQuestion(1, surveyQuestion.question)">1</MudButton>
+                                </MudItem>
+                                <MudItem xs="12" sm="12" md="12" lg="12" xl="12">
+                                    <p>Strongly Disagree</p>
+                                </MudItem>
+                            </MudGrid>
+                        </MudItem>
+
+                        <!-- Disagree 2 -->
+                        <MudItem xs="2" sm="2" md="2" lg="2" xl="2">
+                            <MudGrid Justify="Justify.FlexStart">
+                                <MudItem xs="12" sm="12" md="12" lg="12" xl="12">
+                                    <MudButton Style="background-color: white; font-family: HelveticaNeueBold;" Variant="Variant.Filled" OnClick="() => setResponseForQuestion(2, surveyQuestion.question)">2</MudButton>
                                 </MudItem>
                                 <MudItem xs="12" sm="12" md="12" lg="12" xl="12">
                                     <p>Disagree</p>
                                 </MudItem>
                             </MudGrid>
                         </MudItem>
-                        <MudItem xs="2" sm="2" md="2" lg="2" xl="2">
-                            <MudButton Variant="Variant.Filled" OnClick="() => setResponseForQuestion(2, surveyQuestion.question)">2</MudButton>
-                        </MudItem>
-                        <MudItem xs="2" sm="2" md="2" lg="2" xl="2">
-                            <MudButton Variant="Variant.Filled" OnClick="() => setResponseForQuestion(3, surveyQuestion.question)">3</MudButton>
-                        </MudItem>
-                        <MudItem xs="2" sm="2" md="2" lg="2" xl="2">
-                            <MudButton Variant="Variant.Filled" OnClick="() => setResponseForQuestion(4, surveyQuestion.question)">4</MudButton>
-                        </MudItem>
+
+                        <!-- Neutral 3 -->
                         <MudItem xs="2" sm="2" md="2" lg="2" xl="2">
                             <MudGrid Justify="Justify.FlexStart">
                                 <MudItem xs="12" sm="12" md="12" lg="12" xl="12">
-                                    <MudButton Variant="Variant.Filled" OnClick="() => setResponseForQuestion(5, surveyQuestion.question)">5</MudButton>
+                                    <MudButton Style="background-color: white; font-family: HelveticaNeueBold;" Variant="Variant.Filled" OnClick="() => setResponseForQuestion(3, surveyQuestion.question)">3</MudButton>
+                                </MudItem>
+                                <MudItem xs="12" sm="12" md="12" lg="12" xl="12">
+                                    <p>Neutral</p>
+                                </MudItem>
+                            </MudGrid>
+                        </MudItem>
+
+                        <!-- Agree 4 -->
+                        <MudItem xs="2" sm="2" md="2" lg="2" xl="2">
+                            <MudGrid Justify="Justify.FlexStart">
+                                <MudItem xs="12" sm="12" md="12" lg="12" xl="12">
+                                    <MudButton Style="background-color: white; font-family: HelveticaNeueBold;" Variant="Variant.Filled" OnClick="() => setResponseForQuestion(4, surveyQuestion.question)">4</MudButton>
                                 </MudItem>
                                 <MudItem xs="12" sm="12" md="12" lg="12" xl="12">
                                     <p>Agree</p>
                                 </MudItem>
                             </MudGrid>
                         </MudItem>
+
+                        <!-- Strongly Agree 5 -->
+                        <MudItem xs="2" sm="2" md="2" lg="2" xl="2">
+                            <MudGrid Justify="Justify.FlexStart">
+                                <MudItem xs="12" sm="12" md="12" lg="12" xl="12">
+                                    <MudButton Style="background-color: white; font-family: HelveticaNeueBold;" Variant="Variant.Filled" OnClick="() => setResponseForQuestion(5, surveyQuestion.question)">5</MudButton>
+                                </MudItem>
+                                <MudItem xs="12" sm="12" md="12" lg="12" xl="12">
+                                    <p>Strongly Agree</p>
+                                </MudItem>
+                            </MudGrid>
+                        </MudItem>
                     </MudGrid>
                 </div>
-                <hr/>
             </div>
         }
         else
@@ -59,7 +89,7 @@
             @if (surveyQuestion.question != null)
             {
                 <div>
-                    <h6>Question @(i + 1) : @surveyQuestion.question</h6>
+                    <h6 style="font-family:HelveticaNeueBold; font-style: normal; font-weight: 900; font-size:150%;">Question @(i + 1) : @surveyQuestion.question</h6>
                     <div style="padding-left: 5%; padding-bottom: 2%">
                         <MudTextField T="string" Variant="Variant.Outlined" Lines="5" @bind-Value="@questionResponses[getIndexOfQuestion(surveyQuestion.question)]" />
                     </div>
@@ -69,8 +99,8 @@
         }
     }
 
-    <div>
-        <MudButton Disabled="@onSelect()" Variant="Variant.Filled" Size="Size.Large" Color="Color.Primary" OnClick="() => Submit()">Complete Survey</MudButton>
+    <div style="padding-bottom: 1%;">
+        <MudButton Style="font-family: HelveticaNeueBold;" Disabled="@onSelect()" Variant="Variant.Filled" Size="Size.Large" Color="Color.Primary" OnClick="() => Submit()">Complete Survey</MudButton>
     </div>
 
 </div>
