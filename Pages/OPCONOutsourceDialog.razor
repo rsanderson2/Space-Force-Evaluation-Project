@@ -9,22 +9,22 @@
         <MudGrid>
             <MudItem xs="6">
                 <div style="border-right: solid 1px; padding-right:5px; height:100%;">
-                    <h6 style="font-weight: bold">User Being Outsourced</h6>
+                    <h6 style="font-family: 'HelveticaNeueBold'; font-style: normal; font-weight: 400; font-size: 130%;">User Being Outsourced</h6>
 
-                    <p class="adcon-dialogue"><b>User</b>: @user.firstName @user.lastName</p>
-                    <p><b>Rank:</b> @user.rank</p>
-                    <p><b>Job:</b> @user.job</p>
-                    <p><b>Role:</b> @user.role</p>
+                    <p class="adcon-dialogue"><b style="font-family: 'HelveticaNeueBold'; font-style: normal; font-weight: 400; font-size: 100%;">User:</b> @user.firstName @user.lastName</p>
+                    <p><b style="font-family: 'HelveticaNeueBold'; font-style: normal; font-weight: 400; font-size: 100%;">Rank:</b> @user.rank</p>
+                    <p><b style="font-family: 'HelveticaNeueBold'; font-style: normal; font-weight: 400; font-size: 100%;">Job:</b> @user.job</p>
+                    <p><b style="font-family: 'HelveticaNeueBold'; font-style: normal; font-weight: 400; font-size: 100%;">Role:</b> @user.role</p>
                 </div>
             </MudItem>
             @if(newTeamLeader != null)
             {
                 <MudItem xs="6">
                     <div style="padding-right:5px; height:100%; width:100%">
-                        <h6 style="font-weight: bold">Potential New Team</h6>
+                        <h6 style="font-family: 'HelveticaNeueBold'; font-style: normal; font-weight: 400; font-size: 130%;">Potential New Team</h6>
 
-                        <p class="adcon-dialogue"><b>Team</b>: @newTeam.name</p>
-                        <p><b>Team Leader:</b> @newTeamLeader.firstName @newTeamLeader.lastName</p>
+                        <p class="adcon-dialogue"><b style="font-family: 'HelveticaNeueBold'; font-style: normal; font-weight: 400; font-size: 100%;">Team</b>: @newTeam.name</p>
+                        <p><b style="font-family: 'HelveticaNeueBold'; font-style: normal; font-weight: 400; font-size: 100%;">Team Leader:</b> @newTeamLeader.firstName @newTeamLeader.lastName</p>
                     </div>
                 </MudItem>
             }
@@ -33,14 +33,14 @@
     </DialogContent>
 
     <DialogActions>
-        <MudButton OnClick="Cancel">Cancel</MudButton>
+        <MudButton Style="font-family: HelveticaNeueMedium;" OnClick="Cancel">Cancel</MudButton>
 
         @if (canApproveOrDeny)
         {
-            <MudButton Disabled="@(processingRequest || (currentStatus != "Pending" && currentStatus != "Awaiting second response"))"
+            <MudButton Style="font-family: HelveticaNeueMedium;" Disabled="@(processingRequest || (currentStatus != "Pending" && currentStatus != "Awaiting second response"))"
                    OnClick="() => onApproval()">Approve</MudButton>
 
-            <MudButton Disabled="@(processingRequest || (currentStatus != "Pending" && currentStatus != "Awaiting second response"))"
+            <MudButton Style="font-family: HelveticaNeueMedium;" Disabled="@(processingRequest || (currentStatus != "Pending" && currentStatus != "Awaiting second response"))"
                    OnClick="() => denyRequests()">Deny</MudButton>
         }
     </DialogActions>

@@ -13,21 +13,21 @@
 
 <div>
 
-    <MudPaper Width="100%" Class="mt-15 mb-3 pa-2" Elevation="1">
+    <MudPaper Width="100%" Class="mt-15 mb-3 pa-2" Elevation="1" Style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px; background: #E7F1FF;">
 
-        <MudNavGroup Title="Recieved OPCON Outsource Requests" @bind-Expanded=_recievedOutsourceIsExpanded>
+        <MudNavGroup Title="Recieved OPCON Outsource Requests" @bind-Expanded=_recievedOutsourceIsExpanded Style="font-family: 'HelveticaNeueBold'; font-style: normal; font-weight: 400; font-size: 130%;">
             <MudTable Items="@recievedOutsourceRequests" Hover="true" Loading="@_loadingRecievedRequests">
                 <HeaderContent>
-                    <MudTh>User</MudTh>
-                    <MudTh>New team</MudTh>
-                    <MudTh><MudTableSortLabel InitialDirection="SortDirection.Ascending" SortBy="new Func<OPCONOutsourceRequests, object>(x=>x.status)">Status</MudTableSortLabel></MudTh>
+                    <MudTh Style="font-family: 'HelveticaNeueBold'; font-style: normal; font-weight: 400; font-size: 100%;">User</MudTh>
+                    <MudTh Style="font-family: 'HelveticaNeueBold'; font-style: normal; font-weight: 400; font-size: 100%;">New team</MudTh>
+                    <MudTh Style="font-family: 'HelveticaNeueBold'; font-style: normal; font-weight: 400; font-size: 100%;"><MudTableSortLabel InitialDirection="SortDirection.Ascending" SortBy="new Func<OPCONOutsourceRequests, object>(x=>x.status)">Status</MudTableSortLabel></MudTh>
                 </HeaderContent>
                 <RowTemplate>
-                    <MudTd>@context.user.firstName</MudTd>
-                    <MudTd>@context.newTeam.name</MudTd>
-                    <MudTd>@context.status</MudTd>
+                    <MudTd Style="font-family: 'HelveticaNeueMedium'; font-style: normal; font-weight: 400; font-size: 70%;">@context.user.firstName</MudTd>
+                    <MudTd Style="font-family: 'HelveticaNeueMedium'; font-style: normal; font-weight: 400; font-size: 70%;">@context.newTeam.name</MudTd>
+                    <MudTd Style="font-family: 'HelveticaNeueMedium'; font-style: normal; font-weight: 400; font-size: 70%;">@context.status</MudTd>
                     <MudTd>
-                        <MudButton OnClick="@(() => OpenDialog(context))" Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary">
+                        <MudButton Style="font-family: helveticaNeueMedium;" OnClick="@(() => OpenDialog(context))" Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary">
                             View More
                         </MudButton>
                     </MudTd>
@@ -36,19 +36,19 @@
         </MudNavGroup>
 
             
-        <MudNavGroup Title="Sent OPCON Outsource Requests" @bind-Expanded=_sentOutsourceIsExpanded>
+        <MudNavGroup Title="Sent OPCON Outsource Requests" @bind-Expanded=_sentOutsourceIsExpanded Style="font-family: 'HelveticaNeueBold'; font-style: normal; font-weight: 400; font-size: 130%;">
             <MudTable Items="@sentOutsourceRequests" Hover="true" Loading="@_loadingRecievedRequests">
                 <HeaderContent>
-                    <MudTh>User</MudTh>
-                    <MudTh>New team</MudTh>
-                    <MudTh><MudTableSortLabel InitialDirection="SortDirection.Ascending" SortBy="new Func<OPCONOutsourceRequests, object>(x=>x.status)">Status</MudTableSortLabel></MudTh>
+                    <MudTh Style="font-family: 'HelveticaNeueBold'; font-style: normal; font-weight: 400; font-size: 100%;">User</MudTh>
+                    <MudTh Style="font-family: 'HelveticaNeueBold'; font-style: normal; font-weight: 400; font-size: 100%;">New team</MudTh>
+                    <MudTh Style="font-family: 'HelveticaNeueBold'; font-style: normal; font-weight: 400; font-size: 100%;"><MudTableSortLabel InitialDirection="SortDirection.Ascending" SortBy="new Func<OPCONOutsourceRequests, object>(x=>x.status)">Status</MudTableSortLabel></MudTh>
                 </HeaderContent>
                 <RowTemplate>
-                    <MudTd>@context.user.firstName</MudTd>
-                    <MudTd>@context.newTeam.name</MudTd>
-                    <MudTd>@context.status</MudTd>
+                    <MudTd Style="font-family: 'HelveticaNeueMedium'; font-style: normal; font-weight: 400; font-size: 70%;">@context.user.firstName</MudTd>
+                    <MudTd Style="font-family: 'HelveticaNeueMedium'; font-style: normal; font-weight: 400; font-size: 70%;">@context.newTeam.name</MudTd>
+                    <MudTd Style="font-family: 'HelveticaNeueMedium'; font-style: normal; font-weight: 400; font-size: 70%;">@context.status</MudTd>
                     <MudTd>
-                        <MudButton OnClick="@(() => OpenDialog(context))" Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary">
+                        <MudButton Style="font-family: HelveticaNeueMedium" OnClick="@(() => OpenDialog(context))" Size="@Size.Small" Variant="@Variant.Filled" Color="@Color.Primary">
                             View More
                         </MudButton>
                     </MudTd>
