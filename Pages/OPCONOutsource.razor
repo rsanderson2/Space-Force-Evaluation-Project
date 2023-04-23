@@ -128,8 +128,7 @@
 
         parameters.Add("UpdateStatus", UpdateRequestsStatus);
         parameters.Add("CurrentStatus", context.request.status);
-        parameters.Add("canApproveOrDeny", (currentUser.userID == context.request.requestRecipiants[0]
-                                          || currentUser.userID == context.request.requestRecipiants[1]));
+        parameters.Add("canApproveOrDeny", (context.request.requestRecipiants.Contains(currentUser.userID)));
         parameters.Add("requiresMultipleApprovals", (context.request.requestRecipiants.Count > 1 && context.request.requestRecipiants[1] != null));
         parameters.Add("newTeam", (context.newTeam));
         parameters.Add("user", context.user);

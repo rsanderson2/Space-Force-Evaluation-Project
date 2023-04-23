@@ -49,6 +49,21 @@ public class MongoADCONData : IADCONData
         return subordinates;
     }
 
+    public async Task<List<String>> GetDirectSubordinatesIDs(String userID)
+    {
+        var results = await _ADCON.FindAsync(u => u.superiorID == userID);
+        var resultsList = results.ToList();
+
+        List<String> subordinatesIDs = new();
+
+        foreach (var subordinateADCON in resultsList)
+        {
+            subordinatesIDs.Add(subordinateADCON.subordinateID);
+        }
+
+        return subordinatesIDs;
+    }
+
 
     public async Task<ADCONModel> GetADCONBySuperiorAndSubordinate(string superiorID, string subordinateID)
     {

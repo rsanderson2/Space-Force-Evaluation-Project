@@ -2,6 +2,8 @@
 @inject AuthenticationStateProvider authProvider
 @inject IUserData userData
 @inject ISurveyData surveyData
+@inject IEvaluationsData evaluationsData
+@inject ITeamsData teamsData
 @inject IGeneratedSurveyData generatedSurveyData
 @inject IQuestionsData questionData
 @inject INewSurveyData newSurveyData
@@ -306,20 +308,79 @@
         navManager.NavigateTo("/");
     }
 
+
+    public async Task<List<String>> GetAllPossibleEvaluatesForUser(string userID)
+    {
+        List<String> possibleEvaulates = new();
+
+        List<String> directSubordinateIDs = await ADCONData.GetDirectSubordinatesIDs(userID);
+
+        foreach(var subordinateID in directSubordinateIDs)
+        {
+            possibleEvaulates.Add(subordinateID);
+        }
+
+        
+        List<EvaluationsModel> evaluationsWhereUserIsEvaluator = await evaluationsData.GetByEvaluator(userID);
+        foreach(var evaluation in evaluationsWhereUserIsEvaluator)
+        {
+            if (possibleEvaulates.Contains(evaluation.userBeingEvaluatedId) == false)
+            {
+                possibleEvaulates.Add(evaluation.userBeingEvaluatedId);
+            }
+        }
+        
+
+        List<TeamsModel> teamsWhereUserIsLeader = await teamsData.GetTeamsByLeader(userID);
+
+        foreach(var team in teamsWhereUserIsLeader)
+        {
+            foreach(var member in team.members)
+            {
+                if (possibleEvaulates.Contains(member) == false)
+                {
+                    possibleEvaulates.Add(member);
+                }
+            }
+        }
+
+        foreach(var userId in possibleEvaulates)
+        {
+            Console.WriteLine((await userData.GetUser(userId)).firstName);
+        }
+        return possibleEvaulates;
+    }
+
     protected async override Task OnInitializedAsync()
     {
         Random rnd = new Random();
         surveyQuestions = new List<SurveyModel>();
         UserModel currentUser = await AuthenticationStateProviderHelpers.GetUserFromAuth(authProvider, userData);
+        UserModel tmpUser;
         List<GeneratedSurveyModel> generatedSurveyList = await generatedSurveyData.GetGeneratedSurveysbyUser(currentUser.userID);
         List<QuestionsModel> questions = new List<QuestionsModel>();
 
-        UserModel tmpUser;
 
-        String currentUsers_superiorID = (await ADCONData.GetADCONBySubordinate(currentUser.userID))?.superiorID;
-        surveySubjectId = currentUsers_superiorID;
-        tmpUser = await userData.GetUser(currentUsers_superiorID);
-    
+        Random random = new Random();
+        List<String> possibleEvaluates = await GetAllPossibleEvaluatesForUser(currentUser.userID);
+        if(possibleEvaluates == null)
+        {
+            possibleEvaluates = new List<String>();
+        }
+
+        // else just use the direct superior. 
+        if (possibleEvaluates.Count > 0)
+        {
+            surveySubjectId = possibleEvaluates[random.Next(possibleEvaluates.Count)];
+        }
+        else
+        {
+            String currentUsers_superiorID = (await ADCONData.GetADCONBySubordinate(currentUser.userID))?.superiorID;
+            surveySubjectId = currentUsers_superiorID;
+        }
+
+        tmpUser = await userData.GetUser(surveySubjectId);
+        
         // Generated questions
         foreach (GeneratedSurveyModel survey in generatedSurveyList)
         {
