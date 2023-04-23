@@ -7,11 +7,16 @@
     <DialogContent>
         @if(teamInfo.teamLeader != null)
         {
-            <MudText>Team Leader Name: @teamInfo.teamLeader.firstName</MudText>
-            <MudText>Team Leader Contact: @teamInfo.teamLeader.email</MudText>
-
-
+            <MudText><b>Team Leader Name:</b> @teamInfo.teamLeader.firstName</MudText>
+            <MudText><b>Team Leader Contact:</b> @teamInfo.teamLeader.email</MudText>
         }
+        
+        @if(teamInfo.teamCreator != null)
+        {
+            <MudText><b>Supervising Commander Name:</b> @teamInfo.teamCreator.firstName</MudText>
+            <MudText><b>Supervising Commander Contact:</b> @teamInfo.teamCreator.email</MudText>
+        }
+
         <MudTable Items="@teamInfo.teamMembers" Hover="true" Loading="@isLoading">
             <ToolBarContent>
                 <MudText Typo="Typo.h6">Members</MudText>
@@ -50,6 +55,7 @@
     public class TeamView
     {
         public UserModel teamLeader;
+        public UserModel teamCreator;
         public UserModel currentUser;
         public List<UserModel> teamMembers;
         public string teamName;
@@ -112,6 +118,8 @@
         isLoading = true;
         buttonFlag = true;
         teamInfo.teamLeader = await userData.GetUser(team.leader);
+        // Console.WriteLine(team.creator);
+        teamInfo.teamCreator = await userData.GetUser(team.creator);
         teamInfo.teamName = team.name;
         if(team.members != null)
         {
